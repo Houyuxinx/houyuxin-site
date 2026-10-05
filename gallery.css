@@ -1,0 +1,81 @@
+/* Each production keeps its own rhythm; images open uncropped in the viewer. */
+.stills-gallery{margin-top:clamp(48px,6vw,88px);min-width:0}
+.stills-heading{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:22px}
+.stills-kicker{display:block;margin-bottom:9px;font-size:10px;letter-spacing:.2em;color:var(--muted)}
+.stills-heading h2{margin:0;font-size:24px;font-weight:600}
+.stills-hint{margin:0;font-size:12px;line-height:1.6;color:var(--muted)}
+.stills-tools{display:flex;align-items:center;gap:10px;flex-shrink:0}
+.stills-gallery [hidden],.stills-lightbox [hidden]{display:none!important}
+.stills-arrow,.stills-close{display:inline-flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:transparent;color:var(--fg);font:inherit;font-size:18px;cursor:pointer;transition:background .2s,border-color .2s}
+.stills-arrow:hover,.stills-close:hover{border-color:rgba(255,255,255,.4);background:rgba(255,255,255,.06)}
+.stills-arrow:disabled{opacity:.25;cursor:default}
+.stills-counter{min-width:54px;text-align:center;font-size:11px;font-variant-numeric:tabular-nums;letter-spacing:.12em;color:var(--muted)}
+.stills-photo{display:block;min-width:0;position:relative;background:#050607;overflow:hidden;cursor:zoom-in;border:1px solid rgba(255,255,255,.09)}
+.stills-photo img{width:100%;height:100%;object-fit:contain;display:block}
+.stills-photo:after{content:'↗';position:absolute;right:12px;bottom:12px;display:grid;place-items:center;width:30px;height:30px;border-radius:50%;background:rgba(0,0,0,.5);color:#f0eee8;font-size:16px;opacity:0;transition:opacity .2s}
+.stills-photo:hover:after,.stills-photo:focus-visible:after{opacity:1}
+.stills-photo:focus-visible,.stills-thumb:focus-visible,.stills-arrow:focus-visible,.stills-close:focus-visible,.stills-rail:focus-visible,.stills-rooms:focus-visible,.stills-stage:focus-visible{outline:2px solid var(--fg);outline-offset:3px}
+.stills-number{display:block;margin-top:12px;font-size:10px;letter-spacing:.16em;color:var(--muted);font-variant-numeric:tabular-nums}
+.stills-rail,.stills-rooms,.stills-thumbs{scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.25) transparent;overscroll-behavior-x:contain}
+.stills-rail::-webkit-scrollbar,.stills-rooms::-webkit-scrollbar,.stills-thumbs::-webkit-scrollbar{height:3px;width:3px}
+.stills-rail::-webkit-scrollbar-thumb,.stills-rooms::-webkit-scrollbar-thumb,.stills-thumbs::-webkit-scrollbar-thumb{background:rgba(255,255,255,.25)}
+/* Expressers: a horizontal long take, with the next frame left in view. */
+.stills-rail{display:flex;gap:22px;align-items:center;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 0 18px}
+.stills-frame{flex:0 0 68%;min-width:0;margin:0;scroll-snap-align:start;scroll-margin-inline:0}
+.gallery--expressers .stills-frame:nth-child(2),.gallery--expressers .stills-frame:nth-child(3){flex-basis:58%}
+.gallery--expressers .stills-photo{aspect-ratio:3/2;border-radius:3px}
+.gallery--expressers .stills-frame:nth-child(2) .stills-photo,.gallery--expressers .stills-frame:nth-child(3) .stills-photo{aspect-ratio:16/9}
+/* Mammoth: one wide stage and a sequence of six frames underneath. */
+.stills-stage{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;min-width:0;background:#050607;position:relative}
+.stills-stage>.stills-photo{flex:0 0 100%;height:clamp(250px,43vw,570px);scroll-snap-align:start;border-radius:3px}
+.stills-stage.is-enhanced{display:grid;overflow:hidden;touch-action:pan-y pinch-zoom}
+.stills-stage.is-enhanced>.stills-photo{grid-area:1/1}
+.stills-thumbs{display:flex;gap:12px;overflow-x:auto;padding:18px 2px 8px;min-width:0}
+.stills-thumb{flex:0 0 104px;padding:0;border:0;background:transparent;color:var(--muted);text-align:left;cursor:pointer}
+.stills-thumb img{width:100%;aspect-ratio:3/2;object-fit:cover;border:1px solid transparent;opacity:.5;transition:opacity .2s,border-color .2s}
+.stills-thumb span{display:block;margin-top:8px;font-size:10px;letter-spacing:.15em;font-variant-numeric:tabular-nums}
+.stills-thumb:hover img,.stills-thumb[aria-pressed=true] img{opacity:1;border-color:rgba(255,255,255,.6)}
+.stills-thumb[aria-pressed=true]{color:var(--fg)}
+.stills-foot{display:flex;justify-content:space-between;align-items:center;gap:18px;margin-top:18px}
+/* Labyrinth: three adjoining spaces, alternating tall and shallow frames. */
+.stills-rooms{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;min-width:0}
+.stills-room{display:grid;gap:18px;min-width:0;padding-inline:0 18px;border-right:1px solid var(--line)}
+.stills-room:last-child{border-right:0;padding-right:0}
+.stills-room figure{margin:0;min-width:0}
+.stills-room .stills-photo{height:clamp(150px,18vw,250px);border-radius:2px}
+.stills-room figure:last-child .stills-photo{height:clamp(125px,14vw,195px)}
+.stills-room:nth-child(2) figure:first-child .stills-photo{height:clamp(125px,14vw,195px)}
+.stills-room:nth-child(2) figure:last-child .stills-photo{height:clamp(150px,18vw,250px)}
+.gallery--labyrinth .stills-tools{display:none}
+/* The Narrow Gate: a solitary image, with a quiet vertical index at its side. */
+.stills-focus{display:grid;grid-template-columns:minmax(0,1fr) 116px;gap:30px;align-items:start}
+.gallery--narrow .stills-stage{background:transparent;padding:0}
+.gallery--narrow .stills-stage>.stills-photo{height:clamp(250px,43vw,560px);border:0;background:transparent}
+.gallery--narrow .stills-thumbs{flex-direction:column;padding:2px 3px;gap:18px;max-height:560px}
+.gallery--narrow .stills-thumb{flex:0 0 auto;width:100%}
+/* Native dialog: full images, manual browsing, no autoplay. */
+.stills-lightbox{position:fixed;inset:0;width:100%;height:100%;height:100dvh;max-width:none;max-height:none;margin:0;padding:clamp(14px,3vw,36px);border:0;background:rgba(5,6,7,.98);color:var(--fg);z-index:100}
+.stills-lightbox::backdrop{background:#050607}
+.stills-lightbox[open]{display:grid;grid-template-rows:auto minmax(0,1fr) auto;gap:18px}
+.stills-lightbox-head,.stills-lightbox-foot{display:flex;justify-content:space-between;align-items:center;gap:16px}
+.stills-lightbox-title{margin:0;font-size:14px;font-weight:500;line-height:1.5}
+.stills-close{font-size:14px;flex-shrink:0}
+.stills-lightbox-image{width:100%;height:100%;min-height:0;object-fit:contain;align-self:stretch}
+.stills-lightbox-help{font-size:11px;color:var(--muted)}
+@media(max-width:820px){
+ .stills-heading{align-items:center;gap:12px}.stills-hint{font-size:11px}
+ .stills-rail{gap:14px}.stills-frame{flex-basis:88%}
+ .gallery--expressers .stills-frame:nth-child(2),.gallery--expressers .stills-frame:nth-child(3){flex-basis:84%}
+ .stills-stage>.stills-photo,.gallery--narrow .stills-stage>.stills-photo{height:clamp(215px,64vw,460px)}
+ .stills-thumbs{gap:10px}.stills-thumb{flex-basis:78px}
+ .stills-rooms{display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding:4px 0 18px}
+ .stills-room{flex:0 0 84%;scroll-snap-align:start;gap:14px;padding-right:18px}
+ .stills-room .stills-photo,.stills-room figure:last-child .stills-photo,.stills-room:nth-child(2) figure:first-child .stills-photo,.stills-room:nth-child(2) figure:last-child .stills-photo{height:auto;aspect-ratio:16/9}
+ .gallery--labyrinth .stills-tools:not([hidden]){display:flex}
+ .stills-focus{grid-template-columns:minmax(0,1fr);gap:12px}
+ .gallery--narrow .stills-thumbs{flex-direction:row;max-height:none;padding:4px 2px 8px;gap:14px}
+ .gallery--narrow .stills-thumb{flex:0 0 72px;width:auto}
+ .stills-lightbox-help{display:none}
+}
+@media(max-width:420px){.stills-heading{flex-wrap:wrap}.stills-foot{gap:8px}.stills-tools{gap:6px}.stills-arrow{padding:8px 12px}.stills-counter{min-width:48px}.stills-lightbox-title{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.stills-rail,.stills-rooms,.stills-stage,.stills-thumbs{scroll-behavior:auto}}
