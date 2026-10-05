@@ -1,2 +1,6 @@
 
 .home{min-height:100svh;padding:calc(var(--header-h) + 22px) clamp(14px,2.8vw,34px) 22px;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;position:relative;z-index:3}.door{min-width:0;display:grid;grid-template-rows:34px 1fr 36px;padding:22px;border:1px solid rgba(255,255,255,.09);border-radius:18px;background:rgba(255,255,255,.025);transition:transform .38s var(--ease),background .38s,border-color .38s}.door:hover{transform:translateY(-5px);background:rgba(255,255,255,.055);border-color:rgba(255,255,255,.2)}.door .no{font-size:10px;letter-spacing:.18em;color:var(--muted)}.door-main{display:flex;flex-direction:column;justify-content:center;min-height:0}.door h1{margin:0;font-size:clamp(36px,4.25vw,64px);line-height:1;letter-spacing:-.06em;white-space:nowrap;font-weight:650}.door p{margin:18px 0 0;font-size:15px;line-height:1.7;color:#c9c5bc;max-width:18em}.door .arrow{align-self:end;justify-self:end;font-size:20px}@media(max-width:1050px){.home{grid-template-columns:repeat(2,1fr);min-height:auto}.door{min-height:42vh}.door h1{font-size:52px}}@media(max-width:620px){.home{grid-template-columns:1fr}.door{min-height:230px}.door h1{font-size:50px}}
+
+/* Reserve the same two-line caption space in every card to align both rows. */
+.door p{min-height:3.4em}
+.door:hover{transform:none}
