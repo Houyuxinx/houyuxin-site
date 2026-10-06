@@ -17,5 +17,13 @@
   document.documentElement.addEventListener('mouseenter',function(){document.body.classList.add('spot-on')});
   var entry=document.createElement('div');entry.className='stage-entry';document.body.appendChild(entry);setTimeout(function(){if(entry.parentNode)entry.parentNode.removeChild(entry)},900);
   var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-visible');obs.unobserve(e.target)}})},{threshold:.06,rootMargin:'0px 0px -4% 0px'});document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)});
-  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href');if(!h||h.charAt(0)==='#'||h.indexOf('mailto:')===0||h.indexOf('http')===0||a.target==='_blank')return;e.preventDefault();tx=e.clientX||innerWidth/2;ty=e.clientY||innerHeight/2;document.body.classList.add('spot-on');document.body.classList.add('is-leaving');setTimeout(function(){location.href=h},300)});
+  var navigationTimer=null;
+  function restorePageState(){
+    if(navigationTimer!==null){clearTimeout(navigationTimer);navigationTimer=null;}
+    document.body.classList.remove('is-leaving','spot-on');
+  }
+  // History navigation can restore a page with its departure animation still active.
+  window.addEventListener('pagehide',restorePageState);
+  window.addEventListener('pageshow',restorePageState);
+  document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('a[href]');if(!a)return;var h=a.getAttribute('href');if(!h||h.charAt(0)==='#'||h.indexOf('mailto:')===0||h.indexOf('http')===0||a.target==='_blank')return;e.preventDefault();tx=e.clientX||innerWidth/2;ty=e.clientY||innerHeight/2;document.body.classList.add('spot-on');document.body.classList.add('is-leaving');if(navigationTimer!==null)clearTimeout(navigationTimer);navigationTimer=setTimeout(function(){navigationTimer=null;location.href=h},300)});
 })();
