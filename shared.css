@@ -77,8 +77,8 @@ html[data-transition-phase="leaving"] .play-row.is-transition-target .title-line
 
 html[data-navigation-lock="true"] a,
 html[data-navigation-lock="true"] button{pointer-events:none}
-html[data-transition-phase="leaving"] .spot-vignette,
-html[data-transition-phase="leaving"] .spot-pool,
+html[data-transition-phase="leaving"]:not([data-transition-kind="home-theatre"]) .spot-vignette,
+html[data-transition-phase="leaving"]:not([data-transition-kind="home-theatre"]) .spot-pool,
 html[data-transition-phase="blackout"] .spot-vignette,
 html[data-transition-phase="blackout"] .spot-pool,
 html[data-transition-phase="entering"] .spot-vignette,
@@ -111,6 +111,7 @@ html.scene-transitions[data-transition-mode="pending"][data-transition-phase="en
   .work>.audio-block,
   .home>.door
 ){opacity:0}
+html.scene-transitions[data-transition-mode="pending"][data-transition-phase="entering"][data-transition-kind="home-theatre"] .site-head{opacity:0}
 
 @keyframes stage-dim-out{
   from{opacity:1;filter:blur(0) brightness(1);transform:scale(1)}
@@ -161,6 +162,32 @@ html.scene-transitions[data-transition-mode="pending"][data-transition-phase="en
 @keyframes reduced-in{from{opacity:0}to{opacity:1}}
 @keyframes reduced-out{from{opacity:1}to{opacity:0}}
 @keyframes reduced-hold{from,to{opacity:1}}
+@keyframes theatre-house-lights-out{
+  0%{opacity:1;filter:brightness(1) blur(0)}
+  68%{opacity:.78;filter:brightness(.38) blur(.5px)}
+  100%{opacity:0;filter:brightness(.18) blur(1.5px)}
+}
+@keyframes theatre-title-light-in{
+  from{opacity:0;filter:brightness(.18) blur(2.5px);transform:none}
+  to{opacity:1;filter:brightness(1) blur(0);transform:none}
+}
+@keyframes theatre-subtitle-light-in{
+  from{opacity:0;filter:brightness(.24) blur(2px);transform:none}
+  to{opacity:1;filter:brightness(1) blur(0);transform:none}
+}
+@keyframes theatre-body-light-in{
+  from{opacity:0;filter:brightness(.3) blur(1.5px);transform:none}
+  to{opacity:1;filter:brightness(1) blur(0);transform:none}
+}
+
+/* Visual prototype: home to theatre is a deliberate house-light cue. */
+html[data-transition-mode="native"][data-transition-kind="home-theatre"]::view-transition-old(root),
+html[data-transition-mode="native"][data-transition-kind="home-theatre"]::view-transition-old(scene-header){animation:theatre-house-lights-out 350ms cubic-bezier(.4,0,.2,1) both}
+html[data-transition-mode="native"][data-transition-kind="home-theatre"]::view-transition-new(scene-title-new){animation:theatre-title-light-in 350ms var(--stage-ease) 490ms both}
+html[data-transition-mode="native"][data-transition-kind="home-theatre"]::view-transition-new(scene-kicker-new),
+html[data-transition-mode="native"][data-transition-kind="home-theatre"]::view-transition-new(scene-subtitle-new){animation:theatre-subtitle-light-in 300ms var(--stage-ease) 590ms both}
+html[data-transition-mode="native"][data-transition-kind="home-theatre"]::view-transition-new(root),
+html[data-transition-mode="native"][data-transition-kind="home-theatre"]::view-transition-new(scene-header){animation:theatre-body-light-in 210ms var(--stage-ease) 690ms both}
 
 /* Native cross-document: home/section and uncategorized scene changes. */
 html[data-transition-mode="native"]:is([data-transition-kind="home-section"],[data-transition-kind="stage-change"])::view-transition-old(root),
@@ -235,7 +262,12 @@ html[data-transition-mode="live"][data-transition-phase="entering"][data-transit
 html[data-transition-mode="live"][data-transition-phase="entering"][data-transition-kind="work-back"] [data-scene-role="kicker"],
 html[data-transition-mode="live"][data-transition-phase="entering"][data-transition-kind="work-back"] [data-scene-role="subtitle"]{animation-delay:35ms}
 html[data-transition-mode="live"][data-transition-phase="entering"][data-transition-kind="work-back"] [data-scene-role="body"]{animation-delay:70ms}
+html[data-transition-mode="live"][data-transition-phase="entering"][data-transition-kind="home-theatre"] [data-scene-role="title"]{animation:theatre-title-light-in 350ms var(--stage-ease) both}
+html[data-transition-mode="live"][data-transition-phase="entering"][data-transition-kind="home-theatre"] :is([data-scene-role="kicker"],[data-scene-role="subtitle"]){animation:theatre-subtitle-light-in 300ms var(--stage-ease) 100ms both}
+html[data-transition-mode="live"][data-transition-phase="entering"][data-transition-kind="home-theatre"] [data-scene-role="body"],
+html[data-transition-mode="live"][data-transition-phase="entering"][data-transition-kind="home-theatre"] .site-head{animation:theatre-body-light-in 210ms var(--stage-ease) 200ms both}
 
+html[data-transition-mode="live"][data-transition-phase="leaving"][data-transition-kind="home-theatre"] :is(.site-head,main,.spot-vignette,.spot-pool){animation:theatre-house-lights-out 350ms cubic-bezier(.4,0,.2,1) both;pointer-events:none}
 html[data-transition-mode="live"][data-transition-phase="leaving"]:is([data-transition-kind="home-section"],[data-transition-kind="stage-change"]) :is(.site-head,main){animation:stage-dim-out 260ms var(--stage-ease) both;pointer-events:none}
 html[data-transition-mode="live"][data-transition-phase="leaving"][data-transition-kind="section-shift"][data-transition-direction="forward"] main{animation:room-out-forward 200ms var(--stage-ease) both;pointer-events:none}
 html[data-transition-mode="live"][data-transition-phase="leaving"][data-transition-kind="section-shift"][data-transition-direction="backward"] main{animation:room-out-backward 200ms var(--stage-ease) both;pointer-events:none}

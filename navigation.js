@@ -47,6 +47,7 @@
     var direction = 'forward';
 
     if (sameDocument(fromValue, toValue)) kind = 'direct';
+    else if (from.type === 'home' && to.type === 'section' && to.name === 'theatre') kind = 'home-theatre';
     else if (from.type === 'section' && from.name === 'theatre' && to.type === 'work') kind = 'work-open';
     else if (from.type === 'work' && to.type === 'section' && to.name === 'theatre') kind = 'work-back';
     else if (from.type === 'home' || to.type === 'home') kind = 'home-section';
@@ -300,11 +301,13 @@
 
   function blackoutDelay(kind) {
     if (motion.matches) return 0;
+    if (kind === 'home-theatre') return 140;
     return kind === 'home-section' ? 95 : (kind === 'work-open' || kind === 'work-back' || kind === 'stage-change' ? 85 : 0);
   }
 
   function exitMaximum(kind) {
     if (motion.matches) return 130;
+    if (kind === 'home-theatre') return 420;
     if (kind === 'work-open') return 360;
     if (kind === 'work-back') return 300;
     if (kind === 'home-section' || kind === 'stage-change') return 310;
