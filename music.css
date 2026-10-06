@@ -10,13 +10,14 @@ body.music-open{min-height:100vh;min-height:100svh}
 .player-view[hidden]{display:none}
 body.music-open .page{height:100vh;height:100svh;padding:calc(var(--header-h) + 26px) clamp(18px,4.7vw,70px) 26px}
 .player-view{height:100%;min-height:0}
-.song-grid{display:grid;grid-template-columns:minmax(280px,.85fr) minmax(0,1.15fr);gap:clamp(28px,4vw,64px);height:100%;min-height:0}
-.player-side{align-self:center;min-width:0;min-height:0;max-height:100%;overflow-y:auto;scrollbar-width:thin;padding:24px 0}
+.song-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:0;height:100%;min-height:0}
+.player-side{align-self:center;min-width:0;min-height:0;max-height:100%;overflow-y:auto;scrollbar-width:thin;padding:24px clamp(24px,3vw,48px) 24px 0}
 .player-side h2{font-size:clamp(28px,3.2vw,46px);line-height:1.2;letter-spacing:-.045em;margin:14px 0 18px;overflow-wrap:anywhere}
+.player-side h2.long-title{font-size:clamp(26px,2.3vw,38px);letter-spacing:-.035em;white-space:nowrap;overflow-wrap:normal}
 .credit{font-size:12px;line-height:1.8;color:var(--muted)}
 .player-side audio{display:block;width:100%;max-width:460px;margin:28px 0 0;color-scheme:dark}
 .player-side .audio-options{margin:12px 0 0}
-.lyric-panel{display:flex;flex-direction:column;min-width:0;min-height:0;border-left:1px solid var(--line);padding-left:clamp(24px,3vw,44px)}
+.lyric-panel{display:flex;flex-direction:column;min-width:0;min-height:0;border-left:1px solid var(--line);padding-left:clamp(24px,3vw,48px)}
 .lyrics-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0 18px;color:var(--muted);font-size:10px;letter-spacing:.13em}
 .lyrics-head h3{margin:0;font-size:11px;font-weight:500;letter-spacing:.16em;color:var(--fg)}
 .lyrics-viewport{flex:1;min-height:0;position:relative}
@@ -27,13 +28,20 @@ body.music-open .page{height:100vh;height:100svh;padding:calc(var(--header-h) + 
 .lyrics:focus{outline:none}
 .no-lyrics{display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:18px;padding:24px}
 
-@media(max-width:850px){
+/* The local return shares the site's easing without delaying navigation. */
+.player-view.is-closing{animation:music-exit 140ms var(--ease) both;pointer-events:none}
+#trackList.is-entering{animation:music-list-enter 220ms var(--ease) both}
+@keyframes music-exit{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-8px)}}
+@keyframes music-list-enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:959px){
   .track-button{grid-template-columns:1fr 25px}
   .track-meta{grid-column:1}
   body.music-open .page{padding:calc(var(--header-h) + 14px) 16px 14px}
   .song-grid{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,auto) minmax(96px,1fr);gap:18px}
   .player-side{align-self:stretch;padding:0;max-height:none}
   .player-side h2{font-size:clamp(24px,4.2vw,34px);margin:8px 0;line-height:1.2}
+  .player-side h2.long-title{font-size:clamp(24px,4.2vw,34px);white-space:normal;overflow-wrap:anywhere}
   .credit{font-size:11px;line-height:1.6}
   .player-side audio{max-width:none;height:44px;margin:14px 0 0}
   .player-side .audio-options{margin:8px 0 0}
@@ -44,9 +52,10 @@ body.music-open .page{height:100vh;height:100svh;padding:calc(var(--header-h) + 
 }
 @media(max-height:520px) and (min-width:600px){
   body.music-open .page{padding-top:calc(var(--header-h) + 12px);padding-bottom:12px}
-  .song-grid{grid-template-columns:minmax(200px,.85fr) minmax(0,1.15fr);grid-template-rows:minmax(0,1fr);gap:24px}
-  .player-side{align-self:center;padding:0;max-height:100%}
+  .song-grid{grid-template-columns:repeat(2,minmax(0,1fr));grid-template-rows:minmax(0,1fr);gap:0}
+  .player-side{align-self:center;padding:0 20px 0 0;max-height:100%}
   .player-side h2{font-size:24px;margin:8px 0}
+  .player-side h2.long-title{font-size:24px}
   .player-side audio{height:44px;margin-top:14px}
   .lyric-panel{border-top:0;border-left:1px solid var(--line);padding-left:20px}
   .lyrics-head{padding:8px 0}
