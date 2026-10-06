@@ -1,2 +1,24 @@
 
 .poetry-archive{margin-top:36px}.year-group{display:grid;grid-template-columns:110px 1fr;border-top:1px solid var(--line)}.year-label{font-size:32px;letter-spacing:-.04em;padding:22px 16px 22px 0;position:sticky;top:calc(var(--header-h) + 62px);align-self:start}.poem{border-left:1px solid var(--line);border-bottom:1px solid var(--line)}.poem summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;padding:18px 20px;transition:background .25s}.poem summary::-webkit-details-marker{display:none}.poem summary:hover{background:rgba(255,255,255,.025)}.poem-title{font-size:18px;line-height:1.5}.poem-date{font-size:11px;color:var(--muted);white-space:nowrap}.poem-text{white-space:pre-wrap;padding:8px 20px 34px;font-size:16px;line-height:2;color:#ddd9d0;max-width:46em}@media(max-width:720px){.year-group{grid-template-columns:64px 1fr}.year-label{font-size:22px}.poem summary{grid-template-columns:1fr}.poem-date{white-space:normal}}
+
+.poem summary:focus-visible{outline:1px solid var(--fg);outline-offset:-3px}
+html.poetry-reader-active{overflow:hidden;scrollbar-gutter:stable}
+html.poetry-reader-active body{overflow:hidden}
+html.poetry-reader-visible .site-head,
+html.poetry-reader-visible .page{filter:brightness(.62)}
+.poetry-reader{inset:0;width:100%;max-width:none;height:100%;max-height:none;margin:0;padding:0;border:0;background:rgba(7,8,10,.82);color:var(--fg);overflow-y:auto;overscroll-behavior:contain}
+.poetry-reader::backdrop{background:rgba(7,8,10,.5)}
+.poetry-reader__panel{width:min(780px,calc(100% - 32px));min-height:100%;margin:0 auto;padding:max(22px,env(safe-area-inset-top)) clamp(20px,6vw,72px) max(64px,env(safe-area-inset-bottom));opacity:1;transform:none;filter:none}
+.poetry-reader__close{position:sticky;z-index:1;top:max(12px,env(safe-area-inset-top));display:flex;align-items:center;min-height:44px;margin:0 0 clamp(50px,9vh,96px) auto;padding:8px 4px;border:0;background:transparent;color:var(--muted);font-size:10px;letter-spacing:.13em;cursor:pointer}
+.poetry-reader__close:hover{color:var(--fg)}
+.poetry-reader__close:focus-visible{outline:1px solid var(--fg);outline-offset:4px}
+.poetry-reader__title{max-width:12em;margin:0;font-size:clamp(42px,8vw,88px);font-weight:600;line-height:1.02;letter-spacing:-.055em}
+.poetry-reader__date{margin:18px 0 0;color:var(--muted);font-size:11px;letter-spacing:.04em}
+.poetry-reader__text{max-width:46em;margin-top:clamp(38px,7vh,72px);white-space:pre-wrap;color:#ddd9d0;font-size:clamp(16px,1.7vw,18px);line-height:2}
+
+@media(max-width:720px){
+  .poetry-reader{background:rgba(7,8,10,.9)}
+  .poetry-reader__panel{width:calc(100% - 20px);padding-right:14px;padding-left:14px}
+  .poetry-reader__close{margin-bottom:48px}
+  .poetry-reader__title{font-size:clamp(38px,13vw,62px)}
+}

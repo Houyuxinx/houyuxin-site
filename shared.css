@@ -1,43 +1,282 @@
-
 *{box-sizing:border-box}
-:root{--bg:#07080a;--fg:#f0eee8;--muted:#9a978f;--line:rgba(255,255,255,.14);--panel:rgba(255,255,255,.035);--ease:cubic-bezier(.22,1,.36,1);--header-h:68px;--spot-x:50vw;--spot-y:50vh}
-html{background:var(--bg);scroll-behavior:smooth}body{margin:0;background:linear-gradient(180deg,#090a0c,#07080a 58%,#090a0c);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}button{font:inherit}img{display:block;max-width:100%}
-.site-head{position:fixed;z-index:70;left:0;right:0;top:0;height:var(--header-h);display:flex;align-items:center;justify-content:space-between;gap:18px;padding:0 clamp(16px,3vw,34px);border-bottom:1px solid rgba(255,255,255,.08);background:rgba(7,8,10,.78);backdrop-filter:blur(16px)}
-.brand-link{font-size:15px;font-weight:700;letter-spacing:.03em;white-space:nowrap}.brand-link small{margin-left:9px;font-size:9px;font-weight:500;letter-spacing:.2em;color:var(--muted)}
-.global-nav{display:flex;gap:20px;align-items:center}.global-nav a{font-size:10px;letter-spacing:.18em;color:var(--muted);padding:8px 0;position:relative;white-space:nowrap}.global-nav a:after{content:"";position:absolute;left:0;right:100%;bottom:2px;height:1px;background:currentColor;transition:right .35s var(--ease)}.global-nav a:hover,.global-nav a.active{color:var(--fg)}.global-nav a:hover:after,.global-nav a.active:after{right:0}
-.back-link{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:0 12px;font-size:10px;letter-spacing:.13em;white-space:nowrap;color:var(--muted);transition:color .25s}.back-link:hover{color:var(--fg)}.back-link:focus-visible{outline:1px solid var(--fg);outline-offset:2px;border-radius:3px}
-.page{padding:calc(var(--header-h) + 72px) clamp(18px,4.7vw,70px) 72px;position:relative;z-index:3}.eyebrow{font-size:10px;letter-spacing:.22em;color:var(--muted)}.page-title{font-size:clamp(58px,10vw,132px);line-height:.9;letter-spacing:-.07em;margin:15px 0 22px}.page-intro{font-size:clamp(18px,2vw,29px);line-height:1.68;max-width:30em;color:#cbc8c0}
-.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}.reveal.is-visible{opacity:1;transform:none}
-/* circular stage spotlight: no beam */
+:root{
+  --bg:#07080a;
+  --fg:#f0eee8;
+  --muted:#9a978f;
+  --line:rgba(255,255,255,.14);
+  --panel:rgba(255,255,255,.035);
+  --ease:cubic-bezier(.22,.72,.18,1);
+  --stage-ease:cubic-bezier(.22,.72,.18,1);
+  --header-h:68px;
+  --spot-x:50vw;
+  --spot-y:50vh;
+}
+html{background:var(--bg);scroll-behavior:smooth;scrollbar-gutter:stable}
+body{margin:0;background:linear-gradient(180deg,#090a0c,#07080a 58%,#090a0c);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+img{display:block;max-width:100%}
+
+.site-head{position:fixed;z-index:70;left:0;right:0;top:0;height:var(--header-h);display:flex;align-items:center;justify-content:space-between;gap:18px;padding:0 clamp(16px,3vw,34px);border-bottom:1px solid rgba(255,255,255,.08);background:rgba(7,8,10,.78);backdrop-filter:blur(16px);view-transition-name:scene-header}
+.brand-link{font-size:15px;font-weight:700;letter-spacing:.03em;white-space:nowrap}
+.brand-link small{margin-left:9px;font-size:9px;font-weight:500;letter-spacing:.2em;color:var(--muted)}
+.global-nav{display:flex;gap:20px;align-items:center}
+.global-nav a{font-size:10px;letter-spacing:.18em;color:var(--muted);padding:8px 0;position:relative;white-space:nowrap}
+.global-nav a:after{content:"";position:absolute;left:0;right:100%;bottom:2px;height:1px;background:currentColor;transition:right .35s var(--ease)}
+.global-nav a:hover,.global-nav a.active{color:var(--fg)}
+.global-nav a:hover:after,.global-nav a.active:after{right:0}
+.back-link{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:0 12px;font-size:10px;letter-spacing:.13em;white-space:nowrap;color:var(--muted);transition:color .25s}
+.back-link:hover{color:var(--fg)}
+.back-link:focus-visible{outline:1px solid var(--fg);outline-offset:2px;border-radius:3px}
+
+.page{padding:calc(var(--header-h) + 72px) clamp(18px,4.7vw,70px) 72px;position:relative;z-index:3}
+.eyebrow{font-size:10px;letter-spacing:.22em;color:var(--muted)}
+.page-title{font-size:clamp(58px,10vw,132px);line-height:.9;letter-spacing:-.07em;margin:15px 0 22px}
+.page-intro{font-size:clamp(18px,2vw,29px);line-height:1.68;max-width:30em;color:#cbc8c0}
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.is-visible{opacity:1;transform:none}
+
+/* Mouse-following stage light. It is independent from page transitions. */
 .spot-vignette,.spot-pool{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .55s var(--ease)}
 .spot-vignette{background:radial-gradient(circle 240px at var(--spot-x) var(--spot-y),transparent 0 48%,rgba(0,0,0,.08) 67%,rgba(0,0,0,.48) 100%)}
 .spot-pool{inset:auto;width:520px;height:520px;left:var(--spot-x);top:var(--spot-y);transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,244,214,.15),rgba(255,231,182,.065) 37%,transparent 69%);filter:blur(7px);mix-blend-mode:screen}
 body.spot-on .spot-vignette,body.spot-on .spot-pool{opacity:1}
-.panel{border:1px solid var(--line);background:var(--panel);border-radius:20px;padding:24px}.btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:999px;padding:11px 16px;font-size:11px;letter-spacing:.13em;color:var(--fg);background:rgba(255,255,255,.025);transition:transform .3s var(--ease),background .3s}.btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.08)}
-/* Animate an independent light surface so live links stay clickable during history transitions. */
+
+.panel{border:1px solid var(--line);background:var(--panel);border-radius:20px;padding:24px}
+.btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:999px;padding:11px 16px;font-size:11px;letter-spacing:.13em;color:var(--fg);background:rgba(255,255,255,.025);transition:transform .3s var(--ease),background .3s}
+.btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.08)}
+
+/* Route-aware scene transition contract. */
 @view-transition{navigation:auto}
-:root{view-transition-name:none;--stage-duration:560ms;--stage-ease:cubic-bezier(.22,.72,.18,1)}
-.stage-surface{position:fixed;inset:0;pointer-events:none;view-transition-name:stage}
-::view-transition{pointer-events:none}
-::view-transition-group(stage){animation:none;pointer-events:none}
-::view-transition-old(stage),::view-transition-new(stage){animation:none;opacity:0;pointer-events:none}
-::view-transition-image-pair(stage),.stage-transition{
-  background:#07080a radial-gradient(circle closest-side,#6d685e 0%,#39362f 38%,#07080a 72%);
-  background-position:center;background-repeat:no-repeat;pointer-events:none;
-  animation:stage-light-field var(--stage-duration) var(--stage-ease) both,stage-field-clear var(--stage-duration) ease both;
-}
-::view-transition-image-pair(stage){isolation:isolate}
-.stage-native .reveal.is-visible{transition:none}
-.stage-transition{position:fixed;inset:0;z-index:1000;pointer-events:none}
-@keyframes stage-light-field{
-  0%{background-size:0vmax 0vmax}
-  18%{background-size:28vmax 28vmax}
-  48%,100%{background-size:300vmax 300vmax}
-}
-@keyframes stage-field-clear{0%,30%{opacity:1}45%{opacity:.96}70%{opacity:.5}100%{opacity:0}}
+::view-transition{pointer-events:none;background:#07080a}
+::view-transition-group(root),
+::view-transition-group(scene-header),
+::view-transition-group(scene-title-old),
+::view-transition-group(scene-title-new),
+::view-transition-group(scene-kicker-old),
+::view-transition-group(scene-kicker-new),
+::view-transition-group(scene-subtitle-old),
+::view-transition-group(scene-subtitle-new),
+::view-transition-group(work-focus){animation:none;pointer-events:none}
+::view-transition-group(root){background:#07080a}
+::view-transition-image-pair(root){isolation:isolate;background:#07080a}
+::view-transition-old(root),::view-transition-new(root),
+::view-transition-old(scene-header),::view-transition-new(scene-header),
+::view-transition-old(scene-title-old),::view-transition-new(scene-title-new),
+::view-transition-old(scene-kicker-old),::view-transition-new(scene-kicker-new),
+::view-transition-old(scene-subtitle-old),::view-transition-new(scene-subtitle-new),
+::view-transition-old(work-focus){mix-blend-mode:normal;pointer-events:none;animation-fill-mode:both}
 
+html[data-transition-phase="leaving"] [data-scene-role="title"]{view-transition-name:scene-title-old}
+html[data-transition-phase="leaving"] [data-scene-role="kicker"]{view-transition-name:scene-kicker-old}
+html[data-transition-phase="leaving"] [data-scene-role="subtitle"]{view-transition-name:scene-subtitle-old}
+html[data-transition-phase="entering"] [data-scene-role="title"]{view-transition-name:scene-title-new}
+html[data-transition-phase="entering"] [data-scene-role="kicker"]{view-transition-name:scene-kicker-new}
+html[data-transition-phase="entering"] [data-scene-role="subtitle"]{view-transition-name:scene-subtitle-new}
+html[data-transition-phase="leaving"] .play-row.is-transition-target .title-line{view-transition-name:work-focus}
 
-/* Audio loop controls */
+html[data-navigation-lock="true"] a,
+html[data-navigation-lock="true"] button{pointer-events:none}
+html[data-transition-phase="leaving"] .spot-vignette,
+html[data-transition-phase="leaving"] .spot-pool,
+html[data-transition-phase="blackout"] .spot-vignette,
+html[data-transition-phase="blackout"] .spot-pool,
+html[data-transition-phase="entering"] .spot-vignette,
+html[data-transition-phase="entering"] .spot-pool{opacity:0!important}
+html[data-transition-phase="blackout"] .site-head,
+html[data-transition-phase="blackout"] main{opacity:0!important;filter:brightness(.1)!important}
+html[data-transition-phase="entering"] .reveal{transition:none}
+html[data-transition-phase="entering"] .work-hero>.reveal{opacity:1;transform:none}
+
+/* Avoid an initial flash while the head script assigns page roles. */
+html.scene-transitions[data-transition-mode="pending"][data-transition-phase="entering"] :is(
+  .page-title,
+  .page>.eyebrow,
+  .page>.page-intro,
+  #trackList>.eyebrow,
+  #trackList>.page-title,
+  #trackList>.page-intro,
+  .page>.play-list,
+  .page>.poetry-archive,
+  .page>.search-grid,
+  .page>.now,
+  .page>.contact,
+  #trackList>.track-list,
+  .work-hero h1,
+  .work-hero .eyebrow,
+  .work-hero .work-en,
+  .work-hero .slogan,
+  .work>.info-grid,
+  .work>.stills-gallery,
+  .work>.audio-block,
+  .home>.door
+){opacity:0}
+
+@keyframes stage-dim-out{
+  from{opacity:1;filter:blur(0) brightness(1);transform:scale(1)}
+  to{opacity:0;filter:blur(4px) brightness(.24);transform:scale(.99)}
+}
+@keyframes stage-title-in{
+  from{opacity:0;filter:blur(3px) brightness(.58);transform:translateY(9px)}
+  to{opacity:1;filter:blur(0) brightness(1);transform:translateY(0)}
+}
+@keyframes stage-subtitle-in{
+  from{opacity:0;filter:blur(3px) brightness(.64);transform:translateY(11px)}
+  to{opacity:1;filter:blur(0) brightness(1);transform:translateY(0)}
+}
+@keyframes stage-body-in{
+  from{opacity:0;filter:blur(3px) brightness(.68);transform:translateY(14px)}
+  to{opacity:1;filter:blur(0) brightness(1);transform:translateY(0)}
+}
+@keyframes room-out-forward{
+  from{opacity:1;filter:blur(0);transform:translateX(0)}
+  to{opacity:0;filter:blur(3px);transform:translateX(-18px)}
+}
+@keyframes room-in-forward{
+  from{opacity:0;filter:blur(3px);transform:translateX(18px)}
+  to{opacity:1;filter:blur(0);transform:translateX(0)}
+}
+@keyframes room-out-backward{
+  from{opacity:1;filter:blur(0);transform:translateX(0)}
+  to{opacity:0;filter:blur(3px);transform:translateX(18px)}
+}
+@keyframes room-in-backward{
+  from{opacity:0;filter:blur(3px);transform:translateX(-18px)}
+  to{opacity:1;filter:blur(0);transform:translateX(0)}
+}
+@keyframes work-dim-out{
+  from{opacity:1;filter:blur(0) brightness(1)}
+  to{opacity:0;filter:blur(3px) brightness(.28)}
+}
+@keyframes work-focus-out{
+  0%,58%{opacity:1;filter:blur(0) brightness(1)}
+  100%{opacity:0;filter:blur(3px) brightness(.25)}
+}
+@keyframes work-title-out{
+  0%,27%{opacity:1;filter:blur(0) brightness(1);transform:translateY(0)}
+  100%{opacity:0;filter:blur(3px) brightness(.25);transform:translateY(-3px)}
+}
+@keyframes header-in{from{opacity:0}to{opacity:1}}
+@keyframes header-out{from{opacity:1}to{opacity:0}}
+@keyframes reduced-in{from{opacity:0}to{opacity:1}}
+@keyframes reduced-out{from{opacity:1}to{opacity:0}}
+@keyframes reduced-hold{from,to{opacity:1}}
+
+/* Native cross-document: home/section and uncategorized scene changes. */
+html[data-transition-mode="native"]:is([data-transition-kind="home-section"],[data-transition-kind="stage-change"])::view-transition-old(root),
+html[data-transition-mode="native"]:is([data-transition-kind="home-section"],[data-transition-kind="stage-change"])::view-transition-old(scene-title-old),
+html[data-transition-mode="native"]:is([data-transition-kind="home-section"],[data-transition-kind="stage-change"])::view-transition-old(scene-kicker-old),
+html[data-transition-mode="native"]:is([data-transition-kind="home-section"],[data-transition-kind="stage-change"])::view-transition-old(scene-subtitle-old){animation:stage-dim-out 260ms var(--stage-ease) both}
+html[data-transition-mode="native"]:is([data-transition-kind="home-section"],[data-transition-kind="stage-change"])::view-transition-old(scene-header){animation:header-out 220ms ease both}
+html[data-transition-mode="native"]:is([data-transition-kind="home-section"],[data-transition-kind="stage-change"])::view-transition-new(scene-title-new){animation:stage-title-in 400ms var(--stage-ease) 350ms both}
+html[data-transition-mode="native"]:is([data-transition-kind="home-section"],[data-transition-kind="stage-change"])::view-transition-new(scene-kicker-new),
+html[data-transition-mode="native"]:is([data-transition-kind="home-section"],[data-transition-kind="stage-change"])::view-transition-new(scene-subtitle-new){animation:stage-subtitle-in 350ms var(--stage-ease) 420ms both}
+html[data-transition-mode="native"]:is([data-transition-kind="home-section"],[data-transition-kind="stage-change"])::view-transition-new(root){animation:stage-body-in 270ms var(--stage-ease) 500ms both}
+html[data-transition-mode="native"]:is([data-transition-kind="home-section"],[data-transition-kind="stage-change"])::view-transition-new(scene-header){animation:header-in 300ms ease 430ms both}
+
+/* Native cross-document: move between adjacent rooms without a full blackout. */
+html[data-transition-mode="native"][data-transition-kind="section-shift"][data-transition-direction="forward"]::view-transition-old(root),
+html[data-transition-mode="native"][data-transition-kind="section-shift"][data-transition-direction="forward"]::view-transition-old(scene-title-old),
+html[data-transition-mode="native"][data-transition-kind="section-shift"][data-transition-direction="forward"]::view-transition-old(scene-kicker-old),
+html[data-transition-mode="native"][data-transition-kind="section-shift"][data-transition-direction="forward"]::view-transition-old(scene-subtitle-old){animation:room-out-forward 200ms var(--stage-ease) both}
+html[data-transition-mode="native"][data-transition-kind="section-shift"][data-transition-direction="backward"]::view-transition-old(root),
+html[data-transition-mode="native"][data-transition-kind="section-shift"][data-transition-direction="backward"]::view-transition-old(scene-title-old),
+html[data-transition-mode="native"][data-transition-kind="section-shift"][data-transition-direction="backward"]::view-transition-old(scene-kicker-old),
+html[data-transition-mode="native"][data-transition-kind="section-shift"][data-transition-direction="backward"]::view-transition-old(scene-subtitle-old){animation:room-out-backward 200ms var(--stage-ease) both}
+html[data-transition-mode="native"][data-transition-kind="section-shift"][data-transition-direction="forward"]::view-transition-new(root),
+html[data-transition-mode="native"][data-transition-kind="section-shift"][data-transition-direction="forward"]::view-transition-new(scene-title-new),
+html[data-transition-mode="native"][data-transition-kind="section-shift"][data-transition-direction="forward"]::view-transition-new(scene-kicker-new),
+html[data-transition-mode="native"][data-transition-kind="section-shift"][data-transition-direction="forward"]::view-transition-new(scene-subtitle-new){animation:room-in-forward 300ms var(--stage-ease) 90ms both}
+html[data-transition-mode="native"][data-transition-kind="section-shift"][data-transition-direction="backward"]::view-transition-new(root),
+html[data-transition-mode="native"][data-transition-kind="section-shift"][data-transition-direction="backward"]::view-transition-new(scene-title-new),
+html[data-transition-mode="native"][data-transition-kind="section-shift"][data-transition-direction="backward"]::view-transition-new(scene-kicker-new),
+html[data-transition-mode="native"][data-transition-kind="section-shift"][data-transition-direction="backward"]::view-transition-new(scene-subtitle-new){animation:room-in-backward 300ms var(--stage-ease) 90ms both}
+html[data-transition-mode="native"][data-transition-kind="section-shift"]::view-transition-old(scene-header){animation:header-out 150ms ease both}
+html[data-transition-mode="native"][data-transition-kind="section-shift"]::view-transition-new(scene-header){animation:header-in 190ms ease 70ms both}
+
+/* Native cross-document: theatre list into a selected work. */
+html[data-transition-mode="native"][data-transition-kind="work-open"]::view-transition-old(root),
+html[data-transition-mode="native"][data-transition-kind="work-open"]::view-transition-old(scene-title-old),
+html[data-transition-mode="native"][data-transition-kind="work-open"]::view-transition-old(scene-kicker-old),
+html[data-transition-mode="native"][data-transition-kind="work-open"]::view-transition-old(scene-subtitle-old){animation:work-dim-out 190ms var(--stage-ease) both}
+html[data-transition-mode="native"][data-transition-kind="work-open"]::view-transition-old(work-focus){animation:work-focus-out 280ms var(--stage-ease) both}
+html[data-transition-mode="native"][data-transition-kind="work-open"]::view-transition-old(scene-header){animation:header-out 180ms ease both}
+html[data-transition-mode="native"][data-transition-kind="work-open"]::view-transition-new(scene-title-new){animation:stage-title-in 400ms var(--stage-ease) 360ms both}
+html[data-transition-mode="native"][data-transition-kind="work-open"]::view-transition-new(scene-kicker-new){animation:stage-subtitle-in 350ms var(--stage-ease) 430ms both}
+html[data-transition-mode="native"][data-transition-kind="work-open"]::view-transition-new(scene-subtitle-new){animation:stage-subtitle-in 320ms var(--stage-ease) 500ms both}
+html[data-transition-mode="native"][data-transition-kind="work-open"]::view-transition-new(root){animation:stage-body-in 300ms var(--stage-ease) 540ms both}
+html[data-transition-mode="native"][data-transition-kind="work-open"]::view-transition-new(scene-header){animation:header-in 260ms ease 430ms both}
+
+/* Native cross-document: work detail back to the theatre list. */
+html[data-transition-mode="native"][data-transition-kind="work-back"]::view-transition-old(root),
+html[data-transition-mode="native"][data-transition-kind="work-back"]::view-transition-old(scene-kicker-old),
+html[data-transition-mode="native"][data-transition-kind="work-back"]::view-transition-old(scene-subtitle-old){animation:work-dim-out 180ms var(--stage-ease) both}
+html[data-transition-mode="native"][data-transition-kind="work-back"]::view-transition-old(scene-title-old){animation:work-title-out 260ms var(--stage-ease) both}
+html[data-transition-mode="native"][data-transition-kind="work-back"]::view-transition-old(scene-header){animation:header-out 180ms ease both}
+html[data-transition-mode="native"][data-transition-kind="work-back"]::view-transition-new(root),
+html[data-transition-mode="native"][data-transition-kind="work-back"]::view-transition-new(scene-title-new),
+html[data-transition-mode="native"][data-transition-kind="work-back"]::view-transition-new(scene-kicker-new),
+html[data-transition-mode="native"][data-transition-kind="work-back"]::view-transition-new(scene-subtitle-new){animation:stage-body-in 320ms var(--stage-ease) 340ms both}
+html[data-transition-mode="native"][data-transition-kind="work-back"]::view-transition-new(scene-header){animation:header-in 240ms ease 340ms both}
+
+/* Fallback navigation and direct loads use the same semantic states on live DOM. */
+html[data-transition-mode="live"][data-transition-phase="entering"] [data-scene-role="title"]{animation:stage-title-in 420ms var(--stage-ease) both}
+html[data-transition-mode="live"][data-transition-phase="entering"] [data-scene-role="kicker"],
+html[data-transition-mode="live"][data-transition-phase="entering"] [data-scene-role="subtitle"]{animation:stage-subtitle-in 380ms var(--stage-ease) 70ms both}
+html[data-transition-mode="live"][data-transition-phase="entering"] [data-scene-role="meta"]{animation:stage-subtitle-in 350ms var(--stage-ease) 120ms both}
+html[data-transition-mode="live"][data-transition-phase="entering"] [data-scene-role="body"]{animation:stage-body-in 300ms var(--stage-ease) var(--scene-delay,140ms) both}
+html[data-transition-mode="live"][data-transition-phase="entering"][data-transition-kind="section-shift"][data-transition-direction="forward"] [data-scene-role]{animation:room-in-forward 300ms var(--stage-ease) both}
+html[data-transition-mode="live"][data-transition-phase="entering"][data-transition-kind="section-shift"][data-transition-direction="backward"] [data-scene-role]{animation:room-in-backward 300ms var(--stage-ease) both}
+html[data-transition-mode="live"][data-transition-phase="entering"][data-transition-kind="section-shift"] [data-scene-role="kicker"],
+html[data-transition-mode="live"][data-transition-phase="entering"][data-transition-kind="section-shift"] [data-scene-role="subtitle"]{animation-delay:45ms}
+html[data-transition-mode="live"][data-transition-phase="entering"][data-transition-kind="section-shift"] [data-scene-role="meta"],
+html[data-transition-mode="live"][data-transition-phase="entering"][data-transition-kind="section-shift"] [data-scene-role="body"]{animation-delay:90ms}
+html[data-transition-mode="live"][data-transition-phase="entering"][data-transition-kind="work-back"] [data-scene-role]{animation:stage-body-in 300ms var(--stage-ease) both}
+html[data-transition-mode="live"][data-transition-phase="entering"][data-transition-kind="work-back"] [data-scene-role="kicker"],
+html[data-transition-mode="live"][data-transition-phase="entering"][data-transition-kind="work-back"] [data-scene-role="subtitle"]{animation-delay:35ms}
+html[data-transition-mode="live"][data-transition-phase="entering"][data-transition-kind="work-back"] [data-scene-role="body"]{animation-delay:70ms}
+
+html[data-transition-mode="live"][data-transition-phase="leaving"]:is([data-transition-kind="home-section"],[data-transition-kind="stage-change"]) :is(.site-head,main){animation:stage-dim-out 260ms var(--stage-ease) both;pointer-events:none}
+html[data-transition-mode="live"][data-transition-phase="leaving"][data-transition-kind="section-shift"][data-transition-direction="forward"] main{animation:room-out-forward 200ms var(--stage-ease) both;pointer-events:none}
+html[data-transition-mode="live"][data-transition-phase="leaving"][data-transition-kind="section-shift"][data-transition-direction="backward"] main{animation:room-out-backward 200ms var(--stage-ease) both;pointer-events:none}
+html[data-transition-mode="live"][data-transition-phase="leaving"][data-transition-kind="work-open"] .page>:not(.play-list),
+html[data-transition-mode="live"][data-transition-phase="leaving"][data-transition-kind="work-open"] .play-row:not(.is-transition-target),
+html[data-transition-mode="live"][data-transition-phase="leaving"][data-transition-kind="work-open"] .play-row.is-transition-target>:not(.title-line),
+html[data-transition-mode="live"][data-transition-phase="leaving"][data-transition-kind="work-open"] .site-head{animation:work-dim-out 180ms var(--stage-ease) both;pointer-events:none}
+html[data-transition-mode="live"][data-transition-phase="leaving"][data-transition-kind="work-open"] .play-row.is-transition-target .title-line{animation:work-focus-out 280ms var(--stage-ease) both}
+html[data-transition-mode="live"][data-transition-phase="leaving"][data-transition-kind="work-open"] :is(.play-list,.play-row){border-color:transparent}
+html[data-transition-mode="live"][data-transition-phase="leaving"][data-transition-kind="work-back"] .work>:not(.work-hero),
+html[data-transition-mode="live"][data-transition-phase="leaving"][data-transition-kind="work-back"] :is(.work-hero .eyebrow,.work-hero .work-en,.work-hero .slogan),
+html[data-transition-mode="live"][data-transition-phase="leaving"][data-transition-kind="work-back"] .site-head{animation:work-dim-out 180ms var(--stage-ease) both;pointer-events:none}
+html[data-transition-mode="live"][data-transition-phase="leaving"][data-transition-kind="work-back"] .work h1{animation:work-title-out 260ms var(--stage-ease) both}
+
+/* Shared local-state transitions used by music and the poetry reader. */
+html[data-local-transition="music-open"][data-local-phase="exiting"] [data-local-part="outgoing"]{animation:music-list-out 190ms var(--stage-ease) both;pointer-events:none}
+html[data-local-transition="music-open"][data-local-phase="entering"] [data-local-part="incoming"]{animation:music-player-in 320ms var(--stage-ease) both}
+html[data-local-transition="music-return"][data-local-phase="exiting"] [data-local-part="outgoing"]{animation:music-player-out 280ms var(--stage-ease) both;pointer-events:none}
+html[data-local-transition="music-return"][data-local-phase="entering"] [data-local-part="incoming"]{animation:music-list-in 340ms var(--stage-ease) both}
+@keyframes music-list-out{from{opacity:1;filter:blur(0);transform:translateY(0)}to{opacity:0;filter:blur(2px);transform:translateY(-8px)}}
+@keyframes music-player-in{from{opacity:0;filter:blur(4px);transform:translateY(14px)}to{opacity:1;filter:blur(0);transform:translateY(0)}}
+@keyframes music-player-out{from{opacity:1;filter:blur(0);transform:translateY(0)}to{opacity:0;filter:blur(4px);transform:translateY(-16px)}}
+@keyframes music-list-in{from{opacity:0;filter:blur(4px);transform:translateY(14px)}to{opacity:1;filter:blur(0);transform:translateY(0)}}
+
+html[data-local-transition="poetry-reader-open"] :is(.site-head,.page){transition:filter 320ms var(--stage-ease)}
+html[data-local-transition="poetry-reader-close"] :is(.site-head,.page){transition:filter 280ms var(--stage-ease)}
+.poetry-reader-visible .site-head,.poetry-reader-visible .page{filter:brightness(.72)}
+html[data-local-transition="poetry-reader-open"][data-local-phase="entering"] .poetry-reader{animation:reader-layer-in 320ms var(--stage-ease) both}
+html[data-local-transition="poetry-reader-open"][data-local-phase="entering"] .poetry-reader::backdrop{animation:reader-backdrop-in 320ms var(--stage-ease) both}
+html[data-local-transition="poetry-reader-open"][data-local-phase="entering"] .poetry-reader__panel[data-local-part="incoming"]{animation:reader-panel-in 320ms var(--stage-ease) both}
+html[data-local-transition="poetry-reader-close"][data-local-phase="exiting"] .poetry-reader{animation:reader-layer-out 280ms var(--stage-ease) both;pointer-events:none}
+html[data-local-transition="poetry-reader-close"][data-local-phase="exiting"] .poetry-reader::backdrop{animation:reader-backdrop-out 280ms var(--stage-ease) both}
+html[data-local-transition="poetry-reader-close"][data-local-phase="exiting"] .poetry-reader__panel[data-local-part="outgoing"]{animation:reader-panel-out 280ms var(--stage-ease) both}
+@keyframes reader-layer-in{from{opacity:0}to{opacity:1}}
+@keyframes reader-layer-out{from{opacity:1}to{opacity:0}}
+@keyframes reader-backdrop-in{from{background:rgba(7,8,10,0)}to{background:rgba(7,8,10,.5)}}
+@keyframes reader-backdrop-out{from{background:rgba(7,8,10,.5)}to{background:rgba(7,8,10,0)}}
+@keyframes reader-panel-in{from{opacity:0;filter:blur(5px);transform:translateY(18px)}to{opacity:1;filter:blur(0);transform:translateY(0)}}
+@keyframes reader-panel-out{from{opacity:1;filter:blur(0);transform:translateY(0)}to{opacity:0;filter:blur(5px);transform:translateY(18px)}}
+
+/* Audio loop controls. */
 .audio-options{display:flex;align-items:center;flex-wrap:wrap;margin:10px 0 16px}
 .audio-loop{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:44px;padding:9px 13px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.025);color:var(--muted);font:inherit;font-size:11px;letter-spacing:.06em;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
 .audio-loop svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
@@ -47,12 +286,38 @@ body.spot-on .spot-vignette,body.spot-on .spot-pool{opacity:1}
 .audio-loop:focus-visible{outline:2px solid var(--fg);outline-offset:4px}
 
 ::selection{background:#eee9dc;color:#111}
-@media(max-width:820px){.global-nav{gap:11px;max-width:70vw;overflow:auto;scrollbar-width:none}.global-nav::-webkit-scrollbar{display:none}.global-nav a{font-size:9px}.brand-link small{display:none}.page{padding:calc(var(--header-h) + 66px) 16px 54px}.spot-vignette,.spot-pool{display:none}}
-@media(max-width:600px){.has-back-nav{--header-h:104px}.site-head.has-back{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:54px 44px;gap:0 12px;padding:0 16px 5px}.site-head.has-back .brand-link{grid-column:1;grid-row:1}.site-head.has-back .global-nav{grid-column:2;grid-row:1;justify-self:end;max-width:100%}.site-head.has-back .back-link{position:static;transform:none;grid-column:1/-1;grid-row:2;justify-self:center}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.spot-vignette,.spot-pool,.stage-transition{display:none!important}}
+
+@media(max-width:820px){
+  .global-nav{gap:11px;max-width:70vw;overflow:auto;scrollbar-width:none}
+  .global-nav::-webkit-scrollbar{display:none}
+  .global-nav a{font-size:9px}
+  .brand-link small{display:none}
+  .page{padding:calc(var(--header-h) + 66px) 16px 54px}
+  .spot-vignette,.spot-pool{display:none}
+}
+@media(max-width:600px){
+  .has-back-nav{--header-h:104px}
+  .site-head.has-back{display:grid;grid-template-columns:minmax(0,1fr) auto;grid-template-rows:54px 44px;gap:0 12px;padding:0 16px 5px}
+  .site-head.has-back .brand-link{grid-column:1;grid-row:1}
+  .site-head.has-back .global-nav{grid-column:2;grid-row:1;justify-self:end;max-width:100%}
+  .site-head.has-back .back-link{position:static;transform:none;grid-column:1/-1;grid-row:2;justify-self:center}
+}
 
 @media(prefers-reduced-motion:reduce){
   @view-transition{navigation:none}
-  ::view-transition-group(stage),::view-transition-image-pair(stage),::view-transition-old(stage),::view-transition-new(stage){animation:none!important}
-  .stage-transition{display:none!important}
+  html{scroll-behavior:auto}
+  *,*:before,*:after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;transition-delay:0ms!important}
+  .reveal{opacity:1;transform:none;transition:none!important}
+  .spot-vignette,.spot-pool{display:none!important}
+  ::view-transition-group(root),::view-transition-group(scene-header),::view-transition-old(root),::view-transition-new(root){animation:none!important}
+  html[data-transition-mode="live"][data-transition-phase="entering"] [data-scene-role]{animation:reduced-in 90ms linear both!important;filter:none!important;transform:none!important}
+  html[data-transition-mode="live"][data-transition-phase="leaving"] :is(.site-head,main,.play-row,.title-line,.work h1){animation:reduced-out 90ms linear both!important;filter:none!important;transform:none!important}
+  html[data-local-phase="exiting"] [data-local-part="outgoing"]{animation:reduced-out 90ms linear both!important;filter:none!important;transform:none!important}
+  html[data-local-phase="entering"] [data-local-part="incoming"]{animation:reduced-in 90ms linear both!important;filter:none!important;transform:none!important}
+  html[data-local-transition="poetry-reader-open"][data-local-phase="entering"] .poetry-reader{animation:reduced-in 90ms linear both!important}
+  html[data-local-transition="poetry-reader-close"][data-local-phase="exiting"] .poetry-reader{animation:reduced-out 90ms linear both!important}
+  html[data-local-transition="poetry-reader-open"][data-local-phase="entering"] .poetry-reader::backdrop{animation:reduced-in 90ms linear both!important}
+  html[data-local-transition="poetry-reader-close"][data-local-phase="exiting"] .poetry-reader::backdrop{animation:reduced-out 90ms linear both!important}
+  html[data-local-transition^="poetry-reader"] .poetry-reader__panel[data-local-part]{animation:reduced-hold 90ms linear both!important;opacity:1!important;filter:none!important;transform:none!important}
+  html[data-local-transition^="poetry-reader"] :is(.site-head,.page){filter:none!important;transition:none!important}
 }
