@@ -13,9 +13,43 @@ html{background:var(--bg);scroll-behavior:smooth}body{margin:0;background:linear
 .spot-vignette{background:radial-gradient(circle 240px at var(--spot-x) var(--spot-y),transparent 0 48%,rgba(0,0,0,.08) 67%,rgba(0,0,0,.48) 100%)}
 .spot-pool{inset:auto;width:520px;height:520px;left:var(--spot-x);top:var(--spot-y);transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,244,214,.15),rgba(255,231,182,.065) 37%,transparent 69%);filter:blur(7px);mix-blend-mode:screen}
 body.spot-on .spot-vignette,body.spot-on .spot-pool{opacity:1}
-.stage-entry{position:fixed;z-index:90;width:360px;height:360px;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%) scale(.2);pointer-events:none;background:radial-gradient(circle,rgba(255,246,220,.22),rgba(255,230,170,.05) 46%,transparent 70%);opacity:0;animation:entrySpot .78s var(--ease) both}@keyframes entrySpot{0%{opacity:0;transform:translate(-50%,-50%) scale(.18)}35%{opacity:.75}100%{opacity:0;transform:translate(-50%,-50%) scale(2.3)}}
-body.is-leaving main,body.is-leaving .site-head,body.is-leaving .back-link{opacity:.15;transition:opacity .3s ease}body.is-leaving .spot-pool{opacity:.95!important;transform:translate(-50%,-50%) scale(.38);transition:opacity .25s,transform .3s var(--ease)}
 .panel{border:1px solid var(--line);background:var(--panel);border-radius:20px;padding:24px}.btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:999px;padding:11px 16px;font-size:11px;letter-spacing:.13em;color:var(--fg);background:rgba(255,255,255,.025);transition:transform .3s var(--ease),background .3s}.btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.08)}
+/* Full-viewport stage change. Native snapshots also cover browser Back / Forward. */
+@view-transition{navigation:auto}
+:root{--stage-duration:560ms;--stage-ease:cubic-bezier(.22,.72,.18,1)}
+::view-transition{pointer-events:none;background:#07080a}
+::view-transition-group(root){animation:none}
+::view-transition-image-pair(root){
+  isolation:isolate;
+  background:#07080a radial-gradient(circle closest-side,#6d685e 0%,#39362f 38%,#07080a 72%);
+  background-position:center;background-repeat:no-repeat;
+  animation:stage-light-field var(--stage-duration) var(--stage-ease) both;
+}
+::view-transition-old(root),::view-transition-new(root){mix-blend-mode:normal}
+::view-transition-old(root){animation:stage-page-out var(--stage-duration) ease both}
+::view-transition-new(root){animation:stage-page-in var(--stage-duration) ease both}
+.stage-native .reveal.is-visible{transition:none}
+.stage-transition{
+  position:fixed;inset:0;z-index:1000;pointer-events:none;
+  background:#07080a radial-gradient(circle closest-side,#6d685e 0%,#39362f 38%,#07080a 72%);
+  background-position:center;background-repeat:no-repeat;
+  animation:stage-light-field var(--stage-duration) var(--stage-ease) both,stage-field-clear var(--stage-duration) ease both;
+}
+@keyframes stage-light-field{
+  0%{background-size:0vmax 0vmax}
+  18%{background-size:28vmax 28vmax}
+  48%,100%{background-size:300vmax 300vmax}
+}
+@keyframes stage-page-out{0%{opacity:1}26%{opacity:.18}42%,100%{opacity:0}}
+@keyframes stage-page-in{0%,30%{opacity:0}45%{opacity:.04}70%{opacity:.5}100%{opacity:1}}
+@keyframes stage-field-clear{0%,30%{opacity:1}45%{opacity:.96}70%{opacity:.5}100%{opacity:0}}
+
 ::selection{background:#eee9dc;color:#111}
 @media(max-width:820px){.global-nav{gap:11px;max-width:70vw;overflow:auto;scrollbar-width:none}.global-nav::-webkit-scrollbar{display:none}.global-nav a{font-size:9px}.brand-link small{display:none}.page{padding:calc(var(--header-h) + 66px) 16px 54px}.spot-vignette,.spot-pool{display:none}.back-link{left:14px}}
-@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.spot-vignette,.spot-pool,.stage-entry{display:none!important}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.spot-vignette,.spot-pool,.stage-transition{display:none!important}}
+
+@media(prefers-reduced-motion:reduce){
+  @view-transition{navigation:none}
+  ::view-transition-group(root),::view-transition-image-pair(root),::view-transition-old(root),::view-transition-new(root){animation:none!important}
+  .stage-transition{display:none!important}
+}
