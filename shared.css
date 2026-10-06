@@ -36,6 +36,16 @@ body.spot-on .spot-vignette,body.spot-on .spot-pool{opacity:1}
 }
 @keyframes stage-field-clear{0%,30%{opacity:1}45%{opacity:.96}70%{opacity:.5}100%{opacity:0}}
 
+
+/* Audio loop controls */
+.audio-options{display:flex;align-items:center;flex-wrap:wrap;margin:10px 0 16px}
+.audio-loop{display:inline-flex;align-items:center;justify-content:center;gap:9px;min-height:44px;padding:9px 13px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.025);color:var(--muted);font:inherit;font-size:11px;letter-spacing:.06em;cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.audio-loop svg{width:16px;height:16px;fill:none;stroke:currentColor;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round;flex-shrink:0}
+.audio-loop-state{font-size:10px;letter-spacing:.03em;opacity:.75}
+.audio-loop:hover{color:var(--fg);border-color:rgba(255,255,255,.28)}
+.audio-loop[aria-pressed="true"]{color:var(--fg);background:rgba(240,238,232,.1);border-color:rgba(240,238,232,.45)}
+.audio-loop:focus-visible{outline:2px solid var(--fg);outline-offset:4px}
+
 ::selection{background:#eee9dc;color:#111}
 @media(max-width:820px){.global-nav{gap:11px;max-width:70vw;overflow:auto;scrollbar-width:none}.global-nav::-webkit-scrollbar{display:none}.global-nav a{font-size:9px}.brand-link small{display:none}.page{padding:calc(var(--header-h) + 66px) 16px 54px}.spot-vignette,.spot-pool{display:none}.back-link{left:14px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.spot-vignette,.spot-pool,.stage-transition{display:none!important}}

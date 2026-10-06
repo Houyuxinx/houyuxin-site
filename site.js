@@ -16,4 +16,22 @@
   document.documentElement.addEventListener('mouseleave',function(){document.body.classList.remove('spot-on')});
   document.documentElement.addEventListener('mouseenter',function(){document.body.classList.add('spot-on')});
   var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-visible');obs.unobserve(e.target)}})},{threshold:.06,rootMargin:'0px 0px -4% 0px'});document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)});
+
+  // Enhance every audio player, including the shared music player and work concept tracks.
+  document.querySelectorAll('audio').forEach(function(audio){
+    if(audio.dataset.loopControlReady)return;
+    audio.dataset.loopControlReady='true';
+    var controls=document.createElement('div');controls.className='audio-options';
+    var button=document.createElement('button');button.type='button';button.className='audio-loop';
+    button.innerHTML='<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M17 3l4 4-4 4M21 7H7a4 4 0 0 0-4 4M7 21l-4-4 4-4M3 17h14a4 4 0 0 0 4-4"/></svg><span>单曲循环</span>';
+    var state=document.createElement('span');state.className='audio-loop-state';state.setAttribute('aria-hidden','true');button.appendChild(state);
+    function sync(){
+      button.setAttribute('aria-pressed',audio.loop?'true':'false');
+      state.textContent=audio.loop?'已开启':'已关闭';
+    }
+    button.addEventListener('click',function(){audio.loop=!audio.loop;sync()});
+    audio.addEventListener('loadedmetadata',sync);
+    window.addEventListener('pageshow',sync);
+    sync();controls.appendChild(button);audio.insertAdjacentElement('afterend',controls);
+  });
 })();
