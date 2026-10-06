@@ -14,34 +14,26 @@ html{background:var(--bg);scroll-behavior:smooth}body{margin:0;background:linear
 .spot-pool{inset:auto;width:520px;height:520px;left:var(--spot-x);top:var(--spot-y);transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,244,214,.15),rgba(255,231,182,.065) 37%,transparent 69%);filter:blur(7px);mix-blend-mode:screen}
 body.spot-on .spot-vignette,body.spot-on .spot-pool{opacity:1}
 .panel{border:1px solid var(--line);background:var(--panel);border-radius:20px;padding:24px}.btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:999px;padding:11px 16px;font-size:11px;letter-spacing:.13em;color:var(--fg);background:rgba(255,255,255,.025);transition:transform .3s var(--ease),background .3s}.btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.08)}
-/* Full-viewport stage change. Native snapshots also cover browser Back / Forward. */
+/* Animate an independent light surface so live links stay clickable during history transitions. */
 @view-transition{navigation:auto}
-:root{--stage-duration:560ms;--stage-ease:cubic-bezier(.22,.72,.18,1)}
-::view-transition{pointer-events:none;background:#07080a}
-::view-transition-group(root){animation:none}
-::view-transition-image-pair(root){
-  isolation:isolate;
+:root{view-transition-name:none;--stage-duration:560ms;--stage-ease:cubic-bezier(.22,.72,.18,1)}
+.stage-surface{position:fixed;inset:0;pointer-events:none;view-transition-name:stage}
+::view-transition{pointer-events:none}
+::view-transition-group(stage){animation:none;pointer-events:none}
+::view-transition-old(stage),::view-transition-new(stage){animation:none;opacity:0;pointer-events:none}
+::view-transition-image-pair(stage),.stage-transition{
   background:#07080a radial-gradient(circle closest-side,#6d685e 0%,#39362f 38%,#07080a 72%);
-  background-position:center;background-repeat:no-repeat;
-  animation:stage-light-field var(--stage-duration) var(--stage-ease) both;
-}
-::view-transition-old(root),::view-transition-new(root){mix-blend-mode:normal}
-::view-transition-old(root){animation:stage-page-out var(--stage-duration) ease both}
-::view-transition-new(root){animation:stage-page-in var(--stage-duration) ease both}
-.stage-native .reveal.is-visible{transition:none}
-.stage-transition{
-  position:fixed;inset:0;z-index:1000;pointer-events:none;
-  background:#07080a radial-gradient(circle closest-side,#6d685e 0%,#39362f 38%,#07080a 72%);
-  background-position:center;background-repeat:no-repeat;
+  background-position:center;background-repeat:no-repeat;pointer-events:none;
   animation:stage-light-field var(--stage-duration) var(--stage-ease) both,stage-field-clear var(--stage-duration) ease both;
 }
+::view-transition-image-pair(stage){isolation:isolate}
+.stage-native .reveal.is-visible{transition:none}
+.stage-transition{position:fixed;inset:0;z-index:1000;pointer-events:none}
 @keyframes stage-light-field{
   0%{background-size:0vmax 0vmax}
   18%{background-size:28vmax 28vmax}
   48%,100%{background-size:300vmax 300vmax}
 }
-@keyframes stage-page-out{0%{opacity:1}26%{opacity:.18}42%,100%{opacity:0}}
-@keyframes stage-page-in{0%,30%{opacity:0}45%{opacity:.04}70%{opacity:.5}100%{opacity:1}}
 @keyframes stage-field-clear{0%,30%{opacity:1}45%{opacity:.96}70%{opacity:.5}100%{opacity:0}}
 
 ::selection{background:#eee9dc;color:#111}
@@ -50,6 +42,6 @@ body.spot-on .spot-vignette,body.spot-on .spot-pool{opacity:1}
 
 @media(prefers-reduced-motion:reduce){
   @view-transition{navigation:none}
-  ::view-transition-group(root),::view-transition-image-pair(root),::view-transition-old(root),::view-transition-new(root){animation:none!important}
+  ::view-transition-group(stage),::view-transition-image-pair(stage),::view-transition-old(stage),::view-transition-new(stage){animation:none!important}
   .stage-transition{display:none!important}
 }

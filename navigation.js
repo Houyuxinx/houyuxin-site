@@ -90,7 +90,7 @@
     }
     activeTransition = transition;
     document.documentElement.classList.add('stage-native');
-    // Make the visible content ready for the incoming snapshot; retain scroll reveals below.
+    // Make visible content ready behind the light field; retain scroll reveals below.
     document.querySelectorAll('.reveal').forEach(function (element) {
       var box = element.getBoundingClientRect();
       if (box.bottom > 0 && box.top < innerHeight) element.classList.add('is-visible');
