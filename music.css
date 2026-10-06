@@ -8,7 +8,8 @@
 html.music-open,body.music-open{overflow:hidden}
 body.music-open{min-height:100vh;min-height:100svh}
 .player-view[hidden]{display:none}
-.player-view{position:fixed;top:calc(var(--header-h) + 26px);left:clamp(18px,4.7vw,70px);right:clamp(18px,4.7vw,70px);height:calc(100vh - var(--header-h) - 52px);height:calc(100svh - var(--header-h) - 52px)}
+body.music-open .page{height:100vh;height:100svh;padding:calc(var(--header-h) + 26px) clamp(18px,4.7vw,70px) 26px}
+.player-view{height:100%;min-height:0}
 .song-grid{display:grid;grid-template-columns:minmax(280px,.85fr) minmax(0,1.15fr);gap:clamp(28px,4vw,64px);height:100%;min-height:0}
 .player-side{align-self:center;min-width:0;min-height:0;max-height:100%;overflow-y:auto;scrollbar-width:thin;padding:24px 0}
 .player-side h2{font-size:clamp(28px,3.2vw,46px);line-height:1.2;letter-spacing:-.045em;margin:14px 0 18px;overflow-wrap:anywhere}
@@ -29,7 +30,7 @@ body.music-open{min-height:100vh;min-height:100svh}
 @media(max-width:850px){
   .track-button{grid-template-columns:1fr 25px}
   .track-meta{grid-column:1}
-  .player-view{top:calc(var(--header-h) + 14px);left:16px;right:16px;height:calc(100vh - var(--header-h) - 28px);height:calc(100svh - var(--header-h) - 28px)}
+  body.music-open .page{padding:calc(var(--header-h) + 14px) 16px 14px}
   .song-grid{grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(0,auto) minmax(96px,1fr);gap:18px}
   .player-side{align-self:stretch;padding:0;max-height:none}
   .player-side h2{font-size:clamp(24px,4.2vw,34px);margin:8px 0;line-height:1.2}
@@ -42,7 +43,7 @@ body.music-open{min-height:100vh;min-height:100svh}
   .lyrics{font-size:17px;padding:24px 10px 32px;line-height:2.1;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 16px,#000 calc(100% - 16px),transparent);mask-image:linear-gradient(to bottom,transparent,#000 16px,#000 calc(100% - 16px),transparent)}
 }
 @media(max-height:520px) and (min-width:600px){
-  .player-view{top:calc(var(--header-h) + 12px);height:calc(100vh - var(--header-h) - 24px);height:calc(100svh - var(--header-h) - 24px)}
+  body.music-open .page{padding-top:calc(var(--header-h) + 12px);padding-bottom:12px}
   .song-grid{grid-template-columns:minmax(200px,.85fr) minmax(0,1.15fr);grid-template-rows:minmax(0,1fr);gap:24px}
   .player-side{align-self:center;padding:0;max-height:100%}
   .player-side h2{font-size:24px;margin:8px 0}
