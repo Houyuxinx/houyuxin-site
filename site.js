@@ -4,10 +4,14 @@
   var active=path.indexOf('work-')===0?'theatre':path.replace('.html','');
   var header=document.querySelector('.site-head');
   if(header){header.innerHTML='<a class="brand-link" href="index.html">侯宇鑫<small>HOU YUXIN</small></a><nav class="global-nav"><a href="theatre.html"'+(active==='theatre'?' class="active"':'')+'>戏剧</a><a href="poetry.html"'+(active==='poetry'?' class="active"':'')+'>诗歌</a><a href="music.html"'+(active==='music'?' class="active"':'')+'>音乐</a><a href="searching.html"'+(active==='searching'?' class="active"':'')+'>寻找自己</a></nav>'}
-  if(path!=='index.html'){
+  if(path!=='index.html'&&header){
     var back=document.createElement('a');back.className='back-link';
-    if(path.indexOf('work-')===0){back.href='theatre.html';back.textContent='← 返回戏剧'}else{back.href='index.html';back.textContent='← 返回主页'}
-    document.body.appendChild(back);
+    var destination=path.indexOf('work-')===0?'返回戏剧':'返回首页';
+    back.href=path.indexOf('work-')===0?'theatre.html':'index.html';
+    back.innerHTML='<span aria-hidden="true">←</span><span>回到来处</span>';
+    back.setAttribute('aria-label','回到来处：'+destination);back.title=destination;
+    header.classList.add('has-back');document.documentElement.classList.add('has-back-nav');
+    header.insertBefore(back,header.querySelector('.global-nav'));
   }
   var vig=document.createElement('div');vig.className='spot-vignette';var pool=document.createElement('div');pool.className='spot-pool';document.body.appendChild(vig);document.body.appendChild(pool);
   var tx=innerWidth/2,ty=innerHeight/2,x=tx,y=ty;document.documentElement.style.setProperty('--spot-x',x+'px');document.documentElement.style.setProperty('--spot-y',y+'px');
