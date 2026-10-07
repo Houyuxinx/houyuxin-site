@@ -17,6 +17,21 @@
   var previousPoem = dialog.querySelector('.poem-reader-prev');
   var nextPoem = dialog.querySelector('.poem-reader-next');
   var poemPosition = dialog.querySelector('.poem-reader-position');
+  function finalDateOrder(poem) {
+    var value = formatDate(poem.querySelector('.poem-date').textContent);
+    var dates = value.match(/\d{4}(?:\.\d{1,2}){0,2}/g);
+    if (!dates) return Infinity;
+    var parts = dates[dates.length - 1].split('.').map(Number);
+    // Preserve partial-date precision and use the end of a date range.
+    return parts[0] * 10000 + (parts[1] || 0) * 100 + (parts[2] || 0);
+  }
+  archive.querySelectorAll('.poem-list').forEach(function (list) {
+    Array.from(list.querySelectorAll('.poem')).map(function (poem, index) {
+      return {poem: poem, order: finalDateOrder(poem), index: index};
+    }).sort(function (a, b) {
+      return a.order - b.order || a.index - b.index;
+    }).forEach(function (item) { list.appendChild(item.poem); });
+  });
   var poems = Array.from(archive.querySelectorAll('.poem'));
   var selectedYear = null;
   var active = null;
@@ -224,6 +239,11 @@
     renderYear(yearForPoem(poem), false);
     title.textContent = poem.querySelector('.poem-title').textContent;
     date.textContent = poem.querySelector('.poem-date').textContent;
+    var draftDate = poem.getAttribute('data-draft-date');
+    if (draftDate) {
+      var draftScope = poem.getAttribute('data-draft-scope') || '';
+      date.textContent += '（' + draftScope + '初稿：' + formatDate(draftDate) + '）';
+    }
     text.textContent = poem.querySelector('.poem-text').textContent;
     active = poem.id;
     var index = poems.indexOf(poem);
@@ -342,3 +362,4 @@
   yearsNav.hidden = false;
   restore(false);
 })();
+
