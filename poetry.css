@@ -1,2 +1,43 @@
+.poetry-archive{margin-top:36px}
+.year-group{display:grid;grid-template-columns:110px minmax(0,1fr);border-top:1px solid var(--line)}
+.year-label{font-size:32px;letter-spacing:-.04em;padding:22px 16px 22px 0;position:sticky;top:calc(var(--header-h) + 62px);align-self:start}
+.poem{border-left:1px solid var(--line);border-bottom:1px solid var(--line)}
+.poem-open{width:100%;border:0;background:none;color:inherit;text-align:left;cursor:pointer;display:grid;grid-template-columns:minmax(0,1fr) auto 18px;gap:20px;align-items:center;padding:20px;transition:background .25s}
+.poem-open:hover{background:rgba(255,255,255,.025)}
+.poem-open:focus-visible{outline:1px solid var(--fg);outline-offset:-4px}
+.poem-title{font-size:18px;line-height:1.5}
+.poem-date{font-size:11px;color:var(--muted);white-space:nowrap}
+.poem-arrow{font-size:14px;color:var(--muted);justify-self:end;transition:transform .3s var(--ease)}
+.poem-open:hover .poem-arrow{transform:translate(2px,-2px)}
+.poem-text[hidden]{display:none}
+.poem-reader{position:fixed;inset:0;width:min(920px,calc(100% - 48px));height:calc(100vh - 72px);height:calc(100svh - 72px);max-width:none;max-height:none;margin:auto;padding:0;border:1px solid var(--line);border-radius:3px;background:#0b0c0e;color:var(--fg);overflow:hidden}
+.poem-reader[open]{display:flex;flex-direction:column;animation:poem-page-in .48s var(--ease) both}
+.poem-reader::backdrop{background:rgba(3,4,5,.86);backdrop-filter:blur(8px);animation:poem-backdrop-in .4s ease both}
+.poem-reader.is-closing{animation:poem-page-out .18s ease both}
+.poem-reader.is-closing::backdrop{animation:poem-backdrop-out .18s ease both}
+.poem-reader-head{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-shrink:0;padding:14px clamp(18px,4vw,44px);border-bottom:1px solid var(--line)}
+.poem-reader-head .eyebrow{font-size:10px;letter-spacing:.16em}
+.poem-reader-close{display:inline-flex;align-items:center;gap:12px;min-height:44px;border:0;background:none;color:var(--muted);padding:0 4px;font-size:11px;letter-spacing:.1em;cursor:pointer}
+.poem-reader-close:hover{color:var(--fg)}
+.poem-reader-close:focus-visible{outline:1px solid var(--fg);outline-offset:4px}
+.poem-reader-close span{font-size:20px;line-height:1}
+.poem-reader-scroll{min-height:0;flex:1;overflow-y:auto;overscroll-behavior-y:contain;padding:clamp(28px,5vw,58px) clamp(20px,6vw,76px) 72px;scrollbar-width:thin;scrollbar-color:rgba(240,238,232,.2) transparent}
+.poem-reader-title{margin:0 0 14px;font-size:clamp(28px,4vw,44px);line-height:1.3;letter-spacing:-.035em;font-weight:500;overflow-wrap:anywhere}
+.poem-reader-date{margin:0 0 32px;font-size:11px;letter-spacing:.08em;color:var(--muted)}
+.poem-reader-text{white-space:pre-wrap;overflow-wrap:anywhere;font-size:18px;line-height:2.15;color:#ddd9d0}
+@keyframes poem-page-in{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes poem-page-out{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(12px)}}
+@keyframes poem-backdrop-in{from{opacity:0}to{opacity:1}}
+@keyframes poem-backdrop-out{from{opacity:1}to{opacity:0}}
+@media(max-width:720px){
+ .year-group{grid-template-columns:64px minmax(0,1fr)}
+ .year-label{font-size:22px}
+ .poem-open{grid-template-columns:minmax(0,1fr) 18px;gap:8px 12px;padding:18px 14px}
+ .poem-date{grid-column:1;grid-row:2;white-space:normal;line-height:1.6}
+ .poem-arrow{grid-column:2;grid-row:1/3}
+ .poem-reader{width:calc(100% - 24px);height:calc(100vh - 32px);height:calc(100svh - 32px)}
+ .poem-reader-head{padding:10px 18px}
+ .poem-reader-scroll{padding:28px 22px 48px}
+ .poem-reader-text{font-size:16px;line-height:2.1}
+}
 
-.poetry-archive{margin-top:36px}.year-group{display:grid;grid-template-columns:110px 1fr;border-top:1px solid var(--line)}.year-label{font-size:32px;letter-spacing:-.04em;padding:22px 16px 22px 0;position:sticky;top:calc(var(--header-h) + 62px);align-self:start}.poem{border-left:1px solid var(--line);border-bottom:1px solid var(--line)}.poem summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:1fr auto;gap:20px;align-items:center;padding:18px 20px;transition:background .25s}.poem summary::-webkit-details-marker{display:none}.poem summary:hover{background:rgba(255,255,255,.025)}.poem-title{font-size:18px;line-height:1.5}.poem-date{font-size:11px;color:var(--muted);white-space:nowrap}.poem-text{white-space:pre-wrap;padding:8px 20px 34px;font-size:16px;line-height:2;color:#ddd9d0;max-width:46em}@media(max-width:720px){.year-group{grid-template-columns:64px 1fr}.year-label{font-size:22px}.poem summary{grid-template-columns:1fr}.poem-date{white-space:normal}}

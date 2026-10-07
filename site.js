@@ -1,5 +1,14 @@
 
 (function(){
+  // Restrict ordinary copying; public assets remain accessible to the browser.
+  ['copy','cut','contextmenu','selectstart','dragstart'].forEach(function(type){
+    document.addEventListener(type,function(event){event.preventDefault()},true);
+  });
+  document.addEventListener('keydown',function(event){
+    var key=event.key.toLowerCase();
+    if(((event.ctrlKey||event.metaKey)&&['a','c','x','s','p'].indexOf(key)!==-1)||
+       (event.ctrlKey&&key==='insert')||(event.shiftKey&&key==='delete'))event.preventDefault();
+  },true);
   var path=(location.pathname.split('/').pop()||'index.html');
   var active=path.indexOf('work-')===0?'theatre':path.replace('.html','');
   var header=document.querySelector('.site-head');
