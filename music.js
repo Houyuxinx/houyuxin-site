@@ -52,10 +52,17 @@
     if(!track||busy)return;
     busy=true;
     // Start audio inside the user's click gesture for Safari autoplay rules.
-    audio.src=track.src;
-    var playback=audio.play();
-    if(playback && playback.catch)playback.catch(function(){});
-    if(!fade(function(){showTrack(track);busy=false;}))busy=false;
+    // Never play automatically when a song is selected.
+    // Set the source at the dark midpoint; the user must press native Play.
+    audio.pause();
+    if(!fade(function(){
+      audio.autoplay=false;
+      audio.removeAttribute('autoplay');
+      audio.src=track.src;
+      audio.load();
+      showTrack(track);
+      busy=false;
+    }))busy=false;
   }
   function showList(){
     audio.pause();
