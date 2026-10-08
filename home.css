@@ -64,28 +64,21 @@
 .entry-enter:focus-visible{outline:1px solid #d2cbbf}
 html.entry-active,body.entry-active{overflow:hidden}
 body.entry-active .home,body.entry-active .site-head{opacity:0;pointer-events:none}
+/* Show the four cards immediately BEHIND the opaque entrance layer;
+   the user perceives only the single composited front curtain fading away. */
 body.entry-opening .home,body.entry-opening .site-head{
-  opacity:1;transition:opacity 1.85s cubic-bezier(.22,.62,.26,1) .48s;
+  opacity:1;transition:none;
 }
 .home:focus{outline:none}
-.entry-gate.is-entering{pointer-events:none;animation:entry-gate-leave 2350ms cubic-bezier(.25,.12,.27,1) both}
-.entry-gate.is-entering .entry-art{animation:entry-field-release 2300ms cubic-bezier(.25,.68,.2,1) both}
-.entry-gate.is-entering .entry-content{opacity:0;transform:translateY(-6px) scale(.987)}
-/* Canvas motion is paused on click; animate opacity on its single layer.
-   Avoid scaling the whole canvas during the fade, which janks Safari GPUs. */
-@keyframes entry-field-release{
-  0%{opacity:1}
-  22%{opacity:.96}
-  55%{opacity:.53}
-  100%{opacity:0}
+.entry-gate.is-entering{
+  pointer-events:none;will-change:opacity;transform:translateZ(0);
+  animation:entry-gate-leave 2350ms cubic-bezier(.45,0,.55,1) both;
 }
-@keyframes entry-gate-leave{
-  0%,15%{opacity:1}
-  37%{opacity:.94}
-  58%{opacity:.74}
-  82%{opacity:.24}
-  100%{opacity:0}
-}
+.entry-gate.is-entering .entry-art{animation:none}
+.entry-gate.is-entering .entry-content{opacity:0;transform:translateY(-6px)}
+/* Use a single continuous opacity curve to prevent multiple fullscreen
+   layers from cross-fading with independently eased keyframes. */
+@keyframes entry-gate-leave{from{opacity:1}to{opacity:0}}
 @media(max-width:700px){
   .entry-gate .entry-bit:nth-child(3n){display:none}
   .entry-bit{font-size:clamp(11px,calc(var(--size,16px)*.78),15px);max-width:93vw}
