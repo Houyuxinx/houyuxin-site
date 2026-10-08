@@ -1,63 +1,46 @@
-# ECHYOX｜网站结构说明（2026-10-08）
+# ECHYOX｜网站结构与文件定位
 
-## 一眼理解
-- 正式网址：`https://echyox.com`
-- GitHub 仓库：`Houyuxinx/houyuxin-site`
-- 主分支：`main`。
-- 技术形式：以 **HTML、CSS、JavaScript** 组成的静态网站；现有文件中未见必须运行的后端应用。
-- 根目录 `CNAME` 的内容是 `echyox.com`。
-- 2026-10-08 已核对最新正式 `main`（本次文档提案建立时）提交 `ca4be01b30a696f50540f02ab54bf644f1979ca0`，GitHub Pages 部署 #37800611762 `completed / success`；此工具没有在最新版正式网页完成 Safari 操作实测。日后应以实时 main 和最新 Actions 为准，不要将此处固定 SHA 误当作永远最新。
-- **Settings → Pages 的完整后台配置仍未读取；上述发布结论来自实际部署运行和网页读取，不应扩展成所有后台设置均已核查。**
+> 本文件只解释**现在网站的组成和到哪里修改**，不充当不断过期的“最新发布编号”。实时版本以 GitHub `main`、开放 PR 和 Actions 为准，完整发布历史看 `CHANGELOG.md`。
 
-## 2026-10-08 手机端三项修复（PR #8 已合并）
-- 文字场手机 Canvas 与缓存文字最高 3× Retina；CSS fallback 提高文字可读性；桌面主视觉与 90 条文字不变。
-- 诗歌年份条保留横向滑动及九个年份，手机限制纵向拖动，松手按年份吸附。不可擅自改成无横向滑动的网格。
-- 四栏目顶部「回到来处」指向 `index.html#entry-revealed`，避免旧光圈；站内 1.4 秒暗场转场和工作详情→戏剧逻辑仍在。
-- 修复提交 `ee7ec56893b0825ce7915b297c8e231ace97cd7a`。首次 Pages 运行 #37792539167 失败；后来 [部署 #37793371715](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37793371715) 成功。工具未直接完成线上的手机交互测试。
-- 更新前恢复点 `backup/2026-10-08-before-mobile-fixes`，提交 `10455db1703fc51a6dd647c1f6e99a309fc4ad75`。
+## 项目概况
+- 正式网址：https://echyox.com；GitHub 仓库：`Houyuxinx/houyuxin-site`；正式分支：`main`。
+- 静态网站，主要由 HTML、CSS、JavaScript 构成；根目录 `CNAME` 内容为 `echyox.com`。
+- 主要作品栏目：戏剧 / 诗歌 / 音乐 / 寻找自己。网站原页面和媒体的版权、内容、是否公开由作者决定。
+- **2026-10-08 核实**：最近一次正式合并为 [PR #13](https://github.com/Houyuxinx/houyuxin-site/pull/13)，当时 `main` 提交 `87635471316c80e4e4b55ab7e8d2d258cda08185`，GitHub Pages [部署 #37804092035](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37804092035) 成功。这是**历史核实记录**，新任务要重新查 main；工具没有对最终线上版做真正的手机 Safari 点击验收。
+- 仓库侧没有观察到自建的 `.github/workflows` 自动测试配置；GitHub Pages 的系统构建成功**不代表网站交互实测通过**。Settings → Pages 的完整后台发布配置仍应按需核查。
 
-## 新版首页与导航（2026-10-08 正式发布）
-- 默认 `index.html` 先展示文学文字场；画面中心人名和「进入尚未完成之处」，点击后显示原四大栏目。
-- 顶栏「主页」直接进入 `index.html#entry-revealed` 的四栏目主页；点击「侯宇鑫 HOU YUXIN」会访问 `index.html?entry=1`，主动重看主视觉。
-- 首次艺术入场约 2.35 秒；全站站内切换约 1.4 秒（0.6 秒暗场淡出 + 0.8 秒渐显），由 `navigation.js`、`shared.css` 负责。
-- 四首音乐进入具体播放器时**不自动播放**；访客手动播放/暂停，播放器打开和退出使用统一渐隐。所有作品数据仍在原先对应页面。
-- 发布前恢复分支：`backup/2026-10-08-before-literary-entrance`，准确提交 `3f3a8febe6394c9dc96e9f47878a2a81803f041a`；上线记录参见 `CHANGELOG.md`。
+## 页面与文件对应关系
 
-## 修改页面时去哪找文件
-
-| 网站部分 | 主要页面或文件 | 作用 |
+| 位置 | 核心文件 | 说明 |
 | --- | --- | --- |
-| 首页 | `index.html`、`home.css`、`entrance.js` | 全屏文字入场，点击后显示原四大栏目 |
-| 戏剧列表 | `theatre.html`、`theatre.css` | 剧目目录 |
-| 剧目详情 | `work-*.html`、`work.css` | 各剧目的资料与相关内容 |
-| 诗歌 | `poetry.html`、`poetry.css`、`poetry.js` | 诗歌、年份目录、阅读弹窗 |
-| 音乐 | `music.html`、`music.css`、`music.js` | 曲目列表、播放、歌词 |
-| 寻找自己 | `searching.html`、`searching.css` | 个人介绍等 |
-| 全站公共样式 | `shared.css` | 色彩、字体、导航、舞台光圈等 |
-| 全站交互 | `site.js`、`navigation.js` | 导航、动效、音频附加控制 |
-| 资源 | `assets/` | 图片、音频等素材 |
-| 剧本试读 | `docs/` | 可供网页访问的 PDF 文件 |
-| 域名 | `CNAME` | 自定义域名绑定记录 |
+| 文字入场、四栏目入口 | `index.html`、`home.css`、`entrance.js` | 90 条文字组成的全屏流动场；中心有作者名与可点击的进入入口 |
+| 戏剧目录 | `theatre.html`、`theatre.css` | 戏剧作品索引 |
+| 戏剧作品详情 | `work-*.html`、`work.css` | 五个作品页面；对应剧照与剧本试读 |
+| 剧照展示 | `gallery.css`、`gallery.js` | 剧目中使用的剧照浏览交互 |
+| 剧本试读阅读 | `script-reader.css`、`script-reader.js` | 试读阅读功能；不得擅自公开完整私人剧本 |
+| 诗歌年份与弹窗 | `poetry.html`、`poetry.css`、`poetry.js` | 年份目录、诗歌正文和阅读操作 |
+| 音乐 | `music.html`、`music.css`、`music.js` | 曲目、歌词、音频及局部转场 |
+| 寻找自己 | `searching.html`、`searching.css` | 个人介绍及创作状态 |
+| 全站通用 | `shared.css`、`site.js`、`navigation.js` | 导航、视觉基线、暗场转场及共用交互 |
+| 静态媒体 / 试读 | `assets/`、`docs/` | 公开图片、MP3 与供网页读取的试读 PDF |
+| 域名 | `CNAME` | 自定义域名记录 |
 
-## 维护时的重要技术事实
-1. `poetry.html` 当前含大量直接写在 HTML 中的诗歌正文；新增作品要特别小心顺序、日期和阅读功能，不能只改可见标题。
-2. `music.html` 当前包含 `window.TRACKS` 曲目数据及歌词，音频使用 `assets/audio/` 中的文件；列表和播放数据应保持一致。
-3. `site.js` 和 `shared.css` 目前有禁止选取、复制和打印等限制。但这些前端限制并不能保护已公开的源码或媒体文件，需要把是否继续保留作为单独的作者决策。
-4. 更改 `shared.css`、`site.js` 或 `navigation.js` 可能影响全站；优先避免在单页任务中修改它们。
-5. 现有根目录没有观察到 `.github/workflows`，也未观察到一套已明确维护的自动测试配置。不能声称“自动测试通过”，除非确实执行过。
-6. 不要把完整未公开剧本、密码、密钥、私人信息提交到公开仓库。
+## 不能误改的已确认行为
+- 默认首先进入由**90 条**剧本、诗歌、歌词精选短句组成的文学文字流动场，随后进入原四大栏目。中心文字保持呼吸区；旧抽象主视觉和圆形追光属早期设计，不可擅自恢复。
+- 首次文学入场约 **2.35 秒**；栏目/作品/音乐列表与播放器的普通转场约 **1.4 秒**（0.6 秒淡出 + 0.8 秒渐显）。
+- 四栏目顶部「回到来处」指向 `index.html#entry-revealed`，直接返回四栏目；点击站点作者名可主动重新观看入口。
+- 手机上诗歌年份栏**必须能横向滑动**，不应改成不能滑动的静态年份网格。诗歌正文、日期及排序不得自行改写。
+- 四首音乐进入播放页**不能自动开始播放**；歌词保留水平居中、歌词栏独立上下滚动与细滚动条按需显示，点击歌词不出现矩形外框。无歌词器乐提示保持居中。
+- `music.html` 里有 `window.TRACKS` 曲目/歌词数据；`poetry.html` 中有大量诗歌正文。修改前应逐字核对数据并保护换行、日期、署名。
+- `site.js`、`shared.css` 存在防选取、复制、打印等前端限制，但**无法彻底阻止公开文字或媒体被获取**。完整私人剧本、密码和私密素材不得上传公开仓库。
+- `shared.css`、`site.js`、`navigation.js` 可能影响全站。任何小范围修改，原则上避免顺手改它们；必须改时说明全站影响并扩大核对范围。
 
-## 历史版本与备份
-- `CHANGELOG.md` 是给人看的长期更新日志。
-- `BACKUP_AND_RECOVERY.md` 是恢复旧版的说明和恢复点索引。
-- `backup/2026-10-08-before-handover` 保存 2026-10-08 整理文档之前的 main 快照。
+## 哪些说明放在哪
+- 当前任务与接手规则：`START_HERE.md`、`AGENTS.md`。
+- 设计边界：`PROJECT_VISION.md`。
+- 历次发布、当时“待审核”的迭代记录、未完成事项：`CHANGELOG.md`。
+- 备份分支的准确地址、最新可恢复版本：`BACKUP_AND_RECOVERY.md`。
+- V13 初期设计历史：`README.md`。**历史版本不应覆盖当前站点。**
 
-## 后续维护仍需核实的事项
-- GitHub 仓库 `Settings → Pages` 的完整后台配置；本次 main 更新触发 GitHub Pages 并成功上线的链路已实际观察；
-- 自定义域名是否仍正确；
-- 新版是否可在电脑与手机打开；
-- 四大栏目、剧目详情、诗歌阅读、音乐播放、PDF 是否正常；
-- 如上线后出现异常，如何定位并回退到上一版本。
-
-## 一项未来可选优化（不是这次要做的）
-逐步把作品内容与页面样式分开管理，让新添诗歌和音乐更容易，减少误改页面的机会。**在未取得作者确认前，不要大规模改造网站架构。**
+## 暂不执行的可选改进
+网站作品与样式当前仍部分混放在 HTML 中。未来可在作者批准后研究更容易新增诗歌/音乐的管理方法；**不能未经同意重构网站或修改作品正文**。
