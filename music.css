@@ -21,9 +21,24 @@ body.music-open .page{height:100vh;height:100svh;padding:calc(var(--header-h) + 
 .lyrics-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px 0 18px;color:var(--muted);font-size:10px;letter-spacing:.13em}
 .lyrics-head h3{margin:0;font-size:11px;font-weight:500;letter-spacing:.16em;color:var(--fg)}
 .lyrics-viewport{flex:1;min-height:0;position:relative}
-.lyrics{height:100%;min-height:0;overflow-y:auto;overscroll-behavior-y:contain;scrollbar-width:thin;scrollbar-color:rgba(240,238,232,.2) transparent;scrollbar-gutter:stable;white-space:pre-wrap;overflow-wrap:anywhere;text-align:center;font-size:clamp(17px,1.55vw,22px);line-height:2.25;color:#ddd8d0;padding:32px 16px 48px;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 24px,#000 calc(100% - 24px),transparent);mask-image:linear-gradient(to bottom,transparent,#000 24px,#000 calc(100% - 24px),transparent)}
+.lyrics{height:100%;min-height:0;overflow-y:auto;overscroll-behavior-y:contain;scrollbar-width:thin;scrollbar-color:transparent transparent;scrollbar-gutter:stable;white-space:pre-wrap;overflow-wrap:anywhere;text-align:center;font-size:clamp(17px,1.55vw,22px);line-height:2.25;color:#ddd8d0;padding:32px 16px 48px;-webkit-mask-image:linear-gradient(to bottom,transparent,#000 24px,#000 calc(100% - 24px),transparent);mask-image:linear-gradient(to bottom,transparent,#000 24px,#000 calc(100% - 24px),transparent)}
 .lyrics::-webkit-scrollbar{width:3px}
-.lyrics::-webkit-scrollbar-thumb{border-radius:3px;background:rgba(240,238,232,.2)}
+.lyrics::-webkit-scrollbar-thumb{border-radius:3px;background:transparent}
+ /* No resting scrollbar: reveal the native thumb only while reading,
+    scrolling, or navigating lyrics with the keyboard. Keep a stable gutter
+    so the lyrics do not shift horizontally when the thumb appears. */
+ .lyrics.is-scrolling,.lyrics:focus-visible{
+   scrollbar-color:rgba(240,238,232,.32) transparent;
+ }
+ .lyrics.is-scrolling::-webkit-scrollbar-thumb,
+ .lyrics:focus-visible::-webkit-scrollbar-thumb{
+   background:rgba(240,238,232,.32);
+ }
+ @media(hover:hover){
+   .lyrics:hover{scrollbar-color:rgba(240,238,232,.32) transparent}
+   .lyrics:hover::-webkit-scrollbar-thumb{background:rgba(240,238,232,.32)}
+ }
+
 .lyrics-viewport:focus-within{outline:1px solid rgba(240,238,232,.22);outline-offset:4px}
 .lyrics:focus{outline:none}
 .no-lyrics{display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:18px;padding:24px}
