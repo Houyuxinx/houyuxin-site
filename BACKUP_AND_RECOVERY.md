@@ -18,6 +18,16 @@
 
 **核对条件：**这个备份分支指向上述固定提交，不需要也不应该改写它。ZIP 从 GitHub 在线生成；如果未把 ZIP 另存到自己电脑或独立网盘，仍然不是异地备份。ZIP 只包括该提交中的仓库文件，不包括完整 Git 修改历史、GitHub Issue/PR、GitHub Pages 后台设置或域名服务商的 DNS 资料。
 
+## 新增《一个哑谜》前的恢复点（2026-10-08）
+
+- 名称：`backup/2026-10-08-before-one-riddle`。
+- 准确提交 SHA：`228dd5820b3d9f5951b7d8ebf53d3d8af77e09af`。
+- 内容：本次新增曲目之前的完整 `main` 快照，包含原有网站、三首音乐曲目、全部已跟踪资源以及 PR #1 合并后的交接说明。
+- 已通过 GitHub 接口核对恢复分支指向此提交；不要改写这个恢复分支。
+- 在线查看：[新增曲目前的旧版本](https://github.com/Houyuxinx/houyuxin-site/tree/backup/2026-10-08-before-one-riddle)。
+- ZIP 下载入口：[下载此次恢复点](https://github.com/Houyuxinx/houyuxin-site/archive/228dd5820b3d9f5951b7d8ebf53d3d8af77e09af.zip)。本轮没有实际下载或另存这个 ZIP，不能称为已完成独立备份。
+- 相关修改位于 `music/add-one-riddle-20261008`，状态为**待审核 / 未上线**。若正式合并前 `main` 已出现其他更新，需要先核对差异，并为届时的 `main` 保留新的恢复点。
+
 ## 今后每次正式更新的固定流程
 
 1. **先登记**：在 Issue/待办中用普通话写明“想改什么”“什么不能改”。
