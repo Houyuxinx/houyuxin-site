@@ -61,8 +61,37 @@
     return url;
   }
 
+  // Same fade for in-page view changes (e.g. music list ↔ music player).
+  // Avoid a second animation system, and restore pointer interaction on completion.
+  var localBusy = false;
+  window.ECHYOXFade = {
+    transitionInside: function (swap) {
+      if (localBusy) return false;
+      if (reduce.matches || document.hidden) { swap(); return true; }
+      localBusy = true;
+      root.classList.remove('site-fade-initial','site-fade-arriving');
+      root.classList.add('site-fade-local-out');
+      setTimeout(function () {
+        root.classList.remove('site-fade-local-out');
+        root.classList.add('site-fade-local-hold');
+        try { swap(); }
+        finally {
+          requestAnimationFrame(function () {
+            root.classList.remove('site-fade-local-hold');
+            root.classList.add('site-fade-local-in');
+            setTimeout(function () {
+              root.classList.remove('site-fade-local-in');
+              localBusy = false;
+            }, 1230);
+          });
+        }
+      }, 1120);
+      return true;
+    }
+  };
+
   document.addEventListener('click', function (event) {
-    if (event.defaultPrevented || active || reduce.matches) return;
+    if (event.defaultPrevented || active || localBusy || reduce.matches) return;
     if (event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
     var target = event.target && (event.target.closest ? event.target : event.target.parentElement);
     var link = target && target.closest ? target.closest('a[href]') : null;
