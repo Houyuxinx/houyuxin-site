@@ -18,6 +18,7 @@
   var finishTimer = null;
   var frameId = null;
   var previousFrame = 0;
+  var lastPaint = 0;
   var elapsed = 0;
   var viewportW = Math.max(1, window.innerWidth);
   var viewportH = Math.max(1, window.innerHeight);
@@ -100,13 +101,18 @@
     if (frameId !== null) cancelAnimationFrame(frameId);
     frameId = null;
     previousFrame = 0;
+    lastPaint = 0;
   }
   function tick(now) {
     frameId = null;
     if (gate.hidden || reduced.matches || document.hidden) return;
     if (previousFrame) elapsed += Math.min((now - previousFrame) / 1000, .1);
     previousFrame = now;
-    render(elapsed);
+    // Orbit movement is deliberately slow; cap DOM paint updates near 30fps.
+    if (!lastPaint || now - lastPaint >= 32) {
+      render(elapsed);
+      lastPaint = now;
+    }
     frameId = requestAnimationFrame(tick);
   }
   function startMotion() {
