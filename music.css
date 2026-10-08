@@ -28,12 +28,8 @@ body.music-open .page{height:100vh;height:100svh;padding:calc(var(--header-h) + 
 .lyrics:focus{outline:none}
 .no-lyrics{display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:18px;padding:24px}
 
-/* The local return shares the site's easing without delaying navigation. */
-.player-view.is-closing{animation:music-exit 140ms var(--ease) both;pointer-events:none}
-#trackList.is-entering{animation:music-list-enter 220ms var(--ease) both}
-@keyframes music-exit{from{opacity:1;transform:translateY(0)}to{opacity:0;transform:translateY(-8px)}}
-@keyframes music-list-enter{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:translateY(0)}}
-
+/* Local list/player fades use the shared 2.35s full-screen curtain
+   defined in shared.css and navigation.js; no duplicate slide animations. */
 @media(max-width:959px){
   .track-button{grid-template-columns:1fr 25px}
   .track-meta{grid-column:1}
