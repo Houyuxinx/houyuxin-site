@@ -10,8 +10,8 @@ html{background:var(--bg);scroll-behavior:smooth}body{margin:0;background:linear
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}.reveal.is-visible{opacity:1;transform:none}
 /* circular stage spotlight: no beam */
 .spot-vignette,.spot-pool{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .55s var(--ease)}
-.spot-vignette{background:radial-gradient(circle 240px at var(--spot-x) var(--spot-y),transparent 0 48%,rgba(0,0,0,.08) 67%,rgba(0,0,0,.48) 100%)}
-.spot-pool{inset:auto;width:520px;height:520px;left:var(--spot-x);top:var(--spot-y);transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,244,214,.15),rgba(255,231,182,.065) 37%,transparent 69%);filter:none;mix-blend-mode:normal}
+.spot-vignette{background:radial-gradient(ellipse farthest-side at 50% 50%,transparent 23%,rgba(0,0,0,.08) 70%,rgba(0,0,0,.42) 100%)}
+.spot-pool{inset:auto;width:520px;height:520px;left:0;top:0;transform:translate3d(calc(var(--spot-x) - 260px),calc(var(--spot-y) - 260px),0);border-radius:50%;background:radial-gradient(circle,rgba(255,244,214,.15),rgba(255,231,182,.065) 37%,transparent 69%);filter:none;mix-blend-mode:normal}
 body.spot-on .spot-vignette,body.spot-on .spot-pool{opacity:1}
 .panel{border:1px solid var(--line);background:var(--panel);border-radius:20px;padding:24px}.btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:999px;padding:11px 16px;font-size:11px;letter-spacing:.13em;color:var(--fg);background:rgba(255,255,255,.025);transition:transform .3s var(--ease),background .3s}.btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.08)}
 /* Unified ECHYOX page navigation — about 2.35 seconds total.
