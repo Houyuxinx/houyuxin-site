@@ -1,14 +1,28 @@
 # ECHYOX · 侯宇鑫个人艺术网站
 
-正式网站：https://echyox.com
+**正式网站**：https://echyox.com  
+**仓库**：https://github.com/Houyuxinx/houyuxin-site
 
-> **新开的 GPT / Work / Codex 对话，请先读取 [START_HERE.md](START_HERE.md)。**
->
-> 给站长：以后不用重新解释所有技术背景。在 START_HERE.md 里，有一段可以直接复制给新对话的“接手网站”说明。
->
-> 项目规范：[创作方向](PROJECT_VISION.md) · [页面与文件](SITE_STRUCTURE.md) · [AI 工作规则](AGENTS.md) · [更新记录](CHANGELOG.md) · [备份与恢复](BACKUP_AND_RECOVERY.md)
->
-> 以下保留此前 V13 的实际更新记录，不应与这次只新增文档的提案混淆。
+ECHYOX 收录戏剧、诗歌、音乐与「寻找自己」四大栏目；访客先经过动态文学文字入场，再进入作品档案。网站由作者确定内容及审美，AI 协助修改与维护。
+
+## 新 GPT / Work 如何接手
+**首先阅读 [START_HERE.md](START_HERE.md)**，确认实际 GitHub 最新状态、现有待审核任务和本次需要修改的页面。不得依据下面 V13 的旧描述推断当前网站布局。
+
+| 文件 | 用途 |
+| --- | --- |
+| [START_HERE.md](START_HERE.md) | 接手入口与实时状态核对顺序 |
+| [AGENTS.md](AGENTS.md) | 必须遵守的开发、预览、授权、插件与中断规则 |
+| [PROJECT_VISION.md](PROJECT_VISION.md) | 已确认的艺术方向及设计边界 |
+| [SITE_STRUCTURE.md](SITE_STRUCTURE.md) | 页面与代码文件位置 |
+| [CHANGELOG.md](CHANGELOG.md) | 发布结果、历史设计迭代及待办 |
+| [BACKUP_AND_RECOVERY.md](BACKUP_AND_RECOVERY.md) | 恢复点、备份原则及出错后的处理 |
+| README.md（本页） | 项目简介及 V13 初期历史 |
+
+工作约定：**先定位范围、按阶段反馈、提供待审核预览、经作者明确授权后才正式发布**。不擅自改动作品或清理历史备份。
+
+## 早期版本记录（历史，非现行视觉说明）
+
+以下保留原 README 中的 V13 原始内容；彼时的圆形光圈等方案已经历后续艺术重构。历史内容仍应保留，但**不能用来覆盖现在的全屏文学入场及暗场转场**。
 
 ---
 

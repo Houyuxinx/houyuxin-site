@@ -1,5 +1,25 @@
 # ECHYOX｜长期更新日志
 
+## 当前状态速览（截至 2026-10-08；后续请实时核对 main 与 PR）
+- **最新正式合并**：[PR #13](https://github.com/Houyuxinx/houyuxin-site/pull/13) 已获作者同意，正式保存 GPT/Work 协作流程 V2，提交 `87635471316c80e4e4b55ab7e8d2d258cda08185`，GitHub Pages [#37804092035](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37804092035) `success`。**这是纯文档更新，不是新网页设计。**
+- **最新已发布的网页功能修改**：[PR #11](https://github.com/Houyuxinx/houyuxin-site/pull/11) 歌词滚动条只在使用时出现、取消点击歌词的矩形框、核实歌词居中；GitHub Pages [#37800113203](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37800113203) `success`。
+- **更早已完成**：PR #8 手机文字清晰度/诗歌年份滑动/返回渐隐；PR #6 全屏文学文字入场和全站暗场转场；PR #3 新增歌曲《一个哑谜》。均有下方发布记录。
+- **正在审核**：七份接手文件的 V3 分工与状态精简在独立 `docs/2026-10-08-handover-v3-clarity` 分支准备，**未合并、未上线**；审核和是否正式保存由作者决定。
+- **关键解释**：下方大量标题中的「待审核/未上线」是**当时迭代阶段的原始状态**。后来该功能可能已经通过 PR 合并并发布，**不能仅凭旧章节标题推断现在未完成，也不能删除这些创作过程记录**。先看本索引与实时 GitHub PR/Actions。
+- **真实仍待单独确认的事项**：GitHub Pages 后台完整设置、正式分支强制保护、仓库外 ZIP 备份、作者尚未批准的备份分支精简方案。未经授权均不执行。
+
+## 2026-10-08｜长期协作规则 V2 已正式保存（PR #13）
+- 作者明确同意将已讨论的协作规则写入仓库。PR #13 只调整 `AGENTS.md`、`START_HERE.md`、`PROJECT_VISION.md`、`SITE_STRUCTURE.md`、`BACKUP_AND_RECOVERY.md`，保留所有站内作品及原有页面代码。
+- 正式提交 `87635471316c80e4e4b55ab7e8d2d258cda08185`；GitHub Pages [#37804092035](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37804092035) 已 `completed/success`。本次没有更改音乐、诗歌、剧本、媒体、动画或网站交互。
+- 新增规定：小修与大改的阶段反馈、先提供预览后作者明确授权、未经同意不擅用 Canva/第三方插件、聊天中断先查现有 PR/提交再接着做、发布前备份与部署核验、历史恢复分支未经同意不得删除。
+- 发布前恢复分支 `backup/2026-10-08-before-workflow-v2`，准确提交 `ca4be01b30a696f50540f02ab54bf644f1979ca0`，与发布前 main 完全一致；这是同仓库恢复点，不是异地备份。详见 [PR #13](https://github.com/Houyuxinx/houyuxin-site/pull/13)。
+- 工具未进行正式网站上的手机 Safari 实测；此轮纯文档更新不代表网站功能测试。
+
+## 2026-10-08｜维护文件 V3 整理（仅草稿，待作者审核）
+- 为解决七份文件重复、`START_HERE.md` 被历史记录撑长、部分过时发布信息、`PROJECT_VISION.md` 中字面 `\\n` 排版残留，建立独立整理分支 `docs/2026-10-08-handover-v3-clarity`。
+- 本次拟让 `START_HERE.md` 只负责接手；`AGENTS.md` 负责工作规则；`PROJECT_VISION.md` 负责审美；`SITE_STRUCTURE.md` 负责文件地图；`CHANGELOG.md` 保留完整历史并增加当前状态索引；`BACKUP_AND_RECOVERY.md` 加最新恢复点索引；`README.md` 作项目概览并完整保存 V13。
+- **历史正文不删除、不改写**；当前正式 `main` 在制作本草稿时为 `87635471316c80e4e4b55ab7e8d2d258cda08185`。此次并未修改网站网页、作品、媒体、域名、备份分支或 GitHub 配置，需作者亲自审核后才可合并。
+
 ## 2026-10-08｜音乐歌词滚动条、焦点外框清理已正式发布（PR #11）
 
 **作者验收与发布**
