@@ -18,7 +18,7 @@
 .entry-gate[hidden],#entry-revealed:target + .entry-gate,body.entry-passed .entry-gate{display:none!important}
 .entry-art{
   position:absolute;inset:0;pointer-events:none;overflow:hidden;
-  -webkit-mask-image:radial-gradient(ellipse clamp(185px,26vw,330px) clamp(92px,15vh,165px) at 50% 50%,transparent 0 57%,rgba(0,0,0,.14) 89%,#000 155%);
+  -webkit-mask-image:radial-gradient(ellipse clamp(360px,43vw,600px) clamp(175px,27vh,280px) at 50% 50%,transparent 0 57%,rgba(0,0,0,.17) 70%,#000 99%);
   mask-image:radial-gradient(ellipse clamp(185px,26vw,330px) clamp(92px,15vh,165px) at 50% 50%,transparent 0 57%,rgba(0,0,0,.14) 89%,#000 155%);
 }
 .entry-text-layer{position:absolute;inset:0;pointer-events:none}
@@ -85,7 +85,7 @@ body.entry-opening .home,body.entry-opening .site-head{
   .entry-gate .entry-bit:nth-child(3n){display:none}
   .entry-bit{font-size:clamp(11px,calc(var(--size,16px)*.78),15px);max-width:93vw}
   .entry-art{
-    -webkit-mask-image:radial-gradient(ellipse 200px 128px at 50% 50%,transparent 0 60%,rgba(0,0,0,.10) 93%,#000 150%);
+    -webkit-mask-image:radial-gradient(ellipse 250px 180px at 50% 50%,transparent 0 68%,rgba(0,0,0,.12) 83%,#000 99%);
     mask-image:radial-gradient(ellipse 200px 128px at 50% 50%,transparent 0 60%,rgba(0,0,0,.10) 93%,#000 150%);
   }
   .entry-wordmark{font-size:clamp(28px,7.7vw,42px);letter-spacing:.19em;text-indent:.19em}
