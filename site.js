@@ -16,7 +16,7 @@
   if(path!=='index.html'&&header){
     var back=document.createElement('a');back.className='back-link';
     var destination=path.indexOf('work-')===0?'返回戏剧':'返回首页';
-    back.href=path.indexOf('work-')===0?'theatre.html':'index.html';
+    back.href=path.indexOf('work-')===0?'theatre.html':'index.html#entry-revealed';
     back.innerHTML='<span aria-hidden="true">←</span><span>回到来处</span>';
     back.setAttribute('aria-label','回到来处：'+destination);back.title=destination;
     header.classList.add('has-back');document.documentElement.classList.add('has-back-nav');
@@ -46,11 +46,15 @@
   }
   document.addEventListener('mousemove',function(e){
     tx=e.clientX;ty=e.clientY;
-    if(!document.body.classList.contains('entry-active'))document.body.classList.add('spot-on');
+    // Do not revive the old radial spotlight over the four-card homepage.
+    // The page return is handled solely by the dark fade in navigation.js.
+    if(path!=='index.html'&&!document.body.classList.contains('entry-active'))document.body.classList.add('spot-on');
     requestSpot();
   },{passive:true});
   document.documentElement.addEventListener('mouseleave',function(){document.body.classList.remove('spot-on')});
-  document.documentElement.addEventListener('mouseenter',function(){if(!document.body.classList.contains('entry-active'))document.body.classList.add('spot-on')});
+  document.documentElement.addEventListener('mouseenter',function(){
+    if(path!=='index.html'&&!document.body.classList.contains('entry-active'))document.body.classList.add('spot-on');
+  });
   document.addEventListener('visibilitychange',function(){
     if(document.hidden&&spotFrame!==null){cancelAnimationFrame(spotFrame);spotFrame=null;}
   });
