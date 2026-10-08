@@ -58,9 +58,24 @@
 @keyframes poem-backdrop-in{from{opacity:0}to{opacity:1}}
 @keyframes poem-backdrop-out{from{opacity:1}to{opacity:0}}
 @media(max-width:720px){
- .poetry-years{display:flex;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:none;scroll-snap-type:x proximity}
+ /* Keep horizontal swipes for nine years, but make this a single-axis
+    sticky scroll rail; prevent vertical/diagonal rubber-band dragging of
+    the year numerals on iOS Safari. */
+ .poetry-years{
+   position:sticky;top:var(--header-h);
+   display:flex;overflow-x:auto;overflow-y:hidden;
+   overscroll-behavior-x:contain;overscroll-behavior-y:none;
+   touch-action:pan-x;
+   scrollbar-width:none;scroll-snap-type:x mandatory;
+   -webkit-overflow-scrolling:touch;
+ }
+
  .poetry-years::-webkit-scrollbar{display:none}
- .poetry-year{flex:0 0 64px;min-height:56px;scroll-snap-align:center;font-size:12px}
+ .poetry-year{
+   flex:0 0 64px;min-height:56px;scroll-snap-align:center;
+   font-size:12px;touch-action:pan-x;white-space:nowrap;
+   -webkit-user-drag:none;
+ }
  .poetry-stage{margin-top:26px}
  .poetry-entry{min-height:300px;padding:20px 0 40px}
  .poetry-verse{font-size:clamp(19px,5.3vw,24px);line-height:2.15;letter-spacing:.055em}
