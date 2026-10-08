@@ -44,8 +44,9 @@
     behindGate(false);
     save();
     if (moveFocus) {
-      var first = home.querySelector('a.door');
-      if (first) first.focus({ preventScroll: true });
+      // Focus the landmark, not the Theatre link. Safari's default focus ring
+      // otherwise looked like a blue "selected" border on the first card.
+      home.focus({ preventScroll: true });
     }
   }
   if (location.hash === '#entry-revealed' || remembered()) {
@@ -62,7 +63,7 @@
     gate.classList.add('is-entering');
     document.body.classList.add('entry-opening');
     // Disabled/interrupted CSS or a hidden tab must never leave the home inert.
-    finishTimer = setTimeout(function () { reveal(true); }, 1250);
+    finishTimer = setTimeout(function () { reveal(true); }, 2250);
   });
   gate.addEventListener('animationend', function (event) {
     if (opening && event.target === gate && event.animationName === 'entry-gate-leave') reveal(true);
