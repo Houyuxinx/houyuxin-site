@@ -16,12 +16,15 @@
   background:radial-gradient(ellipse 52% 44% at 50% 50%,#121314 0%,#090a0c 53%,#07080a 100%);
 }
 .entry-gate[hidden],#entry-revealed:target + .entry-gate,body.entry-passed .entry-gate{display:none!important}
-.entry-art{
-  position:absolute;inset:0;pointer-events:none;overflow:hidden;
-  -webkit-mask-image:radial-gradient(ellipse clamp(360px,43vw,600px) clamp(175px,27vh,280px) at 50% 50%,transparent 0 57%,rgba(0,0,0,.17) 70%,#000 99%);
-  mask-image:radial-gradient(ellipse clamp(185px,26vw,330px) clamp(92px,15vh,165px) at 50% 50%,transparent 0 57%,rgba(0,0,0,.14) 89%,#000 155%);
+.entry-art{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.entry-text-layer{
+  position:absolute;inset:0;pointer-events:none;
+  -webkit-mask-image:radial-gradient(ellipse 48% 38% at 50% 50%,transparent 0 58%,#000 100%);
+  mask-image:radial-gradient(ellipse 48% 38% at 50% 50%,transparent 0 58%,#000 100%);
 }
-.entry-text-layer{position:absolute;inset:0;pointer-events:none}
+.entry-canvas{position:absolute;inset:0;display:block;pointer-events:none}
+.entry-canvas[hidden]{display:none!important}
+.entry-gate.entry-motion-ready .entry-text-layer{visibility:hidden}
 .entry-bit{
   position:absolute;left:var(--x);top:var(--y);
   display:block;width:max-content;max-width:90vw;white-space:nowrap;
@@ -33,7 +36,7 @@
 .entry-bit[data-source="诗歌"]{color:#e0dacf}
 .entry-bit[data-source="歌词"]{color:#c5c1b9}
 /* In animation mode the orbital position is written as a GPU-friendly transform. */
-.entry-gate.entry-motion-ready .entry-bit{left:0;top:0;will-change:transform,opacity}
+/* Canvas mode renders motion without creating 90 separate GPU layers. */
 .entry-content{
   position:relative;z-index:2;display:flex;flex-direction:column;
   align-items:center;justify-content:center;max-width:100%;
@@ -84,9 +87,9 @@ body.entry-opening .home,body.entry-opening .site-head{
 @media(max-width:700px){
   .entry-gate .entry-bit:nth-child(3n){display:none}
   .entry-bit{font-size:clamp(11px,calc(var(--size,16px)*.78),15px);max-width:93vw}
-  .entry-art{
-    -webkit-mask-image:radial-gradient(ellipse 250px 180px at 50% 50%,transparent 0 68%,rgba(0,0,0,.12) 83%,#000 99%);
-    mask-image:radial-gradient(ellipse 200px 128px at 50% 50%,transparent 0 60%,rgba(0,0,0,.10) 93%,#000 150%);
+  .entry-text-layer{
+    -webkit-mask-image:radial-gradient(ellipse 68% 34% at 50% 50%,transparent 0 62%,#000 100%);
+    mask-image:radial-gradient(ellipse 68% 34% at 50% 50%,transparent 0 62%,#000 100%);
   }
   .entry-wordmark{font-size:clamp(28px,7.7vw,42px);letter-spacing:.19em;text-indent:.19em}
   .entry-enter{margin-top:23px;font-size:14px;letter-spacing:.12em;text-indent:.12em;min-height:50px}
@@ -96,7 +99,8 @@ body.entry-opening .home,body.entry-opening .site-head{
   .entry-enter{margin-top:12px}
 }
 @media(prefers-reduced-motion:reduce){
-  .entry-gate.entry-motion-ready .entry-bit{will-change:auto}
+  .entry-gate.entry-motion-ready .entry-text-layer{visibility:visible}
+  .entry-canvas{display:none!important}
   .entry-content,.entry-enter,.entry-enter::after,body.entry-opening .home,body.entry-opening .site-head{transition:none!important}
   .entry-gate.is-entering,.entry-gate.is-entering .entry-art{animation:none!important}
 }
