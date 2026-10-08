@@ -25,6 +25,15 @@ html.site-fade-enabled body::after{
   pointer-events:none;background:#07080a;opacity:0;
 }
 html.site-fade-initial body::after{opacity:1}
+html.site-fade-local-out body::after{
+  pointer-events:auto;animation:echyox-page-leave 1120ms cubic-bezier(.22,.65,.28,1) both;
+}
+html.site-fade-local-hold body::after{pointer-events:auto;opacity:1}
+html.site-fade-local-in body::after{
+  pointer-events:auto;animation:echyox-page-arrive 1230ms cubic-bezier(.22,.65,.28,1) both;
+}
+html.site-fade-local-out body,html.site-fade-local-in body{cursor:progress}
+
 html.site-fade-arriving body::after{
   animation:echyox-page-arrive 1230ms cubic-bezier(.22,.65,.28,1) both;
 }
