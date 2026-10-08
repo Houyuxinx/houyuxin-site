@@ -26,7 +26,8 @@
 - 已通过 GitHub 接口核对恢复分支指向此提交；不要改写这个恢复分支。
 - 在线查看：[新增曲目前的旧版本](https://github.com/Houyuxinx/houyuxin-site/tree/backup/2026-10-08-before-one-riddle)。
 - ZIP 下载入口：[下载此次恢复点](https://github.com/Houyuxinx/houyuxin-site/archive/228dd5820b3d9f5951b7d8ebf53d3d8af77e09af.zip)。本轮没有实际下载或另存这个 ZIP，不能称为已完成独立备份。
-- 相关修改位于 `music/add-one-riddle-20261008`，状态为**待审核 / 未上线**。若正式合并前 `main` 已出现其他更新，需要先核对差异，并为届时的 `main` 保留新的恢复点。
+- **当前已发布《一个哑谜》的版本**可从 [发布提交 ZIP](https://github.com/Houyuxinx/houyuxin-site/archive/7c91e455cbb92256ae85a15d7ccaf231334f0450.zip) 下载；这是 Github 提供的下载入口，不代表已保存到 GitHub 以外。
+- 《一个哑谜》已通过 [PR #3](https://github.com/Houyuxinx/houyuxin-site/pull/3) 于北京时间 2026-10-08 15:52:35 合并到 `main`。对应正式代码提交为 `7c91e455cbb92256ae85a15d7ccaf231334f0450`，其 [GitHub Pages 发布运行](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37746160704) 成功完成。上方恢复点仍是**新增曲目之前**的快照；使用它回退会移除《一个哑谜》，不得未经站长同意直接回退。
 
 ## 今后每次正式更新的固定流程
 
