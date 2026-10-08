@@ -90,10 +90,12 @@
   // than recomputing font shaping/layout for 90 texts every animation frame.
   function prepareSprites() {
     var small = viewportW < 700;
-    var mode = small ? 'mobile' : 'desktop';
+    // Use retina-resolution cached glyphs; 1.5x source textures looked soft
+    // on the author's 2x Mac display.
+    var scale = Math.min(window.devicePixelRatio || 1, small ? 1.75 : 2);
+    var mode = (small ? 'mobile' : 'desktop') + '-' + scale;
     if (cachedSpriteMode === mode) return;
     cachedSpriteMode = mode;
-    var scale = Math.min(window.devicePixelRatio || 1, 1.5);
     var fontFamily = '-apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif';
     bits.forEach(function (bit) {
       var size = small ? Math.min(15, bit.size * .78) : bit.size;
@@ -151,9 +153,8 @@
       context.globalAlpha = alpha;
       context.save();
       context.translate(x, y);
-      context.rotate(.025 * Math.sin(t / 17 + p));
-      var breatheScale = 1 + .034 * Math.sin(t / 6.1 + q);
-      context.scale(breatheScale, breatheScale);
+      // Rotating and re-scaling already rasterized Chinese glyphs blurred
+      // their edges. Breathe with opacity instead, preserving crisp outlines.
       if (bit.sprite) {
         context.drawImage(bit.sprite.canvas, -bit.sprite.width * .5,
           -bit.sprite.height * .5, bit.sprite.width, bit.sprite.height);
@@ -174,7 +175,9 @@
     viewportW = Math.max(1, window.innerWidth);
     viewportH = Math.max(1, window.innerHeight);
     if (!canvas || !context) return;
-    var scale = Math.min(window.devicePixelRatio || 1, viewportW < 700 ? 1 : 1.25);
+    // Render the entire canvas at display pixel density when affordable.
+    // Measured Safari drawing cost was 0.3ms / frame on the author's Mac.
+    var scale = Math.min(window.devicePixelRatio || 1, viewportW < 700 ? 1.5 : 2);
     canvas.width = Math.round(viewportW * scale);
     canvas.height = Math.round(viewportH * scale);
     canvas.style.width = viewportW + 'px';
