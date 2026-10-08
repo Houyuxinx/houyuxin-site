@@ -14,8 +14,8 @@ html{background:var(--bg);scroll-behavior:smooth}body{margin:0;background:linear
 .spot-pool{inset:auto;width:520px;height:520px;left:0;top:0;transform:translate3d(0,0,0);border-radius:50%;background:radial-gradient(circle,rgba(255,244,214,.15),rgba(255,231,182,.065) 37%,transparent 69%);filter:none;mix-blend-mode:normal}
 body.spot-on .spot-vignette,body.spot-on .spot-pool{opacity:1}
 .panel{border:1px solid var(--line);background:var(--panel);border-radius:20px;padding:24px}.btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:999px;padding:11px 16px;font-size:11px;letter-spacing:.13em;color:var(--fg);background:rgba(255,255,255,.025);transition:transform .3s var(--ease),background .3s}.btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.08)}
-/* Unified ECHYOX page navigation — about 2.35 seconds total.
-   Outgoing view dims to black for 1.12 s; next document reveals for 1.23 s.
+/* Unified ECHYOX page navigation — about 1.4 seconds total.
+   Outgoing view dims to black for 0.6 s; next document reveals for 0.8 s.
    The dedicated intro gate still uses its own 2.35 s single-page reveal.
    No native page view-transition animation and no old stage light field. */
 @view-transition{navigation:none}
@@ -30,20 +30,20 @@ html.site-fade-enabled body::after{
 }
 html.site-fade-initial body::after{opacity:1}
 html.site-fade-local-out body::after{
-  pointer-events:auto;animation:echyox-page-leave 1120ms cubic-bezier(.45,0,.55,1) both;
+  pointer-events:auto;animation:echyox-page-leave 600ms cubic-bezier(.45,0,.55,1) both;
 }
 html.site-fade-local-hold body::after{pointer-events:auto;opacity:1}
 html.site-fade-local-in body::after{
-  pointer-events:auto;animation:echyox-page-arrive 1230ms cubic-bezier(.45,0,.55,1) both;
+  pointer-events:auto;animation:echyox-page-arrive 800ms cubic-bezier(.45,0,.55,1) both;
 }
 html.site-fade-local-out body,html.site-fade-local-in body{cursor:progress}
 
 html.site-fade-arriving body::after{
-  animation:echyox-page-arrive 1230ms cubic-bezier(.45,0,.55,1) both;
+  animation:echyox-page-arrive 800ms cubic-bezier(.45,0,.55,1) both;
 }
 html.site-fade-leaving body::after{
   pointer-events:auto;
-  animation:echyox-page-leave 1120ms cubic-bezier(.45,0,.55,1) both;
+  animation:echyox-page-leave 600ms cubic-bezier(.45,0,.55,1) both;
 }
 /* During any transition do not repaint the full-window spotlight gradient.
    Dark cover still uses compositor opacity; artwork and content remain unchanged. */
