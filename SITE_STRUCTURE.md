@@ -6,14 +6,21 @@
 - 主分支：`main`。
 - 技术形式：以 **HTML、CSS、JavaScript** 组成的静态网站；现有文件中未见必须运行的后端应用。
 - 根目录 `CNAME` 的内容是 `echyox.com`。
-- 2026-10-08 已实际观察到 main 发布提交 `7c91e455cbb92256ae85a15d7ccaf231334f0450` 的 GitHub Pages 构建部署成功，且正式音乐页及 MP3 已更新。
+- 2026-10-08 已观察到最新 `main` 发布提交 `dfb6546ccfe88439df8bc5c469b41cb39f01a6ef` 的 GitHub Pages 构建运行 #37788352521 成功；此环境尚未完成新版线上浏览器/手机实测。上一轮音乐发布的正式页面曾得到浏览器实测。
 - **Settings → Pages 的完整后台配置仍未读取；上述发布结论来自实际部署运行和网页读取，不应扩展成所有后台设置均已核查。**
+
+## 新版首页与导航（2026-10-08 正式发布）
+- 默认 `index.html` 先展示文学文字场；画面中心人名和「进入尚未完成之处」，点击后显示原四大栏目。
+- 顶栏「主页」直接进入 `index.html#entry-revealed` 的四栏目主页；点击「侯宇鑫 HOU YUXIN」会访问 `index.html?entry=1`，主动重看主视觉。
+- 首次艺术入场约 2.35 秒；全站站内切换约 1.4 秒（0.6 秒暗场淡出 + 0.8 秒渐显），由 `navigation.js`、`shared.css` 负责。
+- 四首音乐进入具体播放器时**不自动播放**；访客手动播放/暂停，播放器打开和退出使用统一渐隐。所有作品数据仍在原先对应页面。
+- 发布前恢复分支：`backup/2026-10-08-before-literary-entrance`，准确提交 `3f3a8febe6394c9dc96e9f47878a2a81803f041a`；上线记录参见 `CHANGELOG.md`。
 
 ## 修改页面时去哪找文件
 
 | 网站部分 | 主要页面或文件 | 作用 |
 | --- | --- | --- |
-| 首页 | `index.html`、`home.css` | 四大栏目的入口 |
+| 首页 | `index.html`、`home.css`、`entrance.js` | 全屏文字入场，点击后显示原四大栏目 |
 | 戏剧列表 | `theatre.html`、`theatre.css` | 剧目目录 |
 | 剧目详情 | `work-*.html`、`work.css` | 各剧目的资料与相关内容 |
 | 诗歌 | `poetry.html`、`poetry.css`、`poetry.js` | 诗歌、年份目录、阅读弹窗 |
