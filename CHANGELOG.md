@@ -5,7 +5,7 @@
 **发布与验收事实**
 - 作者通过手机预览亲自验收 PR #8，并在本对话明确表示“已验收，无误，可以发布”。
 - [PR #8](https://github.com/Houyuxinx/houyuxin-site/pull/8) 已 squash 合并到 `main`，修复代码提交 `ee7ec56893b0825ce7915b297c8e231ace97cd7a`；GitHub `main` 已核对包含最新版网页代码。
-- GitHub Pages 首次针对该提交的 [运行 #37792539167](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37792539167) 报告 `failure`，其中 build job 不正常停留在排队状态、deploy job 被跳过；已提交该 build job 的重新运行请求，但在写本记录时**尚未确认 Pages 重新部署成功**。不能把已合并等同于已上线，需继续确认部署成功且线上网址可用。
+- GitHub Pages 首次针对该提交的 [运行 #37792539167](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37792539167) 报告 `failure`，其中 build job 不正常停留在排队状态、deploy job 被跳过；原构建重试任务未能及时返回成功结论；随后只更新交接文档的 PR #9 触发新的 [GitHub Pages 部署 #37793371715](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37793371715)，其 build 与 deploy 已完成，最终结论为 `success`。正式 `main` 头部提交 `1fb8509ec6171f1e4361da09598e0c13f53919c8`，代码包含 PR #8 修复。**正式浏览器线上点按仍未由此工具实测**。
 - 合并前建立恢复分支 [`backup/2026-10-08-before-mobile-fixes`](https://github.com/Houyuxinx/houyuxin-site/tree/backup/2026-10-08-before-mobile-fixes)，对应准确提交 `10455db1703fc51a6dd647c1f6e99a309fc4ad75`，已通过 compare 核对与更新前 main 完全一致（ahead=0, behind=0）。这属于同一 GitHub 仓库内恢复点，**并非独立异地备份**。
 
 **本轮已合并的修改**
