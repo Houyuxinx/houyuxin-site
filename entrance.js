@@ -11,6 +11,21 @@
 
   var key = 'echyox-entry-opened-v1';
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+  // Optional local Safari performance readout: ?entry=1&perf=1
+  // Never visible on the ordinary site without that query parameter.
+  var perfMode = new URLSearchParams(window.location.search).get('perf') === '1';
+  var perfPanel = null, perfStart = 0, perfFrames = 0;
+  var perfCost = 0, perfMaxGap = 0, perfPreviousPaint = 0;
+  if (perfMode) {
+    perfPanel = document.createElement('div');
+    perfPanel.setAttribute('aria-label', '主视觉流畅度检测');
+    perfPanel.style.cssText = 'position:fixed;left:12px;bottom:12px;z-index:20;' +
+      'pointer-events:none;padding:10px 12px;border:1px solid #555;' +
+      'border-radius:8px;background:rgba(8,9,11,.93);color:#d9d5cf;' +
+      'font:12px/1.6 monospace;white-space:pre;';
+    perfPanel.textContent = '流畅度检测中…';
+    gate.appendChild(perfPanel);
+  }
   // The brand wordmark uses this query to *deliberately* revisit the opening,
   // even after someone has entered during the same browser session.
   var forceIntro = new URLSearchParams(window.location.search).get('entry') === '1';
@@ -202,7 +217,26 @@
     // keep a gentler ~30fps cap on phones for battery/performance.
     var minGap = viewportW < 700 ? 32 : 15;
     if (!lastPaint || now - lastPaint >= minGap) {
+      var clock = window.performance && window.performance.now ?
+        function () { return window.performance.now(); } : function () { return now; };
+      var started = perfMode ? clock() : 0;
       paint(elapsed);
+      if (perfMode) {
+        var cost = Math.max(0, clock() - started);
+        if (!perfStart) perfStart = now;
+        if (perfPreviousPaint) perfMaxGap = Math.max(perfMaxGap, now - perfPreviousPaint);
+        perfPreviousPaint = now;
+        perfFrames++;
+        perfCost += cost;
+        if (now - perfStart >= 1600) {
+          var fps = Math.round(perfFrames * 1000 / (now - perfStart));
+          perfPanel.textContent = '主视觉 FPS: ' + fps +
+            '\n绘制耗时: ' + (perfCost / perfFrames).toFixed(1) + ' ms/帧' +
+            '\n最长帧间隔: ' + Math.round(perfMaxGap) + ' ms';
+          perfFrames = 0; perfCost = 0;
+          perfMaxGap = 0; perfStart = now;
+        }
+      }
       lastPaint = now;
     }
     frameId = requestAnimationFrame(tick);
