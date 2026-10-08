@@ -197,8 +197,11 @@
     if (gate.hidden || reduced.matches || document.hidden || opening) return;
     if (startedAt) elapsed += Math.min((now - startedAt) / 1000, .11);
     startedAt = now;
-    // Cached glyph textures cost less to draw; aim for up to 30fps.
-    if (!lastPaint || now - lastPaint >= 33) {
+    // Avoid the artificial 30fps stutter on a 60/120Hz desktop display.
+    // Draw in sync with the monitor (capped near 60fps on desktop);
+    // keep a gentler ~30fps cap on phones for battery/performance.
+    var minGap = viewportW < 700 ? 32 : 15;
+    if (!lastPaint || now - lastPaint >= minGap) {
       paint(elapsed);
       lastPaint = now;
     }
