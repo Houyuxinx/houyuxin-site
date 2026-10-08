@@ -4,3 +4,100 @@
 /* Reserve the same two-line caption space in every card to align both rows. */
 .door p{min-height:3.4em}
 .door:hover{transform:none}
+
+
+/* ECHYOX — PR #6, orbital literary field; homepage only.
+   Decorative texts have individual elliptical orbits driven by entrance.js.
+   Script-free and reduced-motion visitors receive a still composition. */
+.entry-target{position:absolute;top:0;left:0;width:1px;height:1px;pointer-events:none}
+.entry-gate{
+  position:fixed;inset:0;z-index:150;display:grid;place-items:center;
+  overflow:hidden;isolation:isolate;color:#f0eee8;
+  background:radial-gradient(ellipse 52% 44% at 50% 50%,#121314 0%,#090a0c 53%,#07080a 100%);
+  /* Promote before the click so Safari needn't build a fullscreen layer mid-transition. */
+  transform:translateZ(0);will-change:opacity;
+}
+.entry-gate[hidden],#entry-revealed:target + .entry-gate,body.entry-passed .entry-gate{display:none!important}
+.entry-art{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.entry-text-layer{
+  position:absolute;inset:0;pointer-events:none;
+  -webkit-mask-image:radial-gradient(ellipse 48% 38% at 50% 50%,transparent 0 58%,#000 100%);
+  mask-image:radial-gradient(ellipse 48% 38% at 50% 50%,transparent 0 58%,#000 100%);
+}
+.entry-canvas{position:absolute;inset:0;display:block;pointer-events:none}
+.entry-canvas[hidden]{display:none!important}
+.entry-gate.entry-motion-ready .entry-text-layer{visibility:hidden}
+.entry-bit{
+  position:absolute;left:var(--x);top:var(--y);
+  display:block;width:max-content;max-width:90vw;white-space:nowrap;
+  color:#ddd6c9;font-size:var(--size,16px);font-weight:400;
+  line-height:1.45;letter-spacing:.09em;opacity:var(--alpha,.35);
+  transform-origin:50% 50%;pointer-events:none;
+}
+.entry-bit[data-source="剧本"]{color:#d0c8bc}
+.entry-bit[data-source="诗歌"]{color:#e0dacf}
+.entry-bit[data-source="歌词"]{color:#c5c1b9}
+/* In animation mode the orbital position is written as a GPU-friendly transform. */
+/* Canvas mode renders motion without creating 90 separate GPU layers. */
+.entry-content{
+  position:relative;z-index:2;display:flex;flex-direction:column;
+  align-items:center;justify-content:center;max-width:100%;
+  padding:0 21px;text-align:center;transition:opacity .72s ease,transform .9s var(--ease);
+}
+.entry-wordmark{
+  margin:0;font-size:clamp(32px,4.6vw,64px);font-weight:400;line-height:1.2;
+  letter-spacing:.23em;text-indent:.23em;white-space:nowrap;color:#f0ece4;
+  text-shadow:0 0 26px rgba(7,8,10,.7);
+}
+.entry-enter{
+  position:relative;display:inline-flex;align-items:center;justify-content:center;
+  min-height:50px;margin-top:26px;padding:10px 2px 15px;
+  color:#d2cbbf;font-size:clamp(14px,1.2vw,17px);line-height:1.5;
+  letter-spacing:.16em;text-indent:.16em;outline-offset:8px;cursor:pointer;
+  transition:color .3s ease;
+}
+.entry-enter::after{
+  content:"";position:absolute;bottom:2px;left:50%;height:1px;width:34px;
+  background:#aaa08f;opacity:.75;transform:translateX(-50%);
+  transition:width .45s var(--ease),opacity .3s ease;
+}
+.entry-enter:hover,.entry-enter:focus-visible{color:#fff}
+.entry-enter:hover::after,.entry-enter:focus-visible::after{width:calc(100% - 4px);opacity:1}
+.entry-enter:focus-visible{outline:1px solid #d2cbbf}
+html.entry-active,body.entry-active{overflow:hidden}
+body.entry-active .home,body.entry-active .site-head{opacity:0;pointer-events:none}
+/* Show the four cards immediately BEHIND the opaque entrance layer;
+   the user perceives only the single composited front curtain fading away. */
+body.entry-opening .home,body.entry-opening .site-head{
+  opacity:1;transition:none;
+}
+.home:focus{outline:none}
+.entry-gate.is-entering{
+  pointer-events:none;
+  animation:entry-gate-leave 2350ms cubic-bezier(.45,0,.55,1) both;
+}
+.entry-gate.is-entering .entry-art{animation:none}
+.entry-gate.is-entering .entry-content{opacity:0;transform:translateY(-6px)}
+/* Use a single continuous opacity curve to prevent multiple fullscreen
+   layers from cross-fading with independently eased keyframes. */
+@keyframes entry-gate-leave{from{opacity:1}to{opacity:0}}
+@media(max-width:700px){
+  .entry-gate .entry-bit:nth-child(3n){display:none}
+  .entry-bit{font-size:clamp(11px,calc(var(--size,16px)*.78),15px);max-width:93vw}
+  .entry-text-layer{
+    -webkit-mask-image:radial-gradient(ellipse 68% 34% at 50% 50%,transparent 0 62%,#000 100%);
+    mask-image:radial-gradient(ellipse 68% 34% at 50% 50%,transparent 0 62%,#000 100%);
+  }
+  .entry-wordmark{font-size:clamp(28px,7.7vw,42px);letter-spacing:.19em;text-indent:.19em}
+  .entry-enter{margin-top:23px;font-size:14px;letter-spacing:.12em;text-indent:.12em;min-height:50px}
+}
+@media(max-height:480px){
+  .entry-wordmark{font-size:32px}
+  .entry-enter{margin-top:12px}
+}
+@media(prefers-reduced-motion:reduce){
+  .entry-gate.entry-motion-ready .entry-text-layer{visibility:visible}
+  .entry-canvas{display:none!important}
+  .entry-content,.entry-enter,.entry-enter::after,body.entry-opening .home,body.entry-opening .site-head{transition:none!important}
+  .entry-gate.is-entering,.entry-gate.is-entering .entry-art{animation:none!important}
+}

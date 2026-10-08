@@ -2,7 +2,7 @@
 *{box-sizing:border-box}
 :root{--bg:#07080a;--fg:#f0eee8;--muted:#9a978f;--line:rgba(255,255,255,.14);--panel:rgba(255,255,255,.035);--ease:cubic-bezier(.22,1,.36,1);--header-h:68px;--spot-x:50vw;--spot-y:50vh}
 html{background:var(--bg);scroll-behavior:smooth}body{margin:0;background:linear-gradient(180deg,#090a0c,#07080a 58%,#090a0c);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}button{font:inherit}img{display:block;max-width:100%}
-.site-head{position:fixed;z-index:70;left:0;right:0;top:0;height:var(--header-h);display:flex;align-items:center;justify-content:space-between;gap:18px;padding:0 clamp(16px,3vw,34px);border-bottom:1px solid rgba(255,255,255,.08);background:rgba(7,8,10,.78);backdrop-filter:blur(16px)}
+.site-head{position:fixed;z-index:70;left:0;right:0;top:0;height:var(--header-h);display:flex;align-items:center;justify-content:space-between;gap:18px;padding:0 clamp(16px,3vw,34px);border-bottom:1px solid rgba(255,255,255,.08);background:rgba(7,8,10,.96);backdrop-filter:none;-webkit-backdrop-filter:none}
 .brand-link{font-size:15px;font-weight:700;letter-spacing:.03em;white-space:nowrap}.brand-link small{margin-left:9px;font-size:9px;font-weight:500;letter-spacing:.2em;color:var(--muted)}
 .global-nav{display:flex;gap:20px;align-items:center}.global-nav a{font-size:10px;letter-spacing:.18em;color:var(--muted);padding:8px 0;position:relative;white-space:nowrap}.global-nav a:after{content:"";position:absolute;left:0;right:100%;bottom:2px;height:1px;background:currentColor;transition:right .35s var(--ease)}.global-nav a:hover,.global-nav a.active{color:var(--fg)}.global-nav a:hover:after,.global-nav a.active:after{right:0}
 .back-link{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:0 12px;font-size:10px;letter-spacing:.13em;white-space:nowrap;color:var(--muted);transition:color .25s}.back-link:hover{color:var(--fg)}.back-link:focus-visible{outline:1px solid var(--fg);outline-offset:2px;border-radius:3px}
@@ -10,32 +10,53 @@ html{background:var(--bg);scroll-behavior:smooth}body{margin:0;background:linear
 .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease)}.reveal.is-visible{opacity:1;transform:none}
 /* circular stage spotlight: no beam */
 .spot-vignette,.spot-pool{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .55s var(--ease)}
-.spot-vignette{background:radial-gradient(circle 240px at var(--spot-x) var(--spot-y),transparent 0 48%,rgba(0,0,0,.08) 67%,rgba(0,0,0,.48) 100%)}
-.spot-pool{inset:auto;width:520px;height:520px;left:var(--spot-x);top:var(--spot-y);transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,244,214,.15),rgba(255,231,182,.065) 37%,transparent 69%);filter:blur(7px);mix-blend-mode:screen}
+.spot-vignette{background:radial-gradient(ellipse farthest-side at 50% 50%,transparent 23%,rgba(0,0,0,.08) 70%,rgba(0,0,0,.42) 100%)}
+.spot-pool{inset:auto;width:520px;height:520px;left:0;top:0;transform:translate3d(0,0,0);border-radius:50%;background:radial-gradient(circle,rgba(255,244,214,.15),rgba(255,231,182,.065) 37%,transparent 69%);filter:none;mix-blend-mode:normal}
 body.spot-on .spot-vignette,body.spot-on .spot-pool{opacity:1}
 .panel{border:1px solid var(--line);background:var(--panel);border-radius:20px;padding:24px}.btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:999px;padding:11px 16px;font-size:11px;letter-spacing:.13em;color:var(--fg);background:rgba(255,255,255,.025);transition:transform .3s var(--ease),background .3s}.btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.08)}
-/* Animate an independent light surface so live links stay clickable during history transitions. */
-@view-transition{navigation:auto}
-:root{view-transition-name:none;--stage-duration:560ms;--stage-ease:cubic-bezier(.22,.72,.18,1)}
-.stage-surface{position:fixed;inset:0;pointer-events:none;view-transition-name:stage}
-::view-transition{pointer-events:none}
-::view-transition-group(stage){animation:none;pointer-events:none}
-::view-transition-old(stage),::view-transition-new(stage){animation:none;opacity:0;pointer-events:none}
-::view-transition-image-pair(stage),.stage-transition{
-  background:#07080a radial-gradient(circle closest-side,#6d685e 0%,#39362f 38%,#07080a 72%);
-  background-position:center;background-repeat:no-repeat;pointer-events:none;
-  animation:stage-light-field var(--stage-duration) var(--stage-ease) both,stage-field-clear var(--stage-duration) ease both;
+/* Unified ECHYOX page navigation — about 1.4 seconds total.
+   Outgoing view dims to black for 0.6 s; next document reveals for 0.8 s.
+   The dedicated intro gate still uses its own 2.35 s single-page reveal.
+   No native page view-transition animation and no old stage light field. */
+@view-transition{navigation:none}
+.stage-surface{position:fixed;inset:0;pointer-events:none}
+/* Keep one composited curtain alive instead of creating a new full-screen
+   pseudo-element at every click. Safari can animate only its opacity. */
+html.site-fade-enabled body::after{
+  content:"";position:fixed;inset:0;z-index:2000;
+  pointer-events:none;background:#07080a;opacity:0;
+  transform:translateZ(0);backface-visibility:hidden;
+  will-change:opacity;contain:paint;
 }
-::view-transition-image-pair(stage){isolation:isolate}
-.stage-native .reveal.is-visible{transition:none}
-.stage-transition{position:fixed;inset:0;z-index:1000;pointer-events:none}
-@keyframes stage-light-field{
-  0%{background-size:0vmax 0vmax}
-  18%{background-size:28vmax 28vmax}
-  48%,100%{background-size:300vmax 300vmax}
+html.site-fade-initial body::after{opacity:1}
+html.site-fade-local-out body::after{
+  pointer-events:auto;animation:echyox-page-leave 600ms cubic-bezier(.45,0,.55,1) both;
 }
-@keyframes stage-field-clear{0%,30%{opacity:1}45%{opacity:.96}70%{opacity:.5}100%{opacity:0}}
+html.site-fade-local-hold body::after{pointer-events:auto;opacity:1}
+html.site-fade-local-in body::after{
+  pointer-events:auto;animation:echyox-page-arrive 800ms cubic-bezier(.45,0,.55,1) both;
+}
+html.site-fade-local-out body,html.site-fade-local-in body{cursor:progress}
 
+html.site-fade-arriving body::after{
+  animation:echyox-page-arrive 800ms cubic-bezier(.45,0,.55,1) both;
+}
+html.site-fade-leaving body::after{
+  pointer-events:auto;
+  animation:echyox-page-leave 600ms cubic-bezier(.45,0,.55,1) both;
+}
+/* During any transition do not repaint the full-window spotlight gradient.
+   Dark cover still uses compositor opacity; artwork and content remain unchanged. */
+html.site-fade-arriving .spot-vignette,html.site-fade-arriving .spot-pool,
+html.site-fade-leaving .spot-vignette,html.site-fade-leaving .spot-pool,
+html.site-fade-local-out .spot-vignette,html.site-fade-local-out .spot-pool,
+html.site-fade-local-hold .spot-vignette,html.site-fade-local-hold .spot-pool,
+html.site-fade-local-in .spot-vignette,html.site-fade-local-in .spot-pool{visibility:hidden!important}
+
+/* One continuous easing curve per phase avoids velocity resets at
+   24/64/82% keyframe boundaries that made the dark fade feel stepped. */
+@keyframes echyox-page-leave{from{opacity:0}to{opacity:1}}
+@keyframes echyox-page-arrive{from{opacity:1}to{opacity:0}}
 
 /* Audio loop controls */
 .audio-options{display:flex;align-items:center;flex-wrap:wrap;margin:10px 0 16px}
@@ -56,7 +77,5 @@ html.reader-open,html.reader-open body{overflow:hidden}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.reveal{opacity:1;transform:none}.spot-vignette,.spot-pool,.stage-transition{display:none!important}}
 
 @media(prefers-reduced-motion:reduce){
-  @view-transition{navigation:none}
-  ::view-transition-group(stage),::view-transition-image-pair(stage),::view-transition-old(stage),::view-transition-new(stage){animation:none!important}
-  .stage-transition{display:none!important}
+  html.site-fade-enabled body::after{content:none!important}
 }
