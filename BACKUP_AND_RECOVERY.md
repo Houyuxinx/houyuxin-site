@@ -8,6 +8,14 @@
 2. `CHANGELOG.md` 是“给人看”的更新日志：什么时候做了什么、有没有上线、需要注意什么。它和 GitHub 自动保存的代码记录互相补充。
 3. **恢复网站前，先核实问题和部署配置，不能为了恢复而直接覆盖 main；应在新分支准备恢复提案，让站长确认。**
 
+## 发布歌词滚动条与焦点边框修复前的恢复点（2026-10-08）
+
+- 恢复分支：`backup/2026-10-08-before-lyrics-scrollbar-release`，准确提交 `bf15244a279e1fabc50fb20a308b5da4c8186918`，在合并 PR #11 之前创建，通过 GitHub compare 核实与当时 `main` 完全相同（ahead=0、behind=0）。
+- 保存的是正式发布前的完整网站仓库快照，包含当时的所有页面、公开图片、音乐与试读；这是 **GitHub 同仓库备份，并非独立异地备份**。
+- [查看恢复点](https://github.com/Houyuxinx/houyuxin-site/tree/backup/2026-10-08-before-lyrics-scrollbar-release) · [下载对应提交 ZIP](https://github.com/Houyuxinx/houyuxin-site/archive/bf15244a279e1fabc50fb20a308b5da4c8186918.zip)。
+- 发布提案 [PR #11](https://github.com/Houyuxinx/houyuxin-site/pull/11)，功能代码提交 `a75415ca4ba864e7b18a8ef537f15de7c13a041f`；Pages [发布 #37800113203](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37800113203) 结果 success。详细修复内容见 `CHANGELOG.md`。
+- 后续出现问题仍须先与作者确认恢复范围，通过独立 PR 修复或恢复，不能擅自覆盖 main。
+
 ## 发布手机端三项修复前的恢复点（2026-10-08）
 
 - 恢复分支：`backup/2026-10-08-before-mobile-fixes`。

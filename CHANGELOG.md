@@ -1,5 +1,21 @@
 # ECHYOX｜长期更新日志
 
+## 2026-10-08｜音乐歌词滚动条、焦点外框清理已正式发布（PR #11）
+
+**作者验收与发布**
+- 作者已在 Safari 预览版核对滚动条与外框，并在本次对话明确表示“没问题了”，提出最后发布条件：**核实所有歌词全部居中**，若无误可直接发布。
+- 正式合并 [PR #11](https://github.com/Houyuxinx/houyuxin-site/pull/11)，代码提交 `a75415ca4ba864e7b18a8ef537f15de7c13a041f`。GitHub Pages [部署 #37800113203](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37800113203) 已 `completed / success`，其中 build 和 deploy 均成功。
+- 发布前保存并核对恢复分支 [`backup/2026-10-08-before-lyrics-scrollbar-release`](https://github.com/Houyuxinx/houyuxin-site/tree/backup/2026-10-08-before-lyrics-scrollbar-release)，准确指向 `bf15244a279e1fabc50fb20a308b5da4c8186918`，与发布前 main 完全一致（ahead=0, behind=0）。属于同仓库备份，**尚非独立异地备份**。
+
+**上线内容与检查**
+- 四首音乐共用 `#songLyrics.lyrics`，有歌词的三首用 `text-align:center` 逐行水平居中；长歌词自动换行继续居中，移动/窄屏样式没有覆盖居中设置；器乐曲目“无歌词”提示由 flex 居中。**无需为此改动歌词的字号、字词或排版**。
+- 歌词滚动条平时透明；桌面鼠标进入、键盘焦点或实际歌词滚动时可见。停止滚动约 1.1 秒后恢复隐藏（鼠标仍悬停则继续显示），换曲和离开列表时清理状态。
+- 移除点击歌词区出现的整块矩形 `.lyrics-viewport:focus-within` 焦点边框；保留可滚动、键盘操作、音乐原生进度条和所有四首曲目手动播放。
+- 代码发布前 **17 项** JS/CSS、各尺寸歌词居中、资源版本、歌曲数据不变、仅五个文件改动、无私人 PDF/MP3 的核对通过；作者先前预览验收成功。但本工具未真正从线上 iPhone/Safari 点击操作，不声称做过线上手机视觉测试。
+- 实际改动为 `music.css`、`music.js`、`music.html` 的两个缓存资源引用，以及发布前记录的交接文档。没有修改歌词文本、音频、作者署名、歌曲顺序或其他页面。
+
+> 下面“待审核 / 未上线”小节是 PR #11 **发布前的历史进度**，不代表当前版本仍在草稿阶段。
+
 ## 2026-10-08｜音乐歌词滚动条按需显示（待审核 / 未上线）
 
 - 站长补充截图反馈：点击歌词区时出现完整矩形细线边框；此处实际来自 `.lyrics-viewport:focus-within` 的 outline，并非歌词滑块。**本轮已移除此焦点框**，保留 `.lyrics:focus{outline:none}`、键盘歌词滚动与按需出现的滚动条；为避免 Safari 复用旧样式，仅更新 `music.html` 内 CSS 版本参数 `20261008-lyrics-scroll-noframe2`。不更改歌词文本、字号、面板尺寸、音频进度条及播放行为。
