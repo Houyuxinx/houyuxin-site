@@ -66,7 +66,7 @@
    display:flex;overflow-x:auto;overflow-y:hidden;
    overscroll-behavior-x:contain;overscroll-behavior-y:none;
    touch-action:pan-x;
-   scrollbar-width:none;scroll-snap-type:x proximity;
+   scrollbar-width:none;scroll-snap-type:x mandatory;
    -webkit-overflow-scrolling:touch;
  }
 
