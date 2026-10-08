@@ -1,5 +1,5 @@
 /* ECHYOX: a single, dark cross-page fade instead of the old stage-light sweep.
-   1.12s outgoing + 1.23s incoming = approx. 2.35s in normal loading.
+   0.6s outgoing + 0.8s incoming = approx. 1.4s in normal loading.
    Native navigation remains the fallback for non-HTML links / failed scripts. */
 (function () {
   'use strict';
@@ -82,10 +82,10 @@
             setTimeout(function () {
               root.classList.remove('site-fade-local-in');
               localBusy = false;
-            }, 1230);
+            }, 800);
           });
         }
-      }, 1120);
+      }, 600);
       return true;
     }
   };
@@ -106,7 +106,7 @@
     // Navigation doesn't depend on animationend or CSS being supported.
     navigationTimer = setTimeout(function () {
       window.location.assign(url.href);
-    }, 1120);
+    }, 600);
   });
 
   window.addEventListener('pagehide', function () {
