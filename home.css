@@ -14,6 +14,8 @@
   position:fixed;inset:0;z-index:150;display:grid;place-items:center;
   overflow:hidden;isolation:isolate;color:#f0eee8;
   background:radial-gradient(ellipse 52% 44% at 50% 50%,#121314 0%,#090a0c 53%,#07080a 100%);
+  /* Promote before the click so Safari needn't build a fullscreen layer mid-transition. */
+  transform:translateZ(0);will-change:opacity;
 }
 .entry-gate[hidden],#entry-revealed:target + .entry-gate,body.entry-passed .entry-gate{display:none!important}
 .entry-art{position:absolute;inset:0;pointer-events:none;overflow:hidden}
@@ -71,7 +73,7 @@ body.entry-opening .home,body.entry-opening .site-head{
 }
 .home:focus{outline:none}
 .entry-gate.is-entering{
-  pointer-events:none;will-change:opacity;transform:translateZ(0);
+  pointer-events:none;
   animation:entry-gate-leave 2350ms cubic-bezier(.45,0,.55,1) both;
 }
 .entry-gate.is-entering .entry-art{animation:none}
