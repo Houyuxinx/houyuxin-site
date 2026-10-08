@@ -20,32 +20,30 @@ body.spot-on .spot-vignette,body.spot-on .spot-pool{opacity:1}
    No native page view-transition animation and no old stage light field. */
 @view-transition{navigation:none}
 .stage-surface{position:fixed;inset:0;pointer-events:none}
+/* Keep one composited curtain alive instead of creating a new full-screen
+   pseudo-element at every click. Safari can animate only its opacity. */
 html.site-fade-enabled body::after{
-  content:none;position:fixed;inset:0;z-index:2000;
+  content:"";position:fixed;inset:0;z-index:2000;
   pointer-events:none;background:#07080a;opacity:0;
+  transform:translateZ(0);backface-visibility:hidden;
+  will-change:opacity;contain:paint;
 }
-html.site-fade-initial body::after,
-html.site-fade-arriving body::after,
-html.site-fade-leaving body::after,
-html.site-fade-local-out body::after,
-html.site-fade-local-in body::after,
-html.site-fade-local-hold body::after{content:""}
 html.site-fade-initial body::after{opacity:1}
 html.site-fade-local-out body::after{
-  pointer-events:auto;animation:echyox-page-leave 1120ms cubic-bezier(.22,.65,.28,1) both;
+  pointer-events:auto;animation:echyox-page-leave 1120ms cubic-bezier(.45,0,.55,1) both;
 }
 html.site-fade-local-hold body::after{pointer-events:auto;opacity:1}
 html.site-fade-local-in body::after{
-  pointer-events:auto;animation:echyox-page-arrive 1230ms cubic-bezier(.22,.65,.28,1) both;
+  pointer-events:auto;animation:echyox-page-arrive 1230ms cubic-bezier(.45,0,.55,1) both;
 }
 html.site-fade-local-out body,html.site-fade-local-in body{cursor:progress}
 
 html.site-fade-arriving body::after{
-  animation:echyox-page-arrive 1230ms cubic-bezier(.22,.65,.28,1) both;
+  animation:echyox-page-arrive 1230ms cubic-bezier(.45,0,.55,1) both;
 }
 html.site-fade-leaving body::after{
   pointer-events:auto;
-  animation:echyox-page-leave 1120ms cubic-bezier(.22,.65,.28,1) both;
+  animation:echyox-page-leave 1120ms cubic-bezier(.45,0,.55,1) both;
 }
 /* During any transition do not repaint the full-window spotlight gradient.
    Dark cover still uses compositor opacity; artwork and content remain unchanged. */
@@ -55,8 +53,10 @@ html.site-fade-local-out .spot-vignette,html.site-fade-local-out .spot-pool,
 html.site-fade-local-hold .spot-vignette,html.site-fade-local-hold .spot-pool,
 html.site-fade-local-in .spot-vignette,html.site-fade-local-in .spot-pool{visibility:hidden!important}
 
-@keyframes echyox-page-leave{0%{opacity:0}24%{opacity:.10}64%{opacity:.65}100%{opacity:1}}
-@keyframes echyox-page-arrive{0%{opacity:1}25%{opacity:.94}63%{opacity:.47}100%{opacity:0}}
+/* One continuous easing curve per phase avoids velocity resets at
+   24/64/82% keyframe boundaries that made the dark fade feel stepped. */
+@keyframes echyox-page-leave{from{opacity:0}to{opacity:1}}
+@keyframes echyox-page-arrive{from{opacity:1}to{opacity:0}}
 
 /* Audio loop controls */
 .audio-options{display:flex;align-items:center;flex-wrap:wrap;margin:10px 0 16px}
