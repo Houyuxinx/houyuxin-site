@@ -8,6 +8,22 @@
 2. `CHANGELOG.md` 是“给人看”的更新日志：什么时候做了什么、有没有上线、需要注意什么。它和 GitHub 自动保存的代码记录互相补充。
 3. **恢复网站前，先核实问题和部署配置，不能为了恢复而直接覆盖 main；应在新分支准备恢复提案，让站长确认。**
 
+## 恢复点速查（截至 2026-10-08）
+- **当前正式代码**：以实时 GitHub `main` 为准；制作 V3 草稿时最近正式合并为 [PR #13](https://github.com/Houyuxinx/houyuxin-site/pull/13)，提交 `87635471316c80e4e4b55ab7e8d2d258cda08185`，GitHub Pages [#37804092035](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37804092035) `success`。此处固定编号只说明当时的核实事实，日后应实时重查。
+- **最近一次完整恢复点（V2 文档发布前）**：`backup/2026-10-08-before-workflow-v2` → `ca4be01b30a696f50540f02ab54bf644f1979ca0`。该版本已包含 [PR #11](https://github.com/Houyuxinx/houyuxin-site/pull/11) 的歌词栏优化，且在作者核准的新工作规则 V2 合并前保存。
+- **上一次音乐功能发布前恢复点**：`backup/2026-10-08-before-lyrics-scrollbar-release` → `bf15244a279e1fabc50fb20a308b5da4c8186918`。
+- **重要视觉里程碑**：`backup/2026-10-08-before-literary-entrance` → `3f3a8febe6394c9dc96e9f47878a2a81803f041a`（下方完整记录为准）。这保留了文学文字入场发布**以前**的版本。  
+- 上述备份均只是本 GitHub 仓库的历史恢复分支，不是已经下载的独立完整 ZIP。作者目前尚未批准删除任何旧恢复点，**不应擅自清理**。
+- 作者未来可能选择“当前正式版 + 上一正常版 + 少量关键里程碑”策略；仍需逐项审核具体分支名，不属于自动清理授权。
+
+## 最近一次恢复点详细记录：工作流程 V2 发布前（2026-10-08）
+- 恢复分支：[ `backup/2026-10-08-before-workflow-v2`](https://github.com/Houyuxinx/houyuxin-site/tree/backup/2026-10-08-before-workflow-v2)。
+- 准确提交：`ca4be01b30a696f50540f02ab54bf644f1979ca0`。
+- 在获得作者正式同意合并 [PR #13](https://github.com/Houyuxinx/houyuxin-site/pull/13) 前创建。通过 GitHub compare 核实与发布前 `main` 完全一致（ahead=0、behind=0）。
+- [对应源码 ZIP](https://github.com/Houyuxinx/houyuxin-site/archive/ca4be01b30a696f50540f02ab54bf644f1979ca0.zip) 为 GitHub 可生成的下载地址，**本轮并未实际下载或存到另一处**。
+- PR #13 只调整工作与交接规范，没有更改页面代码及资源；该正式提交为 `87635471316c80e4e4b55ab7e8d2d258cda08185`，Pages 部署 #37804092035 成功。
+- 若未来发生问题，先确认应修复代码还是仅恢复说明文件，未经作者确认不得撤回已经上线的其他创作修改。
+
 ## 备份数量与整理：作者提出的待确认方案（禁止自动清理）
 
 作者希望备份不要无限增长，倾向在新版本发布成功后保留**当前已上线版本和上一个正常版本**，其他旧版本记录可以逐渐归档。但这只是**讨论中的意向，不是删除授权**。
