@@ -8,6 +8,15 @@
 2. `CHANGELOG.md` 是“给人看”的更新日志：什么时候做了什么、有没有上线、需要注意什么。它和 GitHub 自动保存的代码记录互相补充。
 3. **恢复网站前，先核实问题和部署配置，不能为了恢复而直接覆盖 main；应在新分支准备恢复提案，让站长确认。**
 
+## 发布文学星系主视觉前的恢复点（2026-10-08）
+
+- 名称：`backup/2026-10-08-before-literary-entrance`。
+- 准确提交 SHA：`3f3a8febe6394c9dc96e9f47878a2a81803f041a`。
+- 内容：在 [PR #6](https://github.com/Houyuxinx/houyuxin-site/pull/6) 合并**之前**的 `main` 完整仓库快照（四栏目主页、此前全部作品、音频与已有公开 PDF）。通过 GitHub compare 接口确认与当时 `main` 完全一致。
+- [查看备份分支](https://github.com/Houyuxinx/houyuxin-site/tree/backup/2026-10-08-before-literary-entrance) · [下载对应提交的 ZIP](https://github.com/Houyuxinx/houyuxin-site/archive/3f3a8febe6394c9dc96e9f47878a2a81803f041a.zip)。
+- 新版文学星系及全站转场已通过 PR #6 发布，正式代码提交 `dfb6546ccfe88439df8bc5c469b41cb39f01a6ef`；GitHub Pages [部署 #37788352521](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37788352521) 结果 `success`。
+- 这个恢复点**位于同一个 GitHub 仓库**；ZIP 尚未另行下载到电脑或异地保存。未来如要恢复，仍须按照本文流程建立修复/恢复 PR，征得作者明确同意。
+
 ## 已经准备的首个恢复点（2026-10-08）
 
 - 名称：`backup/2026-10-08-before-handover`
