@@ -26,14 +26,19 @@
   // The old script requested animation frames FOREVER, even with no pointer input.
   // Only animate the spotlight while the pointer actually moves.
   var tx=innerWidth/2,ty=innerHeight/2,x=tx,y=ty,spotFrame=null;
-  document.documentElement.style.setProperty('--spot-x',x+'px');
-  document.documentElement.style.setProperty('--spot-y',y+'px');
+  // Avoid invalidating the styles of the whole document on pointer movement.
+  // The vignette is static; only move the small light element itself.
+  function moveSpot(){
+    pool.style.transform='translate3d('+(x-260).toFixed(1)+'px,'+(y-260).toFixed(1)+'px,0)';
+  }
+  moveSpot();
   function spotStep(){
     spotFrame=null;
-    if(document.hidden||document.body.classList.contains('entry-active'))return;
+    if(document.hidden||document.body.classList.contains('entry-active')||
+       document.documentElement.classList.contains('site-fade-leaving')||
+       document.documentElement.classList.contains('site-fade-arriving'))return;
     x+=(tx-x)*.22;y+=(ty-y)*.22;
-    document.documentElement.style.setProperty('--spot-x',x+'px');
-    document.documentElement.style.setProperty('--spot-y',y+'px');
+    moveSpot();
     if(Math.abs(tx-x)+Math.abs(ty-y)>1)spotFrame=requestAnimationFrame(spotStep);
   }
   function requestSpot(){
