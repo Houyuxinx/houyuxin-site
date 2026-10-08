@@ -1,3 +1,17 @@
+# ECHYOX · 侯宇鑫个人艺术网站
+
+正式网站：https://echyox.com
+
+> **新开的 GPT / Work / Codex 对话，请先读取 [START_HERE.md](START_HERE.md)。**
+>
+> 给站长：以后不用重新解释所有技术背景。在 START_HERE.md 里，有一段可以直接复制给新对话的“接手网站”说明。
+>
+> 项目规范：[创作方向](PROJECT_VISION.md) · [页面与文件](SITE_STRUCTURE.md) · [AI 工作规则](AGENTS.md) · [更新记录](CHANGELOG.md) · [备份与恢复](BACKUP_AND_RECOVERY.md)
+>
+> 以下保留此前 V13 的实际更新记录，不应与这次只新增文档的提案混淆。
+
+---
+
 # 侯宇鑫个人网站 V13
 
 本轮调整：
