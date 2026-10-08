@@ -66,8 +66,10 @@
     // orbital period, eccentricity and radius/angle oscillations.
     var cx = viewportW * .5;
     var cy = viewportH * .5;
-    var xScale = viewportW * .43;
-    var yScale = viewportH * .48;
+    // Expand the galaxy beyond the old central cluster; text may visit the edges.
+    // On small phones leave room for the central title while retaining broad paths.
+    var xScale = viewportW * (viewportW < 700 ? .45 : .475);
+    var yScale = viewportH * (viewportW < 700 ? .46 : .52);
     var outerX = Math.max(1, viewportW * .49);
     var outerY = Math.max(1, viewportH * .49);
     bits.forEach(function (bit) {
@@ -83,15 +85,18 @@
 
       // Brightest in the orbital belt; dim at screen edges and at the central sun.
       // Unlike a fixed vignette this changes as each individual word moves.
-      var innerLight = smoothstep(.21, .44, d);
-      var outerLight = 1 - smoothstep(.71, 1.08, d);
-      var breathing = .81 + .19 * Math.sin(seconds / 4.1 + bit.phase);
+      var innerLight = smoothstep(.43, .70, d);
+      var outerLight = 1 - smoothstep(.76, 1.26, d);
+      // Separate slow light breathing from orbital travel, not a generic flash.
+      var breathing = .84 + .16 * Math.sin(seconds / 5.2 + bit.phase);
       var opacity = bit.alpha * innerLight * outerLight * breathing;
       var tilt = 2.8 * Math.sin(seconds / 15 + bit.wave);
-      var scale = 1 + .022 * Math.sin(seconds / 5.1 + bit.phase);
+      var scale = 1 + .045 * Math.sin(seconds / 6.7 + bit.phase);
 
+      // Center the *word*, not just its left edge, on the computed orbit.
+      // This keeps long phrases out of the sun/core when rotating past it.
       bit.el.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' +
-        y.toFixed(1) + 'px,0) rotate(' + tilt.toFixed(2) +
+        y.toFixed(1) + 'px,0) translate(-50%,-50%) rotate(' + tilt.toFixed(2) +
         'deg) scale(' + scale.toFixed(3) + ')';
       bit.el.style.opacity = Math.max(0, Math.min(.72, opacity)).toFixed(3);
     });
