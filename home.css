@@ -71,11 +71,13 @@ body.entry-opening .home,body.entry-opening .site-head{
 .entry-gate.is-entering{pointer-events:none;animation:entry-gate-leave 2350ms cubic-bezier(.25,.12,.27,1) both}
 .entry-gate.is-entering .entry-art{animation:entry-field-release 2300ms cubic-bezier(.25,.68,.2,1) both}
 .entry-gate.is-entering .entry-content{opacity:0;transform:translateY(-6px) scale(.987)}
+/* Canvas motion is paused on click; animate opacity on its single layer.
+   Avoid scaling the whole canvas during the fade, which janks Safari GPUs. */
 @keyframes entry-field-release{
-  0%{transform:scale(1);opacity:1}
-  22%{transform:scale(.972);opacity:.94}
-  55%{transform:scale(1.04);opacity:.53}
-  100%{transform:scale(1.16);opacity:0}
+  0%{opacity:1}
+  22%{opacity:.96}
+  55%{opacity:.53}
+  100%{opacity:0}
 }
 @keyframes entry-gate-leave{
   0%,15%{opacity:1}
