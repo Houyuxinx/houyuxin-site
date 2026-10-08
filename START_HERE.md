@@ -14,7 +14,8 @@
 2. `SITE_STRUCTURE.md`：页面在哪里、修改什么文件
 3. `AGENTS.md`：你必须遵守的修改、检查和交付流程
 4. `CHANGELOG.md`：做过什么、哪些问题还没解决
-5. `README.md`：此前 V13 版本的调整记录
+5. `BACKUP_AND_RECOVERY.md`：怎么备份、怎么找回旧版本
+6. `README.md`：此前 V13 版本的调整记录
 
 **重要：**这些文件不一定会被每种聊天工具自动读取。每次接手必须实际从 GitHub 读取；读不到就说明，不能假装已经了解。
 
@@ -25,7 +26,7 @@ GitHub 仓库：https://github.com/Houyuxinx/houyuxin-site
 
 我没有编程经验。请使用容易理解的中文和我沟通，不要让我自己找文件或执行复杂命令。
 
-先在 GitHub 读取 START_HERE.md、PROJECT_VISION.md、SITE_STRUCTURE.md、AGENTS.md、CHANGELOG.md，以及当前网站的相关代码。然后用简短中文告诉我：
+先在 GitHub 读取 START_HERE.md、PROJECT_VISION.md、SITE_STRUCTURE.md、AGENTS.md、CHANGELOG.md、BACKUP_AND_RECOVERY.md，以及当前网站的相关代码。然后用简短中文告诉我：
 - 你现在理解的网站是什么样的；
 - 这次准备修改什么；
 - 哪些部分保持原样；
@@ -41,4 +42,4 @@ GitHub 仓库：https://github.com/Houyuxinx/houyuxin-site
 - 中途额度耗尽时，新对话先查看未合并的 Pull Request 或正在进行的 Issue，再继续。
 
 ## 当前交接状态（2026-10-08）
-第一版说明文件正在审核中。此文件不能证明上线设置已检查或网站已更新；需要确认 GitHub 仓库的 Pages 配置之后，才能完整核实自动部署过程。
+长期维护交接说明 V1 通过 PR #1 整理；首个恢复点为 `backup/2026-10-08-before-handover`（对应提交 `3beabb30f480a4adea1b1963c7bf7d9e557025e0`）。本项目中的文档变化不意味着网页外观有变化。尚需核实 GitHub Pages 的实际发布设置；不能冒充已经完成线上页面检查。
