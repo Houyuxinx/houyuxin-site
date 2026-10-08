@@ -12,11 +12,18 @@
 .entry-gate{position:fixed;inset:0;z-index:150;display:grid;place-items:center;overflow:hidden;isolation:isolate;background:radial-gradient(ellipse at 50% 50%,#0e0f10 0%,#090a0c 43%,#07080a 100%);color:#f0eee8}
 .entry-gate[hidden],#entry-revealed:target + .entry-gate,body.entry-passed .entry-gate{display:none!important}
 .entry-art{position:absolute;inset:0;pointer-events:none;-webkit-mask-image:radial-gradient(ellipse clamp(210px,32vw,470px) clamp(120px,20vh,190px) at 50% 50%,transparent 0 67%,rgba(0,0,0,.13) 82%,#000 118%);mask-image:radial-gradient(ellipse clamp(210px,32vw,470px) clamp(120px,20vh,190px) at 50% 50%,transparent 0 67%,rgba(0,0,0,.13) 82%,#000 118%)}
-.entry-text-layer{position:absolute;inset:0;transform-origin:50% 50%;animation:entry-text-drift var(--duration,160s) ease-in-out infinite alternate;animation-delay:var(--phase,0s);will-change:transform}
-.entry-text-layer--lines{--duration:150s;--phase:-28s;--drift-x:14px;--drift-y:-18px;--drift-turn:.35deg}
-.entry-text-layer--fragments{--duration:190s;--phase:-71s;--drift-x:-20px;--drift-y:14px;--drift-turn:-.45deg}
-.entry-text-layer--distant{--duration:230s;--phase:-103s;--drift-x:10px;--drift-y:24px;--drift-turn:.3deg}
-.entry-bit{position:absolute;left:var(--x);top:var(--y);font-size:var(--size,18px);font-weight:400;line-height:1.5;white-space:nowrap;letter-spacing:.09em;color:#d3cdc3;opacity:var(--alpha,.36);transform:rotate(var(--tilt,0deg));transform-origin:0 50%}
+/* The original 150–230 s / 10–24 px drift was visually imperceptible.
+   Compose broad, directional layer currents with smaller asynchronous word paths.
+   Movement is perceptible within seconds, but words remain slow enough to read. */
+.entry-text-layer{position:absolute;inset:0;transform-origin:50% 50%;animation:entry-text-drift var(--duration,40s) linear infinite alternate;animation-delay:var(--phase,0s);will-change:transform}
+.entry-text-layer--lines{--duration:40s;--phase:-11s;--drift-x:145px;--drift-y:-66px;--drift-turn:1.1deg}
+.entry-text-layer--fragments{--duration:52s;--phase:-23s;--drift-x:-128px;--drift-y:73px;--drift-turn:-1.2deg}
+.entry-text-layer--distant{--duration:62s;--phase:-17s;--drift-x:92px;--drift-y:102px;--drift-turn:.8deg}
+.entry-bit{position:absolute;left:var(--x);top:var(--y);font-size:var(--size,18px);font-weight:400;line-height:1.5;white-space:nowrap;letter-spacing:.09em;color:#d3cdc3;opacity:var(--alpha,.36);transform:rotate(var(--tilt,0deg));transform-origin:0 50%;animation:entry-word-current var(--word-duration,23s) ease-in-out var(--word-phase,-8s) infinite alternate}
+.entry-bit:nth-child(4n + 1){--word-x:64px;--word-y:-18px;--word-duration:21s;--word-phase:-7s}
+.entry-bit:nth-child(4n + 2){--word-x:-49px;--word-y:24px;--word-duration:28s;--word-phase:-15s}
+.entry-bit:nth-child(4n + 3){--word-x:39px;--word-y:31px;--word-duration:25s;--word-phase:-10s}
+.entry-bit:nth-child(4n + 4){--word-x:-58px;--word-y:-23px;--word-duration:30s;--word-phase:-19s}
 .entry-text-layer--fragments .entry-bit{letter-spacing:.22em;color:#b7afa3}
 .entry-text-layer--distant .entry-bit{letter-spacing:.16em;color:#a39a8c;filter:blur(.25px)}
 .entry-content{position:relative;z-index:1;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;max-width:100%;padding:0 20px;transition:opacity .28s ease,transform .45s var(--ease)}
@@ -33,7 +40,12 @@ body.entry-paused .entry-text-layer{animation-play-state:paused}
 .entry-gate.is-entering{animation:entry-gate-leave 1100ms ease both}
 .entry-gate.is-entering .entry-art{animation:entry-field-release 1100ms cubic-bezier(.22,.72,.18,1) both}
 .entry-gate.is-entering .entry-content{opacity:0;transform:translateY(-7px)}
-@keyframes entry-text-drift{from{transform:translate(0,0) rotate(0deg)}to{transform:translate(var(--drift-x),var(--drift-y)) rotate(var(--drift-turn))}}
+@keyframes entry-text-drift{from{transform:translate3d(0,0,0) rotate(0deg)}to{transform:translate3d(var(--drift-x),var(--drift-y),0) rotate(var(--drift-turn))}}
+@keyframes entry-word-current{
+  0%{transform:translate3d(0,0,0) rotate(var(--tilt,0deg));opacity:calc(var(--alpha,.36) * .75)}
+  45%{opacity:var(--alpha,.36)}
+  100%{transform:translate3d(var(--word-x,45px),var(--word-y,0px),0) rotate(calc(var(--tilt,0deg) + .8deg));opacity:calc(var(--alpha,.36) * .70)}
+}
 @keyframes entry-field-release{0%{transform:scale(1);opacity:1}23%{transform:scale(.97);opacity:1}100%{transform:scale(1.23);opacity:0}}
 @keyframes entry-gate-leave{0%,23%{opacity:1}100%{opacity:0}}
 @media(max-width:620px){
@@ -51,7 +63,7 @@ body.entry-paused .entry-text-layer{animation-play-state:paused}
   .entry-art{-webkit-mask-image:radial-gradient(ellipse 250px 95px at 50% 50%,transparent 0 68%,#000 130%);mask-image:radial-gradient(ellipse 250px 95px at 50% 50%,transparent 0 68%,#000 130%)}
 }
 @media(prefers-reduced-motion:reduce){
-  .entry-text-layer{animation:none;will-change:auto}
+  .entry-text-layer,.entry-bit{animation:none;will-change:auto}
   .entry-content,.entry-enter,.entry-enter:after,body.entry-opening .home,body.entry-opening .site-head{transition:none}
   .entry-gate.is-entering,.entry-gate.is-entering .entry-art{animation:none}
 }
