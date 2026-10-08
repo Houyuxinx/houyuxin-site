@@ -2,7 +2,7 @@
 *{box-sizing:border-box}
 :root{--bg:#07080a;--fg:#f0eee8;--muted:#9a978f;--line:rgba(255,255,255,.14);--panel:rgba(255,255,255,.035);--ease:cubic-bezier(.22,1,.36,1);--header-h:68px;--spot-x:50vw;--spot-y:50vh}
 html{background:var(--bg);scroll-behavior:smooth}body{margin:0;background:linear-gradient(180deg,#090a0c,#07080a 58%,#090a0c);color:var(--fg);font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Hiragino Sans GB","Microsoft YaHei",Arial,sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}button{font:inherit}img{display:block;max-width:100%}
-.site-head{position:fixed;z-index:70;left:0;right:0;top:0;height:var(--header-h);display:flex;align-items:center;justify-content:space-between;gap:18px;padding:0 clamp(16px,3vw,34px);border-bottom:1px solid rgba(255,255,255,.08);background:rgba(7,8,10,.78);backdrop-filter:blur(16px)}
+.site-head{position:fixed;z-index:70;left:0;right:0;top:0;height:var(--header-h);display:flex;align-items:center;justify-content:space-between;gap:18px;padding:0 clamp(16px,3vw,34px);border-bottom:1px solid rgba(255,255,255,.08);background:rgba(7,8,10,.96);backdrop-filter:none;-webkit-backdrop-filter:none}
 .brand-link{font-size:15px;font-weight:700;letter-spacing:.03em;white-space:nowrap}.brand-link small{margin-left:9px;font-size:9px;font-weight:500;letter-spacing:.2em;color:var(--muted)}
 .global-nav{display:flex;gap:20px;align-items:center}.global-nav a{font-size:10px;letter-spacing:.18em;color:var(--muted);padding:8px 0;position:relative;white-space:nowrap}.global-nav a:after{content:"";position:absolute;left:0;right:100%;bottom:2px;height:1px;background:currentColor;transition:right .35s var(--ease)}.global-nav a:hover,.global-nav a.active{color:var(--fg)}.global-nav a:hover:after,.global-nav a.active:after{right:0}
 .back-link{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;padding:0 12px;font-size:10px;letter-spacing:.13em;white-space:nowrap;color:var(--muted);transition:color .25s}.back-link:hover{color:var(--fg)}.back-link:focus-visible{outline:1px solid var(--fg);outline-offset:2px;border-radius:3px}
@@ -11,7 +11,7 @@ html{background:var(--bg);scroll-behavior:smooth}body{margin:0;background:linear
 /* circular stage spotlight: no beam */
 .spot-vignette,.spot-pool{position:fixed;inset:0;z-index:1;pointer-events:none;opacity:0;transition:opacity .55s var(--ease)}
 .spot-vignette{background:radial-gradient(circle 240px at var(--spot-x) var(--spot-y),transparent 0 48%,rgba(0,0,0,.08) 67%,rgba(0,0,0,.48) 100%)}
-.spot-pool{inset:auto;width:520px;height:520px;left:var(--spot-x);top:var(--spot-y);transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,244,214,.15),rgba(255,231,182,.065) 37%,transparent 69%);filter:blur(7px);mix-blend-mode:screen}
+.spot-pool{inset:auto;width:520px;height:520px;left:var(--spot-x);top:var(--spot-y);transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(255,244,214,.15),rgba(255,231,182,.065) 37%,transparent 69%);filter:none;mix-blend-mode:normal}
 body.spot-on .spot-vignette,body.spot-on .spot-pool{opacity:1}
 .panel{border:1px solid var(--line);background:var(--panel);border-radius:20px;padding:24px}.btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:999px;padding:11px 16px;font-size:11px;letter-spacing:.13em;color:var(--fg);background:rgba(255,255,255,.025);transition:transform .3s var(--ease),background .3s}.btn:hover{transform:translateY(-2px);background:rgba(255,255,255,.08)}
 /* Unified ECHYOX page navigation — about 2.35 seconds total.
@@ -21,9 +21,15 @@ body.spot-on .spot-vignette,body.spot-on .spot-pool{opacity:1}
 @view-transition{navigation:none}
 .stage-surface{position:fixed;inset:0;pointer-events:none}
 html.site-fade-enabled body::after{
-  content:"";position:fixed;inset:0;z-index:2000;
+  content:none;position:fixed;inset:0;z-index:2000;
   pointer-events:none;background:#07080a;opacity:0;
 }
+html.site-fade-initial body::after,
+html.site-fade-arriving body::after,
+html.site-fade-leaving body::after,
+html.site-fade-local-out body::after,
+html.site-fade-local-in body::after,
+html.site-fade-local-hold body::after{content:""}
 html.site-fade-initial body::after{opacity:1}
 html.site-fade-local-out body::after{
   pointer-events:auto;animation:echyox-page-leave 1120ms cubic-bezier(.22,.65,.28,1) both;
@@ -41,6 +47,14 @@ html.site-fade-leaving body::after{
   pointer-events:auto;
   animation:echyox-page-leave 1120ms cubic-bezier(.22,.65,.28,1) both;
 }
+/* During any transition do not repaint the full-window spotlight gradient.
+   Dark cover still uses compositor opacity; artwork and content remain unchanged. */
+html.site-fade-arriving .spot-vignette,html.site-fade-arriving .spot-pool,
+html.site-fade-leaving .spot-vignette,html.site-fade-leaving .spot-pool,
+html.site-fade-local-out .spot-vignette,html.site-fade-local-out .spot-pool,
+html.site-fade-local-hold .spot-vignette,html.site-fade-local-hold .spot-pool,
+html.site-fade-local-in .spot-vignette,html.site-fade-local-in .spot-pool{visibility:hidden!important}
+
 @keyframes echyox-page-leave{0%{opacity:0}24%{opacity:.10}64%{opacity:.65}100%{opacity:1}}
 @keyframes echyox-page-arrive{0%{opacity:1}25%{opacity:.94}63%{opacity:.47}100%{opacity:0}}
 
