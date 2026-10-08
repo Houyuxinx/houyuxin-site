@@ -40,6 +40,7 @@
   var canvas = null;
   var context = null;
   var cachedSpriteMode = '';
+  var paintScale = 1; // Actual screen pixel ratio used by the canvas.
   var viewportW = Math.max(1, window.innerWidth);
   var viewportH = Math.max(1, window.innerHeight);
   var bits = Array.prototype.map.call(gate.querySelectorAll('.entry-bit'), function (el, index) {
@@ -92,15 +93,15 @@
   // than recomputing font shaping/layout for 90 texts every animation frame.
   function prepareSprites() {
     var small = viewportW < 700;
-    // Use retina-resolution cached glyphs; 1.5x source textures looked soft
-    // on the author's 2x Mac display.
-    var scale = Math.min(window.devicePixelRatio || 1, small ? 1.75 : 2);
+    // Use device-pixel-native glyphs on 3x phones; the former 1.75x
+    // sprites were blurry when Safari resampled them to the screen.
+    var scale = Math.min(window.devicePixelRatio || 1, small ? 3 : 2);
     var mode = (small ? 'mobile' : 'desktop') + '-' + scale;
     if (cachedSpriteMode === mode) return;
     cachedSpriteMode = mode;
     var fontFamily = '-apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif';
     bits.forEach(function (bit) {
-      var size = small ? Math.min(15, bit.size * .78) : bit.size;
+      var size = small ? Math.max(15, Math.min(18, bit.size)) : bit.size;
       var spriteCanvas = document.createElement('canvas');
       var spriteContext = spriteCanvas.getContext && spriteCanvas.getContext('2d');
       if (!spriteContext) { bit.sprite = null; return; }
@@ -154,6 +155,12 @@
       if (alpha < .018) return;
       context.globalAlpha = alpha;
       context.save();
+      // Snap animated glyphs to physical mobile pixels; subpixel sprite
+      // resampling made otherwise high-resolution Chinese text look soft.
+      if (smallScreen) {
+        x = Math.round(x * paintScale) / paintScale;
+        y = Math.round(y * paintScale) / paintScale;
+      }
       context.translate(x, y);
       // Rotating and re-scaling already rasterized Chinese glyphs blurred
       // their edges. Breathe with opacity instead, preserving crisp outlines.
@@ -177,9 +184,10 @@
     viewportW = Math.max(1, window.innerWidth);
     viewportH = Math.max(1, window.innerHeight);
     if (!canvas || !context) return;
-    // Render the entire canvas at display pixel density when affordable.
-    // Measured Safari drawing cost was 0.3ms / frame on the author's Mac.
-    var scale = Math.min(window.devicePixelRatio || 1, viewportW < 700 ? 1.5 : 2);
+    // Match 3x mobile Retina when supported. Keep the existing 2x desktop
+    // cap; do not change animation cadence or entrance transitions.
+    var scale = Math.min(window.devicePixelRatio || 1, viewportW < 700 ? 3 : 2);
+    paintScale = scale;
     canvas.width = Math.round(viewportW * scale);
     canvas.height = Math.round(viewportH * scale);
     canvas.style.width = viewportW + 'px';
