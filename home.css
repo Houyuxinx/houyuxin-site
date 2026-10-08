@@ -83,7 +83,8 @@ body.entry-opening .home,body.entry-opening .site-head{
 @keyframes entry-gate-leave{from{opacity:1}to{opacity:0}}
 @media(max-width:700px){
   .entry-gate .entry-bit:nth-child(3n){display:none}
-  .entry-bit{font-size:clamp(11px,calc(var(--size,16px)*.78),15px);max-width:93vw}
+  /* Keep static/reduced-motion typography as legible as animated Retina text. */
+  .entry-bit{font-size:clamp(15px,var(--size,16px),18px);max-width:93vw}
   .entry-text-layer{
     -webkit-mask-image:radial-gradient(ellipse 68% 34% at 50% 50%,transparent 0 62%,#000 100%);
     mask-image:radial-gradient(ellipse 68% 34% at 50% 50%,transparent 0 62%,#000 100%);
