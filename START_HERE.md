@@ -44,14 +44,14 @@ GitHub 仓库：https://github.com/Houyuxinx/houyuxin-site
 ## 当前交接状态（2026-10-08）
 长期维护交接说明 V1 通过 PR #1 整理；首个恢复点为 `backup/2026-10-08-before-handover`（对应提交 `3beabb30f480a4adea1b1963c7bf7d9e557025e0`）。本项目中的文档变化不意味着网页外观有变化。尚需核实 GitHub Pages 的实际发布设置；不能冒充已经完成线上页面检查。
 
-### 最新代码版本：PR #8 手机修复已授权并合并（Pages 部署仍需核实）
-- 作者已经在手机端通过预览验收全部三项修复，并明确批准发布。[PR #8](https://github.com/Houyuxinx/houyuxin-site/pull/8) 已成功合并，代码提交 `ee7ec56893b0825ce7915b297c8e231ace97cd7a`。**发布构建 #37792539167 首次失败，已请求重新运行但未获得成功确认；不能直接声称 echyox.com 已显示新版本。**
+### 最新正式版本：PR #8 手机端三项修复已发布（2026-10-08）
+- 作者已经在手机端通过预览验收全部三项修复，并明确批准发布。[PR #8](https://github.com/Houyuxinx/houyuxin-site/pull/8) 已成功合并，代码提交 `ee7ec56893b0825ce7915b297c8e231ace97cd7a`。**首次发布任务 #37792539167 失败，但后续由交接文档 PR #9 触发的 [Pages 部署 #37793371715](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37793371715) 已完成，结论 success；正式分支确认包含修复代码。由于工具无法直接访问 echyox.com，未在本环境完成线上 Safari 实测。**
 - 手机文学文字场最高使用 3× Retina Canvas 和缓存，15–18px 小字、像素位置对齐；原 90 条文字、非规则流动和桌面端效果保留。
 - 手机诗歌年份栏依旧能够左右滑动、年份松手吸附，限制纵向/斜向数字拖动；2018—2026 的九个年份及诗歌正文不变。
 - 戏剧、诗歌、音乐、寻找自己的「回到来处」直接返回 `index.html#entry-revealed` 四栏目主页，统一 1.4 秒黑场渐隐，不再叠加旧中心追光。剧目详情仍回戏剧，品牌标题可重新观看入场。
 - 初次主视觉 2.35 秒、音乐四曲目手动播放、作品原文、MP3、PDF 均保留。
 - 合并前恢复分支 `backup/2026-10-08-before-mobile-fixes`，准确提交 `10455db1703fc51a6dd647c1f6e99a309fc4ad75`，已核对为合并前 `main` 完整快照；非独立异地备份。
-- GitHub Pages 后续成功部署记录应在 PR #8/后续发布记录中继续核对；不要基于“已合并”的字样误认为已上线。所有后续修改仍须先待审核分支与作者确认。
+- GitHub Pages 的最终成功部署已记录在 PR #8、PR #9 与上述 Actions 任务中；作者已在发布前预览版本完成手机验收。所有后续修改仍须先待审核分支与作者确认。
 
 ### 较早正式版本：文学星系主视觉与全站渐隐（2026-10-08 已发布）
 - 作者已授权正式发布；[PR #6](https://github.com/Houyuxinx/houyuxin-site/pull/6) 已合并，发布提交 `dfb6546ccfe88439df8bc5c469b41cb39f01a6ef`。GitHub Pages [部署 #37788352521](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37788352521) 成功。**当前执行环境没有完成 echyox.com 线上浏览器实测；如有问题先检查线上表现。**
