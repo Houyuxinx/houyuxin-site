@@ -39,7 +39,6 @@ body.music-open .page{height:100vh;height:100svh;padding:calc(var(--header-h) + 
    .lyrics:hover::-webkit-scrollbar-thumb{background:rgba(240,238,232,.32)}
  }
 
-.lyrics-viewport:focus-within{outline:1px solid rgba(240,238,232,.22);outline-offset:4px}
 .lyrics:focus{outline:none}
 .no-lyrics{display:flex;align-items:center;justify-content:center;color:var(--muted);font-size:18px;padding:24px}
 
