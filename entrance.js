@@ -22,6 +22,7 @@
   var elapsed = 0;
   var canvas = null;
   var context = null;
+  var cachedSpriteMode = '';
   var viewportW = Math.max(1, window.innerWidth);
   var viewportH = Math.max(1, window.innerHeight);
   var bits = Array.prototype.map.call(gate.querySelectorAll('.entry-bit'), function (el, index) {
@@ -70,6 +71,38 @@
     var x = Math.max(0, Math.min(1, (n - a) / (b - a)));
     return x * x * (3 - 2 * x);
   }
+  // Rasterize Chinese strings once. Drawing cached sprites costs much less
+  // than recomputing font shaping/layout for 90 texts every animation frame.
+  function prepareSprites() {
+    var small = viewportW < 700;
+    var mode = small ? 'mobile' : 'desktop';
+    if (cachedSpriteMode === mode) return;
+    cachedSpriteMode = mode;
+    var scale = Math.min(window.devicePixelRatio || 1, 1.5);
+    var fontFamily = '-apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif';
+    bits.forEach(function (bit) {
+      var size = small ? Math.min(15, bit.size * .78) : bit.size;
+      var spriteCanvas = document.createElement('canvas');
+      var spriteContext = spriteCanvas.getContext && spriteCanvas.getContext('2d');
+      if (!spriteContext) { bit.sprite = null; return; }
+      spriteContext.font = '400 ' + size + 'px ' + fontFamily;
+      var width = Math.ceil(spriteContext.measureText(bit.text).width + 10);
+      var height = Math.ceil(size * 2.15 + 8);
+      // Prevent pathologically large backing stores on small devices.
+      width = Math.min(width, 1800);
+      spriteCanvas.width = Math.ceil(width * scale);
+      spriteCanvas.height = Math.ceil(height * scale);
+      spriteContext.setTransform(scale, 0, 0, scale, 0, 0);
+      spriteContext.font = '400 ' + size + 'px ' + fontFamily;
+      spriteContext.fillStyle = bit.source === '诗歌' ? '#e0dacf' :
+        bit.source === '剧本' ? '#d0c8bc' : '#c5c1b9';
+      spriteContext.textAlign = 'center';
+      spriteContext.textBaseline = 'middle';
+      spriteContext.fillText(bit.text, width * .5, height * .5, width - 8);
+      bit.sprite = {canvas:spriteCanvas, width:width, height:height, size:size};
+    });
+  }
+
   function paint(seconds) {
     if (!context || !canvas) return;
     // A single Canvas paint avoids transforming and changing opacity on 90 DOM
@@ -79,7 +112,6 @@
     var outerX = Math.max(1, viewportW * .49);
     var outerY = Math.max(1, viewportH * .49);
     var smallScreen = viewportW < 700;
-    var font = '-apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif';
     bits.forEach(function (bit) {
       if (smallScreen && bit.index % 3 === 0) return;
       var p = bit.phase, q = bit.wave, t = seconds;
@@ -101,18 +133,23 @@
       var breathing = .81 + .19 * Math.sin(t / 5.8 + p);
       var alpha = Math.max(0, Math.min(.74, bit.alpha * nearCore * outerFade * edgeFade * breathing));
       if (alpha < .018) return;
-      var size = (smallScreen ? Math.min(15, bit.size * .78) : bit.size)
-        * (1 + .034 * Math.sin(t / 6.1 + q));
       context.globalAlpha = alpha;
-      context.fillStyle = bit.source === '诗歌' ? '#e0dacf' :
-        bit.source === '剧本' ? '#d0c8bc' : '#c5c1b9';
-      context.font = '400 ' + size.toFixed(2) + 'px ' + font;
       context.save();
       context.translate(x, y);
       context.rotate(.025 * Math.sin(t / 17 + p));
-      context.textAlign = 'center';
-      context.textBaseline = 'middle';
-      context.fillText(bit.text, 0, 0, viewportW * .9);
+      var breatheScale = 1 + .034 * Math.sin(t / 6.1 + q);
+      context.scale(breatheScale, breatheScale);
+      if (bit.sprite) {
+        context.drawImage(bit.sprite.canvas, -bit.sprite.width * .5,
+          -bit.sprite.height * .5, bit.sprite.width, bit.sprite.height);
+      } else {
+        // Support browsers that don't allow offscreen sprite creation.
+        context.fillStyle = '#d0c8bc';
+        context.font = '400 ' + bit.size + 'px sans-serif';
+        context.textAlign = 'center';
+        context.textBaseline = 'middle';
+        context.fillText(bit.text, 0, 0, viewportW * .9);
+      }
       context.restore();
     });
     context.globalAlpha = 1;
@@ -122,12 +159,13 @@
     viewportW = Math.max(1, window.innerWidth);
     viewportH = Math.max(1, window.innerHeight);
     if (!canvas || !context) return;
-    var scale = Math.min(window.devicePixelRatio || 1, viewportW < 700 ? 1.1 : 1.4);
+    var scale = Math.min(window.devicePixelRatio || 1, viewportW < 700 ? 1 : 1.25);
     canvas.width = Math.round(viewportW * scale);
     canvas.height = Math.round(viewportH * scale);
     canvas.style.width = viewportW + 'px';
     canvas.style.height = viewportH + 'px';
     context.setTransform(scale, 0, 0, scale, 0, 0);
+    prepareSprites();
     if (!gate.hidden && reduced.matches === false) paint(elapsed);
   }
 
@@ -159,8 +197,8 @@
     if (gate.hidden || reduced.matches || document.hidden || opening) return;
     if (startedAt) elapsed += Math.min((now - startedAt) / 1000, .11);
     startedAt = now;
-    // Limit canvas paints to ~24fps; the movement itself is deliberately slow.
-    if (!lastPaint || now - lastPaint >= 42) {
+    // Cached glyph textures cost less to draw; aim for up to 30fps.
+    if (!lastPaint || now - lastPaint >= 33) {
       paint(elapsed);
       lastPaint = now;
     }
