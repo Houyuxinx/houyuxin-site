@@ -17,22 +17,31 @@
   var opening = false;
   var finishTimer = null;
   var frameId = null;
-  var previousFrame = 0;
   var lastPaint = 0;
+  var startedAt = 0;
   var elapsed = 0;
+  var canvas = null;
+  var context = null;
   var viewportW = Math.max(1, window.innerWidth);
   var viewportH = Math.max(1, window.innerHeight);
-  var bits = Array.prototype.map.call(gate.querySelectorAll('.entry-bit'), function (el) {
+  var bits = Array.prototype.map.call(gate.querySelectorAll('.entry-bit'), function (el, index) {
+    function variable(name, fallback) {
+      var n = parseFloat(el.style.getPropertyValue(name));
+      return Number.isFinite(n) ? n : fallback;
+    }
     return {
       el: el,
-      radius: Number(el.dataset.radius) || .6,
-      angle: Number(el.dataset.angle) || 0,
-      ecc: Number(el.dataset.ecc) || 1,
-      cycle: Number(el.dataset.cycle) || 160,
-      phase: Number(el.dataset.phase) || 0,
-      wave: Number(el.dataset.wave) || 0,
-      direction: el.dataset.dir === 'ccw' ? -1 : 1,
-      alpha: Number(el.style.getPropertyValue('--alpha')) || .48
+      text: el.textContent || '',
+      source: el.dataset.source || '',
+      index: index,
+      x: variable('--x', 50) / 100,
+      y: variable('--y', 50) / 100,
+      size: variable('--size', 16),
+      alpha: variable('--alpha', .45),
+      phase: variable('--x', 5) * .17 + index * 1.618,
+      wave: variable('--y', 3) * .11 + index * 2.3999,
+      rangeX: (58 + (index * 37 % 107)),
+      rangeY: (29 + (index * 23 % 72))
     };
   });
 
@@ -61,71 +70,109 @@
     var x = Math.max(0, Math.min(1, (n - a) / (b - a)));
     return x * x * (3 - 2 * x);
   }
-  function render(seconds) {
-    // One full-screen elliptical galaxy; each word has its own direction,
-    // orbital period, eccentricity and radius/angle oscillations.
-    var cx = viewportW * .5;
-    var cy = viewportH * .5;
-    // Expand the galaxy beyond the old central cluster; text may visit the edges.
-    // On small phones leave room for the central title while retaining broad paths.
-    var xScale = viewportW * (viewportW < 700 ? .45 : .475);
-    var yScale = viewportH * (viewportW < 700 ? .46 : .52);
+  function paint(seconds) {
+    if (!context || !canvas) return;
+    // A single Canvas paint avoids transforming and changing opacity on 90 DOM
+    // elements every frame. These spans remain the accessible, static fallback.
+    context.clearRect(0, 0, viewportW, viewportH);
+    var cx = viewportW * .5, cy = viewportH * .5;
     var outerX = Math.max(1, viewportW * .49);
     var outerY = Math.max(1, viewportH * .49);
+    var smallScreen = viewportW < 700;
+    var font = '-apple-system, BlinkMacSystemFont, "PingFang SC", sans-serif';
     bits.forEach(function (bit) {
-      var a = bit.angle + bit.direction * (seconds * Math.PI * 2 / bit.cycle)
-        + .095 * Math.sin(seconds / 9.8 + bit.phase)
-        + .045 * Math.cos(seconds / 5.6 + bit.wave);
-      var r = bit.radius * (1 + .053 * Math.sin(seconds / 12.3 + bit.phase)
-        + .035 * Math.sin(seconds / 22.8 + bit.wave));
-      var eccentricity = bit.ecc + .055 * Math.sin(seconds / 18 + bit.wave);
-      var x = cx + Math.cos(a) * xScale * r * eccentricity;
-      var y = cy + Math.sin(a) * yScale * r / eccentricity;
+      if (smallScreen && bit.index % 3 === 0) return;
+      var p = bit.phase, q = bit.wave, t = seconds;
+      // Quasiperiodic motion: independent bent currents, not a closed orbit.
+      // Each text changes direction gently as the different waves intersect.
+      var x = bit.x * viewportW
+        + bit.rangeX * (Math.sin(t / 30 + p) - Math.sin(p))
+        + bit.rangeX * .36 * (Math.sin(t / 12.4 + q) - Math.sin(q))
+        + 13 * (Math.sin(t / 7.9 + bit.index) - Math.sin(bit.index));
+      var y = bit.y * viewportH
+        + bit.rangeY * (Math.sin(t / 23.3 + q) - Math.sin(q))
+        + bit.rangeY * .44 * (Math.cos(t / 13.8 + p) - Math.cos(p))
+        + 11 * (Math.sin(t / 9.1 + bit.index * 1.3) - Math.sin(bit.index * 1.3));
       var d = Math.hypot((x - cx) / outerX, (y - cy) / outerY);
-
-      // Brightest in the orbital belt; dim at screen edges and at the central sun.
-      // Unlike a fixed vignette this changes as each individual word moves.
-      var innerLight = smoothstep(.43, .70, d);
-      var outerLight = 1 - smoothstep(.76, 1.26, d);
-      // Separate slow light breathing from orbital travel, not a generic flash.
-      var breathing = .84 + .16 * Math.sin(seconds / 5.2 + bit.phase);
-      var opacity = bit.alpha * innerLight * outerLight * breathing;
-      var tilt = 2.8 * Math.sin(seconds / 15 + bit.wave);
-      var scale = 1 + .045 * Math.sin(seconds / 6.7 + bit.phase);
-
-      // Center the *word*, not just its left edge, on the computed orbit.
-      // This keeps long phrases out of the sun/core when rotating past it.
-      bit.el.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' +
-        y.toFixed(1) + 'px,0) translate(-50%,-50%) rotate(' + tilt.toFixed(2) +
-        'deg) scale(' + scale.toFixed(3) + ')';
-      bit.el.style.opacity = Math.max(0, Math.min(.72, opacity)).toFixed(3);
+      var nearCore = smoothstep(.42, .71, d);
+      var outerFade = 1 - smoothstep(.75, 1.24, d);
+      var edge = Math.min(x / viewportW, 1 - x / viewportW, y / viewportH, 1 - y / viewportH);
+      var edgeFade = smoothstep(-.10, .21, edge);
+      var breathing = .81 + .19 * Math.sin(t / 5.8 + p);
+      var alpha = Math.max(0, Math.min(.74, bit.alpha * nearCore * outerFade * edgeFade * breathing));
+      if (alpha < .018) return;
+      var size = (smallScreen ? Math.min(15, bit.size * .78) : bit.size)
+        * (1 + .034 * Math.sin(t / 6.1 + q));
+      context.globalAlpha = alpha;
+      context.fillStyle = bit.source === '诗歌' ? '#e0dacf' :
+        bit.source === '剧本' ? '#d0c8bc' : '#c5c1b9';
+      context.font = '400 ' + size.toFixed(2) + 'px ' + font;
+      context.save();
+      context.translate(x, y);
+      context.rotate(.025 * Math.sin(t / 17 + p));
+      context.textAlign = 'center';
+      context.textBaseline = 'middle';
+      context.fillText(bit.text, 0, 0, viewportW * .9);
+      context.restore();
     });
+    context.globalAlpha = 1;
+  }
+
+  function resizeCanvas() {
+    viewportW = Math.max(1, window.innerWidth);
+    viewportH = Math.max(1, window.innerHeight);
+    if (!canvas || !context) return;
+    var scale = Math.min(window.devicePixelRatio || 1, viewportW < 700 ? 1.1 : 1.4);
+    canvas.width = Math.round(viewportW * scale);
+    canvas.height = Math.round(viewportH * scale);
+    canvas.style.width = viewportW + 'px';
+    canvas.style.height = viewportH + 'px';
+    context.setTransform(scale, 0, 0, scale, 0, 0);
+    if (!gate.hidden && reduced.matches === false) paint(elapsed);
+  }
+
+  function prepareCanvas() {
+    if (reduced.matches || canvas) return;
+    var art = gate.querySelector('.entry-art');
+    if (!art || !document.createElement) return;
+    var candidate = document.createElement('canvas');
+    if (!candidate.getContext) return;
+    var ctx = candidate.getContext('2d', { alpha:true, desynchronized:true });
+    if (!ctx) return;
+    candidate.className = 'entry-canvas';
+    candidate.setAttribute('aria-hidden', 'true');
+    art.appendChild(candidate);
+    canvas = candidate;
+    context = ctx;
+    resizeCanvas();
+    gate.classList.add('entry-motion-ready');
   }
 
   function stopMotion() {
     if (frameId !== null) cancelAnimationFrame(frameId);
     frameId = null;
-    previousFrame = 0;
+    startedAt = 0;
     lastPaint = 0;
   }
   function tick(now) {
     frameId = null;
-    if (gate.hidden || reduced.matches || document.hidden) return;
-    if (previousFrame) elapsed += Math.min((now - previousFrame) / 1000, .1);
-    previousFrame = now;
-    // Orbit movement is deliberately slow; cap DOM paint updates near 30fps.
-    if (!lastPaint || now - lastPaint >= 32) {
-      render(elapsed);
+    if (gate.hidden || reduced.matches || document.hidden || opening) return;
+    if (startedAt) elapsed += Math.min((now - startedAt) / 1000, .11);
+    startedAt = now;
+    // Limit canvas paints to ~24fps; the movement itself is deliberately slow.
+    if (!lastPaint || now - lastPaint >= 42) {
+      paint(elapsed);
       lastPaint = now;
     }
     frameId = requestAnimationFrame(tick);
   }
   function startMotion() {
-    if (gate.hidden || document.hidden) return;
-    gate.classList.add('entry-motion-ready');
-    render(reduced.matches ? 0 : elapsed);
-    if (!reduced.matches && frameId === null) {
-      previousFrame = 0;
+    if (gate.hidden || document.hidden || opening || reduced.matches) return;
+    prepareCanvas();
+    if (!context) return; // Static HTML field remains visible.
+    paint(elapsed);
+    if (frameId === null) {
+      startedAt = 0;
       frameId = requestAnimationFrame(tick);
     }
   }
@@ -159,6 +206,7 @@
     if (opening || gate.hidden) return;
     if (reduced.matches) { reveal(true); return; }
     opening = true;
+    stopMotion(); // Freeze the text before the full-screen exit to avoid two paint loops.
     gate.classList.add('is-entering');
     document.body.classList.add('entry-opening');
     // Works even when CSS animations are blocked, cancelled or interrupted.
@@ -178,9 +226,7 @@
     else if (!gate.hidden) startMotion();
   });
   window.addEventListener('resize', function () {
-    viewportW = Math.max(1, window.innerWidth);
-    viewportH = Math.max(1, window.innerHeight);
-    if (!gate.hidden) render(reduced.matches ? 0 : elapsed);
+    resizeCanvas();
   }, { passive: true });
   document.addEventListener('visibilitychange', function () {
     if (document.hidden) stopMotion();
@@ -190,8 +236,12 @@
     if (reduced.matches) {
       stopMotion();
       if (opening) reveal(true);
-      else if (!gate.hidden) render(0);
+      else if (!gate.hidden) {
+        gate.classList.remove('entry-motion-ready');
+        if (canvas) canvas.hidden = true;
+      }
     } else if (!gate.hidden) {
+      if (canvas) canvas.hidden = false;
       startMotion();
     }
   }
