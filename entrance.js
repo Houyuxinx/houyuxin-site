@@ -30,7 +30,9 @@
   // even after someone has entered during the same browser session.
   var forceIntro = new URLSearchParams(window.location.search).get('entry') === '1';
   var opening = false;
+  var entered = false;
   var finishTimer = null;
+  var cleanupTimer = null;
   var frameId = null;
   var lastPaint = 0;
   var startedAt = 0;
@@ -245,7 +247,7 @@
     frameId = requestAnimationFrame(tick);
   }
   function startMotion() {
-    if (gate.hidden || document.hidden || opening || reduced.matches) return;
+    if (entered || gate.hidden || document.hidden || opening || reduced.matches) return;
     prepareCanvas();
     if (!context) return; // Static HTML field remains visible.
     if (canvas) canvas.hidden = false;
@@ -256,19 +258,47 @@
       frameId = requestAnimationFrame(tick);
     }
   }
-  function reveal(moveFocus) {
+  function finishGateCleanup() {
+    if (gate.hidden) return;
+    // By this point the visitor has had time to see and interact with the
+    // four sections. Retire the large Retina canvas outside the reveal frame.
+    gate.hidden = true;
+    gate.classList.remove('is-entering');
+    document.body.classList.add('entry-passed');
+    gate.style.removeProperty('pointer-events');
+  }
+  function scheduleGateCleanup() {
+    if (cleanupTimer !== null) clearTimeout(cleanupTimer);
+    // Wait beyond the 2.35s fade, then release the full-screen texture only
+    // when the browser has spare time; never block the final transition frame.
+    cleanupTimer = setTimeout(function () {
+      cleanupTimer = null;
+      if (window.requestIdleCallback) {
+        window.requestIdleCallback(finishGateCleanup, { timeout: 3000 });
+      } else {
+        setTimeout(finishGateCleanup, 300);
+      }
+    }, 750);
+  }
+  function reveal(moveFocus, fromAnimation) {
+    if (entered) return;
     if (finishTimer !== null) clearTimeout(finishTimer);
     finishTimer = null;
+    var deferHeavyCleanup = Boolean(fromAnimation && opening && !reduced.matches);
+    entered = true;
     opening = false;
     stopMotion();
-    document.body.classList.add('entry-passed');
-    document.body.classList.remove('entry-opening');
-    gate.classList.remove('is-entering');
-    gate.hidden = true;
+    // Make the main content interactive without simultaneously tearing down
+    // the full-screen Canvas. The invisible curtain stays composited briefly.
     behindGate(false);
+    document.body.classList.remove('entry-opening');
+    gate.inert = true;
+    gate.setAttribute('aria-hidden', 'true');
     save();
+    if (deferHeavyCleanup) scheduleGateCleanup();
+    else finishGateCleanup();
     if (moveFocus) {
-      // Focus the region, not the Theatre card (which caused Safari's blue outline).
+      // Move focus to the page landmark, never auto-select Theatre.
       home.focus({ preventScroll: true });
     }
   }
@@ -290,20 +320,20 @@
     gate.classList.add('is-entering');
     document.body.classList.add('entry-opening');
     // Works even when CSS animations are blocked, cancelled or interrupted.
-    finishTimer = setTimeout(function () { reveal(true); }, 2750);
+    finishTimer = setTimeout(function () { reveal(true, true); }, 2750);
   });
   gate.addEventListener('animationend', function (event) {
-    if (opening && event.target === gate && event.animationName === 'entry-gate-leave') reveal(true);
+    if (opening && event.target === gate && event.animationName === 'entry-gate-leave') reveal(true, true);
   });
   gate.addEventListener('animationcancel', function (event) {
-    if (opening && event.target === gate) reveal(true);
+    if (opening && event.target === gate) reveal(true, true);
   });
   window.addEventListener('hashchange', function () {
     if (location.hash === '#entry-revealed') reveal(false);
   });
   window.addEventListener('pageshow', function () {
     if (!forceIntro && remember()) reveal(false);
-    else if (!gate.hidden) startMotion();
+    else if (!entered && !gate.hidden) startMotion();
   });
   window.addEventListener('resize', function () {
     resizeCanvas();
