@@ -4,3 +4,30 @@
 /* Reserve the same two-line caption space in every card to align both rows. */
 .door p{min-height:3.4em}
 .door:hover{transform:none}
+
+
+/* ECHYOX · entry study 01 — fixed, non-animated composition.
+   Stage 2 will add motion only after the author approves the visual direction.
+   This layer belongs to the homepage; global CSS and original .door cards are unchanged. */
+.entry-target{position:absolute;top:0;left:0;width:1px;height:1px;pointer-events:none}
+.entry-gate{position:fixed;inset:0;z-index:150;display:grid;place-items:center;overflow:hidden;isolation:isolate;background:radial-gradient(ellipse 55% 50% at 53% 42%,#121311 0%,#090a0c 53%,#07080a 100%);color:#f0eee8}
+.entry-gate[hidden],#entry-revealed:target + .entry-gate,body.entry-passed .entry-gate{display:none!important}
+.entry-art{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;pointer-events:none}
+.entry-artwork{display:block;width:min(100%,1350px);height:min(94vh,980px);opacity:.95;transform:translateY(-5.5vh)}
+.entry-content{position:relative;z-index:1;text-align:center;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 18px;transform:translateY(17vh)}
+.entry-wordmark{margin:0;font-size:clamp(48px,8vw,106px);font-weight:500;line-height:1;letter-spacing:.11em;text-indent:.11em;text-shadow:0 0 40px rgba(232,224,209,.13)}
+.entry-signature{margin:19px 0 0;font-size:10px;letter-spacing:.45em;text-indent:.45em;color:#b0a99e}
+.entry-enter{display:inline-flex;align-items:center;justify-content:center;gap:22px;margin-top:48px;min-width:148px;min-height:48px;border:1px solid rgba(240,238,232,.37);border-radius:999px;color:#eee9e1;font-size:12px;letter-spacing:.24em;padding:10px 18px;outline-offset:5px;background:rgba(240,238,232,.03);transition:background .2s,border-color .2s}
+.entry-enter:hover{background:rgba(240,238,232,.1);border-color:rgba(240,238,232,.7)}
+.entry-enter:focus-visible{outline:2px solid #f0eee8}
+.entry-enter span{font-size:18px;line-height:1;font-weight:300}
+@media(max-width:620px){
+  .entry-artwork{width:165vw;max-width:none;flex:none;height:auto;transform:translateY(-10vh);opacity:.9}
+  .entry-content{transform:translateY(13vh)}
+  .entry-wordmark{font-size:clamp(43px,12vw,72px);letter-spacing:.08em;text-indent:.08em}
+  .entry-signature{letter-spacing:.33em;text-indent:.33em}
+  .entry-enter{margin-top:40px;min-height:52px}
+}
+@media(prefers-reduced-motion:reduce){
+  .entry-enter{transition:none}
+}
