@@ -208,6 +208,8 @@
     if (gate.hidden || document.hidden || opening || reduced.matches) return;
     prepareCanvas();
     if (!context) return; // Static HTML field remains visible.
+    if (canvas) canvas.hidden = false;
+    gate.classList.add('entry-motion-ready');
     paint(elapsed);
     if (frameId === null) {
       startedAt = 0;
