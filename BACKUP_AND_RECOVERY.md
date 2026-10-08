@@ -8,6 +8,16 @@
 2. `CHANGELOG.md` 是“给人看”的更新日志：什么时候做了什么、有没有上线、需要注意什么。它和 GitHub 自动保存的代码记录互相补充。
 3. **恢复网站前，先核实问题和部署配置，不能为了恢复而直接覆盖 main；应在新分支准备恢复提案，让站长确认。**
 
+## 发布手机端三项修复前的恢复点（2026-10-08）
+
+- 恢复分支：`backup/2026-10-08-before-mobile-fixes`。
+- 对应准确提交：`10455db1703fc51a6dd647c1f6e99a309fc4ad75`。
+- 内容：合并 PR #8 之前 `main` 的完整版本，包括当时已发布的文学星系与全部作品、资源。
+- 经 GitHub compare 核对与发布前 `main` 完全一致（ahead=0，behind=0）。
+- [查看备份](https://github.com/Houyuxinx/houyuxin-site/tree/backup/2026-10-08-before-mobile-fixes) · [下载对应 ZIP](https://github.com/Houyuxinx/houyuxin-site/archive/10455db1703fc51a6dd647c1f6e99a309fc4ad75.zip)。
+- [PR #8](https://github.com/Houyuxinx/houyuxin-site/pull/8) 已按作者授权合并，代码提交 `ee7ec56893b0825ce7915b297c8e231ace97cd7a`；Pages 首次构建 #37792539167 失败并已请求重试，必须单独核对线上部署结果。
+- 此恢复点仍在同一 GitHub 仓库中，**不是异地备份**。需要恢复时仍应新开提案让作者确认。
+
 ## 发布文学星系主视觉前的恢复点（2026-10-08）
 
 - 名称：`backup/2026-10-08-before-literary-entrance`。
