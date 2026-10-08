@@ -45,7 +45,7 @@ GitHub 仓库：https://github.com/Houyuxinx/houyuxin-site
 长期维护交接说明 V1 通过 PR #1 整理；首个恢复点为 `backup/2026-10-08-before-handover`（对应提交 `3beabb30f480a4adea1b1963c7bf7d9e557025e0`）。本项目中的文档变化不意味着网页外观有变化。尚需核实 GitHub Pages 的实际发布设置；不能冒充已经完成线上页面检查。
 
 ### 本轮待审核：音乐新增《一个哑谜》
-- 待审核分支：`music/add-one-riddle-20261008`，尚未合并、未上线；新对话应先查看此分支对应的未合并 PR 和 `CHANGELOG.md` 的本轮记录。
+- 待审核提案：[PR #3](https://github.com/Houyuxinx/houyuxin-site/pull/3)，分支：`music/add-one-riddle-20261008`，尚未合并、未上线；新对话应先查看该 PR 和 `CHANGELOG.md` 的本轮记录。
 - 作者要求追加在音乐列表最后，作词：侯宇鑫；作曲、编曲：suno。作者已确认暂不显示年份，不得猜测年份或改写歌词。
 - 音频使用作者上传的原始 MP3，页面路径为 `assets/audio/one-riddle.mp3`；歌词为本轮提供的 13 段、48 个非空行，保留空行、标点和字词间空格。
 - 修改前恢复点：`backup/2026-10-08-before-one-riddle`，对应提交 `228dd5820b3d9f5951b7d8ebf53d3d8af77e09af`。
