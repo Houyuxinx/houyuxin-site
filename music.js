@@ -16,6 +16,26 @@
   var busy=false;
   if(!tracks||!list||!view||!audio)return;
 
+  // An idle lyric pane should not show a scrollbar. The scrollbar thumb
+  // becomes visible during a real scroll, then disappears shortly after.
+  var lyricScrollTimer=null;
+  function resetLyricScrollbar(){
+    if(lyricScrollTimer!==null){
+      clearTimeout(lyricScrollTimer);
+      lyricScrollTimer=null;
+    }
+    lyrics.classList.remove('is-scrolling');
+  }
+  lyrics.addEventListener('scroll',function(){
+    if(view.hidden||lyrics.classList.contains('no-lyrics'))return;
+    lyrics.classList.add('is-scrolling');
+    if(lyricScrollTimer!==null)clearTimeout(lyricScrollTimer);
+    lyricScrollTimer=setTimeout(function(){
+      lyricScrollTimer=null;
+      lyrics.classList.remove('is-scrolling');
+    },1100);
+  },{passive:true});
+
   function updateReturn(){
     if(!back)return;
     var destination=view.hidden?'返回首页':'返回曲目列表';
@@ -30,6 +50,7 @@
     swap();return true;
   }
   function showTrack(track){
+    resetLyricScrollbar();
     list.hidden=true;
     view.hidden=false;
     document.documentElement.classList.add('music-open');
@@ -65,6 +86,7 @@
     }))busy=false;
   }
   function showList(){
+    resetLyricScrollbar();
     audio.pause();
     view.hidden=true;
     list.hidden=false;
