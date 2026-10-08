@@ -6,7 +6,8 @@
 - 主分支：`main`。
 - 技术形式：以 **HTML、CSS、JavaScript** 组成的静态网站；现有文件中未见必须运行的后端应用。
 - 根目录 `CNAME` 的内容是 `echyox.com`。
-- **注意：尚未核查仓库 Settings → Pages，不能仅凭 CNAME 断定实际部署来源或发布速度。**
+- 2026-10-08 已实际观察到 main 发布提交 `7c91e455cbb92256ae85a15d7ccaf231334f0450` 的 GitHub Pages 构建部署成功，且正式音乐页及 MP3 已更新。
+- **Settings → Pages 的完整后台配置仍未读取；上述发布结论来自实际部署运行和网页读取，不应扩展成所有后台设置均已核查。**
 
 ## 修改页面时去哪找文件
 
@@ -37,8 +38,8 @@
 - `BACKUP_AND_RECOVERY.md` 是恢复旧版的说明和恢复点索引。
 - `backup/2026-10-08-before-handover` 保存 2026-10-08 整理文档之前的 main 快照。
 
-## 上线前需要确认的事项
-- GitHub 仓库 `Settings → Pages` 实际发布源；
+## 后续维护仍需核实的事项
+- GitHub 仓库 `Settings → Pages` 的完整后台配置；本次 main 更新触发 GitHub Pages 并成功上线的链路已实际观察；
 - 自定义域名是否仍正确；
 - 新版是否可在电脑与手机打开；
 - 四大栏目、剧目详情、诗歌阅读、音乐播放、PDF 是否正常；

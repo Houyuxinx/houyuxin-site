@@ -26,7 +26,16 @@
 - 已通过 GitHub 接口核对恢复分支指向此提交；不要改写这个恢复分支。
 - 在线查看：[新增曲目前的旧版本](https://github.com/Houyuxinx/houyuxin-site/tree/backup/2026-10-08-before-one-riddle)。
 - ZIP 下载入口：[下载此次恢复点](https://github.com/Houyuxinx/houyuxin-site/archive/228dd5820b3d9f5951b7d8ebf53d3d8af77e09af.zip)。本轮没有实际下载或另存这个 ZIP，不能称为已完成独立备份。
-- 相关修改位于 `music/add-one-riddle-20261008`，状态为**待审核 / 未上线**。若正式合并前 `main` 已出现其他更新，需要先核对差异，并为届时的 `main` 保留新的恢复点。
+- 相关修改通过 [PR #3](https://github.com/Houyuxinx/houyuxin-site/pull/3) 已合并并上线，正式发布提交 `7c91e455cbb92256ae85a15d7ccaf231334f0450`；原有三首曲目保留，新歌排版已按作者审核意见统一。此恢复点仍保存新增歌曲前的三首音乐版本。
+
+## 《一个哑谜》发布后、交接记录更新前的恢复点（2026-10-08）
+
+- 名称：`backup/2026-10-08-before-release-record`。
+- 准确提交 SHA：`7c91e455cbb92256ae85a15d7ccaf231334f0450`。
+- 内容：已上线的四首歌曲版本，包含《一个哑谜》原始 MP3 及修正后的歌词换行。该快照中的部分文档仍为最初待审核文字，网页代码已经发布；最新交接状态以 main 的 `CHANGELOG.md` 为准。
+- [在线查看恢复点](https://github.com/Houyuxinx/houyuxin-site/tree/backup/2026-10-08-before-release-record)。
+- [下载已发布代码快照 ZIP](https://github.com/Houyuxinx/houyuxin-site/archive/7c91e455cbb92256ae85a15d7ccaf231334f0450.zip)。本轮没有实际另存这个 ZIP，不能称为已完成独立备份。
+- 发布结果由 GitHub Pages 部署 #37746160704 的 success 状态及正式音乐页 / MP3 的实际读取共同核验。
 
 ## 今后每次正式更新的固定流程
 
