@@ -19,7 +19,7 @@
 - 上述恢复点均位于**相同 GitHub 仓库**，只能作为 Git 历史恢复入口；**没有证据表明当前正式 ZIP 已独立保存在作者的电脑或其他位置**。不得擅删旧备份。
 - 若要恢复，**先决定修复单个故障还是回到完整旧版本**；不得无意撤销恢复点以后新增的作品、诗歌/歌词变动或已批准的页面调整。历史备份详见下方各小节。
 
-## 最近一次恢复点详细记录：工作流程 V2 发布前（2026-10-08）
+## 历史恢复点详细记录：工作流程 V2 发布前（2026-10-08）
 - 恢复分支：[ `backup/2026-10-08-before-workflow-v2`](https://github.com/Houyuxinx/houyuxin-site/tree/backup/2026-10-08-before-workflow-v2)。
 - 准确提交：`ca4be01b30a696f50540f02ab54bf644f1979ca0`。
 - 在获得作者正式同意合并 [PR #13](https://github.com/Houyuxinx/houyuxin-site/pull/13) 前创建。通过 GitHub compare 核实与发布前 `main` 完全一致（ahead=0、behind=0）。
