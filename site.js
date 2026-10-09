@@ -22,42 +22,6 @@
     header.classList.add('has-back');document.documentElement.classList.add('has-back-nav');
     header.insertBefore(back,header.querySelector('.global-nav'));
   }
-  var vig=document.createElement('div');vig.className='spot-vignette';var pool=document.createElement('div');pool.className='spot-pool';document.body.appendChild(vig);document.body.appendChild(pool);
-  // The old script requested animation frames FOREVER, even with no pointer input.
-  // Only animate the spotlight while the pointer actually moves.
-  var tx=innerWidth/2,ty=innerHeight/2,x=tx,y=ty,spotFrame=null;
-  // Avoid invalidating the styles of the whole document on pointer movement.
-  // The vignette is static; only move the small light element itself.
-  function moveSpot(){
-    pool.style.transform='translate3d('+(x-260).toFixed(1)+'px,'+(y-260).toFixed(1)+'px,0)';
-  }
-  moveSpot();
-  function spotStep(){
-    spotFrame=null;
-    if(document.hidden||document.body.classList.contains('entry-active')||
-       document.documentElement.classList.contains('site-fade-leaving')||
-       document.documentElement.classList.contains('site-fade-arriving'))return;
-    x+=(tx-x)*.22;y+=(ty-y)*.22;
-    moveSpot();
-    if(Math.abs(tx-x)+Math.abs(ty-y)>1)spotFrame=requestAnimationFrame(spotStep);
-  }
-  function requestSpot(){
-    if(spotFrame===null&&!document.hidden)spotFrame=requestAnimationFrame(spotStep);
-  }
-  document.addEventListener('mousemove',function(e){
-    tx=e.clientX;ty=e.clientY;
-    // Do not revive the old radial spotlight over the four-card homepage.
-    // The page return is handled solely by the dark fade in navigation.js.
-    if(path!=='index.html'&&!document.body.classList.contains('entry-active'))document.body.classList.add('spot-on');
-    requestSpot();
-  },{passive:true});
-  document.documentElement.addEventListener('mouseleave',function(){document.body.classList.remove('spot-on')});
-  document.documentElement.addEventListener('mouseenter',function(){
-    if(path!=='index.html'&&!document.body.classList.contains('entry-active'))document.body.classList.add('spot-on');
-  });
-  document.addEventListener('visibilitychange',function(){
-    if(document.hidden&&spotFrame!==null){cancelAnimationFrame(spotFrame);spotFrame=null;}
-  });
   var obs=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('is-visible');obs.unobserve(e.target)}})},{threshold:.06,rootMargin:'0px 0px -4% 0px'});document.querySelectorAll('.reveal').forEach(function(el){obs.observe(el)});
 
   // Enhance every audio player, including the shared music player and work concept tracks.
