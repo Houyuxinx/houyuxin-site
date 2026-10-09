@@ -1,5 +1,5 @@
 .poetry-page{padding-left:max(16px,calc((100% - 1120px)/2));padding-right:max(16px,calc((100% - 1120px)/2));min-height:100vh;min-height:100svh}
-.poetry-years{position:sticky;top:var(--header-h);z-index:5;display:grid;grid-template-columns:repeat(var(--year-count,9),minmax(0,1fr));align-items:center;margin-top:36px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:rgba(7,8,10,.95);backdrop-filter:blur(12px)}
+.poetry-years{position:sticky;top:var(--header-h);z-index:5;display:grid;grid-template-columns:repeat(var(--year-count,9),minmax(0,1fr));align-items:center;margin-top:36px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--bg);backdrop-filter:none}
 .poetry-years[hidden],.poetry-entry[hidden],.poetry-directory[hidden],.year-group[hidden]{display:none}
 .poetry-year{position:relative;display:flex;align-items:center;justify-content:center;min-height:64px;min-width:0;border:0;padding:0 10px;background:none;color:var(--muted);font-size:14px;font-variant-numeric:tabular-nums;letter-spacing:.03em;cursor:pointer;transition:color .22s}
 .poetry-year::after{content:"";position:absolute;left:50%;bottom:-1px;width:24px;height:1px;background:var(--fg);transform:translateX(-50%) scaleX(0);transition:transform .25s var(--ease)}
