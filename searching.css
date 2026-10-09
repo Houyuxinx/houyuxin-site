@@ -6,28 +6,20 @@
 .search-english{font-size:clamp(11px,1.15vw,14px);letter-spacing:.45em;text-indent:.45em;color:#c0b9ad;margin:0}
 .search-hero-divider{width:34px;height:1px;margin:34px 0 23px;background:#77736d}
 .search-intro{font-size:clamp(14px,1.4vw,17px);letter-spacing:.07em;line-height:1.9;color:#d8d3c9;margin:0}
-.search-index{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
-.search-index a{display:flex;flex-direction:column;gap:8px;align-items:center;justify-content:center;min-height:78px;padding:14px 8px;color:#ddd8cf;font-size:13px;transition:background .25s,color .25s}
-.search-index a+a{border-left:1px solid rgba(255,255,255,.065)}
-.search-index a span{color:var(--muted);font-size:9px;letter-spacing:.12em;white-space:nowrap}
-.search-index a:hover,.search-index a:focus-visible{background:rgba(255,255,255,.055);color:var(--fg)}
-.search-index a:focus-visible,.search-about a:focus-visible,.question-refs a:focus-visible,.record-item a:focus-visible,.contact-mail:focus-visible{outline:1px solid var(--fg);outline-offset:4px}
+.contact-mail:focus-visible{outline:1px solid var(--fg);outline-offset:4px}
+.search-hero + .search-section{border-top:1px solid var(--line)}
 .search-section{display:grid;grid-template-columns:minmax(155px,25%) minmax(0,1fr);gap:clamp(22px,4vw,65px);border-bottom:1px solid var(--line);padding:clamp(52px,7.3vw,112px) 0;scroll-margin-top:calc(var(--header-h) + 24px)}
 .search-section-heading{display:flex;flex-direction:column;gap:16px}
-.section-number{color:var(--muted);font-size:10px;letter-spacing:.15em}
+.section-kicker{color:var(--muted);font-size:10px;letter-spacing:.15em}
 .search-section-heading h2{margin:0;font-weight:500;font-size:clamp(30px,3.9vw,53px);line-height:1.22;letter-spacing:-.055em}
+.search-section-questions .search-section-heading h2{font-size:clamp(28px,2.55vw,40px);line-height:1.4;letter-spacing:-.035em}
 .search-section-body{width:100%;min-width:0;max-width:820px}
 .search-section-body p{margin:0 0 20px;color:#cbc7bf;font-size:clamp(15px,1.2vw,17px);line-height:1.95}
 .search-about .search-lead{font-size:clamp(20px,2.1vw,29px);line-height:1.75;color:#f0eee8;letter-spacing:-.02em;margin-bottom:28px}
 .search-about p:last-child,.search-now p:last-child{margin-bottom:0}
-.search-about a{text-decoration:underline;text-decoration-color:rgba(240,238,232,.27);text-underline-offset:5px}
-.search-about a:hover{color:#fff;text-decoration-color:currentColor}
 .search-section-body .search-note{font-size:13px;color:var(--muted);margin-bottom:26px}
 .question-entry{padding:27px 0 30px;border-top:1px solid var(--line)}
-.question-entry p{font-size:clamp(18px,2.1vw,27px);line-height:1.7;letter-spacing:-.015em;color:#ebe7df;margin-bottom:17px}
-.question-refs{display:flex;align-items:center;gap:10px 24px;flex-wrap:wrap}
-.question-refs a{font-size:12px;color:#a6a199;line-height:1.8;transition:color .2s}
-.question-refs a:hover{color:#fff}
+.question-entry p{font-size:clamp(18px,2.1vw,27px);line-height:1.7;letter-spacing:-.015em;color:#ebe7df;margin-bottom:0}
 .search-quote{margin:clamp(30px,5vw,65px) 0 0;padding:0 0 0 23px;border-left:1px solid #8b8377}
 .search-quote p{color:#e8e2d7;font-size:clamp(20px,2.6vw,33px);line-height:1.7;letter-spacing:.03em;margin:0 0 9px}
 .search-quote cite{font-size:11px;color:var(--muted);font-style:normal;letter-spacing:.06em}
@@ -42,8 +34,13 @@
 .record-item:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
 .record-item-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:11px}
 .record-item h4{margin:0;font-size:clamp(17px,1.55vw,21px);line-height:1.55;font-weight:500;letter-spacing:-.025em}
-.record-external{font-size:14px;color:#807970;margin-left:6px;white-space:nowrap}
-.record-item a:hover{text-decoration:underline;text-underline-offset:5px}
+.record-details{display:grid;gap:12px}
+.record-detail{display:grid;grid-template-columns:42px minmax(0,1fr);gap:14px;align-items:baseline}
+.record-type{font-size:11px;letter-spacing:.08em;white-space:nowrap;font-weight:500}
+.record-type--creation{color:#c6c2b8}
+.record-type--award{color:#ddc5a6}
+.record-type--performance{color:#aebfcb}
+.record-type--selection{color:#b9c5b5}
 .record-role{font-size:11px;color:#a8a39b;line-height:1.7}
 .search-section-body .record-item p{font-size:14px;line-height:1.95;color:#bab6ae;margin:0}
 .search-section-body .record-footnote{color:#88847c;font-size:12px;margin:18px 0 0}
@@ -68,14 +65,9 @@
 .search-hero h1{font-size:clamp(57px,14vw,84px);letter-spacing:-.07em}
 .search-english{letter-spacing:.32em;text-indent:.32em}
 .search-intro{font-size:13px;letter-spacing:.01em}
-.search-index{grid-template-columns:repeat(3,minmax(0,1fr))}
-.search-index a:nth-child(4),.search-index a:nth-child(5){border-top:1px solid var(--line)}
-.search-index a:nth-child(4){border-left:0}
-.search-index a:nth-child(5){grid-column:span 2}
-.search-index a{min-height:66px;font-size:12px;padding:9px 2px;gap:6px}
-.search-index a span{font-size:7px;letter-spacing:0}
 .search-section{padding:51px 0;scroll-margin-top:calc(var(--header-h) + 14px)}
 .search-section-heading h2{font-size:35px}
+.search-section-questions .search-section-heading h2{font-size:30px}
 .search-about .search-lead{font-size:21px}
 .question-entry p{font-size:19px}
 .record-year{grid-template-columns:65px minmax(0,1fr);gap:13px;padding:27px 0 22px}
@@ -85,7 +77,8 @@
 .record-item h4{font-size:17px}
 .search-section-body .record-item p{font-size:13px;line-height:1.85}
 .record-role{font-size:10px}
+.record-detail{grid-template-columns:36px minmax(0,1fr);gap:9px}
+.record-type{font-size:10px}
 .contact-mail{font-size:clamp(21px,6.2vw,33px)}
 }
-@media(max-width:375px){.search-index a{font-size:11px}.search-index a span{font-size:6.5px}.record-year{grid-template-columns:60px minmax(0,1fr);gap:11px}}
-@media(prefers-reduced-motion:reduce){.search-index a,.question-refs a{transition:none}}
+@media(max-width:375px){.record-year{grid-template-columns:60px minmax(0,1fr);gap:11px}}
