@@ -1,12 +1,31 @@
 # ECHYOX｜长期更新日志
 
-## 当前状态速览（截至 2026-10-08；后续请实时核对 main 与 PR）
-- **最新正式合并**：[PR #13](https://github.com/Houyuxinx/houyuxin-site/pull/13) 已获作者同意，正式保存 GPT/Work 协作流程 V2，提交 `87635471316c80e4e4b55ab7e8d2d258cda08185`，GitHub Pages [#37804092035](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37804092035) `success`。**这是纯文档更新，不是新网页设计。**
-- **最新已发布的网页功能修改**：[PR #11](https://github.com/Houyuxinx/houyuxin-site/pull/11) 歌词滚动条只在使用时出现、取消点击歌词的矩形框、核实歌词居中；GitHub Pages [#37800113203](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37800113203) `success`。
-- **更早已完成**：PR #8 手机文字清晰度/诗歌年份滑动/返回渐隐；PR #6 全屏文学文字入场和全站暗场转场；PR #3 新增歌曲《一个哑谜》。均有下方发布记录。
-- **正在审核**：七份接手文件的 V3 分工与状态精简在独立 `docs/2026-10-08-handover-v3-clarity` 分支准备，**未合并、未上线**；审核和是否正式保存由作者决定。
-- **关键解释**：下方大量标题中的「待审核/未上线」是**当时迭代阶段的原始状态**。后来该功能可能已经通过 PR 合并并发布，**不能仅凭旧章节标题推断现在未完成，也不能删除这些创作过程记录**。先看本索引与实时 GitHub PR/Actions。
-- **真实仍待单独确认的事项**：GitHub Pages 后台完整设置、正式分支强制保护、仓库外 ZIP 备份、作者尚未批准的备份分支精简方案。未经授权均不执行。
+## 当前状态速览（制作 V4 草稿时核实：2026-10-10；必须实时复查）
+- **网站已进入稳定维护期**。最近发布：[PR #28](https://github.com/Houyuxinx/houyuxin-site/pull/28)，正式 `main` `33109612fbe40525ed60fb0781a9a9e13b0bb7d0`，GitHub Pages [#37977744036](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37977744036) `completed/success`。这是 2026-10-10 的快照，而非对今后主线的永久保证。
+- **最近完成**：PR #14 七份维护文档 V3 已合并；PR #20 移除鼠标跟随舞台光圈；PR #21 重构 BECOMING；PR #22/24 更新并统一四栏目标语；PR #25 将寻找自己的页面正式链接调整为 `becoming.html`（旧 `searching.html` 兼容跳转）；PR #26 统一诗歌与戏剧、音乐目录页的外层宽度。每项的发布日志以各 PR 为准。
+- **旧任务已处理**：[PR #23](https://github.com/Houyuxinx/houyuxin-site/pull/23) 被 PR #24 取代，已关闭但未合并；[Issue #4](https://github.com/Houyuxinx/houyuxin-site/issues/4) 的抽象艺术入场提案被文学文字场取代，已以 `not planned` 关闭。**[Issue #2](https://github.com/Houyuxinx/houyuxin-site/issues/2) 仍开放**，涉及发布配置、分支保护和独立备份等安全待办。
+- **未核实或未完成事项**：仓库外独立备份是否建立、Settings → Pages 完整设置、`main` 强制保护配置及实际浏览器真机全量回归，需要另行核实；不能根据 GitHub Pages 的成功状态自行宣称全部完成。
+- **关于旧章节**：以下保留早期设计与 PR 草稿阶段的「待审核/未上线」原始文字，它们只说明**写作当时**的状态。后续正式合并以当前速览、PR 与 GitHub Actions 为准。不得因过期的标题撤销已上线的成果，也不要擅自清理历史。
+
+## 2026-10-10｜V4 整理期间的全站审计与音频规则（历史记录）
+- 对正式 `main` 的文件树、页面静态引用、脚本与媒体路径进行了只读检查：123 个文件；全部 11 个 HTML 页面引用的站内静态文件均存在；五部剧本 53 张试读 WebP、五份试读 PDF、四首音乐和作品页音频路径均可在仓库中核实。检查**不能替代线上实际点击、完整加载和 Safari 实测**。
+- **已修复的三项小修**：旧诗歌 CSS 查询标识、`entrance.js` 的 70/90 注释以及本地预览工具的早期提示，都在 [PR #28](https://github.com/Houyuxinx/houyuxin-site/pull/28) 修正并部署成功。**仍不处理的可选项**：一张《猛犸》约 4.3 MiB 的 PNG、大部分页面缺独立分享/搜索描述；未有实测故障，不擅自动图片或增加 SEO。
+- **作者最终确认**：音乐及作品音频应由访客手动播放，单曲循环默认关闭、访客自行开启/关闭。现有播放器已符合要求，**不修改代码**。
+- 独立《ECHYOX AI 接手与实用提示词手册》已有根据审计拟定的 V4 待审核 DOCX；它不是 GitHub 仓库里的文件，也不代表已与本次 GitHub 维护文档自动发布同步。
+
+## 2026-10-10｜全站维护小修与旧事项收尾（已完成）
+- [PR #28](https://github.com/Houyuxinx/houyuxin-site/pull/28)：同步诗歌 CSS 缓存标识、入场文字 90 条注释与本地预览提示。正式提交 `33109612fbe40525ed60fb0781a9a9e13b0bb7d0`，Pages [#37977744036](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37977744036) 构建、部署、状态报告均成功。发布前恢复点 `backup/2026-10-10-before-audit-maintenance-fixes` → `512109c0e559edf7fbca021c1fd9b513d88465d8`。
+- 作者授权将过期草稿 PR #23 标记为「由 PR #24 取代」并关闭；旧主视觉 Issue #4 标记为「由文学文字入场方案取代」，以 `not planned` 关闭。**均保留历史，不删除内容或旧分支。**
+
+## 2026-10-10｜建站阶段收尾与已发布里程碑（均已合并）
+- [PR #14](https://github.com/Houyuxinx/houyuxin-site/pull/14)：维护说明 V3 正式保存，提交 `f6cb225553f41078ab65a000ea21f814f518c02d`。
+- [PR #20](https://github.com/Houyuxinx/houyuxin-site/pull/20)：移除现存鼠标跟随的舞台光圈；相应主线提交 `5b093675e6fcbf092ea9d432a614e8ced4856283`，Pages [#37945961122](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37945961122) 成功。
+- [PR #21](https://github.com/Houyuxinx/houyuxin-site/pull/21)：BECOMING「寻找自己」五部分重构、2026—2019 时间线、作者选定诗句；正式提交 `c5cc0dc96b91bddf6ea15e1c3f80c3a1da4dd444`，Pages [#37958948248](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37958948248) 成功。
+- [PR #22](https://github.com/Houyuxinx/houyuxin-site/pull/22)：戏剧、诗歌、音乐三栏目标语同步，提交 `956313730b4ac52e0fc9f0b83f88279a9b705f7b`，Pages [#37961303269](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37961303269) 成功。
+- [PR #24](https://github.com/Houyuxinx/houyuxin-site/pull/24)：作者最终确认四句标语及句号，提交 `dd11ea5f35e276e0a807a276c7401d1c0d000613`，Pages [#37963086310](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37963086310) 成功。
+- [PR #25](https://github.com/Houyuxinx/houyuxin-site/pull/25)：浏览器标签纯中文、正式 `becoming.html`、旧 `searching.html` 跳转兼容；提交 `24e319d9a994562ab05f6a9a0ef33f5c5cd37e8b`，Pages [#37965128380](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37965128380) 成功。
+- [PR #26](https://github.com/Houyuxinx/houyuxin-site/pull/26)：仅修改 `poetry.css` 统一诗歌目录的外层宽度，提交 `512109c0e559edf7fbca021c1fd9b513d88465d8`，Pages [#37969318494](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37969318494) 成功，作者已确认上线后验收。
+- 以上均是代码与 GitHub Pages 的发布记录；对于未由工具实际操作过的 Safari/手机交互，不能把部署 success 写成真机验收通过。
 
 ## 2026-10-08｜长期协作规则 V2 已正式保存（PR #13）
 - 作者明确同意将已讨论的协作规则写入仓库。PR #13 只调整 `AGENTS.md`、`START_HERE.md`、`PROJECT_VISION.md`、`SITE_STRUCTURE.md`、`BACKUP_AND_RECOVERY.md`，保留所有站内作品及原有页面代码。
@@ -15,7 +34,8 @@
 - 发布前恢复分支 `backup/2026-10-08-before-workflow-v2`，准确提交 `ca4be01b30a696f50540f02ab54bf644f1979ca0`，与发布前 main 完全一致；这是同仓库恢复点，不是异地备份。详见 [PR #13](https://github.com/Houyuxinx/houyuxin-site/pull/13)。
 - 工具未进行正式网站上的手机 Safari 实测；此轮纯文档更新不代表网站功能测试。
 
-## 2026-10-08｜维护文件 V3 整理（仅草稿，待作者审核）
+## 2026-10-08｜维护文件 V3 整理（开发时为草稿，后来经 PR #14 合并）
+> 本节保留 V3 草稿准备时的原始描述；其后作者已批准并经 [PR #14](https://github.com/Houyuxinx/houyuxin-site/pull/14) 合并发布。下面的“未合并”属于历史叙述。
 - 为解决七份文件重复、`START_HERE.md` 被历史记录撑长、部分过时发布信息、`PROJECT_VISION.md` 中字面 `\\n` 排版残留，建立独立整理分支 `docs/2026-10-08-handover-v3-clarity`。
 - 本次拟让 `START_HERE.md` 只负责接手；`AGENTS.md` 负责工作规则；`PROJECT_VISION.md` 负责审美；`SITE_STRUCTURE.md` 负责文件地图；`CHANGELOG.md` 保留完整历史并增加当前状态索引；`BACKUP_AND_RECOVERY.md` 加最新恢复点索引；`README.md` 作项目概览并完整保存 V13。
 - **历史正文不删除、不改写**；当前正式 `main` 在制作本草稿时为 `87635471316c80e4e4b55ab7e8d2d258cda08185`。此次并未修改网站网页、作品、媒体、域名、备份分支或 GitHub 配置，需作者亲自审核后才可合并。
@@ -319,3 +339,33 @@
 2. 逐步请作者确认审美与内容审核的边界。
 3. 添加页面发布前的实际检查，并考虑 GitHub main 分支保护。
 4. 如有必要，再改善新作品的录入方式；当前不推倒重做。
+
+
+## PR #21｜BECOMING 重构期间的历史草稿记录（原文归档；已发布，不是待审核任务）
+> 以下由旧 `SITE_STRUCTURE.md` 搬入 `CHANGELOG.md`。其中「待审核/未上线」「本轮」均指开发时的阶段状态。最终成果已通过 PR #21、#24、#25 上线；此处保留原始记录供 AI 核对演变过程，不应用作当前规则。
+
+## 「寻找自己」版面调整（2026-10-09 待审核，未上线）
+- 本次仅在独立 PR 中提出重构，不代表 `main` 已正式更新；以当前 PR 审核与合并状态为准。
+- 保留中文栏目名「寻找自己」，英文标题拟为 `BECOMING`；主页第四张卡片改相同英文标题和引言，但沿用其他三卡片相同 `.door` 结构、悬停与转场。
+- 页面按「关于我 / 创作中的问题 / 经过 / 此刻 / 联系」纵向阅读；「经过」将作者提供的主要创作及演出活动按事件真实发生年份倒序排列（2026→2019），同一作品历年成果分列各年，不把旁听讲座和学术论坛混入主时间轴。
+- 原邮箱 `hyxtheatre@163.com` 保留；五部现有戏剧详情页和诗歌、音乐栏目均保留在网站其他部分，但“寻找自己”正文不再设置关联作品超链接或可点击的页内导航；只保留联系邮箱的链接。未上传文学作品全集、歌词或私人媒体。
+- 本次只调整 `searching.html`、`searching.css`、`index.html` 与本说明；不修改共享导航、全站动画、其他栏目正文、音乐、剧照或试读文件。预览与未测项目以对应 PR 为准。
+
+### PR #21 二轮调整（2026-10-09，待审核 / 未上线）
+- 「创作中的问题」修改为「创作中关注的部分问题」。删除该页正文所有指向作品、诗歌和音乐的跳转及问题下的对应作品名称；移除页内五项跳转菜单，保留全站通用顶部导航和原邮箱链接。
+- 移除机械的 01、02、03 等段落序号，只保留克制的英文辅助标题。保留的 2026—2019 是作品活动的实际年份，而非段落编号。
+- 按作者确认的真实获奖时间重新归档：2025 年获得《面向自我的陈述》“戏剧中国”2024年度最佳剧本奖；2024 年获得《猛犸》《海边有一栋倾斜的房子》“戏剧中国”2023年度潜力剧本奖。奖项中“年度”仍按正式称谓显示。
+- 将同一作品同一年度的「创作 / 获奖 / 展演 / 入选」记录收在同一个作品标题下，使用低饱和度的浅色文字区分类别；不增加彩色大卡片，不改变主页四卡片、其他栏目或站内过场动画。
+
+### PR #21 第三轮细节修改（2026-10-10，待审核 / 未上线）
+- 依据作者五张截图：移除「寻找自己」首屏的 `HOU YUXIN / 侯宇鑫` 重复署名，微调中英文主标题与引言的垂直排版；移除「经过」区多余的 `2026 — 2019 / 倒序` 提示和末尾解释性脚注。
+- 删除获奖记录句首多余的 `2025年` 一处与 `2024年` 两处，**保留**“戏剧中国”奖项官方名称内部的 `2024年度` 与 `2023年度`；这不会改变奖项归档年份。
+- 删除本页两处「金刺猬大学生戏剧节」名称的引号；奖项“优秀剧目奖”名称原样保留。
+- 2026-10-10 作者从文学作品全集的十句原诗候选中确认「另外的路建在海上」（《语言方式》）作为正式标语，已在同一 PR 中同步替换主页第四卡片与内页引言，未改动其他三张卡片及作品原文。
+- 本轮仅修改 `searching.html`、`searching.css` 和本说明，无其他作品、全站导航、播放、动画、域名或公开素材变化。
+
+## 2026-10-10｜BECOMING 页面网址一致性调整
+- 四卡片中的「寻找自己」仍显示 `BECOMING` 英文标识，页面内的 BECOMING 字样与文学内容保持不变；**浏览器标签**与其他栏目统一采用 `寻找自己 — 侯宇鑫`。
+- 正式主地址统一为 `/becoming.html`。主页第四卡片及 `site.js` 通用导航指向新地址；导航自动高亮基于 `becoming` 路径识别。
+- 原 `/searching.html` 保留为轻量兼容跳转，书签和外部旧链接自动前往 `/becoming.html`，尽可能延续 `?查询` 和 `#片段`。这是 URL 兼容处理，不涉及 DNS、域名、CSS 动画或作品内容。
+- 本轮只修改两个网页文件的链接、一个标题、通用导航中的对应路径和活动判断，并同步更新当前说明与 `PROJECT_VISION.md` 的现行英文栏目名；其他栏目和媒体不变。发布记录详见本轮 PR。
