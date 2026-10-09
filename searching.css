@@ -68,7 +68,10 @@
 .search-hero h1{font-size:clamp(57px,14vw,84px);letter-spacing:-.07em}
 .search-english{letter-spacing:.32em;text-indent:.32em}
 .search-intro{font-size:13px;letter-spacing:.01em}
-.search-index{grid-template-columns:repeat(5,minmax(0,1fr))}
+.search-index{grid-template-columns:repeat(3,minmax(0,1fr))}
+.search-index a:nth-child(4),.search-index a:nth-child(5){border-top:1px solid var(--line)}
+.search-index a:nth-child(4){border-left:0}
+.search-index a:nth-child(5){grid-column:span 2}
 .search-index a{min-height:66px;font-size:12px;padding:9px 2px;gap:6px}
 .search-index a span{font-size:7px;letter-spacing:0}
 .search-section{padding:51px 0;scroll-margin-top:calc(var(--header-h) + 14px)}
