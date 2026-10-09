@@ -1,5 +1,5 @@
 /* ECHYOX / PR #6 — dynamic literary orbit, homepage entrance.
-   No assets or full manuscripts. The already-curated 70 spans supply the words.
+   No assets or full manuscripts. The already-curated 90 spans supply the words.
    The display remains usable if animation cannot run or is reduced. */
 (function () {
   'use strict';

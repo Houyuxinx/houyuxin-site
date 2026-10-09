@@ -98,7 +98,7 @@ def main():
     print('手机与电脑连接同一 Wi-Fi，用 Safari 打开以下地址：', flush=True)
     for address in local_addresses():
         print('http://%s:%s/' % (address, port), flush=True)
-    print('重点检查：/poetry.html 和 /work-all-at-once.html', flush=True)
+    print('重点检查：主页四个入口、/theatre.html、/poetry.html、/music.html、/becoming.html 及本次修改的页面', flush=True)
     print('这是本地预览，不上传作品。按 Ctrl+C 或关闭此窗口停止。', flush=True)
     if not args.no_open:
         webbrowser.open(desktop)
