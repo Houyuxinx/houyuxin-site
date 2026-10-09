@@ -1,17 +1,21 @@
 # ECHYOX｜长期更新日志
 
 ## 当前状态速览（制作 V4 草稿时核实：2026-10-10；必须实时复查）
-- **网站已进入稳定维护期**。最近正式发布：[PR #26](https://github.com/Houyuxinx/houyuxin-site/pull/26)，`main` `512109c0e559edf7fbca021c1fd9b513d88465d8`；GitHub Pages [#37969318494](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37969318494) `completed/success`。这是一份有日期的**核查快照**，不是对未来主线的永久保证。
+- **网站已进入稳定维护期**。最近发布：[PR #28](https://github.com/Houyuxinx/houyuxin-site/pull/28)，正式 `main` `33109612fbe40525ed60fb0781a9a9e13b0bb7d0`，GitHub Pages [#37977744036](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37977744036) `completed/success`。这是 2026-10-10 的快照，而非对今后主线的永久保证。
 - **最近完成**：PR #14 七份维护文档 V3 已合并；PR #20 移除鼠标跟随舞台光圈；PR #21 重构 BECOMING；PR #22/24 更新并统一四栏目标语；PR #25 将寻找自己的页面正式链接调整为 `becoming.html`（旧 `searching.html` 兼容跳转）；PR #26 统一诗歌与戏剧、音乐目录页的外层宽度。每项的发布日志以各 PR 为准。
-- **未合并草稿**：[PR #23](https://github.com/Houyuxinx/houyuxin-site/pull/23) 为已被 PR #24 正式成品取代的旧标语提案；作者未单独批准关闭，暂不修改。**历史未关闭 Issue**：[Issue #4](https://github.com/Houyuxinx/houyuxin-site/issues/4) 为已由后续主视觉取代的早期概念；[Issue #2](https://github.com/Houyuxinx/houyuxin-site/issues/2) 继续保留为发布配置、分支保护、独立备份等安全待办。
+- **旧任务已处理**：[PR #23](https://github.com/Houyuxinx/houyuxin-site/pull/23) 被 PR #24 取代，已关闭但未合并；[Issue #4](https://github.com/Houyuxinx/houyuxin-site/issues/4) 的抽象艺术入场提案被文学文字场取代，已以 `not planned` 关闭。**[Issue #2](https://github.com/Houyuxinx/houyuxin-site/issues/2) 仍开放**，涉及发布配置、分支保护和独立备份等安全待办。
 - **未核实或未完成事项**：仓库外独立备份是否建立、Settings → Pages 完整设置、`main` 强制保护配置及实际浏览器真机全量回归，需要另行核实；不能根据 GitHub Pages 的成功状态自行宣称全部完成。
 - **关于旧章节**：以下保留早期设计与 PR 草稿阶段的「待审核/未上线」原始文字，它们只说明**写作当时**的状态。后续正式合并以当前速览、PR 与 GitHub Actions 为准。不得因过期的标题撤销已上线的成果，也不要擅自清理历史。
 
 ## 2026-10-10｜全站审计与音乐循环规则（V4 草稿，未正式合并）
 - 对正式 `main` 的文件树、页面静态引用、脚本与媒体路径进行了只读检查：123 个文件；全部 11 个 HTML 页面引用的站内静态文件均存在；五部剧本 53 张试读 WebP、五份试读 PDF、四首音乐和作品页音频路径均可在仓库中核实。检查**不能替代线上实际点击、完整加载和 Safari 实测**。
-- 发现需要单独评估的小项：`poetry.html` 引用的 CSS 缓存版本标识未随 PR #26 更新；文学入场 JS 的 70 条注释与实际 90 条不一致；本地预览工具的重点提示过期；一张《猛犸》图片约 4.3 MiB；大多数页面缺少独立的分享/搜索描述。均为**建议**，并未在本轮修改网页或代码。
+- **已修复的三项小修**：旧诗歌 CSS 查询标识、`entrance.js` 的 70/90 注释以及本地预览工具的早期提示，都在 [PR #28](https://github.com/Houyuxinx/houyuxin-site/pull/28) 修正并部署成功。**仍不处理的可选项**：一张《猛犸》约 4.3 MiB 的 PNG、大部分页面缺独立分享/搜索描述；未有实测故障，不擅自动图片或增加 SEO。
 - **作者最终确认**：音乐及作品音频应由访客手动播放，单曲循环默认关闭、访客自行开启/关闭。现有播放器已符合要求，**不修改代码**。
-- 独立《ECHYOX AI 接手与实用提示词手册》将依据全站审计调整；该 DOCX 不会自动入库，也不代表此 V4 草稿已生效。
+- 独立《ECHYOX AI 接手与实用提示词手册》已有根据审计拟定的 V4 待审核 DOCX；它不是 GitHub 仓库里的文件，也不代表已与本次 GitHub 维护文档自动发布同步。
+
+## 2026-10-10｜全站维护小修与旧事项收尾（已完成）
+- [PR #28](https://github.com/Houyuxinx/houyuxin-site/pull/28)：同步诗歌 CSS 缓存标识、入场文字 90 条注释与本地预览提示。正式提交 `33109612fbe40525ed60fb0781a9a9e13b0bb7d0`，Pages [#37977744036](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37977744036) 构建、部署、状态报告均成功。发布前恢复点 `backup/2026-10-10-before-audit-maintenance-fixes` → `512109c0e559edf7fbca021c1fd9b513d88465d8`。
+- 作者授权将过期草稿 PR #23 标记为「由 PR #24 取代」并关闭；旧主视觉 Issue #4 标记为「由文学文字入场方案取代」，以 `not planned` 关闭。**均保留历史，不删除内容或旧分支。**
 
 ## 2026-10-10｜建站阶段收尾与已发布里程碑（均已合并）
 - [PR #14](https://github.com/Houyuxinx/houyuxin-site/pull/14)：维护说明 V3 正式保存，提交 `f6cb225553f41078ab65a000ea21f814f518c02d`。
