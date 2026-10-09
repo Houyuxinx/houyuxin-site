@@ -9,7 +9,6 @@
   var header = document.querySelector('.site-head');
   if (!gate || !enter || !home) return;
 
-  var key = 'echyox-entry-opened-v1';
   var reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
   // Optional local Safari performance readout: ?entry=1&perf=1
   // Never visible on the ordinary site without that query parameter.
@@ -26,9 +25,9 @@
     perfPanel.textContent = '流畅度检测中…';
     gate.appendChild(perfPanel);
   }
-  // The brand wordmark uses this query to *deliberately* revisit the opening,
-  // even after someone has entered during the same browser session.
-  var forceIntro = new URLSearchParams(window.location.search).get('entry') === '1';
+  // A direct visit or reload of the homepage always starts at the literary gate.
+  // Internal Home / Back links explicitly use #entry-revealed to skip the gate.
+  // The brand's ?entry=1 link still opens the gate as before.
   var opening = false;
   var entered = false;
   var finishTimer = null;
@@ -64,14 +63,6 @@
     };
   });
 
-  function remember() {
-    try { return window.sessionStorage.getItem(key) === 'yes'; }
-    catch (error) { return false; }
-  }
-  function save() {
-    try { window.sessionStorage.setItem(key, 'yes'); }
-    catch (error) { /* Session storage may be disabled. The link still works. */ }
-  }
   function behindGate(blocked) {
     home.inert = blocked;
     if (header) header.inert = blocked;
@@ -302,7 +293,6 @@
     document.body.classList.remove('entry-opening');
     gate.inert = true;
     gate.setAttribute('aria-hidden', 'true');
-    save();
     if (deferHeavyCleanup) scheduleGateCleanup();
     else finishGateCleanup();
     if (moveFocus) {
@@ -311,7 +301,7 @@
     }
   }
 
-  if (location.hash === '#entry-revealed' || (!forceIntro && remember())) {
+  if (location.hash === '#entry-revealed') {
     reveal(false);
   } else {
     behindGate(true);
@@ -340,7 +330,7 @@
     if (location.hash === '#entry-revealed') reveal(false);
   });
   window.addEventListener('pageshow', function () {
-    if (!forceIntro && remember()) reveal(false);
+    if (location.hash === '#entry-revealed') reveal(false);
     else if (!entered && !gate.hidden) startMotion();
   });
   window.addEventListener('resize', function () {
