@@ -12,7 +12,7 @@
   var path=(location.pathname.split('/').pop()||'index.html');
   var active=path.indexOf('work-')===0?'theatre':path.replace('.html','');
   var header=document.querySelector('.site-head');
-  if(header){header.innerHTML='<a class="brand-link" href="index.html?entry=1">侯宇鑫<small>HOU YUXIN</small></a><nav class="global-nav"><a href="index.html#entry-revealed"'+(active==='index'?' class="active"':'')+'>主页</a><a href="theatre.html"'+(active==='theatre'?' class="active"':'')+'>戏剧</a><a href="poetry.html"'+(active==='poetry'?' class="active"':'')+'>诗歌</a><a href="music.html"'+(active==='music'?' class="active"':'')+'>音乐</a><a href="searching.html"'+(active==='searching'?' class="active"':'')+'>寻找自己</a></nav>'}
+  if(header){header.innerHTML='<a class="brand-link" href="index.html?entry=1">侯宇鑫<small>HOU YUXIN</small></a><nav class="global-nav"><a href="index.html#entry-revealed"'+(active==='index'?' class="active"':'')+'>主页</a><a href="theatre.html"'+(active==='theatre'?' class="active"':'')+'>戏剧</a><a href="poetry.html"'+(active==='poetry'?' class="active"':'')+'>诗歌</a><a href="music.html"'+(active==='music'?' class="active"':'')+'>音乐</a><a href="becoming.html"'+(active==='becoming'?' class="active"':'')+'>寻找自己</a></nav>'}
   if(path!=='index.html'&&header){
     var back=document.createElement('a');back.className='back-link';
     var destination=path.indexOf('work-')===0?'返回戏剧':'返回首页';
