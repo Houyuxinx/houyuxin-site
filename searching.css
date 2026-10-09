@@ -1,8 +1,7 @@
 /* BECOMING — Searching page only; keep global typography, navigation and transitions untouched. */
 .searching-page{max-width:1480px;margin:0 auto;padding-bottom:clamp(90px,12vw,170px)}
-.search-hero{min-height:clamp(330px,49svh,520px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:12px 16px 76px}
-.search-overline{font-size:10px;letter-spacing:.22em;color:var(--muted)}
-.search-hero h1{font-weight:500;font-size:clamp(62px,10vw,136px);line-height:1.16;letter-spacing:-.075em;margin:22px 0 16px}
+.search-hero{min-height:clamp(310px,42svh,470px);display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:clamp(15px,3vw,35px) 16px clamp(44px,5vw,66px)}
+.search-hero h1{font-weight:500;font-size:clamp(62px,10vw,136px);line-height:1.16;letter-spacing:-.075em;margin:0 0 20px}
 .search-english{font-size:clamp(11px,1.15vw,14px);letter-spacing:.45em;text-indent:.45em;color:#c0b9ad;margin:0}
 .search-hero-divider{width:34px;height:1px;margin:34px 0 23px;background:#77736d}
 .search-intro{font-size:clamp(14px,1.4vw,17px);letter-spacing:.07em;line-height:1.9;color:#d8d3c9;margin:0}
@@ -23,9 +22,8 @@
 .search-quote{margin:clamp(30px,5vw,65px) 0 0;padding:0 0 0 23px;border-left:1px solid #8b8377}
 .search-quote p{color:#e8e2d7;font-size:clamp(20px,2.6vw,33px);line-height:1.7;letter-spacing:.03em;margin:0 0 9px}
 .search-quote cite{font-size:11px;color:var(--muted);font-style:normal;letter-spacing:.06em}
-.record-intro{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin-bottom:14px;flex-wrap:wrap}
+.record-intro{margin-bottom:14px}
 .record-intro p{color:#e8e4db;font-size:16px;margin:0}
-.record-intro span{color:var(--muted);font-size:11px;letter-spacing:.1em;font-variant-numeric:tabular-nums}
 .record-year{display:grid;grid-template-columns:100px minmax(0,1fr);gap:clamp(16px,3vw,38px);border-top:1px solid var(--line);padding:37px 0 29px}
 .year-label h3{margin:0 0 16px;font-weight:500;font-size:clamp(26px,3.1vw,41px);line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.035em}
 .year-label span{display:block;height:1px;width:34px;background:#8e877b}
@@ -43,7 +41,6 @@
 .record-type--selection{color:#b9c5b5}
 .record-role{font-size:11px;color:#a8a39b;line-height:1.7}
 .search-section-body .record-item p{font-size:14px;line-height:1.95;color:#bab6ae;margin:0}
-.search-section-body .record-footnote{color:#88847c;font-size:12px;margin:18px 0 0}
 .search-now{max-width:720px}
 .search-now p:first-child{color:#e8e4dd;font-size:clamp(18px,2vw,24px)}
 .search-section-contact{border-bottom:0;padding-bottom:0}
@@ -52,7 +49,7 @@
 .contact-mail span{font-size:.56em;color:#979084;vertical-align:top;margin-left:8px}
 .contact-mail:hover{color:#fff}
 @media(max-width:900px){
-.search-hero{min-height:clamp(290px,42svh,430px);padding-bottom:54px}
+.search-hero{min-height:clamp(280px,39svh,400px);padding-bottom:48px}
 .search-section{grid-template-columns:1fr;gap:24px;padding:58px 0}
 .search-section-heading{gap:8px}
 .search-section-heading h2{font-size:clamp(32px,6vw,45px)}
@@ -60,8 +57,7 @@
 }
 @media(max-width:620px){
 .searching-page{padding-left:18px;padding-right:18px;padding-bottom:80px}
-.search-hero{min-height:300px;padding:20px 3px 42px}
-.search-overline{font-size:9px}
+.search-hero{min-height:278px;padding:18px 3px 40px}
 .search-hero h1{font-size:clamp(57px,14vw,84px);letter-spacing:-.07em}
 .search-english{letter-spacing:.32em;text-indent:.32em}
 .search-intro{font-size:13px;letter-spacing:.01em}
