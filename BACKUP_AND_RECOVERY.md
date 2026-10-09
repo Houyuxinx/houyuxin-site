@@ -9,8 +9,9 @@
 3. **恢复网站前，先核实问题和部署配置，不能为了恢复而直接覆盖 main；应在新分支准备恢复提案，让站长确认。**
 
 ## 恢复点速查（制作 V4 草稿时核实：2026-10-10）
-- **当前正式代码**：实时以 GitHub `main` 为准；本次核实时主线 `512109c0e559edf7fbca021c1fd9b513d88465d8`（PR #26），[GitHub Pages #37969318494](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37969318494) `success`。**恢复点分支保存的是某次发布前的旧代码，而非最新的当前发布版**。
-- **最新发布前恢复点**：[backup/2026-10-10-before-poetry-width-unify](https://github.com/Houyuxinx/houyuxin-site/tree/backup/2026-10-10-before-poetry-width-unify) → `24e319d9a994562ab05f6a9a0ef33f5c5cd37e8b`（PR #26 发布前），当时与 main 比对一致。
+- **当前正式代码（2026-10-10 核实快照）**：实际以 GitHub `main` 为准；本次为 `33109612fbe40525ed60fb0781a9a9e13b0bb7d0`（PR #28），[GitHub Pages #37977744036](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37977744036) 成功。历史恢复分支指向发布前旧代码，不代表最新正式版。
+- **最近一次已完成发布前的恢复点**：[backup/2026-10-10-before-audit-maintenance-fixes](https://github.com/Houyuxinx/houyuxin-site/tree/backup/2026-10-10-before-audit-maintenance-fixes) → `512109c0e559edf7fbca021c1fd9b513d88465d8`（PR #28 发布前），合并前 compare 对当时 `main` 为 identical。
+- **诗歌宽度统一发布前**：`backup/2026-10-10-before-poetry-width-unify` → `24e319d9a994562ab05f6a9a0ef33f5c5cd37e8b`（PR #26 发布前）。
 - **网址更名发布前**：`backup/2026-10-10-before-becoming-url` → `dd11ea5f35e276e0a807a276c7401d1c0d000613`（PR #25 发布前）。
 - **四栏目标语最终统一前**：`backup/2026-10-10-before-four-slogans-final` → `956313730b4ac52e0fc9f0b83f88279a9b705f7b`（PR #24 发布前）。
 - **戏剧/音乐/诗歌词语同步前**：`backup/2026-10-10-before-slogan-refresh` → `c5cc0dc96b91bddf6ea15e1c3f80c3a1da4dd444`（PR #22 发布前）。
