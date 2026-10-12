@@ -72,83 +72,61 @@ body.music-open .page{height:100vh;height:100svh;padding:calc(var(--header-h) + 
   .lyrics{font-size:16px}
 }
 
-
-/* Music catalogue only: keep heading/intro still; scroll up to five tracks
-   within the list. The music-open player / lyric layout is intentionally
-   excluded, so it behaves exactly as before. */
+/* Music catalogue: preserve the same shared Poetry title/intro sizing.
+   Four current tracks fill the available panel; five fit without scrolling
+   on a sufficiently tall screen. Later tracks scroll inside the list.
+   All player-view styles and behavior remain untouched. */
 html.music-catalog:not(.music-open),
 html.music-catalog:not(.music-open) body{height:100%;overflow:hidden}
-html.music-catalog{--catalog-row-height:clamp(76px,10svh,98px)}
 html.music-catalog:not(.music-open) .page{
-  display:flex;flex-direction:column;min-height:0;
-  height:100vh;height:100svh;
-  padding:calc(var(--header-h) + clamp(18px,4svh,38px))
-          clamp(18px,4.7vw,70px) clamp(14px,3.5svh,32px);
+  display:flex;
+  flex-direction:column;
+  height:100vh;
+  height:100svh;
+  min-height:0;
 }
 html.music-catalog:not(.music-open) #trackList{
-  display:flex;flex-direction:column;flex:1;min-height:0;
+  display:flex;
+  flex-direction:column;
+  flex:1 1 auto;
+  min-height:0;
 }
 html.music-catalog #trackList[hidden]{display:none!important}
 html.music-catalog:not(.music-open) #trackList>.eyebrow,
 html.music-catalog:not(.music-open) #trackList>.page-title,
-html.music-catalog:not(.music-open) #trackList>.page-intro{flex:0 0 auto}
-html.music-catalog:not(.music-open) .page-title{
-  font-size:clamp(56px,8.4vw,112px);
-  margin:12px 0 18px;
-}
-html.music-catalog:not(.music-open) .page-intro{
-  margin:0;font-size:clamp(18px,1.9vw,26px);line-height:1.5;
+html.music-catalog:not(.music-open) #trackList>.page-intro{
+  flex-shrink:0;
 }
 html.music-catalog:not(.music-open) .track-list{
-  display:flex;flex-direction:column;flex:0 1 auto;min-height:0;
-  max-height:calc(5 * var(--catalog-row-height) + 1px);
-  margin-top:clamp(18px,3svh,28px);
-  overflow-y:auto;overscroll-behavior-y:contain;
+  display:flex;
+  flex-direction:column;
+  flex:1 1 auto;
+  min-height:0;
+  max-height:520px;
+  overflow-y:auto;
+  overscroll-behavior-y:contain;
   -webkit-overflow-scrolling:touch;
-  scrollbar-width:thin;scrollbar-color:rgba(240,238,232,.28) transparent;
+  scrollbar-width:thin;
+  scrollbar-color:rgba(240,238,232,.28) transparent;
 }
 html.music-catalog .track-list::-webkit-scrollbar{width:3px}
-html.music-catalog .track-list::-webkit-scrollbar-thumb{background:rgba(240,238,232,.28)}
+html.music-catalog .track-list::-webkit-scrollbar-thumb{
+  background:rgba(240,238,232,.28);
+}
 html.music-catalog .track-list:focus{outline:none}
-html.music-catalog .track-list:focus-visible{outline:1px solid var(--line);outline-offset:3px}
+html.music-catalog .track-list:focus-visible{
+  outline:1px solid var(--line);
+  outline-offset:3px;
+}
 html.music-catalog:not(.music-open) .track-button{
-  flex:0 0 var(--catalog-row-height);min-height:0;
-  padding:10px 8px;
+  flex:1 0 20%;
+  min-height:94px;
 }
 @media(max-width:959px){
+  /* Keep long titles and two-line credits readable on a compact phone. */
   html.music-catalog:not(.music-open) .track-button{
-    padding:5px 8px;gap:4px 14px;
+    min-height:108px;
+    padding-top:12px;
+    padding-bottom:12px;
   }
-  html.music-catalog:not(.music-open) .track-title{
-    min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;
-    font-size:clamp(14px,3.6vw,23px);
-  }
-  html.music-catalog:not(.music-open) .track-meta{
-    font-size:11px;line-height:1.45;
-  }
-}
-@media(max-width:760px){
-  html.music-catalog{--catalog-row-height:clamp(72px,9.6svh,86px)}
-  html.music-catalog:not(.music-open) .page{
-    padding:calc(var(--header-h) + 18px) 16px 14px;
-  }
-  html.music-catalog:not(.music-open) .page-title{
-    font-size:clamp(56px,13vw,78px);margin:10px 0 12px;
-  }
-  html.music-catalog:not(.music-open) .page-intro{
-    font-size:clamp(16px,4vw,20px);line-height:1.45;
-  }
-  html.music-catalog:not(.music-open) .track-list{margin-top:18px}
-}
-@media(max-height:540px){
-  html.music-catalog:not(.music-open) .page{
-    padding-top:calc(var(--header-h) + 8px);padding-bottom:8px;
-  }
-  html.music-catalog:not(.music-open) .page-title{
-    font-size:50px;margin:8px 0;
-  }
-  html.music-catalog:not(.music-open) .page-intro{
-    font-size:16px;line-height:1.3;
-  }
-  html.music-catalog:not(.music-open) .track-list{margin-top:10px}
 }
