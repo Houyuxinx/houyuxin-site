@@ -8,6 +8,7 @@
 - 正式分支：`main`；四栏目：戏剧、诗歌、音乐、寻找自己。
 - 当前设计基线：先见由 90 条作品文字组成的全屏流动入场，再进入四栏目；主视觉约 2.35 秒切入，普通站内转场约 1.4 秒。不得擅自恢复早期的抽象主视觉或圆形追光。
 - 音乐由访客手动播放；歌词水平居中、歌词栏滚动条闲置时隐藏，点击歌词不出现矩形外框。手机诗歌年份可**左右滑动**。
+- **作品状态澄清（作者 2026-10-12 确认）**：《一个哑谜》属于「音乐」板块正式曲目，继续保留。早期对话中的撤下想法已被更新决定取代；不要因此自行删除作品。详见 `AGENTS.md`。
 - **最近核实基线（2026-10-10 的快照，后续必须重新检查）**：最新正式合并为 [PR #28](https://github.com/Houyuxinx/houyuxin-site/pull/28)，`main` 提交 `33109612fbe40525ed60fb0781a9a9e13b0bb7d0`，GitHub Pages [#37977744036](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37977744036) `completed/success`。诗歌、戏剧、音乐外层宽度已统一；「寻找自己」正式路径为 `/becoming.html`，原 `/searching.html` 跳转兼容。
 - **网站阶段**：已由建站期转为**稳定维护期**。未经作者指定，不为“优化”随意重设计、清理作品或重写共用动画；维护时坚持「先确认问题是否存在 → 核实原因 → 局部修复 → 审核发布」。
 - **遗留任务核实状态（2026-10-10）**：[PR #23](https://github.com/Houyuxinx/houyuxin-site/pull/23) 因已由 PR #24 正式版本取代，已关闭（未合并）；[Issue #4](https://github.com/Houyuxinx/houyuxin-site/issues/4) 的早期抽象主视觉被文学文字入场取代，已以 `not planned` 关闭。两者历史保留，不得再自动执行。**[Issue #2](https://github.com/Houyuxinx/houyuxin-site/issues/2) 仍开放**，涉及独立备份、分支保护、Pages 设置等安全事项，未完成的内容不可宣称已完成。
