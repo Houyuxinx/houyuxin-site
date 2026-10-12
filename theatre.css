@@ -39,5 +39,5 @@ html.theatre-catalog .play-list:focus-visible{
 }
 html.theatre-catalog .play-row{
   flex:1 0 20%;
-  min-height:78px;
+  min-height:72px;
 }
