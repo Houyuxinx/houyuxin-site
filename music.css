@@ -120,7 +120,7 @@ html.music-catalog .track-list:focus-visible{
 }
 html.music-catalog:not(.music-open) .track-button{
   flex:1 0 20%;
-  min-height:94px;
+  min-height:84px;
 }
 @media(max-width:959px){
   /* Keep long titles and two-line credits readable on a compact phone. */
