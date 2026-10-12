@@ -127,8 +127,8 @@ html.music-catalog:not(.music-open) .track-button{
 @media(max-width:959px){
   /* Keep long titles and two-line credits readable on a compact phone. */
   html.music-catalog:not(.music-open) .track-button{
-    min-height:108px;
-    padding-top:12px;
-    padding-bottom:12px;
+    min-height:100px;
+    padding-top:8px;
+    padding-bottom:8px;
   }
 }
