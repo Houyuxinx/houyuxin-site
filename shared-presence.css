@@ -1,0 +1,170 @@
+/* ECHYOX / Shared Presence
+   Scoped to the four production pages with a verified participant list.
+   Native <details> preserves accessible keyboard and touch interaction. */
+.work-collaborators{
+  margin-top:clamp(48px,6vw,88px);
+  min-width:0;
+}
+.work-collaborators-header{
+  display:flex;align-items:end;justify-content:space-between;
+  gap:20px;margin-bottom:22px;
+}
+.work-collaborators-kicker{
+  display:block;margin-bottom:9px;
+  font-size:10px;letter-spacing:.2em;color:var(--muted);
+}
+.work-collaborators h2{
+  font-size:24px;font-weight:600;line-height:1.35;margin:0;
+}
+.work-collaborators-hint{
+  margin:0;font-size:12px;line-height:1.7;color:var(--muted);
+}
+.collab-edition{
+  border-top:1px solid var(--line);
+}
+.collab-edition:last-of-type{
+  border-bottom:1px solid var(--line);
+}
+.collab-edition summary{
+  display:flex;justify-content:space-between;align-items:center;
+  gap:18px;min-height:82px;padding:20px 8px;
+  cursor:pointer;list-style:none;
+  transition:background .25s,padding .25s var(--ease);
+}
+.collab-edition summary::-webkit-details-marker{display:none}
+.collab-edition summary::marker{content:""}
+.collab-edition summary:hover{
+  padding-inline:18px;background:rgba(255,255,255,.025);
+}
+.collab-edition summary:focus-visible{
+  outline:1px solid var(--fg);outline-offset:-3px;
+}
+.collab-edition-name{
+  font-size:clamp(17px,1.7vw,23px);letter-spacing:-.025em;
+  line-height:1.5;overflow-wrap:anywhere;
+}
+.collab-edition-action{
+  color:var(--muted);font-size:18px;font-weight:300;
+  flex-shrink:0;min-width:18px;text-align:center;
+}
+.collab-edition-action::before{content:"+"}
+.collab-edition[open] .collab-edition-action::before{content:"−"}
+.collab-edition-body{
+  padding:4px 8px 36px;
+  display:grid;grid-template-columns:minmax(0,1fr);
+  gap:32px;
+}
+.collab-group{min-width:0}
+.collab-group h3{
+  margin:0 0 14px;color:var(--muted);
+  font-weight:500;font-size:11px;letter-spacing:.12em;
+}
+.collab-cast,.collab-credits{padding:0;margin:0}
+.collab-cast{
+  display:grid;grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:0 24px;
+}
+.collab-person{min-width:0;border-top:1px solid rgba(255,255,255,.07);padding:13px 0 15px}
+.collab-person dt{
+  margin:0;font-size:15px;line-height:1.55;font-weight:500;
+}
+.collab-person dd{
+  margin:4px 0 0;font-size:12px;line-height:1.7;color:var(--muted);
+  overflow-wrap:anywhere;
+}
+.collab-credits{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:0 30px;
+}
+.collab-credit{
+  display:grid;grid-template-columns:minmax(100px,38%) minmax(0,1fr);
+  gap:12px;min-width:0;
+  border-top:1px solid rgba(255,255,255,.07);padding:15px 0;
+}
+.collab-credit dt,.collab-credit dd{font-size:13px;line-height:1.75}
+.collab-credit dt{color:var(--muted);overflow-wrap:anywhere}
+.collab-credit dd{margin:0;color:var(--fg);overflow-wrap:anywhere}
+.collab-unassigned{
+  margin-top:26px;
+  padding:26px 8px 0;
+  border-top:1px solid var(--line);
+  display:grid;gap:32px;
+}
+.collab-unassigned:first-of-type{margin-top:0}
+@media(max-width:900px){
+  .collab-cast{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .collab-credits{grid-template-columns:minmax(0,1fr)}
+}
+@media(max-width:600px){
+  .work-collaborators-header{align-items:start;flex-direction:column;gap:10px}
+  .work-collaborators-hint{font-size:11px}
+  .collab-edition summary{padding:18px 4px;min-height:72px}
+  .collab-edition summary:hover{padding-inline:4px}
+  .collab-edition-body{padding:4px 4px 26px;gap:26px}
+  .collab-cast{gap:0 14px}
+  .collab-person dt{font-size:14px}
+  .collab-person dd{font-size:11px}
+  .collab-credit{grid-template-columns:minmax(100px,39%) minmax(0,1fr);gap:10px}
+  .collab-credit dt,.collab-credit dd{font-size:12px}
+  .collab-unassigned{padding:22px 4px 0;gap:26px}
+}
+
+
+/* Compact archive for productions with a small cast:
+   all names stay visible, while edition qualifications remain beside
+   the relevant person instead of splitting the archive into accordions. */
+.collab-simple{
+  display:grid;
+  grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);
+  gap:clamp(28px,5vw,78px);
+  border-top:1px solid var(--line);
+  padding:28px 8px 8px;
+}
+.collab-simple .collab-group h3{
+  margin-bottom:16px;
+}
+.collab-simple .collab-cast{
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  column-gap:clamp(16px,2vw,30px);
+}
+.collab-simple .collab-credits{
+  grid-template-columns:minmax(0,1fr);
+}
+.collab-simple .collab-credit{
+  grid-template-columns:minmax(100px,32%) minmax(0,1fr);
+}
+.collab-simple .collab-qualifier{
+  display:block;
+  margin-top:5px;
+  color:var(--muted);
+  font-size:11px;
+  font-weight:400;
+  line-height:1.7;
+}
+@media(max-width:760px){
+  .collab-simple{
+    grid-template-columns:minmax(0,1fr);
+    gap:28px;
+    padding:24px 4px 4px;
+  }
+  .collab-simple .collab-credits{
+    grid-template-columns:minmax(0,1fr);
+  }
+  .collab-simple .collab-person{padding:12px 0}
+}
+@media(max-width:420px){
+  .collab-simple .collab-credit{
+    grid-template-columns:minmax(92px,36%) minmax(0,1fr);
+  }
+}
+
+
+/* A single Director credit with three separately attributed productions.
+   Scoped to compact archives only; approved long-cast editions are unchanged. */
+.collab-simple .collab-director-entry{
+  display:block;
+  line-height:1.75;
+}
+.collab-simple .collab-director-entry+.collab-director-entry{
+  margin-top:14px;
+}
