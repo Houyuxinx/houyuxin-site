@@ -157,3 +157,14 @@
     grid-template-columns:minmax(92px,36%) minmax(0,1fr);
   }
 }
+
+
+/* A single Director credit with three separately attributed productions.
+   Scoped to compact archives only; approved long-cast editions are unchanged. */
+.collab-simple .collab-director-entry{
+  display:block;
+  line-height:1.75;
+}
+.collab-simple .collab-director-entry+.collab-director-entry{
+  margin-top:14px;
+}
