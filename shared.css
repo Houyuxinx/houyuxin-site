@@ -110,3 +110,39 @@ html.reader-open,html.reader-open body{overflow:hidden}
     to { opacity: 1; }
   }
 }
+
+/* PR #33: extend the already accepted Becoming header fade to every other
+   iPhone Safari page. The fixed header owns this overlay rather than the
+   clipped/scrolling main (which could displace a fixed child on WebKit).
+   Keep the native page scroll, poem year rail, readers and lyric scrollers. */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 1024px) and (pointer: coarse) {
+    html:not(.becoming-scroll-isolated) .site-head {
+      border-bottom-color: transparent;
+    }
+    html:not(.becoming-scroll-isolated) .site-head::after {
+      content: "";
+      position: absolute;
+      top: calc(100% + var(--safari-nav-fade-offset, 0px));
+      left: 0;
+      right: 0;
+      height: 96px;
+      pointer-events: none;
+      background: linear-gradient(to bottom,
+        var(--bg) 0%,
+        rgba(7,8,10,.94) 18%,
+        rgba(7,8,10,.60) 54%,
+        rgba(7,8,10,0) 100%);
+      opacity: var(--safari-nav-fade-opacity, 0);
+    }
+    /* Older per-main "fixed" fade could scroll with main's clip-path.
+       Keep the single header-anchored overlay instead. */
+    html:not(.becoming-scroll-isolated) main .nav-fade {
+      display: none;
+    }
+    /* Music's player has its own bounded reading and lyric fade. */
+    html:not(.becoming-scroll-isolated) body.music-open .site-head::after {
+      display: none;
+    }
+  }
+}
