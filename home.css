@@ -114,3 +114,16 @@ body.entry-active:not(.entry-opening) .home,
 body.entry-active:not(.entry-opening) .site-head {
   visibility: hidden;
 }
+
+/* Safari may sample page content below the visual viewport while the
+   entrance curtain is fading. Crop only the unrevealed card layer during
+   the existing 2.35s gate exit; after it finishes the full home returns.
+   Keep the upper cards visible behind the normal entrance crossfade. */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 1024px) and (pointer: coarse) {
+    body.entry-active.entry-opening .home {
+      -webkit-clip-path: inset(0 0 max(0px, calc(100% - 100svh + 92px)) 0);
+      clip-path: inset(0 0 max(0px, calc(100% - 100svh + 92px)) 0);
+    }
+  }
+}
