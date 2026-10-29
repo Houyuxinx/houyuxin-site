@@ -78,3 +78,55 @@
 .contact-mail{font-size:clamp(21px,6.2vw,33px)}
 }
 @media(max-width:375px){.record-year{grid-template-columns:60px minmax(0,1fr);gap:11px}}
+
+/* iPhone Safari: fast native document flings may be painted ahead of
+   scroll-boundary.js's rAF clip, briefly showing the final timeline above
+   the fixed header. Only on this page, scroll inside a viewport-confined
+   native scroller starting BELOW the header, so contents cannot paint
+   into the status-bar region even during compositor-only momentum scroll.
+   Desktop and all other pages retain the existing document scroll. */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 1024px) and (pointer: coarse) {
+    html.becoming-scroll-isolated,
+    html.becoming-scroll-isolated body {
+      height: 100%;
+      overflow: hidden;
+      overscroll-behavior-y: none;
+    }
+    html.becoming-scroll-isolated main.searching-page {
+      position: fixed;
+      top: var(--header-h);
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: auto;
+      padding-top: 66px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-y: contain;
+    }
+    /* The old window-scroll-dependent clip is unnecessary inside the
+       scroller; its own scrollport supplies a native clipping edge. */
+    html.becoming-scroll-isolated main.searching-page.has-scroll-boundary {
+      -webkit-clip-path: none;
+      clip-path: none;
+    }
+    /* Replace the window-scroll-dependent fade with a sticky fade inside
+       the scroller, without changing content or the header itself. */
+    html.becoming-scroll-isolated .searching-page .nav-fade {
+      display: none;
+    }
+    html.becoming-scroll-isolated .searching-page::before {
+      content: "";
+      display: block;
+      position: sticky;
+      top: 0;
+      height: var(--nav-fade-size);
+      margin-bottom: calc(-1 * var(--nav-fade-size));
+      z-index: 5;
+      pointer-events: none;
+      background: linear-gradient(to bottom, var(--bg), rgba(7,8,10,0));
+    }
+  }
+}
