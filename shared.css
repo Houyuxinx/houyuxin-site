@@ -146,3 +146,52 @@ html.reader-open,html.reader-open body{overflow:hidden}
     }
   }
 }
+
+/* PR #33: iPhone Safari's document rubber-band can draw scrolling text
+   above the fixed header. As with the approved Becoming page, put regular
+   content in a native clipped scrollport starting BELOW the header. This
+   remains safe even when future catalogues have dozens of rows. */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 1024px) and (pointer: coarse) {
+    html:not(.becoming-scroll-isolated),
+    html:not(.becoming-scroll-isolated) body {
+      height: 100%;
+      overflow: hidden;
+      overscroll-behavior-y: none;
+    }
+    html:not(.becoming-scroll-isolated) main.home,
+    html:not(.becoming-scroll-isolated) main.page,
+    html:not(.becoming-scroll-isolated) main.work {
+      position: fixed;
+      top: var(--header-h);
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: auto;
+      min-height: 0;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-y: contain;
+    }
+    /* Preserve the original visible top spacing after moving the origin. */
+    html:not(.becoming-scroll-isolated) main.home { padding-top: 22px; }
+    html:not(.becoming-scroll-isolated) main.page { padding-top: 66px; }
+    html:not(.becoming-scroll-isolated) main.work { padding-top: 64px; }
+    html:not(.becoming-scroll-isolated) main.has-scroll-boundary {
+      -webkit-clip-path: none;
+      clip-path: none;
+    }
+    /* A sticky poetry year rail now uses its native scroller's top edge. */
+    html:not(.becoming-scroll-isolated) main.poetry-page .poetry-years {
+      top: 0;
+    }
+    /* Keep the existing fixed music player and independently faded lyrics. */
+    html:not(.becoming-scroll-isolated) body.music-open main.page {
+      height: auto;
+      min-height: 0;
+      overflow-y: hidden;
+      padding-top: 14px;
+    }
+  }
+}

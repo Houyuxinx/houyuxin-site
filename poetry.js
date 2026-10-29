@@ -1,5 +1,20 @@
 (function () {
   var archive = document.getElementById('poetryArchive');
+  // Use the same scroll coordinate for year selection, history, and return.
+  // Desktop retains its original window-based scroll behaviour.
+  var pageScrollHost = document.querySelector('main.poetry-page');
+  function pageUsesNativeScroller() {
+    return pageScrollHost &&
+      window.getComputedStyle(pageScrollHost).position === 'fixed';
+  }
+  function pageScrollY() {
+    return pageUsesNativeScroller() ? pageScrollHost.scrollTop : window.scrollY;
+  }
+  function pageScrollTo(options) {
+    if (pageUsesNativeScroller()) pageScrollHost.scrollTop = options.top;
+    else window.scrollTo(options);
+  }
+
   var yearsNav = document.getElementById('poetryYears');
   var stage = document.getElementById('poetryStage');
   var entry = document.getElementById('poetryEntry');
@@ -147,16 +162,16 @@
     var headerHeight = document.querySelector('.site-head').getBoundingClientRect().height;
     var stageTop = stage.getBoundingClientRect().top;
     var shouldScroll = stageTop < headerHeight + yearsNav.offsetHeight + 16;
-    var destination = window.scrollY + stageTop - headerHeight - yearsNav.offsetHeight - 16;
+    var destination = pageScrollY() + stageTop - headerHeight - yearsNav.offsetHeight - 16;
     var state = cleanReaderState();
     if (!state.poetryYearEntry) {
-      entryY = window.scrollY;
+      entryY = pageScrollY();
       state.poetryEntryScroll = entryY;
       state.poetryYearEntry = true;
       history.pushState(state, '', stateURL(year));
     } else history.replaceState(state, '', stateURL(year));
     renderYear(year, true);
-    if (oldYear && shouldScroll) window.scrollTo({top: Math.max(0, destination), behavior: 'instant'});
+    if (oldYear && shouldScroll) pageScrollTo({top: Math.max(0, destination), behavior: 'instant'});
   }
 
   function returnToEntry() {
@@ -167,7 +182,7 @@
       state.poetryYearEntry = false;
       history.replaceState(state, '', stateURL(null));
       renderYear(null, true);
-      window.scrollTo({top: entryY, behavior: 'instant'});
+      pageScrollTo({top: entryY, behavior: 'instant'});
       if (back) back.focus({preventScroll: true});
     }
   }
@@ -204,7 +219,7 @@
     document.documentElement.classList.remove('reader-open');
     if (restorePosition !== false) {
       renderYear(yearFromURL(), false);
-      if (returnY !== null) window.scrollTo({top: returnY, behavior: 'instant'});
+      if (returnY !== null) pageScrollTo({top: returnY, behavior: 'instant'});
       if (opener && document.contains(opener) && !opener.closest('.year-group').hidden) opener.focus({preventScroll: true});
       else {
         var info = yearInfo(selectedYear);
@@ -234,7 +249,7 @@
       var state = history.state || {};
       var returnPoem = document.getElementById(state.poemReturnId) || poem;
       opener = returnPoem.querySelector('.poem-open');
-      returnY = typeof state.poemListScroll === 'number' ? state.poemListScroll : window.scrollY;
+      returnY = typeof state.poemListScroll === 'number' ? state.poemListScroll : pageScrollY();
     }
     renderYear(yearForPoem(poem), false);
     title.textContent = poem.querySelector('.poem-title').textContent;
@@ -276,7 +291,7 @@
       renderYear(year, animate && !readerWasOpen);
       hide();
       if (previousYear && !year && !readerWasOpen) {
-        window.scrollTo({top: entryY, behavior: 'instant'});
+        pageScrollTo({top: entryY, behavior: 'instant'});
         if (back) back.focus({preventScroll: true});
       }
     }
@@ -306,7 +321,7 @@
       var state = cleanReaderState();
       history.replaceState(state, '', stateURL(selectedYear));
       history.pushState(Object.assign({}, state, {
-        poemReaderEntry: true, poemReturnId: poem.id, poemListScroll: window.scrollY
+        poemReaderEntry: true, poemReturnId: poem.id, poemListScroll: pageScrollY()
       }), '', stateURL(selectedYear, poem.id));
       show(poem);
     });

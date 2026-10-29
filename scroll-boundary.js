@@ -40,7 +40,10 @@
     // Preserve the untouched first frame (notably the homepage card border).
     // The strip reaches full strength during the first short scroll distance.
     var fadeHeight = fade.getBoundingClientRect().height || 32;
-    var strength = Math.min(1, Math.max(0, -mainTop / fadeHeight)).toFixed(3);
+    // A fixed scrollport does not move relative to the viewport.
+    var localScroll = window.getComputedStyle(main).position === 'fixed';
+    var scrollDistance = localScroll ? main.scrollTop : -mainTop;
+    var strength = Math.min(1, Math.max(0, scrollDistance / fadeHeight)).toFixed(3);
     if (clipTop !== lastClip) {
       main.style.setProperty('--content-clip-top', clipTop);
       lastClip = clipTop;
@@ -65,6 +68,7 @@
     if (frame === null) frame = window.requestAnimationFrame(update);
   }
   update();
+  main.addEventListener('scroll', schedule, {passive: true});
   window.addEventListener('scroll', schedule, {passive: true});
   window.addEventListener('resize', schedule, {passive: true});
   window.addEventListener('orientationchange', schedule, {passive: true});
