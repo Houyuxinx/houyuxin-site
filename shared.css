@@ -78,3 +78,35 @@ html.reader-open,html.reader-open body{overflow:hidden}
 @media(prefers-reduced-motion:reduce){
   html.site-fade-enabled body::after{content:none!important}
 }
+
+
+/* iPhone Safari bottom-toolbar transition bleed (2026-10-29).
+   Safari can show the scrolling document behind its translucent browser
+   toolbar even when the fixed body::after fade curtain covers the viewport.
+   Fade only the underlying main content during the EXISTING transition;
+   keep the curtain, durations, layout and normal scroll unchanged.
+   This is a targeted visual hypothesis pending real iPhone Safari review. */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 820px) {
+    html.site-fade-initial main,
+    html.site-fade-local-hold main {
+      opacity: 0;
+    }
+    html.site-fade-leaving main,
+    html.site-fade-local-out main {
+      animation: echyox-safari-content-leave 600ms cubic-bezier(.45,0,.55,1) both;
+    }
+    html.site-fade-arriving:not(.site-fade-local-out):not(.site-fade-local-hold):not(.site-fade-local-in) main,
+    html.site-fade-local-in main {
+      animation: echyox-safari-content-arrive 800ms cubic-bezier(.45,0,.55,1) both;
+    }
+  }
+  @keyframes echyox-safari-content-leave {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+  @keyframes echyox-safari-content-arrive {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}
