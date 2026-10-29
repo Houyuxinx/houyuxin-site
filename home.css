@@ -133,3 +133,17 @@ body.entry-active:not(.entry-opening) .site-head {
 @media (prefers-reduced-motion: reduce) {
   body.entry-active.entry-opening .home { animation: none !important; }
 }
+
+/* iPhone Safari: after the 2.35s entry fade, the four cards must stay fully
+   visible. Otherwise dropping .entry-opening can reveal the global incoming
+   animation again and briefly flash the already-visible home. Scope this
+   handoff to completed literary entries; ordinary page navigation retains
+   the existing 800ms arrival and 600ms departure effects. */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 1024px) and (pointer: coarse) {
+    html.site-fade-arriving body.entry-gate-finished main.home {
+      animation: none !important;
+      opacity: 1 !important;
+    }
+  }
+}
