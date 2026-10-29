@@ -287,6 +287,10 @@
     entered = true;
     opening = false;
     stopMotion();
+    // The entry's 2.35s home fade has finished. Prevent iPhone Safari
+    // from starting the global 800ms arrival animation again when the
+    // entry-opening class is removed (which briefly flashes the cards).
+    if (deferHeavyCleanup) document.body.classList.add('entry-gate-finished');
     // Make the main content interactive without simultaneously tearing down
     // the full-screen Canvas. The invisible curtain stays composited briefly.
     behindGate(false);

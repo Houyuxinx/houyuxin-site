@@ -102,3 +102,48 @@ body.entry-opening .home,body.entry-opening .site-head{
   .entry-content,.entry-enter,.entry-enter::after,body.entry-opening .home,body.entry-opening .site-head{transition:none!important}
   .entry-gate.is-entering,.entry-gate.is-entering .entry-art{animation:none!important}
 }
+
+
+/* iOS Safari: the site's incoming-main opacity animation can override
+   .entry-active's opacity:0 (animation-fill-mode:both). While the visitor
+   is still at the literary entrance, hide the four cards and site header
+   from painting into Safari's translucent bottom browser toolbar.
+   On the existing entry click, .entry-opening lifts this visibility guard
+   so the original 2.35-second reveal proceeds unchanged. */
+body.entry-active:not(.entry-opening) .home,
+body.entry-active:not(.entry-opening) .site-head {
+  visibility: hidden;
+}
+
+/* iPhone Safari can sample the next page through its translucent bottom
+   toolbar before the gate is fully gone. Fade in the *entire* four-card
+   page along with the original 2.35s gate reveal: no rectangular crop,
+   no cut-off card edge, and no sudden reappearance at the end. */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 1024px) and (pointer: coarse) {
+    body.entry-active.entry-opening .home {
+      animation: echyox-home-soft-arrive 2350ms cubic-bezier(.45,0,.55,1) both !important;
+    }
+    @keyframes echyox-home-soft-arrive {
+      0%, 30% { opacity: 0; }
+      100% { opacity: 1; }
+    }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  body.entry-active.entry-opening .home { animation: none !important; }
+}
+
+/* iPhone Safari: after the 2.35s entry fade, the four cards must stay fully
+   visible. Otherwise dropping .entry-opening can reveal the global incoming
+   animation again and briefly flash the already-visible home. Scope this
+   handoff to completed literary entries; ordinary page navigation retains
+   the existing 800ms arrival and 600ms departure effects. */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 1024px) and (pointer: coarse) {
+    html.site-fade-arriving body.entry-gate-finished main.home {
+      animation: none !important;
+      opacity: 1 !important;
+    }
+  }
+}

@@ -78,3 +78,120 @@ html.reader-open,html.reader-open body{overflow:hidden}
 @media(prefers-reduced-motion:reduce){
   html.site-fade-enabled body::after{content:none!important}
 }
+
+
+/* iPhone Safari bottom-toolbar transition bleed (2026-10-29).
+   Safari can show the scrolling document behind its translucent browser
+   toolbar even when the fixed body::after fade curtain covers the viewport.
+   Fade only the underlying main content during the EXISTING transition;
+   keep the curtain, durations, layout and normal scroll unchanged.
+   This is a targeted visual hypothesis pending real iPhone Safari review. */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 1024px) and (pointer: coarse) {
+    html.site-fade-initial main,
+    html.site-fade-local-hold main {
+      opacity: 0;
+    }
+    html.site-fade-leaving main,
+    html.site-fade-local-out main {
+      animation: echyox-safari-content-leave 600ms cubic-bezier(.45,0,.55,1) both;
+    }
+    html.site-fade-arriving:not(.site-fade-local-out):not(.site-fade-local-hold):not(.site-fade-local-in) main,
+    html.site-fade-local-in main {
+      animation: echyox-safari-content-arrive 800ms cubic-bezier(.45,0,.55,1) both;
+    }
+  }
+  @keyframes echyox-safari-content-leave {
+    from { opacity: 1; }
+    to { opacity: 0; }
+  }
+  @keyframes echyox-safari-content-arrive {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+}
+
+/* PR #33: extend the already accepted Becoming header fade to every other
+   iPhone Safari page. The fixed header owns this overlay rather than the
+   clipped/scrolling main (which could displace a fixed child on WebKit).
+   Keep the native page scroll, poem year rail, readers and lyric scrollers. */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 1024px) and (pointer: coarse) {
+    html:not(.becoming-scroll-isolated) .site-head {
+      border-bottom-color: transparent;
+    }
+    html:not(.becoming-scroll-isolated) .site-head::after {
+      content: "";
+      position: absolute;
+      top: calc(100% + var(--safari-nav-fade-offset, 0px));
+      left: 0;
+      right: 0;
+      height: 96px;
+      pointer-events: none;
+      background: linear-gradient(to bottom,
+        var(--bg) 0%,
+        rgba(7,8,10,.94) 18%,
+        rgba(7,8,10,.60) 54%,
+        rgba(7,8,10,0) 100%);
+      opacity: var(--safari-nav-fade-opacity, 0);
+    }
+    /* Older per-main "fixed" fade could scroll with main's clip-path.
+       Keep the single header-anchored overlay instead. */
+    html:not(.becoming-scroll-isolated) main .nav-fade {
+      display: none;
+    }
+    /* Music's player has its own bounded reading and lyric fade. */
+    html:not(.becoming-scroll-isolated) body.music-open .site-head::after {
+      display: none;
+    }
+  }
+}
+
+/* PR #33: iPhone Safari's document rubber-band can draw scrolling text
+   above the fixed header. As with the approved Becoming page, put regular
+   content in a native clipped scrollport starting BELOW the header. This
+   remains safe even when future catalogues have dozens of rows. */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 1024px) and (pointer: coarse) {
+    html:not(.becoming-scroll-isolated),
+    html:not(.becoming-scroll-isolated) body {
+      height: 100%;
+      overflow: hidden;
+      overscroll-behavior-y: none;
+    }
+    html:not(.becoming-scroll-isolated) main.home,
+    html:not(.becoming-scroll-isolated) main.page,
+    html:not(.becoming-scroll-isolated) main.work {
+      position: fixed;
+      top: var(--header-h);
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: auto;
+      min-height: 0;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-y: contain;
+    }
+    /* Preserve the original visible top spacing after moving the origin. */
+    html:not(.becoming-scroll-isolated) main.home { padding-top: 22px; }
+    html:not(.becoming-scroll-isolated) main.page { padding-top: 66px; }
+    html:not(.becoming-scroll-isolated) main.work { padding-top: 64px; }
+    html:not(.becoming-scroll-isolated) main.has-scroll-boundary {
+      -webkit-clip-path: none;
+      clip-path: none;
+    }
+    /* A sticky poetry year rail now uses its native scroller's top edge. */
+    html:not(.becoming-scroll-isolated) main.poetry-page .poetry-years {
+      top: 0;
+    }
+    /* Keep the existing fixed music player and independently faded lyrics. */
+    html:not(.becoming-scroll-isolated) body.music-open main.page {
+      height: auto;
+      min-height: 0;
+      overflow-y: hidden;
+      padding-top: 14px;
+    }
+  }
+}

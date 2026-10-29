@@ -78,3 +78,63 @@
 .contact-mail{font-size:clamp(21px,6.2vw,33px)}
 }
 @media(max-width:375px){.record-year{grid-template-columns:60px minmax(0,1fr);gap:11px}}
+
+/* iPhone Safari: fast native document flings may be painted ahead of
+   scroll-boundary.js's rAF clip, briefly showing the final timeline above
+   the fixed header. Only on this page, scroll inside a viewport-confined
+   native scroller starting BELOW the header, so contents cannot paint
+   into the status-bar region even during compositor-only momentum scroll.
+   Desktop and all other pages retain the existing document scroll. */
+@supports (-webkit-touch-callout: none) {
+  @media (max-width: 1024px) and (pointer: coarse) {
+    html.becoming-scroll-isolated,
+    html.becoming-scroll-isolated body {
+      height: 100%;
+      overflow: hidden;
+      overscroll-behavior-y: none;
+    }
+    html.becoming-scroll-isolated main.searching-page {
+      position: fixed;
+      top: var(--header-h);
+      right: 0;
+      bottom: 0;
+      left: 0;
+      height: auto;
+      padding-top: 66px;
+      overflow-x: hidden;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      overscroll-behavior-y: contain;
+    }
+    /* The old window-scroll-dependent clip is unnecessary inside the
+       scroller; its own scrollport supplies a native clipping edge. */
+    html.becoming-scroll-isolated main.searching-page.has-scroll-boundary {
+      -webkit-clip-path: none;
+      clip-path: none;
+    }
+    /* The native scrollport still stops content from entering Safari's
+       status-bar area. Replace the sticky in-flow strip with an overlay
+       anchored to the fixed header so fast scrolls vanish gradually,
+       without a moving seam or an extra layout box. */
+    html.becoming-scroll-isolated .searching-page .nav-fade {
+      display: none;
+    }
+    html.becoming-scroll-isolated .site-head {
+      border-bottom-color: transparent;
+    }
+    html.becoming-scroll-isolated .site-head::after {
+      content: "";
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      height: 96px;
+      background: linear-gradient(to bottom,
+        var(--bg) 0%,
+        rgba(7,8,10,.94) 18%,
+        rgba(7,8,10,.60) 54%,
+        rgba(7,8,10,0) 100%);
+      pointer-events: none;
+    }
+  }
+}
