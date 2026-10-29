@@ -8,6 +8,8 @@
   if (!header || !main) return;
 
   var years = document.getElementById('poetryYears');
+  // Becoming keeps its already-approved isolated-scroll header fade.
+  var headerFade = !document.documentElement.classList.contains('becoming-scroll-isolated');
   var fade = document.createElement('div');
   fade.className = 'nav-fade';
   fade.setAttribute('aria-hidden', 'true');
@@ -45,10 +47,17 @@
     }
     if (fadeValue !== lastFade) {
       main.style.setProperty('--nav-fade-top', fadeValue);
+      // On poetry, the pinned year rail remains readable; the fading
+      // boundary moves BELOW it instead of covering the year buttons.
+      if (headerFade) {
+        var offset = Math.max(0, Math.round((fadeTop - headerBottom) * 100) / 100);
+        header.style.setProperty('--safari-nav-fade-offset', offset + 'px');
+      }
       lastFade = fadeValue;
     }
     if (strength !== lastStrength) {
       main.style.setProperty('--nav-fade-strength', strength);
+      if (headerFade) header.style.setProperty('--safari-nav-fade-opacity', strength);
       lastStrength = strength;
     }
   }
