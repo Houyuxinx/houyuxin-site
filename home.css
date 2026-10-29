@@ -102,3 +102,15 @@ body.entry-opening .home,body.entry-opening .site-head{
   .entry-content,.entry-enter,.entry-enter::after,body.entry-opening .home,body.entry-opening .site-head{transition:none!important}
   .entry-gate.is-entering,.entry-gate.is-entering .entry-art{animation:none!important}
 }
+
+
+/* iOS Safari: the site's incoming-main opacity animation can override
+   .entry-active's opacity:0 (animation-fill-mode:both). While the visitor
+   is still at the literary entrance, hide the four cards and site header
+   from painting into Safari's translucent bottom browser toolbar.
+   On the existing entry click, .entry-opening lifts this visibility guard
+   so the original 2.35-second reveal proceeds unchanged. */
+body.entry-active:not(.entry-opening) .home,
+body.entry-active:not(.entry-opening) .site-head {
+  visibility: hidden;
+}
