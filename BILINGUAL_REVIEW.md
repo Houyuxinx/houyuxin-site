@@ -342,7 +342,6 @@
 | 《迷宫》 | THE LABYRINTH |
 | 《面向自我的陈述》 | THE NARROW GATE |
 | 《她一瞬过载》 | ALL AT ONCE |
-
 | 左右滑动或使用方向键切换剧照 | Swipe or use the arrow keys to browse photographs |
 | 选择剧照 | Select a photograph |
 | 上一组剧照 | Previous group of photographs |
