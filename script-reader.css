@@ -29,3 +29,8 @@
 
 .script-preview-link,.script-download-link{min-height:44px}
 .script-download-link{margin-left:8px;color:var(--fg)}
+
+/* Keep the script actions aligned even when the English labels wrap. */
+.script-actions{display:flex;flex-wrap:wrap;align-items:center;gap:8px;min-width:0}
+.script-actions .script-preview-link,.script-actions .script-download-link{min-width:0;max-width:100%;margin:0;text-align:center;white-space:normal;overflow-wrap:anywhere}
+@media(max-width:600px){html[lang="en"] .script-actions{display:grid;grid-template-columns:minmax(0,1fr);width:fit-content;max-width:100%}html[lang="en"] .script-actions .btn{width:100%}}
