@@ -1,0 +1,78 @@
+/* ECHYOX — optional daylight palette. Original dark styles and motion stay intact. */
+.theme-switch{display:inline-flex;align-items:center;justify-content:center;flex:none;width:36px;height:44px;padding:0;border:0;background:none;color:var(--muted);cursor:pointer}
+.theme-switch svg{width:17px;height:17px;fill:none;stroke:currentColor;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+.theme-switch:hover,.theme-switch:focus-visible{color:var(--fg)}
+.theme-switch:focus-visible{outline:1px solid currentColor;outline-offset:-3px;border-radius:3px}
+.header-theme-controls,.entry-theme-controls{display:flex;align-items:center;gap:4px;flex:none}
+.entry-theme-controls{position:absolute;top:10px;right:clamp(16px,3vw,34px);z-index:10}
+.entry-theme-controls .entry-language-switch{position:static}
+@media(max-width:820px){.header-theme-controls{gap:0}.header-theme-controls .theme-switch{width:32px}}
+@media(max-width:600px){.site-head.has-back .header-theme-controls{grid-column:3;grid-row:1;justify-self:end}.header-theme-controls .theme-switch{width:30px}.site-head .global-nav{min-width:0}}
+/* At intermediate widths the original centred return link must not sit
+   over the newly wider navigation. Preserve the one-row header. */
+@media(min-width:601px) and (max-width:900px){.site-head.has-back .back-link{position:static;transform:none;flex:none;padding-inline:4px}.site-head.has-back .global-nav{overflow-x:auto;scrollbar-width:none}.site-head.has-back .global-nav a{flex:none}}
+html[data-theme="light"]{--bg:#fff;--fg:#171719;--muted:#5d5d60;--line:rgba(20,20,24,.16);--panel:rgba(20,20,24,.025);color-scheme:light}
+html[data-theme="light"] body{background:linear-gradient(180deg,#fafafa,#fff 58%,#fafafa)}
+html[data-theme="light"] .site-head{border-bottom-color:rgba(20,20,24,.10)}
+html[data-theme="light"] .nav-fade{background:linear-gradient(to bottom,var(--bg),rgba(255,255,255,0))}
+html[data-theme="light"].site-fade-enabled body::after{background:var(--bg)}
+html[data-theme="light"] .page-intro,html[data-theme="light"] .door p{color:#454548}
+html[data-theme="light"] .door{border-color:rgba(20,20,24,.14);background:rgba(20,20,24,.018)}
+html[data-theme="light"] .door:hover{border-color:rgba(20,20,24,.28);background:rgba(20,20,24,.05)}
+html[data-theme="light"] .btn,html[data-theme="light"] .audio-loop{background:rgba(20,20,24,.025)}
+html[data-theme="light"] .btn:hover,html[data-theme="light"] .audio-loop:hover{background:rgba(20,20,24,.065)}
+html[data-theme="light"] .audio-loop:hover{border-color:rgba(20,20,24,.28)}
+html[data-theme="light"] .audio-loop[aria-pressed="true"]{background:rgba(20,20,24,.10);border-color:rgba(20,20,24,.45)}
+/* The existing canvas contains transparent text only, never photographs.
+   Switch its glyph palette without restarting the orbit or rebuilding sprites. */
+html[data-theme="light"] .entry-gate{color:var(--fg);background:radial-gradient(ellipse 52% 44% at 50% 50%,#fff 0%,#fafafa 53%,#f4f4f4 100%)}
+html[data-theme="light"] .entry-canvas{filter:invert(1) grayscale(1)}
+html[data-theme="light"] .entry-bit{color:#383838}
+html[data-theme="light"] .entry-bit[data-source="剧本"]{color:#373737}
+html[data-theme="light"] .entry-bit[data-source="诗歌"]{color:#292929}
+html[data-theme="light"] .entry-bit[data-source="歌词"]{color:#454545}
+html[data-theme="light"] .entry-wordmark{color:#171719;text-shadow:0 0 26px rgba(255,255,255,.7)}
+html[data-theme="light"] .entry-enter{color:#444}
+html[data-theme="light"] .entry-enter::after{background:#666}
+html[data-theme="light"] .entry-enter:hover,html[data-theme="light"] .entry-enter:focus-visible{color:#111}
+html[data-theme="light"] .entry-enter:focus-visible{outline-color:#444}
+/* Catalogue, works and production credits. */
+html[data-theme="light"] .play-row:hover,html[data-theme="light"] .track-button:hover,html[data-theme="light"] .poem-open:hover,html[data-theme="light"] .collab-edition summary:hover{background:rgba(20,20,24,.04)}
+html[data-theme="light"] .slogan,html[data-theme="light"] .synopsis,html[data-theme="light"] .record{color:#353538}
+html[data-theme="light"] .record,html[data-theme="light"] .gallery figure,html[data-theme="light"] .collab-person,html[data-theme="light"] .collab-credit,html[data-theme="light"] .record-item{border-color:rgba(20,20,24,.12)}
+/* Galleries keep their original photos and dark photo mattes. Viewer chrome is light. */
+html[data-theme="light"] .stills-lightbox{background:#fff;color:var(--fg)}
+html[data-theme="light"] .stills-lightbox::backdrop{background:#fff}
+html[data-theme="light"] .stills-arrow:hover,html[data-theme="light"] .stills-close:hover{border-color:rgba(20,20,24,.4);background:rgba(20,20,24,.06)}
+html[data-theme="light"] .stills-thumb:hover img,html[data-theme="light"] .stills-thumb[aria-pressed=true] img{border-color:rgba(20,20,24,.6)}
+html[data-theme="light"] .stills-rail,html[data-theme="light"] .stills-rooms,html[data-theme="light"] .stills-thumbs{scrollbar-color:rgba(20,20,24,.25) transparent}
+html[data-theme="light"] .stills-rail::-webkit-scrollbar-thumb,html[data-theme="light"] .stills-rooms::-webkit-scrollbar-thumb,html[data-theme="light"] .stills-thumbs::-webkit-scrollbar-thumb{background:rgba(20,20,24,.25)}
+/* Readers keep the original content, dimensions and scrolling. */
+html[data-theme="light"] .poetry-verse,html[data-theme="light"] .poem-reader-text,html[data-theme="light"] .lyrics{color:#333336}
+html[data-theme="light"] .poem-reader,html[data-theme="light"] .script-reader{background:#fff}
+html[data-theme="light"] .poem-reader::backdrop,html[data-theme="light"] .script-reader::backdrop{background:rgba(30,30,32,.52)}
+html[data-theme="light"] .poem-reader-scroll{scrollbar-color:rgba(20,20,24,.2) transparent}
+html[data-theme="light"] .script-reader-pages{background:#efeff0}
+html[data-theme="light"] .player-side audio,html[data-theme="light"] audio{color-scheme:light}
+html[data-theme="light"] .lyrics.is-scrolling,html[data-theme="light"] .lyrics:focus-visible{scrollbar-color:rgba(20,20,24,.32) transparent}
+html[data-theme="light"] .lyrics.is-scrolling::-webkit-scrollbar-thumb,html[data-theme="light"] .lyrics:focus-visible::-webkit-scrollbar-thumb{background:rgba(20,20,24,.32)}
+@media(hover:hover){html[data-theme="light"] .lyrics:hover{scrollbar-color:rgba(20,20,24,.32) transparent}html[data-theme="light"] .lyrics:hover::-webkit-scrollbar-thumb{background:rgba(20,20,24,.32)}}
+/* Becoming timeline — preserve subtle distinctions among record types. */
+html[data-theme="light"] .search-english,html[data-theme="light"] .search-intro,html[data-theme="light"] .search-section-body p{color:#454548}
+html[data-theme="light"] .search-about .search-lead,html[data-theme="light"] .question-entry p,html[data-theme="light"] .search-quote p,html[data-theme="light"] .record-intro p,html[data-theme="light"] .search-now p:first-child{color:#242426}
+html[data-theme="light"] .search-hero-divider,html[data-theme="light"] .year-label span{background:#8a8a8a}
+html[data-theme="light"] .search-quote{border-left-color:#8a8a8a}
+html[data-theme="light"] .record-type--creation{color:#545454}
+html[data-theme="light"] .record-type--award{color:#79532d}
+html[data-theme="light"] .record-type--performance{color:#36586a}
+html[data-theme="light"] .record-type--selection{color:#476249}
+html[data-theme="light"] .record-role,html[data-theme="light"] .search-section-body .record-item p,html[data-theme="light"] .search-section-body .contact-line,html[data-theme="light"] .contact-mail span{color:#5d5d60}
+html[data-theme="light"] .contact-mail:hover{color:#111}
+/* Preserve the accepted Safari scrollport and fade mechanics, change only pigment. */
+@supports (-webkit-touch-callout:none){
+ @media(max-width:1024px) and (pointer:coarse){
+  html[data-theme="light"] .site-head{border-bottom-color:transparent}
+  html[data-theme="light"].becoming-scroll-isolated .site-head::after,
+  html[data-theme="light"]:not(.becoming-scroll-isolated) .site-head::after{background:linear-gradient(to bottom,var(--bg) 0%,rgba(255,255,255,.94) 18%,rgba(255,255,255,.60) 54%,rgba(255,255,255,0) 100%)}
+ }
+}
