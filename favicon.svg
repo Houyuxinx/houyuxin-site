@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+ <defs>
+  <linearGradient id="door" x1="0" x2="1" y1="0" y2="0" gradientUnits="objectBoundingBox">
+   <stop stop-color="#343434"/><stop offset=".72" stop-color="#b7b7b5"/><stop offset="1" stop-color="#f6f5f2"/>
+  </linearGradient>
+  <linearGradient id="floor" x1="0" y1="0" x2="0" y2="1" gradientUnits="objectBoundingBox">
+   <stop stop-color="#bdbbb7"/><stop offset="1" stop-color="#101010"/>
+  </linearGradient>
+  <clipPath id="tile"><rect width="64" height="64" rx="13"/></clipPath>
+ </defs>
+ <g clip-path="url(#tile)">
+  <rect width="64" height="64" fill="#101010"/>
+  <path d="M7 61 42 45 48 49 48 64Z" fill="url(#floor)" opacity=".76"/>
+  <path d="M18 14H22V50H18Z M22 30H40V33H22Z" fill="#f6f5f2"/>
+  <path d="M39 16 48 12V50L39 46Z" fill="url(#door)"/>
+  <path d="M45.5 13.1 48 12V50L45.5 49Z" fill="#f6f5f2"/>
+ </g>
+</svg>
