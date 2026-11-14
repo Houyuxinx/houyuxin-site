@@ -12,7 +12,7 @@ html[lang="en"] .language-note{font-size:12px;color:var(--muted);line-height:1.6
 html[lang="en"] .title-line [hidden],html[lang="en"] .brand-link [hidden],html[lang="en"] .door [hidden]{display:none!important}
 html[lang="en"] .global-nav{gap:clamp(5px,1vw,15px)}
 @media(max-width:820px){.site-head .global-nav{min-width:0;max-width:100%;gap:8px}.language-switch{font-size:9px}.site-head{gap:8px}html[lang="en"] .global-nav a{font-size:9px;letter-spacing:.03em}}
-@media(max-width:600px){.site-head.has-back{grid-template-columns:auto minmax(0,1fr) auto;gap:0 8px}.site-head.has-back .global-nav{width:100%;justify-content:flex-start}.site-head.has-back .header-language-switch{grid-column:3;grid-row:1;justify-self:end}.site-head:not(.has-back) .global-nav{overflow:auto}html[lang="en"] .home .door h1{font-size:42px}}
+@media(max-width:600px){.site-head.has-back{grid-template-columns:auto minmax(0,1fr) auto;gap:0 8px}.site-head.has-back .global-nav{width:max-content;max-width:100%;justify-self:end;justify-content:flex-start;overflow-x:auto}.site-head.has-back .global-nav a{flex-shrink:0}.site-head.has-back .header-language-switch{grid-column:3;grid-row:1;justify-self:end}.site-head:not(.has-back) .global-nav{overflow:auto}html[lang="en"] .home .door h1{font-size:42px}}
 
 .header-language-switch{flex-shrink:0}.site-head .global-nav{margin-left:auto;min-width:0}html[lang="en"] .work-en{letter-spacing:.08em}html[lang="en"] .play-row .title-line{white-space:normal;overflow-wrap:anywhere}html[lang="en"] .play-row .en{display:none}
 
