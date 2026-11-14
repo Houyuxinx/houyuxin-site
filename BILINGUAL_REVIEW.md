@@ -1,10 +1,16 @@
-# ECHYOX 中英文界面 · 第一轮待审译稿
+# ECHYOX 中英文界面 · 第二轮待审译稿
 
 - 本轮英文文本为待审核译文，不是作者已批准的文学翻译。
 - 保持既定五个英文剧名；其它作品名、机构、节展、奖项为暂译或原中文加拼音，尚未逐一核验官方英文名称。已核实晋中信息学院 Jinzhong College of Information（学校国际交流处招生简章），金刺猬大学生戏剧节 Golden Hedgehog College Theatre Festival（北京市朝阳区英文政府网站），以及大凉山国际戏剧节 Daliangshan International Theatre Festival（国际戏剧协会 ITI 英文资料）。演员与主创姓名保留原中文；未确定的角色名也保留中文，避免猜测原拼写。
 - 保留中文入口文学文字场、完整诗歌、歌词、PDF 试读、媒体及中文原文。诗歌目录标题译为英文，全文仍为中文。英文版不是整站文学翻译。
 - 英文 URL 使用 ?lang=en，切换会重新打开当前页面；未保存播放器、弹窗内部临时状态。导航应维持语言参数。移动端头部可能需要实机微调。
 - 通用词汇使用英式拼写；英文中标题/署名保留已确定形式。下列逐项对照用于作者审核，不意味着官方名称已确证。
+
+## 第二轮：文学标题与排版
+- 《你要问路吗要问路吗问路吗路吗吗？》改为 Looking for a Way? For a Way? A Way? Way? …?：将“问路”转为寻找方向，保留五级递减及最后近乎失语的疑问；依据歌词中迷路、追问和反复笑声，属于有意识的转译。
+- 《一个哑谜》改为 An Unspoken Riddle，强调歌词中爱意未说出口的意味；《关于天空告诉我的一切》改为 All the Sky Has Told Me，与诗歌组题一致；《跃下深渊的动机》保留 Motif for a Leap into the Abyss，音乐术语 motif 对应动机，但无法完全复现中文的动机/动因双义。
+- 对照诗歌开头/结尾和部分完整诗篇审读标题；保持所有原文及创作日期。未核准专名仍保留原写法；无必要不改短标题。完整文学翻译尚未进行。
+- 英文履历标签扩列，窄屏改为标签在正文上方；歌曲标题允许自然换行。中文履历和播放器不变。
 
 | 原文 | 待审核英文 |
 |---|---|
@@ -176,7 +182,7 @@
 | 记忆能够保存什么？爱情、死亡与时间，又怎样改变我们讲述故事的方式？ | What can memory preserve? How do love, death and time change the way we tell stories? |
 | 面对无法轻易解释的生活，笑声和荒诞能否成为表达的方式？ | Faced with a life that defies easy explanation, can laughter and absurdity become ways of expressing it? |
 | 语言应当构筑的是空间。 | What language ought to construct is space. |
-| ——《语言方式》，2026 | — Modes of Language, 2026 |
+| ——《语言方式》，2026 | — The Shape of Language, 2026 |
 | 主要创作及演出活动 | Selected creative work and performances |
 | 展演 | Performance |
 | 入选 | Selection |
@@ -224,10 +230,10 @@
 | 戏剧仍然是主要的创作方式。除此之外，持续写作诗歌与歌词，探索音乐、人工智能与网页媒介参与创作的可能。 | Theatre remains my principal creative medium. Alongside it, I continue to write poetry and lyrics and explore the possibilities of music, artificial intelligence and the web as creative media. |
 | ECHYOX 保存已经完成的作品，也容纳尚在发生的尝试。 | ECHYOX preserves completed works and makes room for experiments still unfolding. |
 | 作品、合作与交流。 | Works, collaborations and conversations. |
-| 关于天空告诉我的一切 | Everything the Sky Has Told Me |
-| 你要问路吗要问路吗问路吗路吗吗？ | Do You Need Directions Do You Need Directions Need Directions Directions Directions? |
+| 关于天空告诉我的一切 | All the Sky Has Told Me |
+| 你要问路吗要问路吗问路吗路吗吗？ | Looking for a Way? For a Way? A Way? Way? …? |
 | 跃下深渊的动机 | Motif for a Leap into the Abyss |
-| 一个哑谜 | A Silent Riddle |
+| 一个哑谜 | An Unspoken Riddle |
 | 2021创作 · 2026完成编曲 | Written in 2021 · Arrangement completed in 2026 |
 | 作词、作曲：侯宇鑫 · 编曲：Suno | Lyrics and composition: Hou Yuxin · Arrangement: Suno |
 | 作词：侯宇鑫 · 作曲、编曲：Suno | Lyrics: Hou Yuxin · Composition and arrangement: Suno |
@@ -244,7 +250,7 @@
 | 诗歌扉页 | Poetry opening page |
 | 路途遥远，海浪呼啸 | The road is long; the waves roar |
 | 一阵风准时吹来 | A gust of wind arrives on time |
-| 《语言方式》 | Modes of Language |
+| 《语言方式》 | The Shape of Language |
 | 诗歌目录 | Poetry archive |
 | 诗歌 / 侯宇鑫 | Poetry / Hou Yuxin |
 | 收起此页，返回诗歌列表 | Close poem and return to archive |
@@ -258,61 +264,61 @@
 | 没有，虚无 | Nothing, Nothingness |
 | 午后 | Afternoon |
 | 夜晚 | Night |
-| 五十年后，永恒之前 | Fifty Years Later, Before Eternity |
+| 五十年后，永恒之前 | Fifty Years On, Before Eternity |
 | 女神 | Goddess |
-| 命数的牢笼 | The Cage of Fate |
-| 公元某年的村庄（组诗） | A Village in an Unnamed Year (Poetry Sequence) |
-| 浮舟于世 | A Boat Afloat in the World |
+| 命数的牢笼 | The Prison of Fate |
+| 公元某年的村庄（组诗） | A Village in an Unspecified Year (Poetry Sequence) |
+| 浮舟于世 | Adrift in the World |
 | 我 | I |
-| 三年后，梦里开的花 | Three Years Later, Flowers Bloom in a Dream |
+| 三年后，梦里开的花 | Three Years On, Flowers in a Dream |
 | 玛吉阿玛 | 玛吉阿玛 (Majiama) |
-| 岁月 | The Years |
-| 浩荡，茫茫 | Vast, Boundless |
+| 岁月 | The Passage of Years |
+| 浩荡，茫茫 | Vast and Boundless |
 | 贫民窟 | Slum |
 | 九行诗 | Nine Lines |
 | 雨夜 | A Rainy Night |
 | 海洋 | Ocean |
-| 未来·想象光明·原野·十九岁 | Future · Imagining Light · The Open Fields · Nineteen |
+| 未来·想象光明·原野·十九岁 | The Future · Imagining Light · The Wilds · At Nineteen |
 | 姐姐，今晚你死去 | Sister, Tonight You Die |
 | 破晓之前的挽歌 | Elegy Before Daybreak |
-| 世界的最后边际 | The Furthest Edge of the World |
-| 即使光明隐匿黑暗之中 | Even If Light Hides in Darkness |
-| 斜阳在末日到来之前的天空高悬（组诗） | The Setting Sun Hangs High Before the End of the World (Poetry Sequence) |
-| 拂遍旷野的梦里的风 | The Wind in a Dream That Sweeps the Wilds |
-| 太阳以西的地方（组诗） | Somewhere West of the Sun (Poetry Sequence) |
-| 新娘在落日余晖时刻的史诗 | Epic of a Bride in the Afterglow of Sunset |
-| 大河（十九岁的诗） | The Great River (A Poem at Nineteen) |
-| 晚霞在白昼之后这样出现 | This Is How the Evening Glow Appears After Daylight |
-| 一声风吟 | A Murmur of Wind |
-| 过往诗篇 | Poems from the Past |
-| 日出到日落的世间故事（组诗） | Stories of the World from Sunrise to Sunset (Poetry Sequence) |
-| 散佚诗篇：有关天空告诉我的一切（组诗） | Scattered Poems: Everything the Sky Has Told Me (Poetry Sequence) |
-| 醒来 | Wake |
-| 一行诗就足以表达一切 | One Line of Poetry Is Enough to Say It All |
-| 回答关于黑暗的一切的问题 | Answering All the Questions About Darkness |
-| 幸存对我而言意味着什么 | What Survival Means to Me |
+| 世界的最后边际 | At the Far Edge of the World |
+| 即使光明隐匿黑暗之中 | Even When Light Lies Hidden in Darkness |
+| 斜阳在末日到来之前的天空高悬（组诗） | The Setting Sun Hangs High on the Eve of the End (Poetry Sequence) |
+| 拂遍旷野的梦里的风 | A Dream-Wind Sweeping the Wilds |
+| 太阳以西的地方（组诗） | West of the Sun (Poetry Sequence) |
+| 新娘在落日余晖时刻的史诗 | Epic of the Bride at Sundown |
+| 大河（十九岁的诗） | The Great River (Written at Nineteen) |
+| 晚霞在白昼之后这样出现 | This Is How the Evening Sky Glows After Daylight |
+| 一声风吟 | A Whisper of Wind |
+| 过往诗篇 | Verses from the Past |
+| 日出到日落的世间故事（组诗） | Tales of the World from Dawn to Dusk (Poetry Sequence) |
+| 散佚诗篇：有关天空告诉我的一切（组诗） | Lost and Scattered Verses: All the Sky Has Told Me (Poetry Sequence) |
+| 醒来 | Awake |
+| 一行诗就足以表达一切 | A Single Line of Verse Can Say It All |
+| 回答关于黑暗的一切的问题 | To Answer Every Question About Darkness |
+| 幸存对我而言意味着什么 | What Surviving Means to Me |
 | 零伍幺六 | 0516 |
-| 生命理论史稿 | Drafts of a Theory of Life |
-| 最后一篇故事 | The Last Story |
+| 生命理论史稿 | Drafts Towards a History of the Theory of Life |
+| 最后一篇故事 | The Last Tale |
 | 如何杀死一只卑劣的艺术家 | How to Kill a Vile Artist |
 | 自由落体运动 | Free Fall |
-| 我们要去烧毁森林 | We Are Going to Burn the Forest |
-| 被熄灭的冰封太阳——一种史诗的叙述法 | The Extinguished Frozen Sun — An Epic Mode of Narration |
+| 我们要去烧毁森林 | We Shall Burn the Forest |
+| 被熄灭的冰封太阳——一种史诗的叙述法 | The Frozen Sun Put Out — A Way of Telling an Epic |
 | 未来实验笔记 | Notes on Future Experiments |
-| 情诗延续法则 | Laws of Continuing a Love Poem |
-| 而我只是一条孤寂行进的落寞疯狗 | And I Am Only a Forlorn Mad Dog Walking Alone |
+| 情诗延续法则 | The Laws by Which a Love Poem Lives On |
+| 而我只是一条孤寂行进的落寞疯狗 | And I Am Only a Lonely Mad Dog Wandering Alone |
 | 大河（二零一九与二零二一） | The Great River (2019 and 2021) |
-| 希望的意志是生活的表征 | The Will to Hope Is a Sign of Life |
+| 希望的意志是生活的表征 | The Will to Hope Is the Mark of Life |
 | 萨尔瓦利·耶斯塔米·K的情诗 | Love Poems of 萨尔瓦利·耶斯塔米·K |
-| 思维地震的一场掩埋 | A Burial in an Earthquake of Thought |
-| 网罗诗意时刻 | Gathering Poetic Moments |
-| 致爱人 | To a Lover |
-| 一匹野马奔向高原 | A Wild Horse Runs Towards the Plateau |
+| 思维地震的一场掩埋 | Buried in a Quake of Thought |
+| 网罗诗意时刻 | Gathering Moments of Poetry |
+| 致爱人 | To My Beloved |
+| 一匹野马奔向高原 | A Wild Horse Races Towards the Highlands |
 | 献给契诃夫 | To Chekhov |
-| 月球下行的轨道 | The Moon’s Descending Orbit |
-| 快去踏进爱的河里 | Hurry, Step into the River of Love |
-| 语言方式 | Modes of Language |
-| 凝望浪潮 | Gazing at the Waves |
+| 月球下行的轨道 | The Moon in a Descending Orbit |
+| 快去踏进爱的河里 | Quick, Step into the River of Love |
+| 语言方式 | The Shape of Language |
+| 凝望浪潮 | Gazing into the Waves |
 | 《海边有一栋倾斜的房子》 | EXPRESSERS |
 | 《猛犸》 | MAMMOTH |
 | 《迷宫》 | THE LABYRINTH |
