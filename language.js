@@ -375,6 +375,110 @@ document.querySelectorAll('.play-row .title-line .en').forEach(e=>{e.hidden=true
 document.querySelectorAll('.home .door .no').forEach(e=>{const h=e.closest('.door').querySelector('h1');if(h){e.textContent=h.textContent;e.lang='zh-CN';e.setAttribute('data-keep-original','');}});
 if(brand){const small=brand.querySelector('small');if(small)small.hidden=true;}
 document.querySelectorAll('.poem-text,#poemReaderText,.entry-art').forEach(e=>{e.lang='zh-CN';e.setAttribute('data-keep-original','');});
+
+/* Render transliterated collaborator credits only in the English archive.
+   Original Chinese remains visible, and role/production labels are handled separately. */
+const creditNames = {
+  "李俊宏": "Li Junhong",
+  "李黎欣童": "Li Lixintong",
+  "李昊文": "Li Haowen",
+  "张晓静": "Zhang Xiaojing",
+  "侯宇鑫": "Hou Yuxin",
+  "韦哲宇": "Wei Zheyu",
+  "梁栋": "Liang Dong",
+  "戴国婷": "Dai Guoting",
+  "李萍乡": "Li Pingxiang",
+  "郭锐锐": "Guo Ruirui",
+  "郝雨晴": "Hao Yuqing",
+  "韩昕彤": "Han Xintong",
+  "张政": "Zhang Zheng",
+  "王江涛": "Wang Jiangtao",
+  "武义刚": "Wu Yigang",
+  "张梓玥": "Zhang Ziyue",
+  "牛锴": "Niu Kai",
+  "李东阳": "Li Dongyang",
+  "郑仪凯": "Zheng Yikai",
+  "王嘉顺": "Wang Jiashun",
+  "李娜": "Li Na",
+  "汪洋": "Wang Yang",
+  "崔欣瑶": "Cui Xinyao",
+  "郭雨鑫": "Guo Yuxin",
+  "霍禹龙": "Huo Yulong",
+  "田帅": "Tian Shuai",
+  "郭丽琨": "Guo Likun",
+  "赵佳丽": "Zhao Jiali",
+  "王丽仙": "Wang Lixian",
+  "许海钰": "Xu Haiyu",
+  "闫泽民": "Yan Zemin",
+  "曹宸卿": "Cao Chenqing",
+  "张芏": "Zhang Du",
+  "邢鹏飞": "Xing Pengfei",
+  "姜宇航": "Jiang Yuhang",
+  "王青楠": "Wang Qingnan",
+  "高宇婷": "Gao Yuting",
+  "温骐毓": "Wen Qiyu",
+  "杨严灿": "Yang Yancan",
+  "吕小静": "Lyu Xiaojing",
+  "陈宽": "Chen Kuan",
+  "王一渤": "Wang Yibo",
+  "朱惠敏": "Zhu Huimin",
+  "王彤昕": "Wang Tongxin",
+  "朱笑笑": "Zhu Xiaoxiao",
+  "张昕": "Zhang Xin",
+  "李雯俊": "Li Wenjun",
+  "段宜君": "Duan Yijun",
+  "曹之馨": "Cao Zhixin",
+  "宋圣炘": "Song Shengxin",
+  "葛梦蝶": "Ge Mengdie",
+  "郭卓洛": "Guo Zhuoluo",
+  "刘阳": "Liu Yang",
+  "卞佳艺": "Bian Jiayi",
+  "李玥鑫": "Li Yuexin",
+  "奥米琦": "Ao Miqi",
+  "吴梦凡": "Wu Mengfan",
+  "易欣": "Yi Xin",
+  "张亚琪": "Zhang Yaqi",
+  "王瀚淼": "Wang Hanmiao",
+  "崔宇帆": "Cui Yufan",
+  "赵嘉敏": "Zhao Jiamin",
+  "李文璇": "Li Wenxuan",
+  "赵宁静": "Zhao Ningjing",
+  "窦芝": "Dou Zhi",
+  "邱若鹏": "Qiu Ruopeng",
+  "王金铭": "Wang Jinming",
+  "郭锦淼": "Guo Jinmiao",
+  "白子凡": "Bai Zifan",
+  "王溪娜": "Wang Xina",
+  "陈永玉": "Chen Yongyu",
+  "刘思彤": "Liu Sitong",
+  "陈梓慧": "Chen Zihui",
+  "徐晨晔": "Xu Chenye"
+};
+function renderCreditNames(container){
+ const textNodes=Array.from(container.childNodes).filter(n=>n.nodeType===3&&n.nodeValue.trim());
+ if(textNodes.length!==1)return;
+ const original=textNodes[0];
+ const list=original.nodeValue.trim().split('、').map(n=>n.trim());
+ if(!list.length||!list.every(n=>Object.prototype.hasOwnProperty.call(creditNames,n)))return;
+ const group=document.createElement('span');
+ group.className=list.length>1?'credit-name-list credit-name-list--multiple':'credit-name-list';
+ group.setAttribute('data-keep-original','');
+ for(const n of list){
+  const person=document.createElement('span');person.className='credit-name-pair';
+  const roman=document.createElement('span');roman.className='credit-name-roman';roman.textContent=creditNames[n];
+  const han=document.createElement('span');han.className='credit-name-han';han.lang='zh-CN';han.textContent=n;
+  person.append(roman,han);group.appendChild(person);
+ }
+ original.replaceWith(group);
+}
+document.querySelectorAll('.work-collaborators .collab-person > dt,.work-collaborators .collab-credit > dd,.work-collaborators .collab-director-entry').forEach(renderCreditNames);
+document.querySelectorAll('.work-collaborators').forEach(section=>{
+ const header=section.querySelector('.work-collaborators-header');
+ if(!header)return;
+ const note=document.createElement('p');note.className='credit-name-note';note.textContent='Names are romanised in Hanyu Pinyin; original Chinese names are retained. Individual preferred spellings may differ.';
+ header.after(note);
+});
+
 function localLink(a){
  if(a.hasAttribute('data-language-switch')||a.hasAttribute('download'))return;
  const href=a.getAttribute('href');if(!href||/^(#|mailto:|tel:|javascript:)/i.test(href))return;

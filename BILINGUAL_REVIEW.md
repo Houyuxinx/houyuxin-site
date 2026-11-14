@@ -1,7 +1,7 @@
-# ECHYOX 中英文界面 · 第五轮事实审校稿
+# ECHYOX 中英文界面 · 第六轮事实审校与双语署名稿
 
 - 本轮英文文本为待审核译文，不是作者已批准的文学翻译。
-- 保持既定五个英文剧名；其它作品名、机构、节展、奖项为暂译或原中文加拼音，尚未逐一核验官方英文名称。已核实晋中信息学院 Jinzhong College of Information（学校国际交流处招生简章），金刺猬大学生戏剧节 Golden Hedgehog College Theatre Festival（北京市朝阳区英文政府网站），以及大凉山国际戏剧节 Daliangshan International Theatre Festival（国际戏剧协会 ITI 英文资料）。演员与主创姓名保留原中文（作者统一 Hou Yuxin）；未确定的角色名也保留中文，避免猜测原拼写。
+- 保持既定五个英文剧名；其它作品名、机构、节展、奖项为暂译或原中文加拼音，尚未逐一核验官方英文名称。已核实晋中信息学院 Jinzhong College of Information（学校国际交流处招生简章），金刺猬大学生戏剧节 Golden Hedgehog College Theatre Festival（北京市朝阳区英文政府网站），以及大凉山国际戏剧节 Daliangshan International Theatre Festival（国际戏剧协会 ITI 英文资料）。演职人员在英文档案中采用汉语拼音为主、原中文为辅（第六轮）；作者统一 Hou Yuxin。未经确认的本人惯用英文拼写不得冒称正式署名，未确定的虚构角色原拼写继续保留中文。
 - 保留中文入口文学文字场、完整诗歌、歌词、PDF 试读、媒体及中文原文。诗歌目录标题译为英文，全文仍为中文。英文版不是整站文学翻译。
 - 英文 URL 使用 ?lang=en，切换会重新打开当前页面；未保存播放器、弹窗内部临时状态。导航应维持语言参数。移动端头部可能需要实机微调。
 - 通用词汇使用英式拼写；英文中标题/署名保留已确定形式。下列逐项对照用于作者审核，不意味着官方名称已确证。
@@ -49,6 +49,92 @@
 - 根据中文网页及原作所列奖项恢复“潜力剧本奖”的 award 表述（此前 recognised in category 弱化了奖项性质）；名称仍属描述性译法而非官方英文名称。小剧场明确为演出空间，不译成作品规模。个人简介不额外使用性别代词，保留作者、教育经历和职务事实。
 - 原稿仅用于内部核对，不新增公开原稿或引文，不更改原中文文本。源稿间或原稿内部未解决的事实差异不擅自填补。后续翻译须先查原作或作者确认的材料，再决定性别、单复数、亲属关系和其他身份；无证据时优先用中性、保留歧义的表达，不凭演员性别推定角色性别。
 - 仍有未核实官方英文名及人名原拼写，沿用此前审校说明；本轮不重新调查全部历史奖项或进行母语者独立审核，也不意味着五部剧本全文逐句审校。仅修改十条英译和一处元描述，更新 JS 缓存参数，不改CSS、导航、动画及媒体。
+
+## 第六轮：共同在场双语署名（2026-11-14）
+- 作者明确同意英文档案采用汉语拼音为主、中文为辅的双语署名。四部已有演职名单的作品逐项从现有 HTML 提取；74 个不同姓名，101 次姓名出现，4 处多人合署。各版本、职务、演员角色和顺序保持原状；《她一瞬过载》没有演职名单，不新增虚构署名。
+- 依据 GB/T 28039-2011（https://std.samr.gov.cn/gb/search/gbDetailed?id=71F772D7DE2FD3A7E05397BE0A0AB82A），姓在前、名连写、首字母大写、不加声调。吕采用对外文件的 Lyu 写法（国家移民管理局：https://www.nia.gov.cn/Enquiry/publish/showQuestion.jsp?MZ=p2c%2B4CU6l%2BOcCK%2BWhZ8p6A%3D%3D）。
+- 字音核查：芏 dù（大陆普通话字典；存在其他读音传统）https://zdic.net/hans/%E8%8A%8F ；炘 xīn/xìn（无调拼写相同）https://zdic.net/hans/%E7%82%98 ；葛姓 gě https://zdic.net/hans/%E8%91%9B 。张芏暂作 Zhang Du，李黎欣童暂按李姓与黎欣童名处理，奥米琦暂按汉字普通话音写，均待本人/作者确认。王溪娜的娜暂按 na，李娜同；其余名字的本人惯用英文署名亦未逐一确认。公开英文档案说明为拼音转写、可能与个人惯用拼写不同，并保留原汉字；不采集个人证件信息。
+- 原有中文 HTML 名单、角色、演出版本、职务不改。仅英文界面生成两行姓名，合署名单逐名呈现并允许换行，包括多媒体、服化、舞监和后台名单；CSS 限定在英文共同在场板块。先于通用翻译渲染，避免作者姓名或联合署名单独被翻译而丢失中文。
+- 以下为独立姓名转写表，不属于通用316项译文字典；后续校正时只改姓名映射。第五轮的事实性修订全部保留。本轮尚未经过参与者确认或实机验证。
+
+| 中文署名 | 拼音转写（待确认个人惯用拼写） |
+|---|---|
+| 李俊宏 | Li Junhong |
+| 李黎欣童 | Li Lixintong |
+| 李昊文 | Li Haowen |
+| 张晓静 | Zhang Xiaojing |
+| 侯宇鑫 | Hou Yuxin |
+| 韦哲宇 | Wei Zheyu |
+| 梁栋 | Liang Dong |
+| 戴国婷 | Dai Guoting |
+| 李萍乡 | Li Pingxiang |
+| 郭锐锐 | Guo Ruirui |
+| 郝雨晴 | Hao Yuqing |
+| 韩昕彤 | Han Xintong |
+| 张政 | Zhang Zheng |
+| 王江涛 | Wang Jiangtao |
+| 武义刚 | Wu Yigang |
+| 张梓玥 | Zhang Ziyue |
+| 牛锴 | Niu Kai |
+| 李东阳 | Li Dongyang |
+| 郑仪凯 | Zheng Yikai |
+| 王嘉顺 | Wang Jiashun |
+| 李娜 | Li Na |
+| 汪洋 | Wang Yang |
+| 崔欣瑶 | Cui Xinyao |
+| 郭雨鑫 | Guo Yuxin |
+| 霍禹龙 | Huo Yulong |
+| 田帅 | Tian Shuai |
+| 郭丽琨 | Guo Likun |
+| 赵佳丽 | Zhao Jiali |
+| 王丽仙 | Wang Lixian |
+| 许海钰 | Xu Haiyu |
+| 闫泽民 | Yan Zemin |
+| 曹宸卿 | Cao Chenqing |
+| 张芏 | Zhang Du |
+| 邢鹏飞 | Xing Pengfei |
+| 姜宇航 | Jiang Yuhang |
+| 王青楠 | Wang Qingnan |
+| 高宇婷 | Gao Yuting |
+| 温骐毓 | Wen Qiyu |
+| 杨严灿 | Yang Yancan |
+| 吕小静 | Lyu Xiaojing |
+| 陈宽 | Chen Kuan |
+| 王一渤 | Wang Yibo |
+| 朱惠敏 | Zhu Huimin |
+| 王彤昕 | Wang Tongxin |
+| 朱笑笑 | Zhu Xiaoxiao |
+| 张昕 | Zhang Xin |
+| 李雯俊 | Li Wenjun |
+| 段宜君 | Duan Yijun |
+| 曹之馨 | Cao Zhixin |
+| 宋圣炘 | Song Shengxin |
+| 葛梦蝶 | Ge Mengdie |
+| 郭卓洛 | Guo Zhuoluo |
+| 刘阳 | Liu Yang |
+| 卞佳艺 | Bian Jiayi |
+| 李玥鑫 | Li Yuexin |
+| 奥米琦 | Ao Miqi |
+| 吴梦凡 | Wu Mengfan |
+| 易欣 | Yi Xin |
+| 张亚琪 | Zhang Yaqi |
+| 王瀚淼 | Wang Hanmiao |
+| 崔宇帆 | Cui Yufan |
+| 赵嘉敏 | Zhao Jiamin |
+| 李文璇 | Li Wenxuan |
+| 赵宁静 | Zhao Ningjing |
+| 窦芝 | Dou Zhi |
+| 邱若鹏 | Qiu Ruopeng |
+| 王金铭 | Wang Jinming |
+| 郭锦淼 | Guo Jinmiao |
+| 白子凡 | Bai Zifan |
+| 王溪娜 | Wang Xina |
+| 陈永玉 | Chen Yongyu |
+| 刘思彤 | Liu Sitong |
+| 陈梓慧 | Chen Zihui |
+| 徐晨晔 | Xu Chenye |
+
+## 通用译文对照
 
 | 原文 | 待审核英文 |
 |---|---|
