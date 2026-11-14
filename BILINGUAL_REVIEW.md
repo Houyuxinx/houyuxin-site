@@ -1,4 +1,4 @@
-# ECHYOX 中英文界面 · 第四轮待审译稿
+# ECHYOX 中英文界面 · 第五轮事实审校稿
 
 - 本轮英文文本为待审核译文，不是作者已批准的文学翻译。
 - 保持既定五个英文剧名；其它作品名、机构、节展、奖项为暂译或原中文加拼音，尚未逐一核验官方英文名称。已核实晋中信息学院 Jinzhong College of Information（学校国际交流处招生简章），金刺猬大学生戏剧节 Golden Hedgehog College Theatre Festival（北京市朝阳区英文政府网站），以及大凉山国际戏剧节 Daliangshan International Theatre Festival（国际戏剧协会 ITI 英文资料）。演员与主创姓名保留原中文（作者统一 Hou Yuxin）；未确定的角色名也保留中文，避免猜测原拼写。
@@ -41,6 +41,14 @@
 - 2026深圳城市戏剧季的具体活动身份已由学校公开报道确认，英文 Shenzhen City Theatre Season 继续作为描述性暂译；不是深圳湾区青年戏剧季。来源：https://ysjyzx.jzci.edu.cn/info/1008/3862.htm
 - 待核实主办方正式英文名称：戏剧中国、躬耕艺术节、深圳城市戏剧季、第一届中国淄博戏剧节（不与淄博城市戏剧节混同）、南宁新青年戏剧节、广州西瓜剧场、青年编剧大会、深圳拉阔戏剧节、乌马河剧院、山西保利大剧院、同期文学赛事及其奖项、ICIC会议全称。现有描述性译法保留，不宣称官方命名；中文原名在对照表中可查。自创角色和演职人员姓名仍保留原写法；无需猜测罗马字拼写。
 - 本轮仅修订上述两处名称对应的三条词条，不调整文学翻译、设计、交互、中文原文或媒体。更新语言 JS 缓存版本。
+
+## 第五轮：原作事实与语义核对（2026-11-14）
+- 作者指出《猛犸》主人公为女性。重新对照作者提供的五部戏剧原稿的剧情梗概和人物表，而非仅凭网页简介判断；《猛犸》两份可读取剧本均确认主人公为女性，小说作家甲、乙是同一角色，围猎梦境中的猛犸为单数。修正英文全部相关指代及单复数；不增加中文网页没有的年龄等细节。演员表的甲、乙等分列角色标签照原写法保留，不将分饰同一角色理解为不同人物。
+- 《海边有一栋倾斜的房子》核实夫妇、结婚三十周年和梦中海上水怪；统一 sea monster。《迷宫》核实代达罗斯、伊卡洛斯父子及米诺斯等身份，保持剧情简介和角色称呼；全女班指演出阵容而非全部剧中角色为女性。《面向自我的陈述》核实理查德·罗素及死后陈述；《她一瞬过载》核实杨翠翠为31岁女性、审讯情境和婚姻等；修正口语引句语气。
+- 复核实际线上分支的316条映射与十个页面的静态文本、角色署名、58个诗题、4首歌曲题名及署名；性别和身份相关用语逐项对照，诗题涉及人物称谓时查看对应正文。保留已确定的文学译名和不确定专名原文。不是对尚未翻译的诗歌、歌词或剧本全文作翻译或独立文学审校。
+- 根据中文网页及原作所列奖项恢复“潜力剧本奖”的 award 表述（此前 recognised in category 弱化了奖项性质）；名称仍属描述性译法而非官方英文名称。小剧场明确为演出空间，不译成作品规模。个人简介不额外使用性别代词，保留作者、教育经历和职务事实。
+- 原稿仅用于内部核对，不新增公开原稿或引文，不更改原中文文本。源稿间或原稿内部未解决的事实差异不擅自填补。后续翻译须先查原作或作者确认的材料，再决定性别、单复数、亲属关系和其他身份；无证据时优先用中性、保留歧义的表达，不凭演员性别推定角色性别。
+- 仍有未核实官方英文名及人名原拼写，沿用此前审校说明；本轮不重新调查全部历史奖项或进行母语者独立审核，也不意味着五部剧本全文逐句审校。仅修改十条英译和一处元描述，更新 JS 缓存参数，不改CSS、导航、动画及媒体。
 
 | 原文 | 待审核英文 |
 |---|---|
@@ -88,20 +96,20 @@
 | 放大 | Zoom in |
 | 适宽 | Fit to width |
 | “过去一片寂静，未来无限光明。” | “The past is silent; the future is infinitely bright.” |
-| 一对为自己赋予“演员”和“夫妻”身份的男女，在结婚三十周年纪念日的夜晚，因为一只梦里的水怪重新翻开生活。角色与演员、现实与表演反复交换位置。 | On the night of their thirtieth wedding anniversary, a man and a woman who have assigned themselves the identities of both actors and spouses revisit their lives after a dream about a water monster. Characters and actors, reality and performance, repeatedly exchange places. |
+| 一对为自己赋予“演员”和“夫妻”身份的男女，在结婚三十周年纪念日的夜晚，因为一只梦里的水怪重新翻开生活。角色与演员、现实与表演反复交换位置。 | On the night of their thirtieth wedding anniversary, a man and a woman who have taken on the identities of both actors and spouses revisit their lives after a dream about a sea monster. Characters and actors, reality and performance, repeatedly swap places. |
 | “人类如同猛犸，生活就是一场围猎。” | “Human beings are like mammoths; life is a hunt in which we are encircled.” |
-| 一个患有渐冻症的剧作家死去之后，在意识消失前的六分钟里回看自己的一生。现实、邻居、小说家与猛犸围猎的梦境彼此嵌套。 | After his death, a playwright with amyotrophic lateral sclerosis (ALS) looks back on his life in the six minutes before his consciousness fades. Reality, his neighbours, novelists and dreams of a mammoth hunt are nested within one another. |
+| 一个患有渐冻症的剧作家死去之后，在意识消失前的六分钟里回看自己的一生。现实、邻居、小说家与猛犸围猎的梦境彼此嵌套。 | After her death, a playwright with amyotrophic lateral sclerosis (ALS) looks back on her life in the six minutes before her consciousness fades. Reality, the lives of her neighbours, a novelist’s account and a dream of a mammoth being hunted are interwoven. |
 | “英雄的苦难是他们的境遇，人们的苦难是自身的生活。” | “For heroes, suffering lies in their circumstances; for ordinary people, it lies in life itself.” |
 | 代达罗斯逃离雅典来到克里特岛，为米诺斯建造迷宫。权力、罪行、父子关系与建筑师对秩序的执念不断彼此缠绕。 | Daedalus flees Athens for Crete, where he builds a labyrinth for Minos. Power, crimes, the relationship between father and son and the architect’s obsession with order become ever more entangled. |
 | “如果可以的话，我希望你们能拥抱我的灵魂。” | “If you can, I hope you will embrace my soul.” |
 | 以理查德·罗素未经许可驾驶客机升空并最终坠毁的真实事件为起点。死亡之后，他重新面对自己的一生、媒体的凝视、孤独和所谓自由。 | Inspired by the real-life incident in which Richard Russell took off in a passenger aircraft without authorisation and ultimately crashed, the play follows him after death as he confronts his life, the gaze of the media, loneliness and so-called freedom. |
-| “无非就是想要个回答嘛，能怎么样呢？” | “I just wanted an answer, that’s all. What could possibly happen?” |
+| “无非就是想要个回答嘛，能怎么样呢？” | “All I want is an answer. What’s the big deal?” |
 | 三十一岁的杨翠翠因为骑走一辆电动车被带进派出所。审讯开始后，一个看似荒诞的小事件逐渐牵出她的婚姻、欲望、出身和一整段人生。 | Thirty-one-year-old Yang Cuicui is taken to a police station after riding away on an electric scooter. As the interrogation unfolds, a seemingly absurd minor incident gradually reveals her marriage, desires, background and the story of an entire life. |
 | 2022年第一届中国淄博戏剧节首演 | Premiered at the 1st China Zibo Theatre Festival, 2022 |
 | 第一届中国淄博戏剧节小剧场展演单元优秀编剧奖 | Outstanding Playwright Award, Small Theatre Showcase, 1st China Zibo Theatre Festival |
 | 广州西瓜剧场2022年戏剧大赛决赛竞演单元 | Finalist, 2022 Theatre Competition, Xigua Theatre, Guangzhou |
 | 2022年第六届南宁市“新青年”戏剧节特邀展演剧目 | Invited production, 6th New Youth Theatre Festival, Nanning, 2022 |
-| 2023“戏剧中国”年度作品话剧类潜力剧本奖 | Recognised in the Promising Plays category (spoken drama), 2023 Theatre China annual selection |
+| 2023“戏剧中国”年度作品话剧类潜力剧本奖 | Promising Play Award (spoken drama), Theatre China’s 2023 annual selection |
 | 2024年第六届大凉山国际戏剧节参演剧目 | Presented at the 6th Daliangshan International Theatre Festival, 2024 |
 | 2023年11月8日首演于晋中信息学院 | Premiered at Jinzhong College of Information, 8 November 2023 |
 | 2024年5月20日二轮演出于晋中信息学院 | Second run at Jinzhong College of Information, 20 May 2024 |
@@ -115,7 +123,7 @@
 | 2026深圳城市戏剧季特邀剧目 | Invited production, 2026 Shenzhen City Theatre Season |
 | 新作，暂无演出、入选或获奖记录。 | New work; no production, selection or award records to date. |
 | 共同在场 | Being Present Together |
-| 天亮之前，我们在寻找水怪。 | Before dawn, we are searching for the water monster. |
+| 天亮之前，我们在寻找水怪。 | Before dawn, we are searching for the sea monster. |
 | 在时间的围猎中，我们曾彼此作证。 | In the hunt of time, we once bore witness to one another. |
 | 迷路的人已经沉寂，同行的人留在回声里。 | Those who lost their way have fallen silent; those who walked with them remain in the echoes. |
 | 一个人的独白，也曾由许多人共同托举。 | One person’s monologue was once sustained by many. |
@@ -203,9 +211,9 @@
 | 此刻 | Now |
 | 联系 | Contact |
 | 侯宇鑫，青年戏剧编剧、导演，中国戏剧文学学会会员，文旅演艺高级导演。 | Hou Yuxin is a young playwright and theatre director, a member of the Chinese Theatre Literature Association (CTLA; 中国戏剧文学学会), and a senior director specialising in live performance for cultural tourism. |
-| 毕业于广西艺术学院戏剧影视文学系，曾任高校教师，进修于第二届全国“文旅演艺导演高级研修班”。 | He graduated from Guangxi Arts University in drama, film and television literature, formerly taught at a university, and attended the second national advanced training programme for directors of cultural tourism performances. |
-| 主要从事戏剧文本创作与舞台导演工作，同时进行诗歌、歌曲写作及跨媒介创作实践。 | His practice centres on playwriting and stage direction, alongside poetry, songwriting and cross-media artistic practice. |
-| 主要作品包括话剧《海边有一栋倾斜的房子》、《猛犸》、《迷宫》、《面向自我的陈述》、《她一瞬过载》，音乐剧《风起形意》等。 | His major works include the plays EXPRESSERS, MAMMOTH, THE LABYRINTH, THE NARROW GATE and ALL AT ONCE, and the musical 风起形意 (Feng Qi Xing Yi). |
+| 毕业于广西艺术学院戏剧影视文学系，曾任高校教师，进修于第二届全国“文旅演艺导演高级研修班”。 | A graduate of Guangxi Arts University in drama, film and television literature, Hou previously taught at a university and attended the second national advanced training programme for directors of cultural tourism performances. |
+| 主要从事戏剧文本创作与舞台导演工作，同时进行诗歌、歌曲写作及跨媒介创作实践。 | Hou’s practice centres on playwriting and stage direction, alongside poetry, songwriting and cross-media artistic practice. |
+| 主要作品包括话剧《海边有一栋倾斜的房子》、《猛犸》、《迷宫》、《面向自我的陈述》、《她一瞬过载》，音乐剧《风起形意》等。 | Major works include the plays EXPRESSERS, MAMMOTH, THE LABYRINTH, THE NARROW GATE and ALL AT ONCE, and the musical 风起形意 (Feng Qi Xing Yi). |
 | 一些不断出现、又没有固定答案的问题。 | Questions that keep returning, without fixed answers. |
 | 当一个人被赋予某种身份，他还能重新选择自己吗？ | When a person is assigned an identity, can they still choose who to become? |
 | 当命运与秩序开始发挥作用，人的行动究竟还有多少余地？ | When fate and order begin to exert their force, how much room for action remains? |
@@ -236,13 +244,13 @@
 | 2026年5月27日首演于晋中信息学院乌马河剧院（全女班）。 | Premiered at the Wumahe Theatre, Jinzhong College of Information, on 27 May 2026 (all-female cast). |
 | 作为受邀剧目入选2026深圳城市戏剧季。 | Selected as an invited production for the 2026 Shenzhen City Theatre Season. |
 | 2026年创作的独角话剧作品。 | Solo play written in 2026. |
-| 2026年使用AI平台介入创作的悬疑小剧场话剧。 | A small-scale suspense play developed with the involvement of AI platforms, 2026. |
+| 2026年使用AI平台介入创作的悬疑小剧场话剧。 | A suspense play for a small theatre, developed with the involvement of AI platforms in 2026. |
 | 获“戏剧中国”2024年度作品征选活动话剧类最佳剧本奖；获2025躬耕艺术节青年竞演单元“躬耕奖”。 | Best Play Award (spoken drama), Theatre China 2024 annual selection; Gonggeng Award, youth competition, 2025 Gonggeng Arts Festival. |
 | 2025躬耕艺术节青年竞演单元；2025年第七届大凉山国际戏剧节。 | Youth competition, 2025 Gonggeng Arts Festival; 7th Daliangshan International Theatre Festival, 2025. |
 | 获选山西省教育厅“2025年度省级高校原创文化精品”项目。 | Selected for the Shanxi Provincial Department of Education’s 2025 programme for outstanding original cultural works at universities. |
 | 2025年即兴喜剧专场。 | Improvised comedy show, 2025. |
 | 2025年使用AI平台介入创作的先锋历史话剧。 | An avant-garde historical play developed with the involvement of AI platforms, 2025. |
-| 获“戏剧中国”2023年度作品征选活动话剧类潜力剧本奖。 | Recognised in the Promising Plays category (spoken drama), 2023 Theatre China annual selection. |
+| 获“戏剧中国”2023年度作品征选活动话剧类潜力剧本奖。 | Promising Play Award (spoken drama), Theatre China’s 2023 annual selection. |
 | 展演于2024年第六届大凉山国际戏剧节。 | Presented at the 6th Daliangshan International Theatre Festival, 2024. |
 | 入选并展演于2024北京培源艺术节；展演于2024年第六届大凉山国际戏剧节。 | Selected for and presented at the 2024 Beijing Peiyuan Art Festival; presented at the 6th Daliangshan International Theatre Festival, 2024. |
 | 2024年6月24日在山西保利大剧院演出并于山西省内各高校巡演；展演于2024年第六届大凉山国际戏剧节及第二十二届金刺猬大学生戏剧节。 | Performed at Shanxi Poly Grand Theatre on 24 June 2024 and toured universities in Shanxi; presented at the 6th Daliangshan International Theatre Festival and the 22nd Golden Hedgehog College Theatre Festival, 2024. |
