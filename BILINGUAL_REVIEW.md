@@ -1,4 +1,4 @@
-# ECHYOX 中英文界面 · 第三轮待审译稿
+# ECHYOX 中英文界面 · 第四轮待审译稿
 
 - 本轮英文文本为待审核译文，不是作者已批准的文学翻译。
 - 保持既定五个英文剧名；其它作品名、机构、节展、奖项为暂译或原中文加拼音，尚未逐一核验官方英文名称。已核实晋中信息学院 Jinzhong College of Information（学校国际交流处招生简章），金刺猬大学生戏剧节 Golden Hedgehog College Theatre Festival（北京市朝阳区英文政府网站），以及大凉山国际戏剧节 Daliangshan International Theatre Festival（国际戏剧协会 ITI 英文资料）。演员与主创姓名保留原中文（作者统一 Hou Yuxin）；未确定的角色名也保留中文，避免猜测原拼写。
@@ -29,6 +29,18 @@
   - 玛吉阿玛采用通行藏语音写之一 Makye Ama，保留原汉字，不裁定词义争议。
 - 译文保留作者脉络，英文用词以英式英语为主；题名转译作为待作者确认的英文作品名，不是经专业译者独立审定的正式文学译本。
 - 作者反馈第二轮实机浏览无异常。本轮不改 CSS、交互或原有媒体，仅更新 language.js 和审校记录、缓存版本。需区别作者对上一版实机反馈与本轮独立浏览器测试。
+
+## 第四轮：专有名词核查（2026-11-14）
+- 中国戏剧文学学会统一为 Chinese Theatre Literature Association (CTLA)，保留中文；依据国家大剧院英文人物介绍及学会官网 CTLA 标识，另有公开转载章程支持。不得与中国戏剧家协会 China Theatre Association (CTA) 混同。
+  - https://en.chncpa.org/whatson/zdyc/202107/t20210707_233847.shtml
+  - https://zgxjwxxh.com/
+  - https://bkso.baidu.com/item/中国戏剧文学学会/0
+- 培源艺术节统一为 Peiyuan Art Festival（单数 Art），依据 2024 年英文报道；这是有公开英文用例的名称，尚未获得主办方独立确认。
+  - https://en.chinaculture.org/a/202410/08/WS67049085a310f1265a1c65eb.html
+- 既有英文名称复核：Jinzhong College of Information（学校英文官网 https://www.jzci.edu.cn/en/index.html）；Communication University of China（官方英文网站 https://en.cuc.edu.cn/_t131/2143/list.htm）；Golden Hedgehog College Theatre Festival（朝阳区政府英文网站 https://english.bjchy.gov.cn/arts）；China Golden Rooster and Hundred Flowers Film Festival（厦门英文政府报道 https://en.ftz.xm.gov.cn/2023-11/08/c_937261.htm）。
+- 2026深圳城市戏剧季的具体活动身份已由学校公开报道确认，英文 Shenzhen City Theatre Season 继续作为描述性暂译；不是深圳湾区青年戏剧季。来源：https://ysjyzx.jzci.edu.cn/info/1008/3862.htm
+- 待核实主办方正式英文名称：戏剧中国、躬耕艺术节、深圳城市戏剧季、第一届中国淄博戏剧节（不与淄博城市戏剧节混同）、南宁新青年戏剧节、广州西瓜剧场、青年编剧大会、深圳拉阔戏剧节、乌马河剧院、山西保利大剧院、同期文学赛事及其奖项、ICIC会议全称。现有描述性译法保留，不宣称官方命名；中文原名在对照表中可查。自创角色和演职人员姓名仍保留原写法；无需猜测罗马字拼写。
+- 本轮仅修订上述两处名称对应的三条词条，不调整文学翻译、设计、交互、中文原文或媒体。更新语言 JS 缓存版本。
 
 | 原文 | 待审核英文 |
 |---|---|
@@ -93,7 +105,7 @@
 | 2024年第六届大凉山国际戏剧节参演剧目 | Presented at the 6th Daliangshan International Theatre Festival, 2024 |
 | 2023年11月8日首演于晋中信息学院 | Premiered at Jinzhong College of Information, 8 November 2023 |
 | 2024年5月20日二轮演出于晋中信息学院 | Second run at Jinzhong College of Information, 20 May 2024 |
-| 2024培源艺术节展演剧目 | Presented at the 2024 Peiyuan Arts Festival |
+| 2024培源艺术节展演剧目 | Presented at the 2024 Peiyuan Art Festival |
 | 广西艺术学院2023届本科毕业生优秀毕业论文奖 | Outstanding Undergraduate Graduation Thesis Award, Guangxi Arts University, 2023 |
 | 第三十六届中国金鸡百花电影节重点配套活动“2023青年编剧大会”戏剧类剧本优秀奖 | Outstanding Script Award (theatre), 2023 Young Screenwriters and Playwrights Conference, a major associated event of the 2023 China Golden Rooster and Hundred Flowers Film Festival |
 | 2026年5月27日首演于晋中信息学院（全女班） | Premiered at Jinzhong College of Information, 27 May 2026 (all-female cast) |
@@ -190,7 +202,7 @@
 | 经过 | Selected records |
 | 此刻 | Now |
 | 联系 | Contact |
-| 侯宇鑫，青年戏剧编剧、导演，中国戏剧文学学会会员，文旅演艺高级导演。 | Hou Yuxin is a young playwright and theatre director, a member of the Chinese Theatre Literature Society (中国戏剧文学学会), and a senior director specialising in live performance for cultural tourism. |
+| 侯宇鑫，青年戏剧编剧、导演，中国戏剧文学学会会员，文旅演艺高级导演。 | Hou Yuxin is a young playwright and theatre director, a member of the Chinese Theatre Literature Association (CTLA; 中国戏剧文学学会), and a senior director specialising in live performance for cultural tourism. |
 | 毕业于广西艺术学院戏剧影视文学系，曾任高校教师，进修于第二届全国“文旅演艺导演高级研修班”。 | He graduated from Guangxi Arts University in drama, film and television literature, formerly taught at a university, and attended the second national advanced training programme for directors of cultural tourism performances. |
 | 主要从事戏剧文本创作与舞台导演工作，同时进行诗歌、歌曲写作及跨媒介创作实践。 | His practice centres on playwriting and stage direction, alongside poetry, songwriting and cross-media artistic practice. |
 | 主要作品包括话剧《海边有一栋倾斜的房子》、《猛犸》、《迷宫》、《面向自我的陈述》、《她一瞬过载》，音乐剧《风起形意》等。 | His major works include the plays EXPRESSERS, MAMMOTH, THE LABYRINTH, THE NARROW GATE and ALL AT ONCE, and the musical 风起形意 (Feng Qi Xing Yi). |
@@ -232,7 +244,7 @@
 | 2025年使用AI平台介入创作的先锋历史话剧。 | An avant-garde historical play developed with the involvement of AI platforms, 2025. |
 | 获“戏剧中国”2023年度作品征选活动话剧类潜力剧本奖。 | Recognised in the Promising Plays category (spoken drama), 2023 Theatre China annual selection. |
 | 展演于2024年第六届大凉山国际戏剧节。 | Presented at the 6th Daliangshan International Theatre Festival, 2024. |
-| 入选并展演于2024北京培源艺术节；展演于2024年第六届大凉山国际戏剧节。 | Selected for and presented at the 2024 Beijing Peiyuan Arts Festival; presented at the 6th Daliangshan International Theatre Festival, 2024. |
+| 入选并展演于2024北京培源艺术节；展演于2024年第六届大凉山国际戏剧节。 | Selected for and presented at the 2024 Beijing Peiyuan Art Festival; presented at the 6th Daliangshan International Theatre Festival, 2024. |
 | 2024年6月24日在山西保利大剧院演出并于山西省内各高校巡演；展演于2024年第六届大凉山国际戏剧节及第二十二届金刺猬大学生戏剧节。 | Performed at Shanxi Poly Grand Theatre on 24 June 2024 and toured universities in Shanxi; presented at the 6th Daliangshan International Theatre Festival and the 22nd Golden Hedgehog College Theatre Festival, 2024. |
 | 获第二十二届金刺猬大学生戏剧节“优秀剧目奖”。 | Outstanding Production Award, 22nd Golden Hedgehog College Theatre Festival. |
 | 2024年即兴喜剧专场。 | Improvised comedy show, 2024. |
