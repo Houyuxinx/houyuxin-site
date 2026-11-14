@@ -324,10 +324,11 @@ function switchLink(){
  const a=document.createElement('a');a.className='language-switch';a.textContent=label;
  a.href=target.href;a.hreflang=english?'zh-CN':'en';a.lang=english?'zh-CN':'en';
  a.setAttribute('aria-label',english?'切换至中文':'Switch to English');a.setAttribute('data-language-switch','');
+ a.addEventListener('click',()=>{const next=new URL(location.href);if(english)next.searchParams.delete('lang');else next.searchParams.set('lang','en');if(document.body.classList.contains('entry-passed')||document.body.classList.contains('entry-gate-finished'))next.hash='entry-revealed';a.href=next.href;});
  return a;
 }
 const brand=document.querySelector('.brand-link');
-if(brand){const wrap=document.createElement('div');wrap.className='language-brand';brand.before(wrap);wrap.append(brand,switchLink());}
+if(brand){const a=switchLink();a.classList.add('header-language-switch');brand.closest('.site-head').appendChild(a);}
 const entry=document.querySelector('.entry-gate');
 if(entry){const a=switchLink();a.classList.add('entry-language-switch');entry.appendChild(a);}
 if(!english)return;
@@ -341,6 +342,8 @@ function translate(value){
  if((m=clean.match(/^(.+?) — 侯宇鑫$/))&&words[m[1]])return words[m[1]]+' — Hou Yuxin';
  if((m=clean.match(/^回到来处：(.+)$/)))return 'Return: '+(words[m[1]]||m[1]);
  if((m=clean.match(/^(\d+) 首$/)))return m[1]+' poems';
+ if(/^约\s*\d{4}/.test(clean))return clean.replace(/^约\s*/,'c. ');
+ if(clean.includes('初稿：')&&/\d{4}/.test(clean))return clean.replace(/（([^（）]*?)初稿：([^）]+)）/g,(_,scope,date)=>' ('+(scope?scope+' ':'')+'first draft: '+date+')');
  if((m=clean.match(/^阅读(\d{4})年的诗歌$/)))return 'Read poems from '+m[1];
  if((m=clean.match(/^(\d{4})年诗歌目录，(\d+)首$/)))return 'Poetry archive, '+m[1]+' — '+m[2]+' poems';
  if((m=clean.match(/^已显示(\d{4})年的(\d+)首诗$/)))return 'Showing '+m[2]+' poems from '+m[1];
@@ -362,7 +365,7 @@ note(document.querySelector('#trackList .page-intro'),'Song titles and credits a
 // Retain original Chinese titles as the secondary title in each theatre work.
 document.querySelectorAll('.work-hero h1').forEach(h=>{const secondary=h.nextElementSibling;if(secondary&&secondary.classList.contains('work-en')){const original=h.textContent;h.textContent=secondary.textContent;secondary.textContent=original;secondary.lang='zh-CN';secondary.setAttribute('data-keep-original','');}});
 document.querySelectorAll('.play-row .title-line .en').forEach(e=>{e.hidden=true;});
-document.querySelectorAll('.home .door .no').forEach(e=>{e.hidden=true;});
+document.querySelectorAll('.home .door .no').forEach(e=>{const h=e.closest('.door').querySelector('h1');if(h){e.textContent=h.textContent;e.lang='zh-CN';e.setAttribute('data-keep-original','');}});
 if(brand){const small=brand.querySelector('small');if(small)small.hidden=true;}
 document.querySelectorAll('.poem-text,#poemReaderText,.entry-art').forEach(e=>{e.lang='zh-CN';e.setAttribute('data-keep-original','');});
 function localLink(a){
