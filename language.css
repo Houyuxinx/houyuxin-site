@@ -42,3 +42,13 @@ html[lang="en"] .track-button>span:last-child{grid-column:3;grid-row:1;justify-s
   html[lang="en"] .record-role{white-space:normal}
   html[lang="en"] .record-year{grid-template-columns:60px minmax(0,1fr)}
 }
+
+/* English collaborator credits: equal treatment of every participant.
+   Scoped to the archive; no change to Chinese layout, navigation or media. */
+html[lang="en"] .work-collaborators .credit-name-list{display:flex;flex-wrap:wrap;gap:8px 18px;min-width:0;max-width:100%;align-items:start}
+html[lang="en"] .work-collaborators .credit-name-pair{display:block;min-width:0;max-width:100%}
+html[lang="en"] .work-collaborators .credit-name-roman{display:block;line-height:1.45;overflow-wrap:anywhere}
+html[lang="en"] .work-collaborators .credit-name-han{display:block;margin-top:2px;color:var(--muted);font-size:.78em;font-weight:400;line-height:1.45;overflow-wrap:anywhere}
+html[lang="en"] .work-collaborators .credit-name-note{margin:-8px 0 18px;color:var(--muted);font-size:11px;line-height:1.6}
+html[lang="en"] .work-collaborators .collab-credit:has(.credit-name-list--multiple){align-items:start}
+@media(max-width:600px){html[lang="en"] .work-collaborators .credit-name-list{gap:10px 12px}html[lang="en"] .work-collaborators .credit-name-note{font-size:10px}}
