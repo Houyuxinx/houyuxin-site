@@ -3,9 +3,9 @@
 **正式网站**：https://echyox.com  
 **仓库**：https://github.com/Houyuxinx/houyuxin-site
 
-ECHYOX 收录戏剧、诗歌、音乐与「寻找自己」四大栏目；访客先经过动态文学文字入场，再进入作品档案。网站由作者确定内容及审美，AI 协助修改与维护。
+ECHYOX 收录戏剧、诗歌、音乐与「寻找自己」四大栏目；访客先经过动态文学文字入场，再进入作品档案。已支持中英文界面（英文入口 https://echyox.com/?lang=en）、黑白主题、H 网站标识及 Umami 访问统计；文学原文仍为中文。网站由作者确定内容及审美，AI 协助修改与维护。
 
-**项目阶段（2026-10-10 核实）**：网站建设和四栏目主体设计已完成，进入以**稳定运行、精确维护和作品更新**为主的阶段。最近一次已完成的技术小修为 [PR #28](https://github.com/Houyuxinx/houyuxin-site/pull/28)（本次核实 `main` 为 `33109612`；仅维护缓存标识、注释及本地预览提示）。实时版本必须重新读取 GitHub；已处理的旧 PR #23 和 Issue #4 只作历史记录。
+**项目阶段**：稳定维护期。2026-11-15 核查基线：[PR #42](https://github.com/Houyuxinx/houyuxin-site/pull/42) 已合并，main 为 `35204d2f1f2f38c4f502a07c2298b4e190a565eb`，[Pages #43626629504](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43626629504) completed/success；实际状态须实时核对。[PR #43](https://github.com/Houyuxinx/houyuxin-site/pull/43) 英文审校在核查时尚待审核。
 
 **AI 维护总原则**：先查现状、优先只读诊断、最小范围修复、独立分支与预览、作者授权后发布。网站现行设计基线请阅读 `PROJECT_VISION.md`；维护规则请阅读 `AGENTS.md`，旧版 V13 只作历史记录。
 
@@ -20,6 +20,7 @@ ECHYOX 收录戏剧、诗歌、音乐与「寻找自己」四大栏目；访客�
 | [SITE_STRUCTURE.md](SITE_STRUCTURE.md) | 页面与代码文件位置 |
 | [CHANGELOG.md](CHANGELOG.md) | 发布结果、历史设计迭代及待办 |
 | [BACKUP_AND_RECOVERY.md](BACKUP_AND_RECOVERY.md) | 恢复点、备份原则及出错后的处理 |
+| [BILINGUAL_REVIEW.md](BILINGUAL_REVIEW.md) | 英文审校历史、专名与译文边界 |
 | README.md（本页） | 项目简介及 V13 初期历史 |
 
 工作约定：**先定位范围、按阶段反馈、提供待审核预览、经作者明确授权后才正式发布**。不擅自改动作品或清理历史备份。

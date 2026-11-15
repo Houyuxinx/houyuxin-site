@@ -9,12 +9,20 @@
 - 当前设计基线：先见由 90 条作品文字组成的全屏流动入场，再进入四栏目；主视觉约 2.35 秒切入，普通站内转场约 1.4 秒。不得擅自恢复早期的抽象主视觉或圆形追光。
 - 音乐由访客手动播放；歌词水平居中、歌词栏滚动条闲置时隐藏，点击歌词不出现矩形外框。手机诗歌年份可**左右滑动**。
 - **作品状态澄清（作者 2026-10-12 确认）**：《一个哑谜》属于「音乐」板块正式曲目，继续保留。早期对话中的撤下想法已被更新决定取代；不要因此自行删除作品。详见 `AGENTS.md`。
-- **最近核实基线（2026-10-10 的快照，后续必须重新检查）**：最新正式合并为 [PR #28](https://github.com/Houyuxinx/houyuxin-site/pull/28)，`main` 提交 `33109612fbe40525ed60fb0781a9a9e13b0bb7d0`，GitHub Pages [#37977744036](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37977744036) `completed/success`。诗歌、戏剧、音乐外层宽度已统一；「寻找自己」正式路径为 `/becoming.html`，原 `/searching.html` 跳转兼容。
+- **2026-11-15 核查基线：[PR #42](https://github.com/Houyuxinx/houyuxin-site/pull/42) 已合并，main 为 `35204d2f1f2f38c4f502a07c2298b4e190a565eb`，[Pages #43626629504](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43626629504) completed/success；实际状态须实时核对。[PR #43](https://github.com/Houyuxinx/houyuxin-site/pull/43) 英文审校在核查时尚待审核。**
 - **网站阶段**：已由建站期转为**稳定维护期**。未经作者指定，不为“优化”随意重设计、清理作品或重写共用动画；维护时坚持「先确认问题是否存在 → 核实原因 → 局部修复 → 审核发布」。
 - **遗留任务核实状态（2026-10-10）**：[PR #23](https://github.com/Houyuxinx/houyuxin-site/pull/23) 因已由 PR #24 正式版本取代，已关闭（未合并）；[Issue #4](https://github.com/Houyuxinx/houyuxin-site/issues/4) 的早期抽象主视觉被文学文字入场取代，已以 `not planned` 关闭。两者历史保留，不得再自动执行。**[Issue #2](https://github.com/Houyuxinx/houyuxin-site/issues/2) 仍开放**，涉及独立备份、分支保护、Pages 设置等安全事项，未完成的内容不可宣称已完成。
-- **最近发布前恢复点（针对 PR #28）**：`backup/2026-10-10-before-audit-maintenance-fixes` → `512109c0e559edf7fbca021c1fd9b513d88465d8`；详情见 `BACKUP_AND_RECOVERY.md`。这是同仓库的 Git 恢复点，尚无证据表明已完成独立异地备份。
+- **最新已发布前恢复点**：`backup/2026-11-15-before-umami-analytics` → `9c28752db53b66cee9b37038442cae8f395e4ee3`；同仓库恢复点，不是异地备份。
 
-## 依次阅读这七份文件
+## 现行功能与保护边界
+- 90 条中文文学入场；四栏目与十个正式内容页，另有旧 searching.html 跳转。
+- `?lang=en` 英文界面与目录、梗概、履历、署名；文学文字场、诗歌正文、歌词、试读依然为中文。英文人名拼音不代表本人确认的惯用拼写。五个固定英文剧名不可擅改。详见 BILINGUAL_REVIEW.md。
+- 新访客默认白天（浅色）模式；保留黑夜模式，手动选择由 localStorage 记忆。主题切换、语言与导航保持独立。
+- B「半开之门」H 网站标识，包含普通 favicon 与 Apple touch icon。作者已实测 Mac Safari 收藏显示。
+- Umami Cloud 统计已接入十页；作者截图确认一次实际访问有访客量及 IP 推估国家。统计不追溯旧数据、不确认具体来访者身份；查询参数及锚点不计入，DNT 仅在浏览器支持时生效。不得擅加录屏、身份识别或更改账户/地区。
+- 136 个文件：11 HTML、12 CSS、11 JS、8 Markdown；5 份 PDF、53 张 WebP 试读页、20 张剧照（19 JPG、1 PNG）、5 个 MP3（音乐四首、作品概念一首），58 首诗、316 条翻译词条、74 个演职人员拼音映射。该数字为核查快照，不是永恒约束。
+
+## 依次阅读七份核心文件；双语任务额外读 BILINGUAL_REVIEW.md
 1. `START_HERE.md`（本页）：接手说明与上次核实状态。
 2. `AGENTS.md`：**必须遵守**的工作规则、预览、授权、插件限制和断线续做。
 3. `PROJECT_VISION.md`：已确认的审美方向与尚未决定的内容。

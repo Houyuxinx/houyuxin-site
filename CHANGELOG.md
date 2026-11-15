@@ -1,5 +1,31 @@
 # ECHYOX｜长期更新日志
 
+
+## 2026-11-15｜V5 全站审计与长期维护规范（待作者批准的文档修订）
+2026-11-15 核查基线：[PR #42](https://github.com/Houyuxinx/houyuxin-site/pull/42) 已合并，main 为 `35204d2f1f2f38c4f502a07c2298b4e190a565eb`，[Pages #43626629504](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43626629504) completed/success；实际状态须实时核对。[PR #43](https://github.com/Houyuxinx/houyuxin-site/pull/43) 英文审校在核查时尚待审核。
+- 读取 11 HTML；核对 122 个不同站内引用及 53 张动态试读页，未发现路径缺失。58 诗题均有翻译映射；现阶段没有独立英语母语者审定，也未在本轮真实 Safari 验收。公共域名读取工具未成功；不称为线上全功能实测。
+- 不恢复已取消的 [PR #30](https://github.com/Houyuxinx/houyuxin-site/pull/30)（目录内部滚动）和未合并的 [PR #34](https://github.com/Houyuxinx/houyuxin-site/pull/34)（《方且回头》主题曲）；不新增未获公开许可的创作。
+- [PR #43](https://github.com/Houyuxinx/houyuxin-site/pull/43) 单独候选：25条英文词条及诗歌日期规则修订，尚不可作为正式译文。长期安全待办 Issue #2（独立异地备份、分支保护及 Pages 后台设置）仍开放。建议评估双语隐私告知、英文分享入口和文学译本；均非本次自动实施内容。
+
+## 2026-10-10 至 2026-11-15｜正式发布续记
+| 中国标准时间（合并时刻，UTC+8） | PR | 事件 | 合并 SHA 前缀 | 部署核查 |
+|---|---|---|---|---|
+| 2026-10-10 04:35 | [PR #29](https://github.com/Houyuxinx/houyuxin-site/pull/29) | 手机直达网址恢复文学入场，站内返回仍进入四卡片 | `2c702e08` | [Pages #37988063857](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37988063857) success |
+| 2026-10-12 17:21 | [PR #31](https://github.com/Houyuxinx/houyuxin-site/pull/31) | 确认《一个哑谜》保留；安全设置与发布授权分离 | `c7d4e7c6` | [Pages #38229360833](https://github.com/Houyuxinx/houyuxin-site/actions/runs/38229360833) success |
+| 2026-10-15 02:16 | [PR #32](https://github.com/Houyuxinx/houyuxin-site/pull/32) | 四部已演剧目的「共同在场」演职人员档案上线 | `e7c9012b` | [Pages #38613709486](https://github.com/Houyuxinx/houyuxin-site/actions/runs/38613709486) success |
+| 2026-10-29 20:42 | [PR #33](https://github.com/Houyuxinx/houyuxin-site/pull/33) | iPhone Safari 独立原生滚动容器，修复上下越界与渐隐 | `513251d4` | [Pages #40875454709](https://github.com/Houyuxinx/houyuxin-site/actions/runs/40875454709) success |
+| 2026-11-14 14:30 | [PR #35](https://github.com/Houyuxinx/houyuxin-site/pull/35) | 中英文界面正式发布，316条翻译映射及专名复核 | `7c8994f7` | [Pages #43566644386](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43566644386) success |
+| 2026-11-14 14:40 | [PR #36](https://github.com/Houyuxinx/houyuxin-site/pull/36) | 移动端语言切换导航右对齐 | `171e1c43` | [Pages #43567454175](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43567454175) success |
+| 2026-11-14 14:54 | [PR #37](https://github.com/Houyuxinx/houyuxin-site/pull/37) | 事实修译及74人双语署名上线，保留中文作品 | `bdd12c55` | [Pages #43568556149](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43568556149) success |
+| 2026-11-14 15:04 | [PR #38](https://github.com/Houyuxinx/houyuxin-site/pull/38) | 英文试读及下载按钮窄屏等宽换行 | `3ea8a418` | [Pages #43569372392](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43569372392) success |
+| 2026-11-14 18:46 | [PR #39](https://github.com/Houyuxinx/houyuxin-site/pull/39) | 白天/黑夜模式，默认白天并记忆访客选择 | `4012bb65` | [Pages #43586843228](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43586843228) success |
+| 2026-11-14 19:05 | [PR #40](https://github.com/Houyuxinx/houyuxin-site/pull/40) | B「半开之门」H favicon，SVG/ICO/PNG | `3eb23dab` | [Pages #43588336080](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43588336080) success |
+| 2026-11-14 20:09 | [PR #41](https://github.com/Houyuxinx/houyuxin-site/pull/41) | Safari 收藏与苹果主屏图标适配 | `9c28752d` | [Pages #43593376999](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43593376999) success |
+| 2026-11-15 02:26 | [PR #42](https://github.com/Houyuxinx/houyuxin-site/pull/42) | Umami 网站访问统计（十内容页） | `35204d2f` | [Pages #43626629504](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43626629504) success |
+
+未合并：PR #30 已取消；PR #34 按作者决定不发布。两者均不得据旧描述自动恢复。作者截图验证 Safari 收藏显示新 H 图标，并确认 Umami 收到一次访问与推估国家；不等于 iPad/iPhone 主屏或所有地区访问均已验收。
+
+
 ## 当前状态速览（制作 V4 草稿时核实：2026-10-10；必须实时复查）
 - **网站已进入稳定维护期**。最近发布：[PR #28](https://github.com/Houyuxinx/houyuxin-site/pull/28)，正式 `main` `33109612fbe40525ed60fb0781a9a9e13b0bb7d0`，GitHub Pages [#37977744036](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37977744036) `completed/success`。这是 2026-10-10 的快照，而非对今后主线的永久保证。
 - **最近完成**：PR #14 七份维护文档 V3 已合并；PR #20 移除鼠标跟随舞台光圈；PR #21 重构 BECOMING；PR #22/24 更新并统一四栏目标语；PR #25 将寻找自己的页面正式链接调整为 `becoming.html`（旧 `searching.html` 兼容跳转）；PR #26 统一诗歌与戏剧、音乐目录页的外层宽度。每项的发布日志以各 PR 为准。

@@ -6,7 +6,7 @@
 - 正式网址：https://echyox.com；GitHub 仓库：`Houyuxinx/houyuxin-site`；正式分支：`main`。
 - 静态网站，主要由 HTML、CSS、JavaScript 构成；根目录 `CNAME` 内容为 `echyox.com`。
 - 主要作品栏目：戏剧 / 诗歌 / 音乐 / 寻找自己。网站原页面和媒体的版权、内容、是否公开由作者决定。
-- **当前核实快照（2026-10-10）**：PR #28 已正式发布，`main` 为 `33109612fbe40525ed60fb0781a9a9e13b0bb7d0`，Pages [#37977744036](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37977744036) `success`。新任务要重新核实版本；构建成功不代替 Safari 实机验收。
+- 2026-11-15 核查基线：[PR #42](https://github.com/Houyuxinx/houyuxin-site/pull/42) 已合并，main 为 `35204d2f1f2f38c4f502a07c2298b4e190a565eb`，[Pages #43626629504](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43626629504) completed/success；实际状态须实时核对。[PR #43](https://github.com/Houyuxinx/houyuxin-site/pull/43) 英文审校在核查时尚待审核。
 - 仓库侧没有观察到自建的 `.github/workflows` 自动测试配置；GitHub Pages 的系统构建成功**不代表网站交互实测通过**。Settings → Pages 的完整后台发布配置仍应按需核查。
 
 ## 页面与文件对应关系
@@ -31,7 +31,7 @@
 - 四栏目顶部「回到来处」指向 `index.html#entry-revealed`，直接返回四栏目；点击站点作者名可主动重新观看入口。
 - 手机上诗歌年份栏**必须能横向滑动**，不应改成不能滑动的静态年份网格。诗歌正文、日期及排序不得自行改写。
 - 四首音乐进入播放页**不能自动开始播放，默认不启用单曲循环**；由访客自行使用按钮开启或关闭循环。此行为已于 2026-10-10 获作者明确确认，**不是待修复缺陷**。歌词保持居中，歌词栏独立上下滚动，原焦点与滚动条设计不变。
-- **本次静态审计结果（2026-10-10）**：仓库共 123 个文件，其中 11 个 HTML、9 个 CSS、9 个 JavaScript、7 份 Markdown；五部戏剧试读共 53 张 WebP 图片，另有五份试读 PDF、五个 MP3（音乐栏目四首及戏剧作品内一首）和 58 首诗歌。相关文件路径与引用匹配；这不能替代浏览器实测，也不能自动证明所有资源的公开授权。
+- **2026-11-15 静态审计快照**：136 个文件（11 HTML、12 CSS、11 JS、8 Markdown）；53 张 WebP、5 PDF、5 MP3、20 剧照；58 首诗、316 英文词条、74 拼音姓名。11 页共122种站内引用未发现缺失；不等于媒体全部播放或真机验证。
 - **2026-10-10 已完成的维护小修**：[PR #28](https://github.com/Houyuxinx/houyuxin-site/pull/28) 已将 `poetry.html` 的 CSS 查询版本更新为 `?v=20261010-width1`，将 `entrance.js` 关于入场文字数量的注释由 70 修正为 90，并更新 `tools/preview.py` 的重点检查提示。**仅为缓存标识、注释和提示变更，未更动 CSS、动画逻辑或播放器。**
 - **可选而非故障**：多数页面没有独立描述元信息；《猛犸》一张 PNG 约 4.3 MiB；公开文件不能仅凭前端禁复制加以保密。先观察需求再决定是否改变。
 - `music.html` 里有 `window.TRACKS` 曲目/歌词数据；`poetry.html` 中有大量诗歌正文。修改前应逐字核对数据并保护换行、日期、署名。
@@ -53,3 +53,15 @@
 - 当前正式页面是 `becoming.html`，原 `searching.html` 仅用于兼容自动跳转；页面仍引入原 `searching.css`，**不要为追求文件名整齐而贸然重命名 CSS**。
 - 当前页面保留「关于我 / 创作中关注的部分问题 / 经过 / 此刻 / 联系」以及 2026→2019 年倒序时间线；正文只保留邮箱链接，全站统一顶部导航不受此限制。
 - 此前草稿期「待审核/未上线」的逐轮说明已归档在 `CHANGELOG.md`，不应再被解释为现存待办。
+
+## 新增模块（截至 2026-11-15，均为正式功能）
+| 位置 | 核心文件 | 说明 |
+|---|---|---|
+| 双语 | language.js / language.css / BILINGUAL_REVIEW.md | ?lang=en；DOM 翻译和动态更新；英文题名、署名；中文文学主体保留 |
+| 合作者 | shared-presence.css / 四部 work-*.html | 共同在场演职员名单、版本及诗性副标题 |
+| 双主题 | theme.js / theme.css | 默认浅色，echyox-theme 记忆选择 |
+| 图标 | favicon.svg / .ico / .png / favicon-192.png / 三个 apple-touch-icon PNG | 11页 head 引用，Safari 收藏已由作者确认 |
+| 统计 | 十个内容 HTML 的 Umami script tag | 正式域名、查询及 hash 排除；旧 searching.html 不计入 |
+| 移动布局 | shared.css / scroll-boundary.js / script-reader.css / language.css | iPhone 原生独立滚动、导航、试读按钮；需真机回归 |
+
+公开访问统计、API 凭据、个人访客数据不得加入公开仓库。作品资源路径存在不等于公开权限得到新授权。
