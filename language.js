@@ -368,7 +368,7 @@ function translate(value){
 if(document.title==='侯宇鑫 HOU YUXIN')document.title='HOU YUXIN';
 else document.title=translate(document.title);
 const meta=document.querySelector('meta[name="description"]');
-if(meta&&location.pathname.endsWith('becoming.html'))meta.content='Hou Yuxin — playwright and theatre director. Questions in artistic practice, selected works and current explorations.';
+ if(meta&&meta.dataset.descriptionEn)meta.content=meta.dataset.descriptionEn;
 function note(where,copy){if(!where)return;const p=document.createElement('p');p.className='language-note';p.textContent=copy;where.insertAdjacentElement('afterend',p);}
 note(document.querySelector('.poetry-page .page-intro'),'Poem titles are translated for browsing. Full poems are presented in their original Chinese.');
 note(document.querySelector('#trackList .page-intro'),'Song titles and credits are translated. Lyrics remain in their original Chinese.');
