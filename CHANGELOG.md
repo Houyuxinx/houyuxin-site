@@ -1,11 +1,13 @@
 # ECHYOX｜长期更新日志
 
 
-## 2026-11-15｜V5 全站审计与长期维护规范（待作者批准的文档修订）
-2026-11-15 核查基线：[PR #42](https://github.com/Houyuxinx/houyuxin-site/pull/42) 已合并，main 为 `35204d2f1f2f38c4f502a07c2298b4e190a565eb`，[Pages #43626629504](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43626629504) completed/success；实际状态须实时核对。[PR #43](https://github.com/Houyuxinx/houyuxin-site/pull/43) 英文审校在核查时尚待审核。
+## 2026-11-15｜V5 全站审计与长期维护规范（历史快照；V5 已随 PR #44 正式发布）
+2026-11-15 补录核查基线（实时核对）：[PR #46](https://github.com/Houyuxinx/houyuxin-site/pull/46) 已合并，main 为 `738a3f512bc0b0c8953b24039a0f1a11eb8ff011`，[Pages #43681765660](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43681765660) `completed/success`；[PR #43](https://github.com/Houyuxinx/houyuxin-site/pull/43)、#44、#45、#46 均已正式发布，见下方续记表。实际状态仍须实时核对。
+> 状态更正：本节及以下带「待审核／未上线／候选」字样的正文为 V5 制作当时的历史快照，不代表今天状态；V5 维护文档已由 [PR #44](https://github.com/Houyuxinx/houyuxin-site/pull/44) 合并发布。历史原文保留，不删除、不改写。
 - 读取 11 HTML；核对 122 个不同站内引用及 53 张动态试读页，未发现路径缺失。58 诗题均有翻译映射；现阶段没有独立英语母语者审定，也未在本轮真实 Safari 验收。公共域名读取工具未成功；不称为线上全功能实测。
 - 不恢复已取消的 [PR #30](https://github.com/Houyuxinx/houyuxin-site/pull/30)（目录内部滚动）和未合并的 [PR #34](https://github.com/Houyuxinx/houyuxin-site/pull/34)（《方且回头》主题曲）；不新增未获公开许可的创作。
 - [PR #43](https://github.com/Houyuxinx/houyuxin-site/pull/43) 单独候选：25条英文词条及诗歌日期规则修订，尚不可作为正式译文。长期安全待办 Issue #2（独立异地备份、分支保护及 Pages 后台设置）仍开放。建议评估双语隐私告知、英文分享入口和文学译本；均非本次自动实施内容。
+- 2026-11-15 补录：上一条「PR #43 单独候选、尚不可作为正式译文」是写作当时状态；[PR #43](https://github.com/Houyuxinx/houyuxin-site/pull/43) 已于同日 11:46（北京时间）经作者明确批准合并发布，正式提交 `7e97f927ddecfd098f0f6ba7e4a2b748332d7279`，[Pages #43673878911](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43673878911) `completed/success`。英文仍非文学作品全译，也未经过英语母语者独立审定。
 
 ## 2026-10-10 至 2026-11-15｜正式发布续记
 | 中国标准时间（合并时刻，UTC+8） | PR | 事件 | 合并 SHA 前缀 | 部署核查 |
@@ -22,11 +24,30 @@
 | 2026-11-14 19:05 | [PR #40](https://github.com/Houyuxinx/houyuxin-site/pull/40) | B「半开之门」H favicon，SVG/ICO/PNG | `3eb23dab` | [Pages #43588336080](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43588336080) success |
 | 2026-11-14 20:09 | [PR #41](https://github.com/Houyuxinx/houyuxin-site/pull/41) | Safari 收藏与苹果主屏图标适配 | `9c28752d` | [Pages #43593376999](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43593376999) success |
 | 2026-11-15 02:26 | [PR #42](https://github.com/Houyuxinx/houyuxin-site/pull/42) | Umami 网站访问统计（十内容页） | `35204d2f` | [Pages #43626629504](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43626629504) success |
+| 2026-11-15 11:46 | [PR #43](https://github.com/Houyuxinx/houyuxin-site/pull/43) | 面向英语访客的英文界面审校（25 条界面／履历词条及诗歌日期规则） | `7e97f927` | [Pages #43673878911](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43673878911) success |
+| 2026-11-15 11:49 | [PR #44](https://github.com/Houyuxinx/houyuxin-site/pull/44) | V5 维护文档更新及建站历史，八份 Markdown 同步基线 | `b67ccd16` | [Pages #43674060968](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43674060968) success |
+| 2026-11-15 11:58 | [PR #45](https://github.com/Houyuxinx/houyuxin-site/pull/45) | SEO 与社交分享：分页双语元信息、分享图、robots.txt、sitemap.xml | `c9be043e` | [Pages #43674663266](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43674663266) success |
+| 2026-11-15 13:35 | [PR #46](https://github.com/Houyuxinx/houyuxin-site/pull/46) | 百度站点所有权验证文件（仅新增一个根目录验证文件） | `738a3f51` | [Pages #43681765660](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43681765660) success |
+
+
+**2026-11-15 补录核查（本轮只读复核）**：以上四行均由 GitHub 实际记录核实——四个 PR 的原评论均有作者本人「明确批准发布」的记录，合并 SHA、发布前恢复点与 Pages 运行编号逐一回读；四次 `pages build and deployment` 运行结论均为 `completed/success`。[PR #45](https://github.com/Houyuxinx/houyuxin-site/pull/45)、[PR #46](https://github.com/Houyuxinx/houyuxin-site/pull/46) 的原评论在发布当下记为 `in_progress`，此处记载的是其后完成的最终结果。线上 `index.html` 与 `sitemap.xml` 的 SHA-256 与当前 `main` 逐字节一致；正式站的视觉、真机交互与第三方平台收录未由本轮验收。
 
 未合并：PR #30 已取消；PR #34 按作者决定不发布。两者均不得据旧描述自动恢复。作者截图验证 Safari 收藏显示新 H 图标，并确认 Umami 收到一次访问与推估国家；不等于 iPad/iPhone 主屏或所有地区访问均已验收。
 
 
+## 2026-11-15｜站长亲自完成的搜索引擎提交与域名确认（补录）
+
+> 以下由站长本人在 GitHub 之外亲自操作并确认，AI 未接触 DNS、搜索引擎后台或任何凭据；文档只记录事实，不记录验证记录值、密钥或令牌。
+
+- **正式域名**：继续使用 `https://echyox.com`，**不切换至 `www`**；本次文档修订不涉及域名、DNS 与仓库设置。
+- **Google**：通过腾讯云 DNS 的 TXT 记录完成域名所有权验证；sitemap 提交成功，Google 已发现十个正式内容页面；全站十个页面均已请求编入索引；首页与「寻找自己」页面已确认收录。
+- **百度**：通过 [PR #46](https://github.com/Houyuxinx/houyuxin-site/pull/46) 新增的根目录验证文件完成网站所有权验证；sitemap 提交额度为零，改用手动提交，全站十个页面提交成功；当日以 `site:echyox.com` 检索暂无结果。
+- **复查安排**：已安排于 **2026-11-22** 复查两家搜索引擎的收录情况。结果须由站长确认后再记录，本轮不预写结论。
+- `robots.txt` 与 `sitemap.xml` 随 [PR #45](https://github.com/Houyuxinx/houyuxin-site/pull/45) 发布，收录十个正式内容页，不含旧 `searching.html` 与根目录验证文件；上述外部操作不改变网站页面、作品、动画、媒体或统计配置。
+
 ## 当前状态速览（制作 V4 草稿时核实：2026-10-10；必须实时复查）
+
+> 2026-11-15 更正：本节是 2026-10-10 制作 V4 草稿时的历史快照，**不是当前状态**。当前正式发布记录见上方续记表，最新恢复点见 BACKUP_AND_RECOVERY.md 的「最新恢复点索引」。原始文字保留供追溯。
 - **网站已进入稳定维护期**。最近发布：[PR #28](https://github.com/Houyuxinx/houyuxin-site/pull/28)，正式 `main` `33109612fbe40525ed60fb0781a9a9e13b0bb7d0`，GitHub Pages [#37977744036](https://github.com/Houyuxinx/houyuxin-site/actions/runs/37977744036) `completed/success`。这是 2026-10-10 的快照，而非对今后主线的永久保证。
 - **最近完成**：PR #14 七份维护文档 V3 已合并；PR #20 移除鼠标跟随舞台光圈；PR #21 重构 BECOMING；PR #22/24 更新并统一四栏目标语；PR #25 将寻找自己的页面正式链接调整为 `becoming.html`（旧 `searching.html` 兼容跳转）；PR #26 统一诗歌与戏剧、音乐目录页的外层宽度。每项的发布日志以各 PR 为准。
 - **旧任务已处理**：[PR #23](https://github.com/Houyuxinx/houyuxin-site/pull/23) 被 PR #24 取代，已关闭但未合并；[Issue #4](https://github.com/Houyuxinx/houyuxin-site/issues/4) 的抽象艺术入场提案被文学文字场取代，已以 `not planned` 关闭。**[Issue #2](https://github.com/Houyuxinx/houyuxin-site/issues/2) 仍开放**，涉及发布配置、分支保护和独立备份等安全待办。
@@ -361,6 +382,8 @@
 原 `README.md` 记有 V13 的部分调整，例如诗歌日期、音乐资源、剧目文字、布局和舞台光圈等。它并非完整的逐版本上线记录；不要把没有证据的日期或版本状态补写成事实。
 
 ## 后续任务（未开始）
+
+> 2026-11-15 只读复核：GitHub 公开接口读取 Pages 后台配置返回 404，`main` 分支列表显示 `protected` 为 `false`，仓库外独立 ZIP 是否真实另存无法由 GitHub 侧核实；[Issue #2](https://github.com/Houyuxinx/houyuxin-site/issues/2) 相关待办仍开放，本轮未勾选任何一项。
 1. 核实 Settings → Pages 的真正发布来源。
 2. 逐步请作者确认审美与内容审核的边界。
 3. 添加页面发布前的实际检查，并考虑 GitHub main 分支保护。

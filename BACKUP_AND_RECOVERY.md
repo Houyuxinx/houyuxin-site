@@ -1,14 +1,18 @@
 # ECHYOX｜备份、恢复与更新日志（给站长和 AI）
 
 ## 2026-11-15 最新恢复点索引（优先于下方历史速查）
-2026-11-15 核查基线：[PR #42](https://github.com/Houyuxinx/houyuxin-site/pull/42) 已合并，main 为 `35204d2f1f2f38c4f502a07c2298b4e190a565eb`，[Pages #43626629504](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43626629504) completed/success；实际状态须实时核对。[PR #43](https://github.com/Houyuxinx/houyuxin-site/pull/43) 英文审校在核查时尚待审核。
+2026-11-15 补录核查基线：[PR #46](https://github.com/Houyuxinx/houyuxin-site/pull/46) 已合并，main 为 `738a3f512bc0b0c8953b24039a0f1a11eb8ff011`，[Pages #43681765660](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43681765660) completed/success；PR #43—#46 已正式发布，实际状态仍须实时核对。
 以下分支及 SHA 已在本轮读取 GitHub 分支列表核对（同仓库恢复点）：
+- PR #46：`backup/2026-11-15-before-baidu-verification` → `c9be043eb726884212f1a8c47030596c328ea49e`
+- PR #45：`backup/2026-11-15-before-seo-social` → `b67ccd169d3a180567a5460ccd9d1f4fb0a14e15`
+- PR #44：`backup/2026-11-15-before-maintenance-docs-v5` → `7e97f927ddecfd098f0f6ba7e4a2b748332d7279`
+- PR #43：`backup/2026-11-15-before-english-editorial-audit` → `35204d2f1f2f38c4f502a07c2298b4e190a565eb`
 - PR #42：`backup/2026-11-15-before-umami-analytics` → `9c28752db53b66cee9b37038442cae8f395e4ee3`
 - PR #41：`backup/2026-11-14-before-apple-icons` → `3eb23dabbf67314b6a25849a5f907a4441945797`
 - PR #40：`backup/2026-11-14-before-door-favicon` → `4012bb655c294032f6b1384da425b666e4446c50`
 - PR #39：`backup/2026-11-14-before-light-dark-theme` → `3ea8a41876c1ba303c9c6f85c8bff28e4276eb36`
 - PR #35：`backup/2026-11-14-before-pr35-bilingual-release` → `513251d471ca2422256e22702f637bead52a77fa`
-- 其余发布前恢复点请查询原 PR 及 GitHub 分支。独立下载 [正式基线 ZIP](https://github.com/Houyuxinx/houyuxin-site/archive/35204d2f1f2f38c4f502a07c2298b4e190a565eb.zip) 后保存在自己电脑或可信私有位置；本轮只核实链接构造与 SHA，未下载。不得擅自删除分支或回退整个网站；Umami Cloud 后台数据不包含在网站 ZIP 中。
+- 其余发布前恢复点请查询原 PR 及 GitHub 分支。独立下载 [当前正式基线 ZIP](https://github.com/Houyuxinx/houyuxin-site/archive/738a3f512bc0b0c8953b24039a0f1a11eb8ff011.zip) 后保存在自己电脑或可信私有位置；本轮只核实链接构造与 SHA，未下载。不得擅自删除分支或回退整个网站；Umami Cloud 后台数据、GitHub Issue/PR 历史与 DNS 配置不包含在网站 ZIP 中。
 
 > 站长不需要懂 Git 或编程。以后可以直接对 GPT / Work 说：“按 BACKUP_AND_RECOVERY.md 帮我备份 / 恢复网站。”
 
@@ -133,4 +137,5 @@
 - **每隔一段时间，将完整 ZIP 独立保存到自己的电脑或另一个可信的位置**，才算增加了一层真正独立的保障。
 - 不要将账号密码、域名登录资料、私人未公开作品上传到公开仓库或公开 Issue。
 - 早期检查曾显示 `main` 未强制保护，但**本次没有得到完整的 2026-10-10 保护配置核实结果**。约定 AI 通过 PR 修改不是 GitHub 强制权限控制；若要开启实际分支保护，需另外按 Issue #2 核对权限、计划与设置并征求作者同意。
-- 多次 GitHub Pages 实际构建与部署已成功（最近为 #37969318494），但本次没有完整读取 `Settings → Pages` 管理界面的全部选项。下一次合并也需独立核对具体部署运行结果，不能据此承诺永远自动上线。
+- **2026-11-15 复核**：分支列表显示 `main` 的 `protected` 仍为 `false`；仓库外独立 ZIP 是否真实保存无法由 GitHub 侧核实；Pages 后台配置读取返回 404。[Issue #2](https://github.com/Houyuxinx/houyuxin-site/issues/2) 的相关待办均仍未标记完成。
+- 多次 GitHub Pages 实际构建与部署已成功（最近为 [Pages #43681765660](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43681765660)，2026-11-15 PR #46），但本轮只读复核仍无法完整读取 `Settings → Pages` 管理界面的全部选项（公开接口返回 404）。下一次合并也需独立核对具体部署运行结果，不能据此承诺永远自动上线。

@@ -1,9 +1,9 @@
 # ECHYOX 中英文界面 · 第六轮事实审校与双语署名稿
 
-## 状态更新（2026-11-15）
-第六轮已随 [PR #37](https://github.com/Houyuxinx/houyuxin-site/pull/37) 合并发布，正式英文审校以实际 main 的 language.js 为准；以下旧文所称「待审核」只保留历史。[PR #43](https://github.com/Houyuxinx/houyuxin-site/pull/43) 为单独待审核第七轮，25个界面/履历词条和诗歌日期规则，未预认定为正式译文。既定英文剧名、全部诗歌/歌词/试读原文及74人拼音映射不动。角色名原拼写、个人偏好署名及未核实的节展奖项译名须另行确认；不要承诺文学全译或母语者审定。
+## 状态更新（2026-11-15，同日补录更正）
+第六轮已随 [PR #37](https://github.com/Houyuxinx/houyuxin-site/pull/37) 合并发布，正式英文审校以实际 main 的 language.js 为准；以下旧文所称「待审核」只保留历史。**第七轮已于 2026-11-15 11:46（北京时间）由 [PR #43](https://github.com/Houyuxinx/houyuxin-site/pull/43) 经作者明确批准合并发布**，正式合并 `7e97f927ddecfd098f0f6ba7e4a2b748332d7279`，[Pages #43673878911](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43673878911) `completed/success`；25 条界面／履历词条与诗歌日期规则现为正式界面英文，不再是待审核候选。其后 [PR #44](https://github.com/Houyuxinx/houyuxin-site/pull/44) 的文档同步、[PR #45](https://github.com/Houyuxinx/houyuxin-site/pull/45) 的英文视图分页描述亦已发布。既定英文剧名、全部诗歌/歌词/试读原文及 74 人拼音映射不动。角色名原拼写、个人偏好署名及未核实的节展奖项译名须另行确认；不要承诺文学全译或母语者审定。
 
-- 本轮英文文本为待审核译文，不是作者已批准的文学翻译。
+- 本轮英文文本为待审核译文，不是作者已批准的文学翻译。 （2026-11-15 补录：此句说明审校稿性质——英文界面文案已上线，但仍不是作者批准的文学作品全译；下方「通用译文对照」表头「待审核英文」为审校阶段栏目名，按历史原文保留，不代表今日状态。）
 - 保持既定五个英文剧名；其它作品名、机构、节展、奖项为暂译或原中文加拼音，尚未逐一核验官方英文名称。已核实晋中信息学院 Jinzhong College of Information（学校国际交流处招生简章），金刺猬大学生戏剧节 Golden Hedgehog College Theatre Festival（北京市朝阳区英文政府网站），以及大凉山国际戏剧节 Daliangshan International Theatre Festival（国际戏剧协会 ITI 英文资料）。演职人员在英文档案中采用汉语拼音为主、原中文为辅（第六轮）；作者统一 Hou Yuxin。未经确认的本人惯用英文拼写不得冒称正式署名，未确定的虚构角色原拼写继续保留中文。
 - 保留中文入口文学文字场、完整诗歌、歌词、PDF 试读、媒体及中文原文。诗歌目录标题译为英文，全文仍为中文。英文版不是整站文学翻译。
 - 英文 URL 使用 ?lang=en，切换会重新打开当前页面；未保存播放器、弹窗内部临时状态。导航应维持语言参数。移动端头部可能需要实机微调。
