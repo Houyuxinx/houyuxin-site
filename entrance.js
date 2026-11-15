@@ -40,6 +40,8 @@
   var context = null;
   var cachedSpriteMode = '';
   var lastAvoidAt = null;
+  var avoidanceState = {positions:new Map(),reverse:false};
+  var entryObstacles = [];
   var paintScale = 1; // Actual screen pixel ratio used by the canvas.
   var viewportW = Math.max(1, window.innerWidth);
   var viewportH = Math.max(1, window.innerHeight);
@@ -121,85 +123,169 @@
     });
   }
 
-  function avoidOverlaps(items, smallScreen, dt, reset) {
-    var limit = smallScreen ? 13 : 20, comfort = smallScreen ? 15 : 22;
-    var gap = smallScreen ? 5 : 7, blend = reset ? 1 : 1 - Math.exp(-dt * 3.5);
-    var i, k, a, b, dx, dy, force, sign;
-    for (i=0;i<items.length;i++) items[i].push=0;
-    // A small vertical drift, rather than hard position snaps or a rigid grid.
-    for (i=0;i<items.length;i++) {
-      a=items[i];
-      if (a.alpha<.025) continue;
-      for (k=i+1;k<items.length;k++) {
-        b=items[k];
-        if (b.alpha<.025) continue;
-        dx=Math.abs(a.x-b.x)-(a.w+b.w)*.5;
-        dy=Math.abs(a.y-b.y)-(a.h+b.h)*.5;
-        if (dx>=comfort || dy>=comfort) continue;
-        force=Math.min(limit,Math.max(0,(comfort-dy)*.27)) *
-          smoothstep(comfort,0,dx);
-        sign=a.y<b.y || (a.y===b.y && a.bit.index<b.bit.index) ? -1 : 1;
-        a.push+=sign*force;
-        b.push-=sign*force;
-      }
-    }
-    for (i=0;i<items.length;i++) {
-      a=items[i];
-      var target=Math.max(-limit,Math.min(limit,a.push));
-      a.bit.avoidY=(a.bit.avoidY||0)+(target-(a.bit.avoidY||0))*blend;
-      a.y+=a.bit.avoidY;
-    }
-    // Fixed, well-distributed priority avoids alternating winners each frame.
-    // The softer outer band fades approaching phrases before their glyph boxes meet.
-    items.sort(function(a,b){return a.bit.index*37%97-b.bit.index*37%97;});
-    var accepted=[];
-    for (i=0;i<items.length;i++) {
-      a=items[i];
-      var factor=1;
-      for(k=0;k<accepted.length;k++) {
-        b=accepted[k];
-        dx=Math.abs(a.x-b.x)-(a.w+b.w)*.5;
-        dy=Math.abs(a.y-b.y)-(a.h+b.h)*.5;
-        factor=Math.min(factor,smoothstep(gap,comfort,Math.max(dx,dy)));
-        if(factor===0) break;
-      }
-      // Suppress immediately if necessary; recover gently when space returns.
-      var previous=reset ? factor : (a.bit.avoidAlpha==null ? 0 : a.bit.avoidAlpha);
-      a.bit.avoidAlpha=Math.min(factor,previous+dt*1.5);
-      a.alpha*=a.bit.avoidAlpha;
-      // Reserve faint emerging phrases too, before the ordinary draw threshold.
-      if(a.alpha>=.003) accepted.push(a);
-    }
-    return accepted;
+  function fieldAlpha(x,y,bit,t,vw,vh) {
+    var d=Math.hypot((x-vw*.5)/Math.max(1,vw*.49),(y-vh*.5)/Math.max(1,vh*.49));
+    var edge=Math.min(x/vw,1-x/vw,y/vh,1-y/vh);
+    return Math.max(0,Math.min(.74,bit.alpha*smoothstep(.42,.71,d)*
+      (1-smoothstep(.75,1.24,d))*smoothstep(-.10,.21,edge)*
+      (.81+.19*Math.sin(t/5.8+bit.phase))));
   }
 
-  // The reduced-motion / canvas-unavailable composition gets a single measured
-  // non-overlapping layout too. Never delete the underlying literary spans.
-  function layoutStillField() {
-    var occupied = [];
-    var center = gate.querySelector('.entry-content');
-    if (center) occupied.push(center.getBoundingClientRect());
-    var controls = gate.querySelector('.entry-theme-controls');
-    if (controls) occupied.push(controls.getBoundingClientRect());
-    bits.forEach(function(bit){bit.el.style.removeProperty('visibility');});
-    var entries = bits.map(function(bit){
-      var rect = bit.el.getBoundingClientRect();
-      if (!rect.width || !rect.height) return null;
-      // Include the actual unwrapped text (which can exceed max-width).
-      var range = document.createRange();
-      range.selectNodeContents(bit.el);
-      var glyph = range.getBoundingClientRect();
-      return {bit:bit,rect:glyph.width ? glyph : rect};
+  function initialSlot(a,placed,gap) {
+    var tx=a.x,ty=a.y,hw=a.w*.5,hh=a.h*.5,best=null,bestCost=Infinity;
+    // Exact free-space search only on initialization or viewport resize.
+    // No fixed rows, no text removal; even offscreen phrases have positions.
+    function tryX(x){
+      var xcost=(x-tx)*(x-tx)*1.15;
+      if(xcost>=bestCost)return;
+      var intervals=[];
+      for(var j=0;j<placed.length;j++){
+        var p=placed[j];
+        if(Math.abs(x-p.x)<hw+p.w*.5+gap-1e-7)
+          intervals.push([p.y-p.h*.5-hh-gap,p.y+p.h*.5+hh+gap]);
+      }
+      intervals.sort(function(a,b){return a[0]-b[0];});
+      var y=ty;
+      for(var i=0;i<intervals.length;){
+        var lo=intervals[i][0],hi=intervals[i][1];i++;
+        while(i<intervals.length&&intervals[i][0]<hi-1e-7){
+          hi=Math.max(hi,intervals[i][1]);i++;
+        }
+        if(y>lo+1e-7&&y<hi-1e-7){y=(y-lo<=hi-y)?lo:hi;break;}
+        if(y<=lo)break;
+      }
+      var cost=xcost+(y-ty)*(y-ty);
+      if(cost<bestCost){bestCost=cost;best={x:x,y:y};}
+    }
+    tryX(tx);
+    if(bestCost>0)for(var i=0;i<placed.length;i++){
+      var p=placed[i],pad=hw+p.w*.5+gap;
+      tryX(p.x-pad);tryX(p.x+pad);
+    }
+    return best;
+  }
+
+  function initializeField(items,obstacles,gap){
+    var placed=obstacles.slice();
+    var priority=items.slice().sort(function(a,b){
+      return b.alpha-a.alpha || a.bit.index*37%97-b.bit.index*37%97;
     });
-    entries.forEach(function(item){
-      if (!item) return;
-      var r=item.rect, pad=6;
-      if(r.right<=0 || r.bottom<=0 || r.left>=viewportW || r.top>=viewportH) return;
-      if(occupied.some(function(o){
-        return r.left<o.right+pad && r.right>o.left-pad &&
-          r.top<o.bottom+pad && r.bottom>o.top-pad;
-      })) item.bit.el.style.visibility='hidden';
-      else occupied.push(r);
+    priority.forEach(function(a){
+      var p=initialSlot(a,placed,gap);
+      a.x=p.x;a.y=p.y;
+      placed.push(a);
+    });
+  }
+
+  function moveAxis(a,others,axis,delta,gap){
+    if(!delta)return;
+    var cross=axis==='x'?'y':'x',along=axis==='x'?'w':'h',across=axis==='x'?'h':'w';
+    var start=a[axis],step=delta;
+    for(var i=0;i<others.length;i++){
+      var b=others[i];if(b===a)continue;
+      if(Math.abs(a[cross]-b[cross])>=(a[across]+b[across])*.5+gap-1e-7)continue;
+      var distance=b[axis]-start,clearance=(a[along]+b[along])*.5+gap;
+      if(step>0&&distance>0)step=Math.min(step,Math.max(0,distance-clearance));
+      if(step<0&&distance<0)step=Math.max(step,Math.min(0,distance+clearance));
+    }
+    a[axis]=start+step;
+  }
+
+  function arrangeField(items,small,dt,reset,obstacles,state){
+    var gap=small?6:8,comfort=gap+9,maxSpeed=small?24:30;
+    items.forEach(function(a){a.idealX=a.x;a.idealY=a.y;});
+    if(reset||!state.positions.size){
+      initializeField(items,obstacles,gap);
+      state.positions.clear();
+      items.forEach(function(a){
+        state.positions.set(a.bit.index,{x:a.x,y:a.y,idealX:a.idealX,idealY:a.idealY,vx:0,vy:0});
+      });
+      return items;
+    }
+    // Keep every particle, including temporarily invisible/offscreen ones,
+    // in the same physical field. No activation/reordering when alpha changes.
+    items.forEach(function(a){
+      var p=state.positions.get(a.bit.index);
+      a.x=p.x;a.y=p.y;
+      a.vx=p.vx;a.vy=p.vy;
+    });
+    var others=obstacles.concat(items);
+    var safeDt=Math.max(0,Math.min(.11,dt));
+    if(!safeDt)return items;
+    var easing=1-Math.exp(-safeDt*5);
+    items.forEach(function(a){
+      var p=state.positions.get(a.bit.index);
+      var vx=(a.idealX-p.idealX)/safeDt+(a.idealX-a.x)*.32;
+      var vy=(a.idealY-p.idealY)/safeDt+(a.idealY-a.y)*.32;
+      // Anticipatory pressure gently steers around nearby rectangular text.
+      for(var i=0;i<others.length;i++){
+        var b=others[i];if(b===a)continue;
+        var dx=a.x-b.x,dy=a.y-b.y;
+        var gx=Math.abs(dx)-(a.w+b.w)*.5,gy=Math.abs(dy)-(a.h+b.h)*.5;
+        if(gx>=comfort||gy>=comfort)continue;
+        var strength=Math.max(0,comfort-Math.max(gx,gy))*1.65;
+        if(gx>gy)vx+=(dx<0?-1:1)*strength;
+        else vy+=(dy<0?-1:1)*strength;
+      }
+      var speed=Math.hypot(vx,vy);
+      if(speed>maxSpeed){vx*=maxSpeed/speed;vy*=maxSpeed/speed;}
+      a.vx=p.vx+(vx-p.vx)*easing;a.vy=p.vy+(vy-p.vy)*easing;
+    });
+    // Swept axis movement against all current rectangles. It can stop or
+    // slide, never teleport through a neighbour. Reverse sweep each frame
+    // so the same phrase does not always get first movement.
+    var ordered=state.reverse?items.slice().reverse():items;
+    state.reverse=!state.reverse;
+    ordered.forEach(function(a){
+      if(a.bit.index%2===0){
+        moveAxis(a,others,'y',a.vy*safeDt,gap);
+        moveAxis(a,others,'x',a.vx*safeDt,gap);
+      }else{
+        moveAxis(a,others,'x',a.vx*safeDt,gap);
+        moveAxis(a,others,'y',a.vy*safeDt,gap);
+      }
+    });
+    items.forEach(function(a){
+      state.positions.set(a.bit.index,{x:a.x,y:a.y,idealX:a.idealX,idealY:a.idealY,vx:a.vx,vy:a.vy});
+    });
+    return items;
+  }
+
+  function measureEntryObstacles() {
+    var result=[];
+    var nodes=[gate.querySelector('.entry-content'),
+      gate.querySelector('.entry-theme-controls')||gate.querySelector('.entry-language-switch')];
+    nodes.forEach(function(node){
+      if(!node)return;
+      var r=node.getBoundingClientRect();
+      if(r.width&&r.height)result.push({x:r.left+r.width*.5,y:r.top+r.height*.5,
+        w:r.width+12,h:r.height+10});
+    });
+    return result;
+  }
+
+  // Static/reduced-motion visitors also receive position-only separation.
+  function layoutStillField() {
+    if(gate.hidden)return;
+    var candidates=[];
+    bits.forEach(function(bit){
+      bit.el.style.removeProperty('visibility');
+      bit.el.style.removeProperty('transform');
+    });
+    bits.forEach(function(bit){
+      var rect=bit.el.getBoundingClientRect();
+      if(!rect.width||!rect.height)return;
+      var range=document.createRange();
+      range.selectNodeContents(bit.el);
+      var glyph=range.getBoundingClientRect(),r=glyph.width?glyph:rect;
+      if(r.right<=0||r.bottom<=0||r.left>=viewportW||r.top>=viewportH)return;
+      var x=r.left+r.width*.5,y=r.top+r.height*.5;
+      candidates.push({bit:bit,x:x,y:y,idealX:x,idealY:y,w:r.width,h:r.height,alpha:bit.alpha});
+    });
+    initializeField(candidates,measureEntryObstacles(),viewportW<700?6:8);
+    candidates.forEach(function(item){
+      item.bit.el.style.transform='translate('+(item.x-item.idealX)+'px,'+
+        (item.y-item.idealY)+'px)';
     });
   }
 
@@ -208,9 +294,6 @@
     // A single Canvas paint avoids transforming and changing opacity on 90 DOM
     // elements every frame. These spans remain the accessible, static fallback.
     context.clearRect(0, 0, viewportW, viewportH);
-    var cx = viewportW * .5, cy = viewportH * .5;
-    var outerX = Math.max(1, viewportW * .49);
-    var outerY = Math.max(1, viewportH * .49);
     var smallScreen = viewportW < 700;
     var candidates = [], reset = lastAvoidAt === null;
     var dt = reset ? 0 : Math.max(0, Math.min(.11, seconds - lastAvoidAt));
@@ -228,14 +311,7 @@
         + bit.rangeY * (Math.sin(t / 23.3 + q) - Math.sin(q))
         + bit.rangeY * .44 * (Math.cos(t / 13.8 + p) - Math.cos(p))
         + 11 * (Math.sin(t / 9.1 + bit.index * 1.3) - Math.sin(bit.index * 1.3));
-      var d = Math.hypot((x - cx) / outerX, (y - cy) / outerY);
-      var nearCore = smoothstep(.42, .71, d);
-      var outerFade = 1 - smoothstep(.75, 1.24, d);
-      var edge = Math.min(x / viewportW, 1 - x / viewportW, y / viewportH, 1 - y / viewportH);
-      var edgeFade = smoothstep(-.10, .21, edge);
-      var breathing = .81 + .19 * Math.sin(t / 5.8 + p);
-      var alpha = Math.max(0, Math.min(.74, bit.alpha * nearCore * outerFade * edgeFade * breathing));
-      if (alpha < .003) { bit.avoidAlpha=0; return; }
+      var alpha = fieldAlpha(x,y,bit,t,viewportW,viewportH);
       var w, h;
       if (bit.sprite) { w=bit.sprite.width; h=bit.sprite.glyphH; }
       else {
@@ -243,14 +319,13 @@
         w=Math.min(viewportW*.9,context.measureText(bit.text).width)+10;
         h=bit.size*2.15+8;
       }
-      // Ignore completely offscreen candidates, not just their center points.
-      if(x+w*.5<0 || x-w*.5>viewportW || y+h*.5<0 || y-h*.5>viewportH) {
-        bit.avoidAlpha=0; return;
-      }
       candidates.push({bit:bit,x:x,y:y,w:w,h:h,alpha:alpha});
     });
-    avoidOverlaps(candidates,smallScreen,dt,reset).forEach(function(item){
-      var bit=item.bit, x=item.x, y=item.y, alpha=item.alpha;
+    arrangeField(candidates,smallScreen,dt,reset,entryObstacles,avoidanceState).forEach(function(item){
+      var bit=item.bit, x=item.x, y=item.y;
+      // The only opacity curve is the original spatial edge/core/breathing
+      // field, evaluated at the real position. No collision-specific fade.
+      var alpha=fieldAlpha(x,y,bit,seconds,viewportW,viewportH);
       if(alpha<.018) return;
       context.globalAlpha = alpha;
       context.save();
@@ -283,7 +358,8 @@
     viewportW = Math.max(1, window.innerWidth);
     viewportH = Math.max(1, window.innerHeight);
     lastAvoidAt = null;
-    bits.forEach(function(bit){bit.avoidY=0; bit.avoidAlpha=null;});
+    avoidanceState={positions:new Map(),reverse:false};
+    entryObstacles=measureEntryObstacles();
     if (!canvas || !context || reduced.matches) layoutStillField();
     if (!canvas || !context) return;
     // Match 3x mobile Retina when supported. Keep the existing 2x desktop
@@ -468,6 +544,8 @@
     } else if (!gate.hidden) {
       if (canvas) canvas.hidden = false;
       lastAvoidAt = null;
+      avoidanceState={positions:new Map(),reverse:false};
+      entryObstacles=measureEntryObstacles();
       startMotion();
     }
   }
