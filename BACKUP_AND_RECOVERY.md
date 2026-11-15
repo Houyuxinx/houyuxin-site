@@ -1,5 +1,15 @@
 # ECHYOX｜备份、恢复与更新日志（给站长和 AI）
 
+## 2026-11-15 最新恢复点索引（优先于下方历史速查）
+2026-11-15 核查基线：[PR #42](https://github.com/Houyuxinx/houyuxin-site/pull/42) 已合并，main 为 `35204d2f1f2f38c4f502a07c2298b4e190a565eb`，[Pages #43626629504](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43626629504) completed/success；实际状态须实时核对。[PR #43](https://github.com/Houyuxinx/houyuxin-site/pull/43) 英文审校在核查时尚待审核。
+以下分支及 SHA 已在本轮读取 GitHub 分支列表核对（同仓库恢复点）：
+- PR #42：`backup/2026-11-15-before-umami-analytics` → `9c28752db53b66cee9b37038442cae8f395e4ee3`
+- PR #41：`backup/2026-11-14-before-apple-icons` → `3eb23dabbf67314b6a25849a5f907a4441945797`
+- PR #40：`backup/2026-11-14-before-door-favicon` → `4012bb655c294032f6b1384da425b666e4446c50`
+- PR #39：`backup/2026-11-14-before-light-dark-theme` → `3ea8a41876c1ba303c9c6f85c8bff28e4276eb36`
+- PR #35：`backup/2026-11-14-before-pr35-bilingual-release` → `513251d471ca2422256e22702f637bead52a77fa`
+- 其余发布前恢复点请查询原 PR 及 GitHub 分支。独立下载 [正式基线 ZIP](https://github.com/Houyuxinx/houyuxin-site/archive/35204d2f1f2f38c4f502a07c2298b4e190a565eb.zip) 后保存在自己电脑或可信私有位置；本轮只核实链接构造与 SHA，未下载。不得擅自删除分支或回退整个网站；Umami Cloud 后台数据不包含在网站 ZIP 中。
+
 > 站长不需要懂 Git 或编程。以后可以直接对 GPT / Work 说：“按 BACKUP_AND_RECOVERY.md 帮我备份 / 恢复网站。”
 
 ## 先说明三件事
