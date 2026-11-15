@@ -191,62 +191,143 @@
     a[axis]=start+step;
   }
 
-  function arrangeField(items,small,dt,reset,obstacles,state){
-    var gap=small?6:8,comfort=gap+9,maxSpeed=small?24:30;
-    items.forEach(function(a){a.idealX=a.x;a.idealY=a.y;});
-    if(reset||!state.positions.size){
-      initializeField(items,obstacles,gap);
-      state.positions.clear();
-      items.forEach(function(a){
-        state.positions.set(a.bit.index,{x:a.x,y:a.y,idealX:a.idealX,idealY:a.idealY,vx:0,vy:0});
-      });
-      return items;
-    }
-    // Keep every particle, including temporarily invisible/offscreen ones,
-    // in the same physical field. No activation/reordering when alpha changes.
-    items.forEach(function(a){
-      var p=state.positions.get(a.bit.index);
-      a.x=p.x;a.y=p.y;
-      a.vx=p.vx;a.vy=p.vy;
-    });
-    var others=obstacles.concat(items);
-    var safeDt=Math.max(0,Math.min(.11,dt));
-    if(!safeDt)return items;
-    var easing=1-Math.exp(-safeDt*5);
-    items.forEach(function(a){
-      var p=state.positions.get(a.bit.index);
-      var vx=(a.idealX-p.idealX)/safeDt+(a.idealX-a.x)*.32;
-      var vy=(a.idealY-p.idealY)/safeDt+(a.idealY-a.y)*.32;
-      // Anticipatory pressure gently steers around nearby rectangular text.
-      for(var i=0;i<others.length;i++){
-        var b=others[i];if(b===a)continue;
-        var dx=a.x-b.x,dy=a.y-b.y;
-        var gx=Math.abs(dx)-(a.w+b.w)*.5,gy=Math.abs(dy)-(a.h+b.h)*.5;
-        if(gx>=comfort||gy>=comfort)continue;
-        var strength=Math.max(0,comfort-Math.max(gx,gy))*1.65;
-        if(gx>gy)vx+=(dx<0?-1:1)*strength;
-        else vy+=(dy<0?-1:1)*strength;
+  function angleDelta(a,b){return Math.atan2(Math.sin(b-a),Math.cos(b-a));}
+
+  function turnTowards(a,b,max){return a+Math.max(-max,Math.min(max,angleDelta(a,b)));}
+
+  function forecast(a,target,turn,steps,step){
+    var x=a.x,y=a.y,heading=a.heading,out=[x,y];
+    for(var i=0;i<steps;i++){
+      var delta=angleDelta(heading,target);
+      var duration=Math.min(step,Math.abs(delta)/turn),rate=(delta<0?-1:1)*turn;
+      var end=heading+rate*duration;
+      if(duration>1e-8){
+        x+=a.speed*(Math.sin(end)-Math.sin(heading))/rate;
+        y+=a.speed*(Math.cos(heading)-Math.cos(end))/rate;
       }
-      var speed=Math.hypot(vx,vy);
-      if(speed>maxSpeed){vx*=maxSpeed/speed;vy*=maxSpeed/speed;}
-      a.vx=p.vx+(vx-p.vx)*easing;a.vy=p.vy+(vy-p.vy)*easing;
+      x+=a.speed*(step-duration)*Math.cos(end);
+      y+=a.speed*(step-duration)*Math.sin(end);
+      heading=end;out.push(x,y);
+    }
+    return out;
+  }
+
+  function plannedRisk(path,other,a,b,steps,gap){
+    var hw=(a.w+b.w)*.5,hh=(a.h+b.h)*.5,risk=0;
+    for(var s=1;s<=steps;s++){
+      var x=path[2*s]-other[2*s],y=path[2*s+1]-other[2*s+1];
+      var clear=Math.max(Math.abs(x)-hw,Math.abs(y)-hh);
+      // A soft outer margin starts steering well before the hard glyph boundary.
+      var near=Math.max(0,gap+13-clear);
+      var urgent=Math.max(0,gap+3-clear);
+      risk+=(near*near*.012+urgent*urgent*.24)*(1.2-s*.075);
+      // Continuous segment check, not just the sampled end positions.
+      var x0=path[2*s-2]-other[2*s-2],y0=path[2*s-1]-other[2*s-1];
+      var dx=x-x0,dy=y-y0,px=hw+gap,py=hh+gap;
+      var lo=0,hi=1,one,two,tmp,hit=true;
+      if(Math.abs(dx)<1e-8){if(Math.abs(x0)>=px)hit=false;}
+      else {one=(-px-x0)/dx;two=(px-x0)/dx;if(one>two){tmp=one;one=two;two=tmp;}lo=Math.max(lo,one);hi=Math.min(hi,two);}
+      if(Math.abs(dy)<1e-8){if(Math.abs(y0)>=py)hit=false;}
+      else {one=(-py-y0)/dy;two=(py-y0)/dy;if(one>two){tmp=one;one=two;two=tmp;}lo=Math.max(lo,one);hi=Math.min(hi,two);}
+      if(hit&&lo<hi)risk+=35*(1.4-s*.12);
+    }
+    return risk;
+  }
+
+  function planField(items,obstacles,small,state,vw,vh){
+    var steps=6,step=.85,turn=small?.40:.36,gap=small?6:8;
+    var all=items.concat(obstacles);
+    obstacles.forEach(function(b){
+      b.speed=0;b.path=[];for(var k=0;k<=steps;k++)b.path.push(b.x,b.y);
     });
-    // Swept axis movement against all current rectangles. It can stop or
-    // slide, never teleport through a neighbour. Reverse sweep each frame
-    // so the same phrase does not always get first movement.
+    items.forEach(function(a){a.path=forecast(a,a.target,turn,steps,step);});
     var ordered=state.reverse?items.slice().reverse():items;
     state.reverse=!state.reverse;
     ordered.forEach(function(a){
-      if(a.bit.index%2===0){
-        moveAxis(a,others,'y',a.vy*safeDt,gap);
-        moveAxis(a,others,'x',a.vx*safeDt,gap);
-      }else{
-        moveAxis(a,others,'x',a.vx*safeDt,gap);
-        moveAxis(a,others,'y',a.vy*safeDt,gap);
+      var neighbours=[],pushX=0,pushY=0;
+      for(var i=0;i<all.length;i++){
+        var b=all[i];if(a===b)continue;
+        var dx=a.x-b.x,dy=a.y-b.y;
+        var gx=Math.abs(dx)-(a.w+b.w)*.5,gy=Math.abs(dy)-(a.h+b.h)*.5;
+        var dist=Math.max(gx,gy);
+        if(dist<((a.speed+b.speed)*steps*step+gap+22))neighbours.push(b);
+        // Broad, gentle density pressure; this influences direction only.
+        if(dist<38){
+          var force=(38-Math.max(0,dist))*.055;
+          var len=Math.max(1,Math.hypot(dx,dy));
+          pushX+=dx/len*force;pushY+=dy/len*force;
+        }
       }
+      // Follow the original slow, independent currents, with only a weak tether.
+      var vx=a.driftX,vy=a.driftY;
+      var ax=a.idealX-a.x,ay=a.idealY-a.y;
+      var length=Math.hypot(ax,ay),dead=small?38:62;
+      var pull=length>dead?Math.min(5,(length-dead)*.021)/Math.max(1,length):0;
+      vx+=ax*pull+pushX;vy+=ay*pull+pushY;
+      // If displaced far beyond the original field, gradually head back.
+      var margin=small?80:135;
+      var minX=Math.min(-margin,a.idealX-margin*.45),maxX=Math.max(vw+margin,a.idealX+margin*.45);
+      var minY=Math.min(-margin,a.idealY-margin*.45),maxY=Math.max(vh+margin,a.idealY+margin*.45);
+      vx+=(Math.max(minX-a.x,0)+Math.min(maxX-a.x,0))*.042;
+      vy+=(Math.max(minY-a.y,0)+Math.min(maxY-a.y,0))*.042;
+      var desired=Math.hypot(vx,vy)>.3?Math.atan2(vy,vx):a.heading;
+      var offsets=[0,.35,-.35,.70,-.70,1.05,-1.05,1.57,-1.57,2.18,-2.18,Math.PI];
+      var options=[a.target,desired];
+      for(var z=0;z<offsets.length;z++)options.push(a.heading+offsets[z]);
+      var best=a.target,bestPath=a.path,bestCost=Infinity;
+      for(var n=0;n<options.length;n++){
+        var target=options[n],path=forecast(a,target,turn,steps,step);
+        var cost=2.5*(1-Math.cos(angleDelta(target,desired)))+
+          1.5*(1-Math.cos(angleDelta(target,a.target)))+
+          .8*(1-Math.cos(angleDelta(target,a.heading)));
+        for(var k=0;k<neighbours.length&&cost<bestCost;k++){
+          var b=neighbours[k];cost+=plannedRisk(path,b.path,a,b,steps,gap);
+        }
+        if(cost<bestCost){bestCost=cost;best=target;bestPath=path;}
+      }
+      a.target=best;a.path=bestPath;
+    });
+  }
+
+  function arrangeField(items,small,dt,reset,obstacles,state,vw,vh){
+    var gap=small?6:8,turn=small?.40:.36;
+    items.forEach(function(a){a.idealX=a.x;a.idealY=a.y;});
+    if(reset||!state.positions.size){
+      initializeField(items,obstacles,gap+(small?4:8));
+      state.positions.clear();state.planIn=0;state.reverse=false;
+      items.forEach(function(a){
+        var heading=Math.hypot(a.driftX,a.driftY)>.1?Math.atan2(a.driftY,a.driftX):a.bit.phase;
+        var speed=(small?2.6:3.5)+(a.bit.index*37%97)/96*(small?2.1:2.8);
+        a.heading=heading;a.target=heading;a.speed=speed;
+        state.positions.set(a.bit.index,{x:a.x,y:a.y,heading:heading,target:heading,speed:speed});
+      });
+      planField(items,obstacles,small,state,vw,vh);
+      items.forEach(function(a){state.positions.get(a.bit.index).target=a.target;});
+      state.planIn=.5;
+      return items;
+    }
+    items.forEach(function(a){
+      var p=state.positions.get(a.bit.index);
+      a.x=p.x;a.y=p.y;a.heading=p.heading;a.target=p.target;a.speed=p.speed;
+    });
+    var safeDt=Math.max(0,Math.min(.11,dt));
+    if(!safeDt)return items;
+    state.planIn-=safeDt;
+    if(state.planIn<=0){planField(items,obstacles,small,state,vw,vh);state.planIn+=.5;}
+    var others=obstacles.concat(items);
+    var ordered=state.sweep?items.slice().reverse():items;state.sweep=!state.sweep;
+    ordered.forEach(function(a){
+      var next=turnTowards(a.heading,a.target,turn*safeDt);
+      var mid=a.heading+angleDelta(a.heading,next)*.5;
+      var dx=Math.cos(mid)*a.speed*safeDt,dy=Math.sin(mid)*a.speed*safeDt;
+      // Last-resort swept geometry guard. The forecast normally resolves conflicts
+      // long before this guard; it can shorten a step, but never add acceleration.
+      if(a.bit.index%2===0){moveAxis(a,others,'y',dy,gap);moveAxis(a,others,'x',dx,gap);}
+      else{moveAxis(a,others,'x',dx,gap);moveAxis(a,others,'y',dy,gap);}
+      a.heading=next;
     });
     items.forEach(function(a){
-      state.positions.set(a.bit.index,{x:a.x,y:a.y,idealX:a.idealX,idealY:a.idealY,vx:a.vx,vy:a.vy});
+      state.positions.set(a.bit.index,{x:a.x,y:a.y,heading:a.heading,target:a.target,speed:a.speed});
     });
     return items;
   }
@@ -319,9 +400,15 @@
         w=Math.min(viewportW*.9,context.measureText(bit.text).width)+10;
         h=bit.size*2.15+8;
       }
-      candidates.push({bit:bit,x:x,y:y,w:w,h:h,alpha:alpha});
+      var driftX=bit.rangeX/30*Math.cos(t/30+p)
+        +bit.rangeX*.36/12.4*Math.cos(t/12.4+q)
+        +13/7.9*Math.cos(t/7.9+bit.index);
+      var driftY=bit.rangeY/23.3*Math.cos(t/23.3+q)
+        -bit.rangeY*.44/13.8*Math.sin(t/13.8+p)
+        +11/9.1*Math.cos(t/9.1+bit.index*1.3);
+      candidates.push({bit:bit,x:x,y:y,w:w,h:h,alpha:alpha,driftX:driftX,driftY:driftY});
     });
-    arrangeField(candidates,smallScreen,dt,reset,entryObstacles,avoidanceState).forEach(function(item){
+    arrangeField(candidates,smallScreen,dt,reset,entryObstacles,avoidanceState,viewportW,viewportH).forEach(function(item){
       var bit=item.bit, x=item.x, y=item.y;
       // The only opacity curve is the original spatial edge/core/breathing
       // field, evaluated at the real position. No collision-specific fade.
