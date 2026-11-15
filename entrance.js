@@ -39,6 +39,7 @@
   var canvas = null;
   var context = null;
   var cachedSpriteMode = '';
+  var lastAvoidAt = null;
   var paintScale = 1; // Actual screen pixel ratio used by the canvas.
   var viewportW = Math.max(1, window.innerWidth);
   var viewportH = Math.max(1, window.innerHeight);
@@ -109,8 +110,96 @@
         bit.source === '剧本' ? '#d0c8bc' : '#c5c1b9';
       spriteContext.textAlign = 'center';
       spriteContext.textBaseline = 'middle';
+      var glyph = spriteContext.measureText(bit.text);
+      var glyphH = Number.isFinite(glyph.actualBoundingBoxAscent) &&
+        Number.isFinite(glyph.actualBoundingBoxDescent) ?
+        Math.max(size * 1.4, 2 * Math.max(Math.abs(glyph.actualBoundingBoxAscent),
+          Math.abs(glyph.actualBoundingBoxDescent)) + 4) : height;
       spriteContext.fillText(bit.text, width * .5, height * .5, width - 8);
-      bit.sprite = {canvas:spriteCanvas, width:width, height:height, size:size};
+      bit.sprite = {canvas:spriteCanvas, width:width, height:height, size:size,
+        glyphH:Math.min(height,glyphH)};
+    });
+  }
+
+  function avoidOverlaps(items, smallScreen, dt, reset) {
+    var limit = smallScreen ? 13 : 20, comfort = smallScreen ? 15 : 22;
+    var gap = smallScreen ? 5 : 7, blend = reset ? 1 : 1 - Math.exp(-dt * 3.5);
+    var i, k, a, b, dx, dy, force, sign;
+    for (i=0;i<items.length;i++) items[i].push=0;
+    // A small vertical drift, rather than hard position snaps or a rigid grid.
+    for (i=0;i<items.length;i++) {
+      a=items[i];
+      if (a.alpha<.025) continue;
+      for (k=i+1;k<items.length;k++) {
+        b=items[k];
+        if (b.alpha<.025) continue;
+        dx=Math.abs(a.x-b.x)-(a.w+b.w)*.5;
+        dy=Math.abs(a.y-b.y)-(a.h+b.h)*.5;
+        if (dx>=comfort || dy>=comfort) continue;
+        force=Math.min(limit,Math.max(0,(comfort-dy)*.27)) *
+          smoothstep(comfort,0,dx);
+        sign=a.y<b.y || (a.y===b.y && a.bit.index<b.bit.index) ? -1 : 1;
+        a.push+=sign*force;
+        b.push-=sign*force;
+      }
+    }
+    for (i=0;i<items.length;i++) {
+      a=items[i];
+      var target=Math.max(-limit,Math.min(limit,a.push));
+      a.bit.avoidY=(a.bit.avoidY||0)+(target-(a.bit.avoidY||0))*blend;
+      a.y+=a.bit.avoidY;
+    }
+    // Fixed, well-distributed priority avoids alternating winners each frame.
+    // The softer outer band fades approaching phrases before their glyph boxes meet.
+    items.sort(function(a,b){return a.bit.index*37%97-b.bit.index*37%97;});
+    var accepted=[];
+    for (i=0;i<items.length;i++) {
+      a=items[i];
+      var factor=1;
+      for(k=0;k<accepted.length;k++) {
+        b=accepted[k];
+        dx=Math.abs(a.x-b.x)-(a.w+b.w)*.5;
+        dy=Math.abs(a.y-b.y)-(a.h+b.h)*.5;
+        factor=Math.min(factor,smoothstep(gap,comfort,Math.max(dx,dy)));
+        if(factor===0) break;
+      }
+      // Suppress immediately if necessary; recover gently when space returns.
+      var previous=reset ? factor : (a.bit.avoidAlpha==null ? 0 : a.bit.avoidAlpha);
+      a.bit.avoidAlpha=Math.min(factor,previous+dt*1.5);
+      a.alpha*=a.bit.avoidAlpha;
+      // Reserve faint emerging phrases too, before the ordinary draw threshold.
+      if(a.alpha>=.003) accepted.push(a);
+    }
+    return accepted;
+  }
+
+  // The reduced-motion / canvas-unavailable composition gets a single measured
+  // non-overlapping layout too. Never delete the underlying literary spans.
+  function layoutStillField() {
+    var occupied = [];
+    var center = gate.querySelector('.entry-content');
+    if (center) occupied.push(center.getBoundingClientRect());
+    var controls = gate.querySelector('.entry-theme-controls');
+    if (controls) occupied.push(controls.getBoundingClientRect());
+    bits.forEach(function(bit){bit.el.style.removeProperty('visibility');});
+    var entries = bits.map(function(bit){
+      var rect = bit.el.getBoundingClientRect();
+      if (!rect.width || !rect.height) return null;
+      // Include the actual unwrapped text (which can exceed max-width).
+      var range = document.createRange();
+      range.selectNodeContents(bit.el);
+      var glyph = range.getBoundingClientRect();
+      return {bit:bit,rect:glyph.width ? glyph : rect};
+    });
+    entries.forEach(function(item){
+      if (!item) return;
+      var r=item.rect, pad=6;
+      if(r.right<=0 || r.bottom<=0 || r.left>=viewportW || r.top>=viewportH) return;
+      if(occupied.some(function(o){
+        return r.left<o.right+pad && r.right>o.left-pad &&
+          r.top<o.bottom+pad && r.bottom>o.top-pad;
+      })) item.bit.el.style.visibility='hidden';
+      else occupied.push(r);
     });
   }
 
@@ -123,6 +212,9 @@
     var outerX = Math.max(1, viewportW * .49);
     var outerY = Math.max(1, viewportH * .49);
     var smallScreen = viewportW < 700;
+    var candidates = [], reset = lastAvoidAt === null;
+    var dt = reset ? 0 : Math.max(0, Math.min(.11, seconds - lastAvoidAt));
+    lastAvoidAt = seconds;
     bits.forEach(function (bit) {
       if (smallScreen && bit.index % 3 === 0) return;
       var p = bit.phase, q = bit.wave, t = seconds;
@@ -143,7 +235,23 @@
       var edgeFade = smoothstep(-.10, .21, edge);
       var breathing = .81 + .19 * Math.sin(t / 5.8 + p);
       var alpha = Math.max(0, Math.min(.74, bit.alpha * nearCore * outerFade * edgeFade * breathing));
-      if (alpha < .018) return;
+      if (alpha < .003) { bit.avoidAlpha=0; return; }
+      var w, h;
+      if (bit.sprite) { w=bit.sprite.width; h=bit.sprite.glyphH; }
+      else {
+        context.font='400 '+bit.size+'px sans-serif';
+        w=Math.min(viewportW*.9,context.measureText(bit.text).width)+10;
+        h=bit.size*2.15+8;
+      }
+      // Ignore completely offscreen candidates, not just their center points.
+      if(x+w*.5<0 || x-w*.5>viewportW || y+h*.5<0 || y-h*.5>viewportH) {
+        bit.avoidAlpha=0; return;
+      }
+      candidates.push({bit:bit,x:x,y:y,w:w,h:h,alpha:alpha});
+    });
+    avoidOverlaps(candidates,smallScreen,dt,reset).forEach(function(item){
+      var bit=item.bit, x=item.x, y=item.y, alpha=item.alpha;
+      if(alpha<.018) return;
       context.globalAlpha = alpha;
       context.save();
       // Snap animated glyphs to physical mobile pixels; subpixel sprite
@@ -174,6 +282,9 @@
   function resizeCanvas() {
     viewportW = Math.max(1, window.innerWidth);
     viewportH = Math.max(1, window.innerHeight);
+    lastAvoidAt = null;
+    bits.forEach(function(bit){bit.avoidY=0; bit.avoidAlpha=null;});
+    if (!canvas || !context || reduced.matches) layoutStillField();
     if (!canvas || !context) return;
     // Match 3x mobile Retina when supported. Keep the existing 2x desktop
     // cap; do not change animation cadence or entrance transitions.
@@ -248,7 +359,7 @@
   function startMotion() {
     if (entered || gate.hidden || document.hidden || opening || reduced.matches) return;
     prepareCanvas();
-    if (!context) return; // Static HTML field remains visible.
+    if (!context) { layoutStillField(); return; } // Static HTML field remains visible.
     if (canvas) canvas.hidden = false;
     gate.classList.add('entry-motion-ready');
     paint(elapsed);
@@ -309,7 +420,8 @@
     reveal(false);
   } else {
     behindGate(true);
-    startMotion();
+    if (reduced.matches) layoutStillField();
+    else startMotion();
   }
 
   enter.addEventListener('click', function (event) {
@@ -351,9 +463,11 @@
       else if (!gate.hidden) {
         gate.classList.remove('entry-motion-ready');
         if (canvas) canvas.hidden = true;
+        layoutStillField();
       }
     } else if (!gate.hidden) {
       if (canvas) canvas.hidden = false;
+      lastAvoidAt = null;
       startMotion();
     }
   }
