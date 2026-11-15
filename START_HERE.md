@@ -9,10 +9,11 @@
 - 当前设计基线：先见由 90 条作品文字组成的全屏流动入场，再进入四栏目；主视觉约 2.35 秒切入，普通站内转场约 1.4 秒。不得擅自恢复早期的抽象主视觉或圆形追光。
 - 音乐由访客手动播放；歌词水平居中、歌词栏滚动条闲置时隐藏，点击歌词不出现矩形外框。手机诗歌年份可**左右滑动**。
 - **作品状态澄清（作者 2026-10-12 确认）**：《一个哑谜》属于「音乐」板块正式曲目，继续保留。早期对话中的撤下想法已被更新决定取代；不要因此自行删除作品。详见 `AGENTS.md`。
-- **2026-11-15 核查基线：[PR #42](https://github.com/Houyuxinx/houyuxin-site/pull/42) 已合并，main 为 `35204d2f1f2f38c4f502a07c2298b4e190a565eb`，[Pages #43626629504](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43626629504) completed/success；实际状态须实时核对。[PR #43](https://github.com/Houyuxinx/houyuxin-site/pull/43) 英文审校在核查时尚待审核。**
+- **2026-11-15 补录核查基线：[PR #46](https://github.com/Houyuxinx/houyuxin-site/pull/46) 已合并，main 为 `738a3f512bc0b0c8953b24039a0f1a11eb8ff011`，[Pages #43681765660](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43681765660) completed/success；PR #43—#46 四次发布均已上线，详见 CHANGELOG.md 续记表。实际状态仍须实时核对。**
+- **2026-11-15 复核**：[Issue #2](https://github.com/Houyuxinx/houyuxin-site/issues/2) 仍开放；分支列表显示 `main` 的 `protected` 为 `false`，Pages 后台配置仍无法由公开接口读取，仓库外独立备份在 GitHub 侧无完成记录。
 - **网站阶段**：已由建站期转为**稳定维护期**。未经作者指定，不为“优化”随意重设计、清理作品或重写共用动画；维护时坚持「先确认问题是否存在 → 核实原因 → 局部修复 → 审核发布」。
 - **遗留任务核实状态（2026-10-10）**：[PR #23](https://github.com/Houyuxinx/houyuxin-site/pull/23) 因已由 PR #24 正式版本取代，已关闭（未合并）；[Issue #4](https://github.com/Houyuxinx/houyuxin-site/issues/4) 的早期抽象主视觉被文学文字入场取代，已以 `not planned` 关闭。两者历史保留，不得再自动执行。**[Issue #2](https://github.com/Houyuxinx/houyuxin-site/issues/2) 仍开放**，涉及独立备份、分支保护、Pages 设置等安全事项，未完成的内容不可宣称已完成。
-- **最新已发布前恢复点**：`backup/2026-11-15-before-umami-analytics` → `9c28752db53b66cee9b37038442cae8f395e4ee3`；同仓库恢复点，不是异地备份。
+- **最新已发布前恢复点**：`backup/2026-11-15-before-baidu-verification` → `c9be043eb726884212f1a8c47030596c328ea49e`（PR #46 发布前）；PR #43—#45 的恢复点见 BACKUP_AND_RECOVERY.md 最新索引。均为同仓库恢复点，不是异地备份。
 
 ## 现行功能与保护边界
 - 90 条中文文学入场；四栏目与十个正式内容页，另有旧 searching.html 跳转。
@@ -20,7 +21,7 @@
 - 新访客默认白天（浅色）模式；保留黑夜模式，手动选择由 localStorage 记忆。主题切换、语言与导航保持独立。
 - B「半开之门」H 网站标识，包含普通 favicon 与 Apple touch icon。作者已实测 Mac Safari 收藏显示。
 - Umami Cloud 统计已接入十页；作者截图确认一次实际访问有访客量及 IP 推估国家。统计不追溯旧数据、不确认具体来访者身份；查询参数及锚点不计入，DNT 仅在浏览器支持时生效。不得擅加录屏、身份识别或更改账户/地区。
-- 136 个文件：11 HTML、12 CSS、11 JS、8 Markdown；5 份 PDF、53 张 WebP 试读页、20 张剧照（19 JPG、1 PNG）、5 个 MP3（音乐四首、作品概念一首），58 首诗、316 条翻译词条、74 个演职人员拼音映射。该数字为核查快照，不是永恒约束。
+- 136 个文件：11 HTML、12 CSS、11 JS、8 Markdown；5 份 PDF、53 张 WebP 试读页、20 张剧照（19 JPG、1 PNG）、5 个 MP3（音乐四首、作品概念一首），58 首诗、316 条翻译词条、74 个演职人员拼音映射。该数字为核查快照，不是永恒约束。 2026-11-15 补录：PR #45 新增分享图、robots.txt、sitemap.xml，PR #46 新增一个根目录验证文件；上述计数为审计当时快照，不代表当前文件总数。
 
 ## 依次阅读七份核心文件；双语任务额外读 BILINGUAL_REVIEW.md
 1. `START_HERE.md`（本页）：接手说明与上次核实状态。

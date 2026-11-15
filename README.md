@@ -3,9 +3,9 @@
 **正式网站**：https://echyox.com  
 **仓库**：https://github.com/Houyuxinx/houyuxin-site
 
-ECHYOX 收录戏剧、诗歌、音乐与「寻找自己」四大栏目；访客先经过动态文学文字入场，再进入作品档案。已支持中英文界面（英文入口 https://echyox.com/?lang=en）、黑白主题、H 网站标识及 Umami 访问统计；文学原文仍为中文。网站由作者确定内容及审美，AI 协助修改与维护。
+ECHYOX 收录戏剧、诗歌、音乐与「寻找自己」四大栏目；访客先经过动态文学文字入场，再进入作品档案。已支持中英文界面（英文入口 https://echyox.com/?lang=en）、黑白主题、H 网站标识、`sitemap.xml` 与分页社交分享元信息及 Umami 访问统计；文学原文仍为中文。正式域名继续使用 https://echyox.com，不切换至 `www`。网站由作者确定内容及审美，AI 协助修改与维护。
 
-**项目阶段**：稳定维护期。2026-11-15 核查基线：[PR #42](https://github.com/Houyuxinx/houyuxin-site/pull/42) 已合并，main 为 `35204d2f1f2f38c4f502a07c2298b4e190a565eb`，[Pages #43626629504](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43626629504) completed/success；实际状态须实时核对。[PR #43](https://github.com/Houyuxinx/houyuxin-site/pull/43) 英文审校在核查时尚待审核。
+**项目阶段**：稳定维护期。2026-11-15 补录核查基线：[PR #46](https://github.com/Houyuxinx/houyuxin-site/pull/46) 已合并，main 为 `738a3f512bc0b0c8953b24039a0f1a11eb8ff011`，[Pages #43681765660](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43681765660) completed/success；PR #43—#46 均已正式发布，详见 CHANGELOG.md 续记表；实际状态仍须实时核对。
 
 **AI 维护总原则**：先查现状、优先只读诊断、最小范围修复、独立分支与预览、作者授权后发布。网站现行设计基线请阅读 `PROJECT_VISION.md`；维护规则请阅读 `AGENTS.md`，旧版 V13 只作历史记录。
 
