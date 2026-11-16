@@ -15,7 +15,8 @@
   buttons.forEach(function(b){
    b.innerHTML=light?moon:sun;
    b.setAttribute('aria-pressed',String(light));
-   b.setAttribute('aria-label',en?'Light mode':'白天模式');
+   if(en){b.removeAttribute('aria-pressed');b.setAttribute('aria-label',light?'Switch to dark mode':'Switch to light mode');}
+   else b.setAttribute('aria-label','白天模式');
    b.title=light?(en?'Switch to dark mode':'切换至黑夜模式'):(en?'Switch to light mode':'切换至白天模式');
   });
  }
