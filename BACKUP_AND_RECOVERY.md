@@ -1,5 +1,15 @@
 # ECHYOX｜备份、恢复与更新日志（给站长和 AI）
 
+## 2026-11-16｜维护状态校准
+V6 维护规范已由 [PR #51](https://github.com/Houyuxinx/houyuxin-site/pull/51) 正式合并并部署成功。2026-11-16 作者明确授权 [PR #52](https://github.com/Houyuxinx/houyuxin-site/pull/52) 完成必要收尾检查后发布；本记录写于合并前，实际合并与部署结果以该 PR 的发布评论及 GitHub Actions 为准。下文“候选／待审核／待确认”等旧措辞属于形成时的历史记录，不代表最新授权状态。
+发布前恢复点 `backup/2026-11-16-before-pr52-english-credentials` → `4334f9ae8d7f338af9a5fd3904d3e2f55e6e30f3`，已与发布前 main 比较 identical（ahead=0、behind=0）。独立异地备份、恢复演练、真实 Safari/iPhone 与 Android 全面回归仍未核实，不将静态检查冒充真机。
+
+## 2026-11-16｜PR #51 恢复点补录
+PR #51 已获作者批准并合并，正式提交 `4334f9ae8d7f338af9a5fd3904d3e2f55e6e30f3`，[Pages #43818737949](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43818737949) completed/success。恢复点 `backup/2026-11-16-before-pr51-maintenance-v6` → `965da5466e05b78d186da8e5dbd837e45211b2a8`（已核实 identical）；主分支保护保持开启，正常 PR 合并成功，未执行拒绝直写的破坏性测试。
+同仓库备份增至 42 个（PR #51 发布后、身份提案发布前）。独立备份及恢复演练仍未核实；[PR #51 基线 ZIP](https://github.com/Houyuxinx/houyuxin-site/archive/4334f9ae8d7f338af9a5fd3904d3e2f55e6e30f3.zip) 仅为下载入口。
+
+> 下文保留历史快照；涉及发布状态、本人署名及联系方式时以上方记录和 GitHub 实际状态为准。
+
 ## 2026-11-16｜V6 候选：最新恢复点与已启用的保护
 本轮读取 main 及分支列表：main 为 `965da5466e05b78d186da8e5dbd837e45211b2a8`，最新 Pages [success](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43698789071)；同仓库共 41 个 backup/ 分支（创建 V6 提案前），以下四个新增节点的分支名及准确 SHA 已核实：
 | 发布 | 发布前恢复分支 | SHA |

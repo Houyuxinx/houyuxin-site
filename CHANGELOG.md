@@ -1,5 +1,35 @@
 # ECHYOX｜长期更新日志
 
+## 2026-11-16｜维护状态校准
+V6 维护规范已由 [PR #51](https://github.com/Houyuxinx/houyuxin-site/pull/51) 正式合并并部署成功。2026-11-16 作者明确授权 [PR #52](https://github.com/Houyuxinx/houyuxin-site/pull/52) 完成必要收尾检查后发布；本记录写于合并前，实际合并与部署结果以该 PR 的发布评论及 GitHub Actions 为准。下文“候选／待审核／待确认”等旧措辞属于形成时的历史记录，不代表最新授权状态。
+作者确认的规范：中文姓名侯宇鑫，英文个人署名 Yuxin Hou，视觉字标 HOU YUXIN 保持原样；英文档案 74 位演职人员名在前、姓在后，保留原拼音与汉字；中文联系 hyxtheatre@163.com，英文联系 houyx0516@gmail.com，显示与 mailto 同步。文学正文、已定剧名及中文社交分享描述不变；奖项事实与译名依据见 BILINGUAL_REVIEW.md。
+发布前恢复点 `backup/2026-11-16-before-pr52-english-credentials` → `4334f9ae8d7f338af9a5fd3904d3e2f55e6e30f3`，已与发布前 main 比较 identical（ahead=0、behind=0）。独立异地备份、恢复演练、真实 Safari/iPhone 与 Android 全面回归仍未核实，不将静态检查冒充真机。
+发布前静态检查：140 文件无增删、11 个 JS 语法通过、11 个内容/兼容页面内 65 个不同静态站内路径无缺失；真实浏览器待验。
+
+## 2026-11-16｜作者本人确认的履历事实（PR #52 待审核）
+- 《海边有一栋倾斜的房子》确于2022年淄博戏剧节首演；《猛犸》2023年11月8日首演、2024年5月20日二轮演出，均在晋中信息学院。原记录准确，保持不变。
+- 《面向自我的陈述》确实入选并展演于2025年第七届大凉山国际戏剧节；剧目详情和个人履历的中英文均同步明确“入选并展演”。
+- “戏剧中国”年度征选结果在次年公布，故2023年度潜力剧本奖归于2024年履历，2024年度最佳剧本奖归于2025年履历；期次与归档年份不改。
+- 作者授权简化《迷宫》获奖称谓：中文统一“中国金鸡百花电影节“2023青年编剧大会”戏剧类剧本优秀奖”（页面不用外层引号）；英文保留青年编剧大会为颁奖主体，以 held in conjunction with 说明与电影节的关系，不误称为金鸡奖，也不列错误届次。仅更正履历事实表述，不更改作品或奖项等级。
+- 上述事实以作者确认及前轮外部资料为据，取代下方历史审校中的相关待确认状态。保持其他内容与样式不变；本次修改不代表授权发布，仍需确认具体版本。
+
+## 2026-11-16｜作者提供完整中文履历后的奖项与履历复核（PR #52 待审核；仅改英文，不授权发布）
+- 核对既有十页内容与 2019—2026 履历；本次调整 35 条英文映射。作者提供的新增“其他活动”及简介总述不是现有页面内容，不自行添加；中文正文、作品/演出事实、日期、署名、视觉、媒体均不改。
+- “戏剧中国”包含多种剧本与文论，描述性统一译为 2023/2024 ‘Theatre China’ Annual Works Selection，话剧类 Stage Play Category；Best Script Award 与 Promising Script Award 不等同剧目奖。2023 两剧与 2024 最佳剧本及躬耕奖、深圳受邀事实有晋中信息学院报道：https://wm.jzci.edu.cn/info/1007/364261.htm 、 https://ysjyzx.jzci.edu.cn/info/1008/3862.htm 。未发现主办方正式英文译名。
+- 厦门大学电影学院获奖原表有《迷宫》及作者，属于戏剧类剧本优秀奖：https://film.xmu.edu.cn/info/1193/11185.htm 。2023 电影节官方英文 China Golden Rooster & Hundred Flowers Film Festival；36th 指 China Golden Rooster Awards 而非电影节：https://www.cgrhfff.com/about-the-film-festival/historical-information/?lang=en 。英文保持“青年编剧大会配套活动”关系，不冒称金鸡奖。中文原文的第三十六届表述由作者另行确认。
+- 淄博文旅局正式中文活动名为第一届淄博城市戏剧节，2021年12月—2022年1月，节目表载《抛锚》《生命理论史稿》：https://wh.zibo.gov.cn/art/2021/12/17/art_4113_2219669.html ；英文政府报道使用 Zibo Urban Theatre Festival：https://boftec.zibo.gov.cn/cec/en-news/detail?id=70 。不混同五音戏艺术节。本人优秀编剧奖仍据作者资料；网站首演记录比本次简历更具体，暂保留。
+- Jinzhong College of Information 用校方英文 https://www.jzci.edu.cn/en/ ；Guangxi Arts University 用校方英文 https://gjjy.gxau.edu.cn/xwdt/tzgg/content_315201 ；金刺猬采用朝阳区政府英文 Golden Hedgehog College Theatre Festival https://english.bjchy.gov.cn/arts ；Peiyuan Art Festival 采用 China Daily/中国文化网报道用法并注明北京 https://en.chinaculture.org/a/202410/08/WS67049085a310f1265a1c65eb.html ；ICIC 名称见武汉大学公告 https://media.whu.edu.cn/i/20190304-2 ；Nanyang Gonggeng Arts Festival 为描述性译名（南阳文广旅 https://www.sohu.com/a/912596964_121106991 ），其他未核实专名不得冒称官方译名。
+- 文旅演艺高级导演按原文描述为 senior director of live performances for cultural tourism；研修班招生通知说明有考核及职业认证 https://b2b.alighting.com/exh/DB9PWXHQ4H/newsdetail-17708.html ，未核个人证书，故不擅自标注具体资质等级或认证机构。中国戏剧文学学会保留中文以便查证，不使用未经证实的缩写。2025大凉山剧目页原文仅“入选”，履历明确展演：英文分别照对应中文翻译，待作者决定是否同步中文记录。保留原年度分组及奖项层级，未逐一外部核实全部履历或真实设备。
+
+## 2026-11-16｜英文逐项审校修订（PR #52 待审核）
+2026-11-16：PR #52 作者追加批准英文语言修订（非发布授权）。采用英式英语及国际戏剧语境，按逐项审校调整 48 条原有映射，九页英文搜索摘要、十页分享图 alt、履历栏目 kicker 与英文动态单复数/返回及主题标签。电动车取日常语义 e-bike（非车型法律认定）；保留角色杨翠翠的既有姓名顺序、已定剧名、中文原文、文学基调和中文分享描述。未核实的虚构角色拉丁拼写、专名、奖项正式官方英译及职务细分不猜测，保留广义译法；英文奖项为描述性译名，不声称官方认证。
+
+## 2026-11-16｜V6 正式发布与下一轮身份提案
+PR #51 已获作者批准并合并，正式提交 `4334f9ae8d7f338af9a5fd3904d3e2f55e6e30f3`，[Pages #43818737949](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43818737949) completed/success。恢复点 `backup/2026-11-16-before-pr51-maintenance-v6` → `965da5466e05b78d186da8e5dbd837e45211b2a8`（已核实 identical）；主分支保护保持开启，正常 PR 合并成功，未执行拒绝直写的破坏性测试。
+2026-11-16 作者明确确认：网站艺术视觉标识 `HOU YUXIN`、中文姓名 `侯宇鑫` 均原样保留；英文个人署名统一 `Yuxin Hou`，仅搜索结构化数据将 `Hou Yuxin` 保留为检索别名。中文界面联系显示 `hyxtheatre@163.com`，英文界面显示 `houyx0516@gmail.com`，实际 mailto 与显示地址同步；两邮箱均在公开源代码中。经作者本轮追加确认，英文档案内全部 74 位演职人员（含作者）统一采用名在前、姓在后；其他 73 位只调整原有汉语拼音词序，保留拼写、原中文姓名、职务及版本关系；并非逐一核实的本人偏好署名，今后有具体本人署名可另经确认调整。英文剧名、文学正文、原始 PDF、图标、海报、布局及交互不改。该身份代码为本轮待审核提案，未经作者明确批准不得发布。
+
+> 下文保留历史快照；涉及发布状态、本人署名及联系方式时以上方记录和 GitHub 实际状态为准。
+
 ## 2026-11-16｜PR #47—#50 发布记录与主分支保护已生效（V6 待审核汇总）
 以下合并 SHA、部署链接由本次 GitHub API 回读；合并时间为北京时间（UTC+8）。表中已发布事件不等于 V6 本身发布。
 | 日期/时刻 | PR | 内容 | 合并 SHA | Pages |

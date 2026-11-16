@@ -1,5 +1,9 @@
 # ECHYOX｜网站结构与文件定位
 
+## 2026-11-16｜维护状态校准
+V6 维护规范已由 [PR #51](https://github.com/Houyuxinx/houyuxin-site/pull/51) 正式合并并部署成功。2026-11-16 作者明确授权 [PR #52](https://github.com/Houyuxinx/houyuxin-site/pull/52) 完成必要收尾检查后发布；本记录写于合并前，实际合并与部署结果以该 PR 的发布评论及 GitHub Actions 为准。下文“候选／待审核／待确认”等旧措辞属于形成时的历史记录，不代表最新授权状态。
+PR #52 的双语界面调整由 `language.js` 翻译层和 `becoming.html` 的联系链接实现，`theme.js` 更新英文读屏提示；静态页面均使用一致的缓存版本；不涉及 CSS 或媒体替换。
+
 ## V6 候选｜现行结构补录（2026-11-16）
 发布状态集中见 START_HERE.md 与 CHANGELOG.md。PR #47 文档同步，#48 首页分享描述曾调整，#49 更新 entrance.js 的预测式文字避让及首页引用，#50 将十个内容 HTML 的 og:description / twitter:description 统一；各页 meta description、英文数据属性与旧 searching.html 保持原状。具体文件差异以原 PR 为准。
 - 十个正式内容页、旧跳转、五部戏剧、五套试读共 53 张 WebP、20 张剧照、五份 PDF、五个 MP3（含作品概念曲）与旧预览工具仍按仓库文件树核实。路径存在不等于播放或浏览器验收通过。

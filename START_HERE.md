@@ -1,14 +1,15 @@
 # ECHYOX｜下一位 GPT / Work 从这里开始
 
-## V6｜接手入口（2026-11-16，待审核）
-本页只给出接手顺序、已核实基线与不可越过的授权边界；历次事实只在 CHANGELOG.md/原 PR 集中维护，避免多个文件重复更新版本编号。V6 本身尚未获准合并。
+## V6｜接手入口（2026-11-16）
+V6 维护规范已由 [PR #51](https://github.com/Houyuxinx/houyuxin-site/pull/51) 正式合并并部署成功。2026-11-16 作者明确授权 [PR #52](https://github.com/Houyuxinx/houyuxin-site/pull/52) 完成必要收尾检查后发布；本记录写于合并前，实际合并与部署结果以该 PR 的发布评论及 GitHub Actions 为准。下文“候选／待审核／待确认”等旧措辞属于形成时的历史记录，不代表最新授权状态。
 
 ### 先核实，再开始
-- 正式网站：https://echyox.com；仓库：https://github.com/Houyuxinx/houyuxin-site；正式分支：main。
-- 本轮只读核实：PR #50 已合并，main 为 `965da5466e05b78d186da8e5dbd837e45211b2a8`，[Pages #43698789071](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43698789071) completed/success；PR #47—#50 均已发布，本轮尚无开放 PR（创建 V6 提案前）。此为快照，不替代实时查询。
-- 2026-11-16 作者亲自建立 [ECHYOX Main Protection](https://github.com/Houyuxinx/houyuxin-site/rules/27353864)；API 已核实 active、仅默认分支 main、禁止删除/强推、必须经 PR、审批人数 0、豁免名单为空；main protected=true。正常合并仍可能由有权限的 AI 执行，故须继续遵守作者明确授权制度。尚未进行拦截或真实合并测试。
-- 同仓库已有 41 个备份分支；仓库外独立备份、Pages 管理后台配置、真实设备回归及恢复演练未独立核实（Issue #2 仍开放）。详见 BACKUP_AND_RECOVERY.md。
-- 不得把 V6 的候选变更当成已发布功能。英文署名及新增公开联系邮箱尚待作者另行确认；此次仅维护文档。
+- 正式网址：https://echyox.com；仓库：https://github.com/Houyuxinx/houyuxin-site；正式分支 main。
+- 发布前基线 main `4334f9ae8d7f338af9a5fd3904d3e2f55e6e30f3`，PR #51 的 [Pages #43818737949](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43818737949) completed/success。PR #52 已授权；必须查看实时 main、开放 PR 和最新部署，不把这份快照当实时状态。
+- [ECHYOX Main Protection](https://github.com/Houyuxinx/houyuxin-site/rules/27353864) 已启用，仅默认 main，禁止删除及强推、必须经 PR、无额外审批、无豁免；仍必须经作者授权才合并。
+- 作者确认的规范：中文姓名侯宇鑫，英文个人署名 Yuxin Hou，视觉字标 HOU YUXIN 保持原样；英文档案 74 位演职人员名在前、姓在后，保留原拼音与汉字；中文联系 hyxtheatre@163.com，英文联系 houyx0516@gmail.com，显示与 mailto 同步。文学正文、已定剧名及中文社交分享描述不变；奖项事实与译名依据见 BILINGUAL_REVIEW.md。
+- 发布前恢复点 `backup/2026-11-16-before-pr52-english-credentials` → `4334f9ae8d7f338af9a5fd3904d3e2f55e6e30f3`，已与发布前 main 比较 identical（ahead=0、behind=0）。独立异地备份、恢复演练、真实 Safari/iPhone 与 Android 全面回归仍未核实，不将静态检查冒充真机。 Issue #2 的独立备份与 Pages 后台核查尚未关闭。
+- 详细审校事实及来源已保留于 CHANGELOG.md / BILINGUAL_REVIEW.md；[前一候选完整接手记录](https://github.com/Houyuxinx/houyuxin-site/blob/88ed60892027fc5270f40bb61c1c4cc059247d2f/START_HERE.md) 可追溯。
 
 ### 核心文件
 | 文件 | 职责 |
