@@ -1,5 +1,13 @@
 # ECHYOX｜长期更新日志
 
+## 2026-11-16｜作者提供完整中文履历后的奖项与履历复核（PR #52 待审核；仅改英文，不授权发布）
+- 核对既有十页内容与 2019—2026 履历；本次调整 35 条英文映射。作者提供的新增“其他活动”及简介总述不是现有页面内容，不自行添加；中文正文、作品/演出事实、日期、署名、视觉、媒体均不改。
+- “戏剧中国”包含多种剧本与文论，描述性统一译为 2023/2024 ‘Theatre China’ Annual Works Selection，话剧类 Stage Play Category；Best Script Award 与 Promising Script Award 不等同剧目奖。2023 两剧与 2024 最佳剧本及躬耕奖、深圳受邀事实有晋中信息学院报道：https://wm.jzci.edu.cn/info/1007/364261.htm 、 https://ysjyzx.jzci.edu.cn/info/1008/3862.htm 。未发现主办方正式英文译名。
+- 厦门大学电影学院获奖原表有《迷宫》及作者，属于戏剧类剧本优秀奖：https://film.xmu.edu.cn/info/1193/11185.htm 。2023 电影节官方英文 China Golden Rooster & Hundred Flowers Film Festival；36th 指 China Golden Rooster Awards 而非电影节：https://www.cgrhfff.com/about-the-film-festival/historical-information/?lang=en 。英文保持“青年编剧大会配套活动”关系，不冒称金鸡奖。中文原文的第三十六届表述由作者另行确认。
+- 淄博文旅局正式中文活动名为第一届淄博城市戏剧节，2021年12月—2022年1月，节目表载《抛锚》《生命理论史稿》：https://wh.zibo.gov.cn/art/2021/12/17/art_4113_2219669.html ；英文政府报道使用 Zibo Urban Theatre Festival：https://boftec.zibo.gov.cn/cec/en-news/detail?id=70 。不混同五音戏艺术节。本人优秀编剧奖仍据作者资料；网站首演记录比本次简历更具体，暂保留。
+- Jinzhong College of Information 用校方英文 https://www.jzci.edu.cn/en/ ；Guangxi Arts University 用校方英文 https://gjjy.gxau.edu.cn/xwdt/tzgg/content_315201 ；金刺猬采用朝阳区政府英文 Golden Hedgehog College Theatre Festival https://english.bjchy.gov.cn/arts ；Peiyuan Art Festival 采用 China Daily/中国文化网报道用法并注明北京 https://en.chinaculture.org/a/202410/08/WS67049085a310f1265a1c65eb.html ；ICIC 名称见武汉大学公告 https://media.whu.edu.cn/i/20190304-2 ；Nanyang Gonggeng Arts Festival 为描述性译名（南阳文广旅 https://www.sohu.com/a/912596964_121106991 ），其他未核实专名不得冒称官方译名。
+- 文旅演艺高级导演按原文描述为 senior director of live performances for cultural tourism；研修班招生通知说明有考核及职业认证 https://b2b.alighting.com/exh/DB9PWXHQ4H/newsdetail-17708.html ，未核个人证书，故不擅自标注具体资质等级或认证机构。中国戏剧文学学会保留中文以便查证，不使用未经证实的缩写。2025大凉山剧目页原文仅“入选”，履历明确展演：英文分别照对应中文翻译，待作者决定是否同步中文记录。保留原年度分组及奖项层级，未逐一外部核实全部履历或真实设备。
+
 ## 2026-11-16｜英文逐项审校修订（PR #52 待审核）
 2026-11-16：PR #52 作者追加批准英文语言修订（非发布授权）。采用英式英语及国际戏剧语境，按逐项审校调整 48 条原有映射，九页英文搜索摘要、十页分享图 alt、履历栏目 kicker 与英文动态单复数/返回及主题标签。电动车取日常语义 e-bike（非车型法律认定）；保留角色杨翠翠的既有姓名顺序、已定剧名、中文原文、文学基调和中文分享描述。未核实的虚构角色拉丁拼写、专名、奖项正式官方英译及职务细分不猜测，保留广义译法；英文奖项为描述性译名，不声称官方认证。
 
