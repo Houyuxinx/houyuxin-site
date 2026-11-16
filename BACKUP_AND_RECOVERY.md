@@ -1,5 +1,21 @@
 # ECHYOX｜备份、恢复与更新日志（给站长和 AI）
 
+## 2026-11-16｜V6 候选：最新恢复点与已启用的保护
+本轮读取 main 及分支列表：main 为 `965da5466e05b78d186da8e5dbd837e45211b2a8`，最新 Pages [success](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43698789071)；同仓库共 41 个 backup/ 分支（创建 V6 提案前），以下四个新增节点的分支名及准确 SHA 已核实：
+| 发布 | 发布前恢复分支 | SHA |
+|---|---|---|
+| #47 | backup/2026-11-15-before-pr47-release | `738a3f512bc0b0c8953b24039a0f1a11eb8ff011` |
+| #48 | backup/2026-11-15-before-pr48-share-description | `e22e596ea3023519303fabd89e6b6765e252092c` |
+| #49 | backup/2026-11-15-before-pr49-predictive-entry | `1f20a833babb9c169b9727f8572ca36e3ce32bbe` |
+| #50 | backup/2026-11-15-before-pr50-unify-descriptions | `7b5f7c07253d2a97ba116ce8e7f918597b87686b` |
+
+[查看全部分支](https://github.com/Houyuxinx/houyuxin-site/branches)；[下载 #50 基线 ZIP](https://github.com/Houyuxinx/houyuxin-site/archive/965da5466e05b78d186da8e5dbd837e45211b2a8.zip)（仅链接，未实际下载、解压或异地保存）。其余历史恢复点仍保留于下文和原 PR，不自动清理。
+- 主分支保护 [ECHYOX Main Protection](https://github.com/Houyuxinx/houyuxin-site/rules/27353864) 已由作者启用，禁止删除 main、强推及绕过 PR 直接更新，无豁免、不强制额外审批。仍可按正常 PR 恢复旧版本，不能直接重置 main，不得未经许可暂时关闭保护。尚未实际验证拒绝写入或通过规则合并。
+- 恢复前先区分局部修复与整体回退；确认会撤销什么，尤其不得误删新增作品；创建独立恢复 PR 并等待作者授权。发布前再备份当时 main，发布后核实部署与浏览器。
+- 同仓库恢复点不是独立异地备份。GitHub 访问丢失、整个仓库删除及外部 DNS/统计数据等不由这套机制保障；独立 ZIP 和真正恢复演练未获完成证据。禁止无授权修改安全设置或删除旧分支。
+
+> 以下为此前维护原文，包含当时的版本快照和待办；保留用于追溯，与上方 V6 已核实状态冲突时，以 V6 说明及 GitHub 实时结果为准。
+
 ## 2026-11-15 最新恢复点索引（优先于下方历史速查）
 2026-11-15 补录核查基线：[PR #46](https://github.com/Houyuxinx/houyuxin-site/pull/46) 已合并，main 为 `738a3f512bc0b0c8953b24039a0f1a11eb8ff011`，[Pages #43681765660](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43681765660) completed/success；PR #43—#46 已正式发布，实际状态仍须实时核对。
 以下分支及 SHA 已在本轮读取 GitHub 分支列表核对（同仓库恢复点）：

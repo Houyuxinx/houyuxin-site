@@ -1,5 +1,10 @@
 # ECHYOX 中英文界面 · 第六轮事实审校与双语署名稿
 
+## V6 候选｜英文身份边界（2026-11-16）
+目前正式网站英文姓名仍是 Hou Yuxin，HOU YUXIN 为视觉标识；PR #50 统一中文社交分享描述，未修改英文文学正文或 data-description-en。作者正在考虑将国际交流署名统一为 Yuxin Hou 并调整公开联系方式，尚未批准网站具体变更。此次不更改任何正式署名、邮箱、作品翻译、PDF 或其他演职人员拼写；未来独立 PR 应核对本人署名所有用途、中文/英文显示、搜索/结构化数据与联系方式，先确认哪些可公开。此前审校表及历史原文保留。
+
+> 以下为此前维护原文，包含当时的版本快照和待办；保留用于追溯，与上方 V6 已核实状态冲突时，以 V6 说明及 GitHub 实时结果为准。
+
 ## 状态更新（2026-11-15，同日补录更正）
 第六轮已随 [PR #37](https://github.com/Houyuxinx/houyuxin-site/pull/37) 合并发布，正式英文审校以实际 main 的 language.js 为准；以下旧文所称「待审核」只保留历史。**第七轮已于 2026-11-15 11:46（北京时间）由 [PR #43](https://github.com/Houyuxinx/houyuxin-site/pull/43) 经作者明确批准合并发布**，正式合并 `7e97f927ddecfd098f0f6ba7e4a2b748332d7279`，[Pages #43673878911](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43673878911) `completed/success`；25 条界面／履历词条与诗歌日期规则现为正式界面英文，不再是待审核候选。其后 [PR #44](https://github.com/Houyuxinx/houyuxin-site/pull/44) 的文档同步、[PR #45](https://github.com/Houyuxinx/houyuxin-site/pull/45) 的英文视图分页描述亦已发布。既定英文剧名、全部诗歌/歌词/试读原文及 74 人拼音映射不动。角色名原拼写、个人偏好署名及未核实的节展奖项译名须另行确认；不要承诺文学全译或母语者审定。
 

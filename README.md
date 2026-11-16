@@ -1,5 +1,10 @@
 # ECHYOX · 侯宇鑫个人艺术网站
 
+## V6 候选｜项目概览（2026-11-16）
+ECHYOX 已进入长期养护阶段。接手从 [START_HERE.md](START_HERE.md) 开始；当前版本与发布历史见 [CHANGELOG.md](CHANGELOG.md)，保护/恢复见 [BACKUP_AND_RECOVERY.md](BACKUP_AND_RECOVERY.md)。作者亲自启用了默认主分支保护：禁止删除和强推、强制经 PR，不要求额外审批；未获作者对具体提案的明确许可仍不得合并。本站保持既定作品、四栏目、中文文学原文及双语/双主题体验。V6 为文档候选，不代表功能改动或额外公开信息获授权。
+
+> 以下为此前维护原文，包含当时的版本快照和待办；保留用于追溯，与上方 V6 已核实状态冲突时，以 V6 说明及 GitHub 实时结果为准。
+
 **正式网站**：https://echyox.com  
 **仓库**：https://github.com/Houyuxinx/houyuxin-site
 
