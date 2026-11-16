@@ -485,7 +485,7 @@ document.querySelectorAll('.work-collaborators .collab-person > dt,.work-collabo
 document.querySelectorAll('.work-collaborators').forEach(section=>{
  const header=section.querySelector('.work-collaborators-header');
  if(!header)return;
- const note=document.createElement('p');note.className='credit-name-note';note.textContent='Names are romanised in Hanyu Pinyin, with the author's preferred English name used. Original Chinese names are retained. Individual preferred spellings may differ.';
+ const note=document.createElement('p');note.className='credit-name-note';note.textContent="Names are romanised in Hanyu Pinyin, with the author's preferred English name used. Original Chinese names are retained. Individual preferred spellings may differ.";
  header.after(note);
 });
 
