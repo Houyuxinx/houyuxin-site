@@ -357,13 +357,13 @@ function translate(value){
  if((m=clean.match(/^(\d+) 首$/)))return m[1]+(Number(m[1])===1?' poem':' poems');
  if((m=clean.match(/^显示第\s*(\d+)\s*张剧照$/)))return 'Show photograph '+m[1];
  if((m=clean.match(/^(\d+\s*\/\s*\d+)\s*组$/)))return m[1]+(Number(m[1].split('/')[1].trim())===1?' group':' groups');
+ if((m=clean.match(/^阅读(\d{4})年的诗歌$/)))return 'Read poems from '+m[1];
+ if((m=clean.match(/^(\d{4})年诗歌目录，(\d+)首$/)))return 'Poetry archive, '+m[1]+' — '+m[2]+(Number(m[2])===1?' poem':' poems');
+ if((m=clean.match(/^已显示(\d{4})年的(\d+)首诗$/)))return 'Showing '+m[2]+(Number(m[2])===1?' poem from ':' poems from ')+m[1];
   if(/^(?:(?:约|c\.)\s*)?\d{4}/.test(clean)&&/[年月日凌晨初稿约冬春夏秋]/.test(clean)){
    const dateEnglish=v=>v.replace(/．/g,'.').replace(/^\s*约\s*/,'c. ').replace(/(\d{4})年(\d{1,2})月(?:(\d{1,2})日)?/g,(_,y,mo,da)=>y+'.'+mo+(da?'.'+da:'')).replace(/(\d{4})年([春夏秋冬])/g,(_,y,q)=>({春:'Spring',夏:'Summer',秋:'Autumn',冬:'Winter'}[q]+' '+y)).replace(/\s*凌晨/g,' (early morning)');
    return dateEnglish(clean.replace(/（([^（）]*?)初稿：([^）]+)）/g,(_,scope,date)=>' ('+(scope==='第一首'?'first poem — ':scope?scope+' — ':'')+'first draft: '+dateEnglish(date)+')'));
   }
- if((m=clean.match(/^阅读(\d{4})年的诗歌$/)))return 'Read poems from '+m[1];
- if((m=clean.match(/^(\d{4})年诗歌目录，(\d+)首$/)))return 'Poetry archive, '+m[1]+' — '+m[2]+(Number(m[2])===1?' poem':' poems');
- if((m=clean.match(/^已显示(\d{4})年的(\d+)首诗$/)))return 'Showing '+m[2]+(Number(m[2])===1?' poem from ':' poems from ')+m[1];
  if((m=clean.match(/^(上一首|下一首)：(.+)$/)))return words[m[1]]+': '+(words[m[2]]||m[2]);
  if((m=clean.match(/^(.*?) \/ 剧本试读$/)))return (words[m[1]]||m[1])+' / Script excerpt (Chinese)';
  if((m=clean.match(/^(.*?) · 试读第 (\d+) 页$/)))return (words[m[1]]||m[1])+' · Excerpt page '+m[2];
