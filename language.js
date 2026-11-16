@@ -8,7 +8,7 @@ const words = {
   "诗歌": "Poetry",
   "音乐": "Music",
   "寻找自己": "Becoming",
-  "侯宇鑫": "Hou Yuxin",
+  "侯宇鑫": "Yuxin Hou",
   "回到来处": "Return",
   "返回戏剧": "Back to theatre",
   "返回首页": "Back to home page",
@@ -16,7 +16,7 @@ const words = {
   "返回曲目列表": "Back to track list",
   "进入尚未完成之处": "Enter the Unfinished",
   "作品栏目": "Works",
-  "侯宇鑫艺术入场页": "Hou Yuxin — site entrance",
+  "侯宇鑫艺术入场页": "Yuxin Hou — site entrance",
   "据说岁月的模型不会停止演变。": "It is said that the model of time never stops evolving.",
   "为着均匀的呼吸与静默的词语。": "For steady breathing and silent words.",
   "一切的一切都与人类无关。": "Everything, absolutely everything, has nothing to do with humanity.",
@@ -152,7 +152,7 @@ const words = {
   "← → 切换 · Esc 关闭": "← → Browse · Esc to close",
   "横向浏览剧照": "Browse production photographs",
   "离合悲欢——《她一瞬过载》概念曲": "Parting and Reunion, Sorrow and Joy — Concept Track for ALL AT ONCE",
-  "概念：侯宇鑫 · 作曲、编曲：Suno": "Concept: Hou Yuxin · Composition and arrangement: Suno",
+  "概念：侯宇鑫 · 作曲、编曲：Suno": "Concept: Yuxin Hou · Composition and arrangement: Suno",
   "单曲循环": "Repeat track",
   "已开启": "On",
   "已关闭": "Off",
@@ -161,7 +161,7 @@ const words = {
   "经过": "Selected work",
   "此刻": "Now",
   "联系": "Contact",
-  "侯宇鑫，青年戏剧编剧、导演，中国戏剧文学学会会员，文旅演艺高级导演。": "Hou Yuxin is a young playwright and theatre director, a member of the Chinese Theatre Literature Association (CTLA; 中国戏剧文学学会), and a senior director specialising in live performance for cultural tourism.",
+  "侯宇鑫，青年戏剧编剧、导演，中国戏剧文学学会会员，文旅演艺高级导演。": "Yuxin Hou is a young playwright and theatre director, a member of the Chinese Theatre Literature Association (CTLA; 中国戏剧文学学会), and a senior director specialising in live performance for cultural tourism.",
   "毕业于广西艺术学院戏剧影视文学系，曾任高校教师，进修于第二届全国“文旅演艺导演高级研修班”。": "Hou graduated in drama, film and television literature from Guangxi Arts University and previously taught at a university. Hou also attended the second national advanced training programme for directors of cultural tourism performances.",
   "主要从事戏剧文本创作与舞台导演工作，同时进行诗歌、歌曲写作及跨媒介创作实践。": "Hou’s practice centres on playwriting and theatre directing, alongside poetry, songwriting and work across media.",
   "主要作品包括话剧《海边有一栋倾斜的房子》、《猛犸》、《迷宫》、《面向自我的陈述》、《她一瞬过载》，音乐剧《风起形意》等。": "Major works include the plays EXPRESSERS, MAMMOTH, THE LABYRINTH, THE NARROW GATE and ALL AT ONCE, and the musical 风起形意 (Feng Qi Xing Yi).",
@@ -224,13 +224,13 @@ const words = {
   "跃下深渊的动机": "Motif for a Leap into the Abyss",
   "一个哑谜": "An Unspoken Riddle",
   "2021创作 · 2026完成编曲": "Written in 2021 · Arrangement completed in 2026",
-  "作词、作曲：侯宇鑫 · 编曲：Suno": "Lyrics and composition: Hou Yuxin · Arrangement: Suno",
-  "作词：侯宇鑫 · 作曲、编曲：Suno": "Lyrics: Hou Yuxin · Composition and arrangement: Suno",
-  "作词：侯宇鑫": "Lyrics: Hou Yuxin",
+  "作词、作曲：侯宇鑫 · 编曲：Suno": "Lyrics and composition: Yuxin Hou · Arrangement: Suno",
+  "作词：侯宇鑫 · 作曲、编曲：Suno": "Lyrics: Yuxin Hou · Composition and arrangement: Suno",
+  "作词：侯宇鑫": "Lyrics: Yuxin Hou",
   "作曲、编曲：Suno": "Composition and arrangement: Suno",
   "器乐作品 · 无歌词": "Instrumental · No lyrics",
   "器乐作品，无歌词": "Instrumental, no lyrics",
-  "旋律：侯宇鑫 · 发展于 Suno Studio": "Melody: Hou Yuxin · Developed in Suno Studio",
+  "旋律：侯宇鑫 · 发展于 Suno Studio": "Melody: Yuxin Hou · Developed in Suno Studio",
   "歌词": "Lyrics (Chinese)",
   "器乐": "Instrumental",
   "上下滑动": "Scroll vertically",
@@ -241,7 +241,7 @@ const words = {
   "一阵风准时吹来": "A gust of wind arrives on time",
   "《语言方式》": "The Shape of Language",
   "诗歌目录": "Poetry archive",
-  "诗歌 / 侯宇鑫": "Poetry by Hou Yuxin",
+  "诗歌 / 侯宇鑫": "Poetry by Yuxin Hou",
   "收起此页，返回诗歌列表": "Close poem and return to archive",
   "收起此页": "Close poem",
   "诗歌全文，可上下滚动": "Full poem in Chinese; scroll to read",
@@ -318,7 +318,7 @@ const words = {
   "上一组剧照": "Previous group of photographs",
   "下一组剧照": "Next group of photographs",
   "三组空间中的六张剧照": "Six photographs in three groups",
-  "田帅、侯宇鑫": "田帅、Hou Yuxin"
+  "田帅、侯宇鑫": "田帅、Yuxin Hou"
 };
 const root=document.documentElement;
 const current=new URL(location.href);
@@ -339,13 +339,20 @@ const entry=document.querySelector('.entry-gate');
 if(entry){const a=switchLink();a.classList.add('entry-language-switch');entry.appendChild(a);}
 if(!english)return;
 root.lang='en';
+// The contact address follows the selected interface language; retain the original arrow.
+const contact=document.querySelector('.contact-mail[data-contact-email-en]');
+if(contact&&contact.firstChild&&contact.firstChild.nodeType===3){
+ const address=contact.dataset.contactEmailEn;
+ contact.firstChild.nodeValue=address+' ';
+ contact.setAttribute('href','mailto:'+address);
+}
 function translate(value){
  if(!value)return value;
  const clean=value.trim();
  if(Object.prototype.hasOwnProperty.call(words,clean))return value.replace(clean,words[clean]);
  let m;
  if((m=clean.match(/^(.+?) · (\d{4})$/))&&words[m[1]])return words[m[1]]+' · '+m[2];
- if((m=clean.match(/^(.+?) — 侯宇鑫$/))&&words[m[1]])return words[m[1]]+' — Hou Yuxin';
+ if((m=clean.match(/^(.+?) — 侯宇鑫$/))&&words[m[1]])return words[m[1]]+' — Yuxin Hou';
  if((m=clean.match(/^回到来处：(.+)$/)))return 'Return: '+(words[m[1]]||m[1]);
  if((m=clean.match(/^(\d+) 首$/)))return m[1]+' poems';
  if((m=clean.match(/^显示第\s*(\d+)\s*张剧照$/)))return 'Show photograph '+m[1];
@@ -386,7 +393,7 @@ const creditNames = {
   "李黎欣童": "Li Lixintong",
   "李昊文": "Li Haowen",
   "张晓静": "Zhang Xiaojing",
-  "侯宇鑫": "Hou Yuxin",
+  "侯宇鑫": "Yuxin Hou",
   "韦哲宇": "Wei Zheyu",
   "梁栋": "Liang Dong",
   "戴国婷": "Dai Guoting",
@@ -478,7 +485,7 @@ document.querySelectorAll('.work-collaborators .collab-person > dt,.work-collabo
 document.querySelectorAll('.work-collaborators').forEach(section=>{
  const header=section.querySelector('.work-collaborators-header');
  if(!header)return;
- const note=document.createElement('p');note.className='credit-name-note';note.textContent='Names are romanised in Hanyu Pinyin; original Chinese names are retained. Individual preferred spellings may differ.';
+ const note=document.createElement('p');note.className='credit-name-note';note.textContent='Names are romanised in Hanyu Pinyin, with the author's preferred English name used. Original Chinese names are retained. Individual preferred spellings may differ.';
  header.after(note);
 });
 

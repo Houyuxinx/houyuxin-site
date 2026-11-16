@@ -1,5 +1,11 @@
 # ECHYOX｜备份、恢复与更新日志（给站长和 AI）
 
+## 2026-11-16｜PR #51 恢复点补录
+PR #51 已获作者批准并合并，正式提交 `4334f9ae8d7f338af9a5fd3904d3e2f55e6e30f3`，[Pages #43818737949](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43818737949) completed/success。恢复点 `backup/2026-11-16-before-pr51-maintenance-v6` → `965da5466e05b78d186da8e5dbd837e45211b2a8`（已核实 identical）；主分支保护保持开启，正常 PR 合并成功，未执行拒绝直写的破坏性测试。
+同仓库备份增至 42 个（PR #51 发布后、身份提案发布前）。独立备份及恢复演练仍未核实；[PR #51 基线 ZIP](https://github.com/Houyuxinx/houyuxin-site/archive/4334f9ae8d7f338af9a5fd3904d3e2f55e6e30f3.zip) 仅为下载入口。
+
+> 下文保留历史快照；涉及发布状态、本人署名及联系方式时以上方记录和 GitHub 实际状态为准。
+
 ## 2026-11-16｜V6 候选：最新恢复点与已启用的保护
 本轮读取 main 及分支列表：main 为 `965da5466e05b78d186da8e5dbd837e45211b2a8`，最新 Pages [success](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43698789071)；同仓库共 41 个 backup/ 分支（创建 V6 提案前），以下四个新增节点的分支名及准确 SHA 已核实：
 | 发布 | 发布前恢复分支 | SHA |
