@@ -1,5 +1,18 @@
 # ECHYOX｜长期更新日志
 
+## 2026-11-16｜PR #47—#50 发布记录与主分支保护已生效（V6 待审核汇总）
+以下合并 SHA、部署链接由本次 GitHub API 回读；合并时间为北京时间（UTC+8）。表中已发布事件不等于 V6 本身发布。
+| 日期/时刻 | PR | 内容 | 合并 SHA | Pages |
+|---|---|---|---|---|
+| 11-15 15:43 | [#47](https://github.com/Houyuxinx/houyuxin-site/pull/47) | 补录 #43—#46 状态与维护说明 | `e22e596ea3023519303fabd89e6b6765e252092c` | [success](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43691211531) |
+| 11-15 16:52 | [#48](https://github.com/Houyuxinx/houyuxin-site/pull/48) | 首页分享描述改为“进入尚未完成之处”（后由 #50 取代） | `1f20a833babb9c169b9727f8572ca36e3ce32bbe` | [success](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43696488584) |
+| 11-15 17:00 | [#49](https://github.com/Houyuxinx/houyuxin-site/pull/49) | 文学入场文字自动避让 V3：预测轨迹、平稳转向 | `7b5f7c07253d2a97ba116ce8e7f918597b87686b` | [success](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43697160142) |
+| 11-15 17:20 | [#50](https://github.com/Houyuxinx/houyuxin-site/pull/50) | 十页社交分享描述统一为“保存过去，也向尚未发生的一切保持开放。”，搜索摘要不变 | `965da5466e05b78d186da8e5dbd837e45211b2a8` | [success](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43698789071) |
+
+2026-11-16 14:36 作者在 GitHub 后台建立 [ECHYOX Main Protection](https://github.com/Houyuxinx/houyuxin-site/rules/27353864)；API 核实 active/default branch、main protected=true、deletion/non_fast_forward/pull_request 三条、额外审批 0、无豁免、允许 merge/squash/rebase。未更改网站代码；本轮 main 仍为 #50。未进行实际拦截或合并测试。Issue #2 仍开放（其原描述的“无保护”已被本次实查事实取代；其余待办未视为完成）。
+V6 本轮只准备文档候选，不变更作品或配置；英文署名/联系方式、真机回归、独立备份和恢复演练均尚待处理。11-22 搜索收录复查计划保留，本轮不做收录结论。
+
+> 以下为此前维护原文，包含当时的版本快照和待办；保留用于追溯，与上方 V6 已核实状态冲突时，以 V6 说明及 GitHub 实时结果为准。
 
 ## 2026-11-15｜V5 全站审计与长期维护规范（历史快照；V5 已随 PR #44 正式发布）
 2026-11-15 补录核查基线（实时核对）：[PR #46](https://github.com/Houyuxinx/houyuxin-site/pull/46) 已合并，main 为 `738a3f512bc0b0c8953b24039a0f1a11eb8ff011`，[Pages #43681765660](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43681765660) `completed/success`；[PR #43](https://github.com/Houyuxinx/houyuxin-site/pull/43)、#44、#45、#46 均已正式发布，见下方续记表。实际状态仍须实时核对。

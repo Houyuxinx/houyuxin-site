@@ -1,51 +1,44 @@
 # ECHYOX｜下一位 GPT / Work 从这里开始
 
-> 本页是**接手入口**，不是完整历史日志。先确认 GitHub 的实时状态，再执行本次任务。作者没有编程经验，所有反馈使用普通中文。
+## V6｜接手入口（2026-11-16，待审核）
+本页只给出接手顺序、已核实基线与不可越过的授权边界；历次事实只在 CHANGELOG.md/原 PR 集中维护，避免多个文件重复更新版本编号。V6 本身尚未获准合并。
 
-## 网站和已确认的基本状态
-- 网站：https://echyox.com
-- 仓库：https://github.com/Houyuxinx/houyuxin-site
-- 正式分支：`main`；四栏目：戏剧、诗歌、音乐、寻找自己。
-- 当前设计基线：先见由 90 条作品文字组成的全屏流动入场，再进入四栏目；主视觉约 2.35 秒切入，普通站内转场约 1.4 秒。不得擅自恢复早期的抽象主视觉或圆形追光。
-- 音乐由访客手动播放；歌词水平居中、歌词栏滚动条闲置时隐藏，点击歌词不出现矩形外框。手机诗歌年份可**左右滑动**。
-- **作品状态澄清（作者 2026-10-12 确认）**：《一个哑谜》属于「音乐」板块正式曲目，继续保留。早期对话中的撤下想法已被更新决定取代；不要因此自行删除作品。详见 `AGENTS.md`。
-- **2026-11-15 补录核查基线：[PR #46](https://github.com/Houyuxinx/houyuxin-site/pull/46) 已合并，main 为 `738a3f512bc0b0c8953b24039a0f1a11eb8ff011`，[Pages #43681765660](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43681765660) completed/success；PR #43—#46 四次发布均已上线，详见 CHANGELOG.md 续记表。实际状态仍须实时核对。**
-- **2026-11-15 复核**：[Issue #2](https://github.com/Houyuxinx/houyuxin-site/issues/2) 仍开放；分支列表显示 `main` 的 `protected` 为 `false`，Pages 后台配置仍无法由公开接口读取，仓库外独立备份在 GitHub 侧无完成记录。
-- **网站阶段**：已由建站期转为**稳定维护期**。未经作者指定，不为“优化”随意重设计、清理作品或重写共用动画；维护时坚持「先确认问题是否存在 → 核实原因 → 局部修复 → 审核发布」。
-- **遗留任务核实状态（2026-10-10）**：[PR #23](https://github.com/Houyuxinx/houyuxin-site/pull/23) 因已由 PR #24 正式版本取代，已关闭（未合并）；[Issue #4](https://github.com/Houyuxinx/houyuxin-site/issues/4) 的早期抽象主视觉被文学文字入场取代，已以 `not planned` 关闭。两者历史保留，不得再自动执行。**[Issue #2](https://github.com/Houyuxinx/houyuxin-site/issues/2) 仍开放**，涉及独立备份、分支保护、Pages 设置等安全事项，未完成的内容不可宣称已完成。
-- **最新已发布前恢复点**：`backup/2026-11-15-before-baidu-verification` → `c9be043eb726884212f1a8c47030596c328ea49e`（PR #46 发布前）；PR #43—#45 的恢复点见 BACKUP_AND_RECOVERY.md 最新索引。均为同仓库恢复点，不是异地备份。
+### 先核实，再开始
+- 正式网站：https://echyox.com；仓库：https://github.com/Houyuxinx/houyuxin-site；正式分支：main。
+- 本轮只读核实：PR #50 已合并，main 为 `965da5466e05b78d186da8e5dbd837e45211b2a8`，[Pages #43698789071](https://github.com/Houyuxinx/houyuxin-site/actions/runs/43698789071) completed/success；PR #47—#50 均已发布，本轮尚无开放 PR（创建 V6 提案前）。此为快照，不替代实时查询。
+- 2026-11-16 作者亲自建立 [ECHYOX Main Protection](https://github.com/Houyuxinx/houyuxin-site/rules/27353864)；API 已核实 active、仅默认分支 main、禁止删除/强推、必须经 PR、审批人数 0、豁免名单为空；main protected=true。正常合并仍可能由有权限的 AI 执行，故须继续遵守作者明确授权制度。尚未进行拦截或真实合并测试。
+- 同仓库已有 41 个备份分支；仓库外独立备份、Pages 管理后台配置、真实设备回归及恢复演练未独立核实（Issue #2 仍开放）。详见 BACKUP_AND_RECOVERY.md。
+- 不得把 V6 的候选变更当成已发布功能。英文署名及新增公开联系邮箱尚待作者另行确认；此次仅维护文档。
 
-## 现行功能与保护边界
-- 90 条中文文学入场；四栏目与十个正式内容页，另有旧 searching.html 跳转。
-- `?lang=en` 英文界面与目录、梗概、履历、署名；文学文字场、诗歌正文、歌词、试读依然为中文。英文人名拼音不代表本人确认的惯用拼写。五个固定英文剧名不可擅改。详见 BILINGUAL_REVIEW.md。
-- 新访客默认白天（浅色）模式；保留黑夜模式，手动选择由 localStorage 记忆。主题切换、语言与导航保持独立。
-- B「半开之门」H 网站标识，包含普通 favicon 与 Apple touch icon。作者已实测 Mac Safari 收藏显示。
-- Umami Cloud 统计已接入十页；作者截图确认一次实际访问有访客量及 IP 推估国家。统计不追溯旧数据、不确认具体来访者身份；查询参数及锚点不计入，DNT 仅在浏览器支持时生效。不得擅加录屏、身份识别或更改账户/地区。
-- 136 个文件：11 HTML、12 CSS、11 JS、8 Markdown；5 份 PDF、53 张 WebP 试读页、20 张剧照（19 JPG、1 PNG）、5 个 MP3（音乐四首、作品概念一首），58 首诗、316 条翻译词条、74 个演职人员拼音映射。该数字为核查快照，不是永恒约束。 2026-11-15 补录：PR #45 新增分享图、robots.txt、sitemap.xml，PR #46 新增一个根目录验证文件；上述计数为审计当时快照，不代表当前文件总数。
+### 核心文件
+| 文件 | 职责 |
+|---|---|
+| AGENTS.md | 权限、协作、审核及发布规则 |
+| PROJECT_VISION.md | 已确认艺术方向和不可擅改的设计 |
+| SITE_STRUCTURE.md | 文件定位、功能及测试范围 |
+| CHANGELOG.md | 真实发布记录、历史与待办 |
+| BACKUP_AND_RECOVERY.md | 备份、保护与恢复步骤 |
+| README.md | 项目概览及历史入口 |
+| BILINGUAL_REVIEW.md | 双语任务额外必读：译文、专名与署名边界 |
 
-## 依次阅读七份核心文件；双语任务额外读 BILINGUAL_REVIEW.md
-1. `START_HERE.md`（本页）：接手说明与上次核实状态。
-2. `AGENTS.md`：**必须遵守**的工作规则、预览、授权、插件限制和断线续做。
-3. `PROJECT_VISION.md`：已确认的审美方向与尚未决定的内容。
-4. `SITE_STRUCTURE.md`：栏目、文件位置、可能牵连其他页面的共用代码。
-5. `CHANGELOG.md`：发布时间线、此前试验与尚未完成的事项；**旧标题的“待审核”不代表今天仍待审核**。
-6. `BACKUP_AND_RECOVERY.md`：恢复点和恢复步骤；禁止未经同意删旧备份。
-7. `README.md`：仓库导航与原始 V13 历史。
+接手时实际读取本页及前六份核心文件、最新 main、开放 PR、相关 Issue/分支与最近部署；双语任务额外读 BILINGUAL_REVIEW.md 和相关源码。读不到应说明，不得凭聊天记忆推断。
 
-请**实际读取文件**并核对与本次任务相关的代码；读不到要直说，不能装作已经读过。接着查看实时 `main`、未合并 PR、相关 Issue/分支、最新成功部署。旧对话、上面的固定提交号、旧日志都不是实时状态的替代品。
+### 当下必须保留的艺术与功能
+- 90 条中文文学流动文字入场、预测轨迹避让 V3、中心呼吸区、四栏目（戏剧/诗歌/音乐/寻找自己）。首次入场约 2.35 秒、站内普通转场约 1.4 秒；不恢复旧圆形追光。实际表现须浏览器检验。
+- 新访客默认白天，可切黑夜并记忆；英文界面保留中文文学原文，英文入口 ?lang=en；五个英文剧名固定，署名/作品内容不自动改写。
+- 手机诗歌年份横向滑动；诗歌正文、日期、署名不改；音乐及作品页音频手动播放、循环默认关闭，歌词居中独立滚动；《一个哑谜》正式保留。
+- 十个正式内容页、旧 searching.html 兼容跳转、试读 PDF、剧照、共同在场档案、Umami 已批准的统计范围；分享描述统一为「保存过去，也向尚未发生的一切保持开放。」（搜索摘要未被 PR #50 修改）。
+- 稳定维护期优先真实缺陷与作者明确要求；不擅自重构、新增作品、清理分支或安装插件。
 
-## 每次维护的固定合作方式
-- 先说清楚：**本次具体改哪里、保留什么、怎么检查**。
-- 小修也要汇报关键步骤；大型艺术调整先给明显不同的方案让作者选择，再分轮制作。优先沿用已经开展的 PR，不凭空推倒重来。
-- 只在独立分支修改并交付**可供作者查看的待审核版本**；电脑/手机有关的修改要说明预览方式、实测与尚未验证之处。
-- 作者对**具体版本**明确同意后才可以合并发布。发布前留恢复点，发布后核对 GitHub Pages；合并成功不等于部署成功。
-- 未经授权不得使用 Canva、额外托管/网盘等不相关服务，也不能删除作品、历史记录或备份。
-- 发布结果优先留在原 PR；避免只为修改几行状态说明反复触发正式网站部署。交接说明定期整理即可。
+### 每轮协作
+1. 只读确认现状、明确改动范围与验收方式。
+2. 检查是否有其他 AI 正在处理同一任务；同一任务沿用原 PR，不重复创建。不同 AI 接力以仓库与 PR 记录为准。
+3. 独立工作分支，提交待审核 PR；网页变更给可预览版本，纯文档给差异。未经作者对具体版本明确授权不得合并。
+4. 发布前保存当时 main 的恢复点；发布后核对部署、在原 PR 留 SHA/恢复点/未测项目，定期汇总日志。
+5. 只读审计、静态检查、模拟浏览器、真实 Safari 与部署是不同证据。未经授权不改变安全设置、域名或其他服务，也不上传未授权素材。
 
-## 可以直接复制给新 AI
-请接手 ECHYOX（https://echyox.com），仓库：https://github.com/Houyuxinx/houyuxin-site 。我没有编程经验。先实际阅读 START_HERE.md、AGENTS.md、PROJECT_VISION.md、SITE_STRUCTURE.md、CHANGELOG.md、BACKUP_AND_RECOVERY.md 和 README.md，再检查最新 main、未合并 PR、相关 Issue 与本次涉及的代码。用普通中文告诉我已确认的进度、准备修改哪里、哪些地方保持不变、怎样预览和检查。请在独立待审核版本里工作，每阶段汇报；没有我针对具体版本的明确授权，不得合并、发布或删除任何东西。
+### 可复制给任何新 AI
+请接手 ECHYOX（https://echyox.com），仓库：https://github.com/Houyuxinx/houyuxin-site 。我没有编程经验。先实际阅读 START_HERE.md、AGENTS.md、PROJECT_VISION.md、SITE_STRUCTURE.md、CHANGELOG.md、BACKUP_AND_RECOVERY.md、README.md；双语任务另读 BILINGUAL_REVIEW.md。核实最新 main、开放 PR、Issue、分支和部署，说明已完成/未完成/是否上线/下一步。独立 PR 预览后等我明确授权才发布，不直接修改 main，不删除历史或作品，不擅自改变账户设置。若是续做，沿用原任务的分支/PR；断连时停止修改并说明。
 
-## 连接中断/停止思考后的续做话术
-请继续 ECHYOX 上次未完成的任务。先核对 GitHub 最新 main、未合并 PR、相关分支、Issue 和最后保存的提交，告诉我**已完成 / 未完成 / 是否上线 / 下一步**。如果有原 PR，请在它上面继续，不重做、不重复创建、不擅自发布；如果无法连接 GitHub，请停止修改并说明。
-
-> 最新任务的详细进度应记在**原 PR/Issue**。此文件只保留简要状态，历次具体变更请查 `CHANGELOG.md`。
+### 历史入口
+旧版接手全文已完整保存在 [PR #50 基线的 START_HERE.md](https://github.com/Houyuxinx/houyuxin-site/blob/965da5466e05b78d186da8e5dbd837e45211b2a8/START_HERE.md)；本次将接手入口收束为现行指引，历史不从 Git 中删除。
