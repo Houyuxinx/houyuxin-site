@@ -1,5 +1,9 @@
 # ECHYOX · 侯宇鑫个人艺术网站
 
+## 2026-11-16｜维护状态校准
+V6 维护规范已由 [PR #51](https://github.com/Houyuxinx/houyuxin-site/pull/51) 正式合并并部署成功。2026-11-16 作者明确授权 [PR #52](https://github.com/Houyuxinx/houyuxin-site/pull/52) 完成必要收尾检查后发布；本记录写于合并前，实际合并与部署结果以该 PR 的发布评论及 GitHub Actions 为准。下文“候选／待审核／待确认”等旧措辞属于形成时的历史记录，不代表最新授权状态。
+作者确认的规范：中文姓名侯宇鑫，英文个人署名 Yuxin Hou，视觉字标 HOU YUXIN 保持原样；英文档案 74 位演职人员名在前、姓在后，保留原拼音与汉字；中文联系 hyxtheatre@163.com，英文联系 houyx0516@gmail.com，显示与 mailto 同步。文学正文、已定剧名及中文社交分享描述不变；奖项事实与译名依据见 BILINGUAL_REVIEW.md。
+
 ## V6 候选｜项目概览（2026-11-16）
 ECHYOX 已进入长期养护阶段。接手从 [START_HERE.md](START_HERE.md) 开始；当前版本与发布历史见 [CHANGELOG.md](CHANGELOG.md)，保护/恢复见 [BACKUP_AND_RECOVERY.md](BACKUP_AND_RECOVERY.md)。作者亲自启用了默认主分支保护：禁止删除和强推、强制经 PR，不要求额外审批；未获作者对具体提案的明确许可仍不得合并。本站保持既定作品、四栏目、中文文学原文及双语/双主题体验。V6 为文档候选，不代表功能改动或额外公开信息获授权。
 

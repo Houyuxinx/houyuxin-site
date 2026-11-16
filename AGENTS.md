@@ -1,5 +1,9 @@
 # ECHYOX｜给 AI 的长期工作指令
 
+## 2026-11-16｜维护状态校准
+V6 维护规范已由 [PR #51](https://github.com/Houyuxinx/houyuxin-site/pull/51) 正式合并并部署成功。2026-11-16 作者明确授权 [PR #52](https://github.com/Houyuxinx/houyuxin-site/pull/52) 完成必要收尾检查后发布；本记录写于合并前，实际合并与部署结果以该 PR 的发布评论及 GitHub Actions 为准。下文“候选／待审核／待确认”等旧措辞属于形成时的历史记录，不代表最新授权状态。
+本人确认的署名及邮箱边界见 START_HERE.md / BILINGUAL_REVIEW.md；今后改变仍须单独授权。
+
 ## V6 候选｜多 AI 协作与分支保护（2026-11-16）
 - 已核实作者亲自创建 [ECHYOX Main Protection](https://github.com/Houyuxinx/houyuxin-site/rules/27353864)，仅默认分支、active、无豁免、禁止删除/强推、强制 PR、额外审批 0；并非只有作者能合并，已有人工授权制度必须继续。不得试图绕过保护、临时关闭规则、强推或擅改账户设置。若发布受阻，报告原因，等作者单独授权后处理。
 - GPT、Work、WorkBuddy 及其他接手工具共同遵守同一规则；不依赖特定平台记忆。开始前查最新 main、开放 PR、相关 Issue 与分支；同一任务不得并行重复执行。未经作者许可不推送其他 AI 的工作分支、不改动其待审核提案。接力以仓库记录为准，明确当前责任、基线、范围、测试结果及遗留问题。
