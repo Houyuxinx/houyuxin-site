@@ -384,7 +384,7 @@ function translate(value){
  if((m=clean.match(/^第(\d+)(张|组)，共(\d+)(张|组)$/)))return m[1]+' of '+m[3]+(m[2]==='组'?(Number(m[3])===1?' group':' groups'):(Number(m[3])===1?' photograph':' photographs'));
  return value;
 }
-if(document.title==='侯宇鑫 HOU YUXIN')document.title='HOU YUXIN';
+if(document.title==='侯宇鑫（Yuxin Hou）｜戏剧编剧、导演 — ECHYOX')document.title=english?'Yuxin Hou — Chinese Playwright & Theatre Director | ECHYOX':document.title;
 else document.title=translate(document.title);
 const meta=document.querySelector('meta[name="description"]');
  if(meta&&meta.dataset.descriptionEn)meta.content=meta.dataset.descriptionEn;
