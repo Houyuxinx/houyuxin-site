@@ -9,7 +9,7 @@ const words = {
   "音乐": "Music",
   "寻找自己": "Becoming",
   "侯宇鑫": "Yuxin Hou",
-  "侯宇鑫（Yuxin Hou）｜戏剧编剧、导演 — ECHYOX": "Yuxin Hou — Chinese Playwright & Theatre Director | ECHYOX",
+  "侯宇鑫（Yuxin Hou）｜青年戏剧编剧、导演 — ECHYOX": "Yuxin Hou — Chinese Playwright & Theatre Director | ECHYOX",
   "回到来处": "Return",
   "返回戏剧": "Back to theatre",
   "返回首页": "Back to home page",
@@ -162,7 +162,7 @@ const words = {
   "经过": "Selected work",
   "此刻": "Now",
   "联系": "Contact",
-  "侯宇鑫，戏剧编剧、导演，中国戏剧文学学会会员，文旅演艺高级导演。": "Yuxin Hou is a Chinese playwright and theatre director, a member of the Chinese Theatre Literature Association (中国戏剧文学学会), and a senior director of live performances for cultural tourism.",
+  "侯宇鑫，青年戏剧编剧、导演，中国戏剧文学学会会员，文旅演艺高级导演。": "Yuxin Hou is a Chinese playwright and theatre director, a member of the Chinese Theatre Literature Association (中国戏剧文学学会), and a senior director of live performances for cultural tourism.",
   "毕业于广西艺术学院戏剧影视文学系，曾任高校教师，进修于第二届全国“文旅演艺导演高级研修班”。": "Hou graduated from the Department of Drama, Film and Television Literature at Guangxi Arts University, previously taught at a university, and attended the second national advanced training programme for directors of live performances in cultural tourism.",
   "主要从事戏剧文本创作与舞台导演工作，同时进行诗歌、歌曲写作及跨媒介创作实践。": "Hou’s practice centres on playwriting and theatre directing, alongside poetry, songwriting and work across media.",
   "主要作品包括话剧《海边有一栋倾斜的房子》、《猛犸》、《迷宫》、《面向自我的陈述》、《她一瞬过载》，音乐剧《风起形意》等。": "Major works include the plays EXPRESSERS, MAMMOTH, THE LABYRINTH, THE NARROW GATE and ALL AT ONCE, and the musical Feng Qi Xing Yi (风起形意).",
@@ -384,7 +384,7 @@ function translate(value){
  if((m=clean.match(/^第(\d+)(张|组)，共(\d+)(张|组)$/)))return m[1]+' of '+m[3]+(m[2]==='组'?(Number(m[3])===1?' group':' groups'):(Number(m[3])===1?' photograph':' photographs'));
  return value;
 }
-if(document.title==='侯宇鑫（Yuxin Hou）｜戏剧编剧、导演 — ECHYOX')document.title=english?'Yuxin Hou — Chinese Playwright & Theatre Director | ECHYOX':document.title;
+if(document.title==='侯宇鑫（Yuxin Hou）｜青年戏剧编剧、导演 — ECHYOX')document.title=english?'Yuxin Hou — Chinese Playwright & Theatre Director | ECHYOX':document.title;
 else document.title=translate(document.title);
 const meta=document.querySelector('meta[name="description"]');
  if(meta&&meta.dataset.descriptionEn)meta.content=meta.dataset.descriptionEn;
