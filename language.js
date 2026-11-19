@@ -338,16 +338,19 @@ const brand=document.querySelector('.brand-link');
 if(brand){const a=switchLink();a.classList.add('header-language-switch');brand.closest('.site-head').appendChild(a);}
 const entry=document.querySelector('.entry-gate');
 if(entry){const a=switchLink();a.classList.add('entry-language-switch');entry.appendChild(a);}
+if(current.pathname.endsWith('/becoming.html')){
+ // Inject one canonical for the selected language; the source HTML intentionally has none.
+ const localizedProfileUrl=new URL('https://echyox.com/becoming.html');
+ if(english)localizedProfileUrl.searchParams.set('lang','en');
+ const canonical=document.createElement('link');
+ canonical.rel='canonical';
+ canonical.href=localizedProfileUrl.href;
+ document.head.appendChild(canonical);
+ const ogUrl=document.querySelector('meta[property="og:url"]');
+ if(english&&ogUrl)ogUrl.content=localizedProfileUrl.href;
+}
 if(!english)return;
 root.lang='en';
-if(current.pathname.endsWith('/becoming.html')){
- const localizedProfileUrl=new URL(current.pathname,current.origin);
- localizedProfileUrl.searchParams.set('lang','en');
- const canonical=document.querySelector('link[rel="canonical"]');
- if(canonical)canonical.href=localizedProfileUrl.href;
- const ogUrl=document.querySelector('meta[property="og:url"]');
- if(ogUrl)ogUrl.content=localizedProfileUrl.href;
-}
 // The contact address follows the selected interface language; retain the original arrow.
 const contact=document.querySelector('.contact-mail[data-contact-email-en]');
 if(contact&&contact.firstChild&&contact.firstChild.nodeType===3){
