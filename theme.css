@@ -25,7 +25,7 @@ html[data-theme="light"] .audio-loop:hover{border-color:rgba(20,20,24,.28)}
 html[data-theme="light"] .audio-loop[aria-pressed="true"]{background:rgba(20,20,24,.10);border-color:rgba(20,20,24,.45)}
 /* The existing canvas contains transparent text only, never photographs.
    Switch its glyph palette without restarting the orbit or rebuilding sprites. */
-html[data-theme="light"] .entry-gate{color:var(--fg);background:radial-gradient(ellipse 52% 44% at 50% 50%,#fff 0%,#fafafa 53%,#f4f4f4 100%)}
+html[data-theme="light"] .entry-gate{color:var(--fg);background:radial-gradient(ellipse 52% 44% at 50% 50%,#fff 0%,#fafafa 53%,#fafafa 100%)}
 html[data-theme="light"] .entry-canvas{filter:invert(1) grayscale(1)}
 html[data-theme="light"] .entry-bit{color:#383838}
 html[data-theme="light"] .entry-bit[data-source="剧本"]{color:#373737}
